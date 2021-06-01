@@ -2,34 +2,12 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# What is NotificationAPI?
 
-Let's discover **Docusaurus in less than 5 minutes**.
+NotificationAPI allows software developers to implement any type of notifications (email, in-app, push, ...) and other related features such as notification management and feature flagging in a few lines of code. This is done by configuring your notifications in our dashboard, then adding and using our SDKs in your application.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+1. Create an account (free forever!)
 
-Or **try Docusaurus immediately** with **[new.docusaurus.io](https://new.docusaurus.io)**.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**:
-
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+2. Check our Quick Start guides

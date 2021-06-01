@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "NotificationAPI Documentation",
+  tagline: "Send notifications in a few minutes!",
   url: "https://notificationapi-com.github.io",
   baseUrl: "/docs/",
   onBrokenLinks: "log", //TODO: revert to throw
@@ -11,9 +11,10 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     navbar: {
-      title: "My Site",
+      title: "NotificationAPI Documentation",
+      style: "dark",
       logo: {
-        alt: "My Site Logo",
+        alt: "NotificationAPI",
         src: "img/logo.svg",
       },
       items: [
@@ -21,13 +22,7 @@ module.exports = {
           type: "doc",
           docId: "intro",
           position: "left",
-          label: "Tutorial",
-        },
-        { to: "/blog", label: "Blog", position: "left" },
-        {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
-          position: "right",
+          label: "Quick Start",
         },
       ],
     },
