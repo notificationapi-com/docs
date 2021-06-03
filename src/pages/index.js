@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -28,15 +28,18 @@ function HomepageHeader() {
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+  useEffect(() => {
+    window.location.href = "docs/intro";
+  });
   return (
     <Layout
       title={`${siteConfig.title}`}
       description="NotificationAPI Documentation - How to programmatically send email, push, in-app, text, sms notifications in a few lines of code"
     >
-      <HomepageHeader />
+      {/* <HomepageHeader />
       <main>
-        <HomepageFeatures />
-      </main>
+        <HomepageFeatures></HomepageFeatures>
+      </main> */}
     </Layout>
   );
 }
