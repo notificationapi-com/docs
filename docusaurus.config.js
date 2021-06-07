@@ -4,7 +4,7 @@ module.exports = {
   tagline: "Send notifications in a few minutes!",
   url: "https://notificationapi-com.github.io",
   baseUrl: "/docs/",
-  onBrokenLinks: "log", //TODO: revert to throw
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "notificationapi-com",
@@ -34,11 +34,11 @@ module.exports = {
           items: [
             {
               label: "Start here",
-              to: "/docs/intro",
+              to: "/docs/docs/intro",
             },
             {
               label: "Quick Start",
-              to: "/docs/quick-start/send-a-notification",
+              to: "/docs/docs/quick-start/send-a-notification",
             },
           ],
         },
