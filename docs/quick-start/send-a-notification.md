@@ -25,7 +25,7 @@ values={[
 }>
 <TabItem value="js">
 
-```js
+```bash
 npm install notificationapi-node-server-sdk
 // or using yarn:
 yarn add notificationapi-node-server-sdk
