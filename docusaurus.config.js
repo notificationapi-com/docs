@@ -34,11 +34,11 @@ module.exports = {
           items: [
             {
               label: "Start here",
-              to: "/docs/docs/intro",
+              to: "/docs/intro",
             },
             {
               label: "Quick Start",
-              to: "/docs/docs/quick-start/send-a-notification",
+              to: "/docs/quick-start/send-a-notification",
             },
           ],
         },
