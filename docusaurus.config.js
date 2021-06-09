@@ -24,6 +24,10 @@ module.exports = {
           position: "left",
           label: "Docs",
         },
+        {
+          href: "http://status.notificationapi.com",
+          label: "API Status",
+        },
       ],
     },
     footer: {
