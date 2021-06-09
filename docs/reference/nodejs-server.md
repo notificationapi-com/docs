@@ -37,7 +37,7 @@ yarn add notificationapi-node-server-sdk
 
 ## Usage
 
-### 1. Import or require
+### 1. import or require
 
 <Tabs
 groupId="js-import-require"
