@@ -2,8 +2,8 @@
 module.exports = {
   title: "NotificationAPI Documentation",
   tagline: "Send notifications in a few minutes!",
-  url: "https://notificationapi-com.github.io",
-  baseUrl: "/docs/",
+  url: "https://docs.notificationapi.com",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
