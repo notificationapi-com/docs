@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# JavaScript Client SDK
+# JS Client SDK (Front-End)
 
 This client-side SDK for JavaScript allows you to show in-app notifications in your front-end.
 
