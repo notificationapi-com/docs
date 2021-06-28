@@ -28,6 +28,10 @@ module.exports = {
           href: "http://status.notificationapi.com",
           label: "API Status",
         },
+        {
+          href: "https://www.notificationapi.com",
+          label: "Back to homepage",
+        },
       ],
     },
     footer: {
@@ -43,6 +47,10 @@ module.exports = {
             {
               label: "Quick Start",
               to: "/docs/quick-start/send-a-notification",
+            },
+            {
+              label: "Homepage",
+              to: "https://www.notificationapi.com",
             },
           ],
         },
