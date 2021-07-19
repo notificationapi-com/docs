@@ -143,3 +143,29 @@ export default App;
 
 </TabItem>
 </Tabs>
+
+## Secure Mode
+
+Front-end code is observable and mutable by end-users and  malicious actors can take advantage this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing in different parameters to the library. Secure Mode makes our front-end SDK secure against this threat.
+
+### Step by Step:
+
+1. Back-end: hash the userId using your client secret. Send the hashed userId to your front-end, for example from an API right after the page loads:
+```jsx
+const hashedUserId = require('crypto') // crypto is part of nodejs
+  .createHmac('sha256', 'YOUR_CLIENT_SECRET')
+  .update('ACTUAL_USER_ID')
+  .digest('base64');
+```
+
+2. Front-end: pass the hashed userId to the NotificationAPI SDK:
+```jsx
+new NotificationAPI({
+  root: '...',
+  clientId: '...',
+  userId: 'ACTUAL_USER_ID',
+  userIdHash: 'HASHED_USER_ID'
+});
+```
+
+3. Enable secure mode in your account settings. When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
