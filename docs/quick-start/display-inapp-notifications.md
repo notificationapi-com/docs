@@ -16,28 +16,27 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-groupId="frontend-language"
-defaultValue="js"
+groupId="js-package-manager"
+defaultValue="npm/yarn"
 values={[
-{ label: 'JavaScript', value: 'js' },
-{ label: 'React.js', value: 'react' }
+{ label: 'npm/yarn', value: 'npm/yarn' },
+{ label: '<script>', value: 'script' }
 ]
 }>
-<TabItem value="js">
+<TabItem value="npm/yarn">
 
-```js
+```console
+# using npm:
 npm install notificationapi-js-client-sdk
-// or using yarn:
+# using yarn:
 yarn add notificationapi-js-client-sdk
 ```
 
 </TabItem>
-<TabItem value="react">
+<TabItem value="script">
 
-```js
-npm install notificationapi-js-client-sdk
-// or using yarn:
-yarn add notificationapi-js-client-sdk
+```html
+<script src="https://unpkg.com/notificationapi-js-client-sdk/dist/notificationapi-js-client-sdk.js"></script>
 ```
 
 </TabItem>
@@ -49,30 +48,17 @@ The example below creates the NotificationAPI widget in your front-end. The widg
 
 <Tabs
 groupId="frontend-language"
-defaultValue="js"
+defaultValue="react"
 values={[
-{ label: 'JavaScript', value: 'js' },
-{ label: 'React.js', value: 'react' }
+{ label: 'React.js', value: 'react' },
+{ label: 'JavaScript', value: 'js' }
 ]
 }>
-<TabItem value="js">
-
-```js
-import NotificationAPI from "notificationapi-js-client-sdk";
-
-new NotificationAPI({
-  clientId: "CLIENT_ID",
-  userId: "TEST_USER_ID",
-  root: "CONTAINER_DIV_ID",
-});
-```
-
-</TabItem>
 <TabItem value="react">
 
 Create the following `NotificationAPIComponent`:
 
-```js
+```jsx
 import NotificationAPI from "notificationapi-js-client-sdk";
 import { memo, useEffect } from "react";
 
@@ -96,7 +82,7 @@ React's state management and re-rendering would normally cause our widget to be 
 
 Now use the component anywhere you wish, for example in `App.js`:
 
-```js
+```jsx
 import NotificationAPIComponent from "./NotificationAPIComponent";
 
 function App() {
@@ -109,6 +95,19 @@ function App() {
 }
 
 export default App;
+```
+
+</TabItem>
+<TabItem value="js">
+
+```html
+<script>
+  new NotificationAPI({
+    clientId: "CLIENT_ID",
+    userId: "TEST_USER_ID",
+    root: "CONTAINER_DIV_ID",
+  });
+</script>
 ```
 
 </TabItem>

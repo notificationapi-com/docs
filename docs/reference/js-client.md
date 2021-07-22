@@ -6,30 +6,37 @@ sidebar_position: 2
 
 This client-side SDK for JavaScript allows you to show in-app notifications in your front-end.
 
-## Installation
+## Setup
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
 groupId="js-package-manager"
-defaultValue="npm"
+defaultValue="npm/yarn"
 values={[
-{ label: 'NPM', value: 'npm', },
-{ label: 'Yarn', value: 'yarn', }
+{ label: 'npm/yarn', value: 'npm/yarn' },
+{ label: '<script>', value: 'script' }
 ]
 }>
-<TabItem value="npm">
+<TabItem value="npm/yarn">
 
-```bash
-npm install notificationapi-js-client-sdk
+```js
+/* 1. Install using npm or yarn:
+  npm install notificationapi-js-client-sdk
+  yarn add notificationapi-js-client-sdk
+*/
+
+// 2. import or require:
+import NotificationAPI from "notificationapi-js-client-sdk";
+const NotificationAPI = require("notificationapi-js-client-sdk").default;
 ```
 
 </TabItem>
-<TabItem value="yarn">
+<TabItem value="script">
 
-```bash
-yarn add notificationapi-js-client-sdk
+```html
+<script src="https://unpkg.com/notificationapi-js-client-sdk/dist/notificationapi-js-client-sdk.js"></script>
 ```
 
 </TabItem>
@@ -39,41 +46,13 @@ yarn add notificationapi-js-client-sdk
 
 The example below creates a NotificationAPI widget that automatically connects to our servers and pulls the notifications for the user.
 
-<Tabs
-groupId="js-import-require"
-defaultValue="import"
-values={[
-{ label: 'Import', value: 'import', },
-{ label: 'Require', value: 'require', }
-]
-}>
-<TabItem value="import">
-
 ```js
-import NotificationAPI from "notificationapi-js-client-sdk";
-
 new NotificationAPI({
   root: "parentDivID",
   clientId: YOU_CLIENT_ID,
   userId: USER_ID,
 });
 ```
-
-</TabItem>
-<TabItem value="require">
-
-```js
-const NotificationAPI = require("notificationapi-js-client-sdk").default;
-
-new NotificationAPI({
-  root: "parentDivID",
-  clientId: YOU_CLIENT_ID,
-  userId: USER_ID,
-});
-```
-
-</TabItem>
-</Tabs>
 
 ![Sample](https://github.com/notificationapi-com/notificationapi-js-client-sdk/blob/master/sample/popup.gif?raw=true)
 
