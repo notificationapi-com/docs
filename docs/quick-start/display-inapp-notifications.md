@@ -27,9 +27,9 @@ values={[
 
 ```console
 # using npm:
-npm install notificationapi-js-client-sdk
+npm install notificationapi-js-client-sdk --save
 # using yarn:
-yarn add notificationapi-js-client-sdk
+yarn add notificationapi-js-client-sdk --save
 ```
 
 </TabItem>
@@ -60,6 +60,7 @@ Create the following `NotificationAPIComponent`:
 
 ```jsx
 import NotificationAPI from "notificationapi-js-client-sdk";
+import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
 import { memo, useEffect } from "react";
 
 const NotificationAPIComponent = memo((props) => {
@@ -68,6 +69,7 @@ const NotificationAPIComponent = memo((props) => {
       clientId: "CLIENT_ID",
       userId: props.userId,
       root: "CONTAINER_DIV_ID",
+      popupPosition: PopupPosition.BottomLeft
     });
   });
 
@@ -106,6 +108,7 @@ export default App;
     clientId: "CLIENT_ID",
     userId: "TEST_USER_ID",
     root: "CONTAINER_DIV_ID",
+    popupPosition: "bottomLeft"
   });
 </script>
 ```
