@@ -11,7 +11,13 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "prettier-check": "prettier --config .prettierrc './**/*.js' --check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier-check"
+    }
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
@@ -23,6 +29,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "url-loader": "^4.1.1"
+  },
+  "devDependencies": {
+    "husky": "^4.3.0",
+    "prettier": "2.1.2"
   },
   "browserslist": {
     "production": [
