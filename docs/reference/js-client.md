@@ -130,14 +130,45 @@ Front-end code is observable and mutable by end-users and  malicious actors can 
 ### Step by Step:
 
 1. Back-end: hash the userId using your client secret. Send the hashed userId to your front-end, for example from an API right after the page loads:
+
+<Tabs
+defaultValue="Node.js"
+values={[
+{ label: 'Node.js', value: 'Node.js', },
+{ label: 'Python', value: 'Python' }
+]
+}>
+<TabItem value="Node.js">
+
 ```jsx
 const hashedUserId = require('crypto') // crypto is part of nodejs
   .createHmac('sha256', 'YOUR_CLIENT_SECRET')
   .update('ACTUAL_USER_ID')
   .digest('base64');
 ```
+</TabItem>
+<TabItem value="Python">
 
+```py
+import hmac
+import hashlib
+import base64
+hashedUserId = base64.b64encode(hmac.new( 'YOUR_CLIENT_SECRET'.encode('utf-8'), 
+            'ACTUAL_USER_ID'.encode('utf-8'),
+             hashlib.sha256).digest())
+```
+</TabItem>
+</Tabs>
 2. Front-end: pass the hashed userId to the NotificationAPI SDK:
+<Tabs
+defaultValue="Javascript"
+values={[
+{ label: 'Javascript', value: 'Javascript', },
+{ label: 'Typescript', value: 'Typescript' }
+]
+}>
+<TabItem value="Javascript">
+
 ```jsx
 new NotificationAPI({
   root: '...',
@@ -146,5 +177,17 @@ new NotificationAPI({
   userIdHash: 'HASHED_USER_ID'
 });
 ```
+</TabItem>
+<TabItem value="Typescript">
 
+```jsx
+new NotificationAPI({
+  root: '...',
+  clientId: '...',
+  userId: 'ACTUAL_USER_ID',
+  userIdHash: 'HASHED_USER_ID'
+});
+```
+</TabItem>
+</Tabs>
 3. Enable secure mode in your account settings. When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
