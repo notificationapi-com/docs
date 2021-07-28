@@ -85,7 +85,8 @@ values={[
 
 ```jsx
 import NotificationAPI from "notificationapi-js-client-sdk";
-import { memo, useEffect } from "react";
+import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
+import React, { memo, useEffect } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
   useEffect(() => {
@@ -93,6 +94,7 @@ const NotificationAPIComponent = memo((props) => {
       root: "container",
       clientId: YOUR_CLIENT_ID,
       userId: props.userId,
+      popupPosition: PopupPosition.BottomLeft
     });
   });
 
@@ -174,7 +176,8 @@ new NotificationAPI({
   root: '...',
   clientId: '...',
   userId: 'ACTUAL_USER_ID',
-  userIdHash: 'HASHED_USER_ID'
+  userIdHash: 'HASHED_USER_ID',
+  popupPosition: PopupPosition.BottomLeft
 });
 ```
 </TabItem>
@@ -185,7 +188,8 @@ new NotificationAPI({
   root: '...',
   clientId: '...',
   userId: 'ACTUAL_USER_ID',
-  userIdHash: 'HASHED_USER_ID'
+  userIdHash: 'HASHED_USER_ID',
+  popupPosition: PopupPosition.BottomLeft
 });
 ```
 </TabItem>
