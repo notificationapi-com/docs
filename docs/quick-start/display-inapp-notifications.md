@@ -27,9 +27,9 @@ values={[
 
 ```console
 # using npm:
-npm install notificationapi-js-client-sdk --save
+npm install notificationapi-js-client-sdk 
 # using yarn:
-yarn add notificationapi-js-client-sdk --save
+yarn add notificationapi-js-client-sdk 
 ```
 
 </TabItem>
