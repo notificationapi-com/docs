@@ -57,19 +57,20 @@ values={[
 
 ```js
 // import:
-import notificationapi from "notificationapi-node-server-sdk";
+import notificationapi from 'notificationapi-node-server-sdk';
 // Or using require: const notificationapi = require('notificationapi-node-server-sdk').default
 
 // init
-notificationapi.init("CLIENT_ID", "CLIENT_SECRET");
+notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
 notificationapi.send({
-  notificationId: "hello_world_notification",
+  notificationId: 'hello_world_notification',
   user: {
-    id: "TEST_USER_ID",
-    email: "EMAIL@TEST.COM",
-  },
+    id: 'TEST_USER_ID',
+    email: 'EMAIL@TEST.COM',
+    number: '00123456'
+  }
 });
 ```
 
