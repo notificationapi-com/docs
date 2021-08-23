@@ -55,9 +55,9 @@ values={[
 <TabItem value="nodejs">
 
 ```js
-import notificationapi from "notificationapi-node-server-sdk";
+import notificationapi from 'notificationapi-node-server-sdk';
 // or with require:
-const notificationapi = require("notificationapi-node-server-sdk").default;
+const notificationapi = require('notificationapi-node-server-sdk').default;
 ```
 
 </TabItem>
@@ -85,7 +85,7 @@ values={[
 <TabItem value="nodejs">
 
 ```js
-notificationapi.init("CLIENT_ID", "CLIENT_SECRET");
+notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
 </TabItem>
@@ -114,8 +114,8 @@ values={[
 
 ```js
 notificationapi.send({
-  notificationId: "hello_world",
-  user: { id: "123", email: "test@test.com" }
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' }
 });
 ```
 
@@ -125,7 +125,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" } 
+    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"}
 })
 ```
 
@@ -137,6 +137,7 @@ Parameters:
 - `notificationId` (string): The ID of the notification you wish to send. You can find this value from the dashboard.
 - `user.id` (string): The ID of the user in your system.
 - `user.email` (string): User's email address.
+- `user.number` (string): User's phone number. Phone numbers should be formatted with a + and country code, for example: +15005550006. Also unformatted US numbers are accepted, e.g., (415) 555-1212 or 415-555-1212.
 
 Below you can find additional parameters and use-cases.
 
@@ -157,7 +158,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     mergeTags: { firstName: 'Jane' }
 })
 ```
@@ -168,7 +169,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"},
     "mergeTags": { "firstName": "Jane" }
 })
 ```
@@ -205,7 +206,7 @@ const user = {
 }
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     mergeTags: { user }
 })
 ```
@@ -230,7 +231,7 @@ user = {
 }
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
     "mergeTags": { "user": user }
 })
 ```
@@ -255,7 +256,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     options: {
         email: {
             replyToAddresses: ['noreply@test.com']
@@ -270,8 +271,8 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
-    "options": { 
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
+    "options": {
             "email": {
                 "replyToAddresses": ["noreply@test.com"]
             }
@@ -287,7 +288,6 @@ Available options:
 - `options.email.replyToAddresses` (string[]): An array of email addresses to be used in the reply-to field of emails notifications.
 - `options.email.ccAddresses` (string[]): An array of emails to be CC'ed on the email notifications.
 - `options.email.bccAddresses` (string[]): An array of emails to be BCC'ed on the email notifications.
-
 
 ## Retract: unsending or deleting notifications
 
@@ -319,12 +319,14 @@ notificationapi.retract({
     "userId": "123"
 })
 ```
+
 </TabItem>
 </Tabs>
 
 This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
 
 Parameters:
+
 - `notificationId` (string)
 - `userId` (string)
 - `secondaryId` (string/optional): when used, only notifications are deleted that were given this secondaryId at send
@@ -333,18 +335,18 @@ Please note that this only works with: push, inapp, browser notifications. There
 
 ## SecondaryId: categorizing notifications of the same type
 
-The `secondaryId` is used toto specify further subcategories within a notification. 
+The `secondaryId` is used toto specify further subcategories within a notification.
 
-Example 1: YouTube generates "new content alert" notifications. `secondaryId` allows categorizing that same notification based on the YouTube channel. 
+Example 1: YouTube generates "new content alert" notifications. `secondaryId` allows categorizing that same notification based on the YouTube channel.
 
 Example 2: In a project management tool, there will be notifications such as "task completed". `secondaryId` can be used to specify which project the notification belongs to.
 
 Use-cases:
+
 - You can use the secondaryId in the [retract function](#retract-unsending-or-deleting-notifications)
 - Other use-cases are coming soon
 
 Usage:
-
 
 <Tabs
 groupId="back-end-language"
@@ -359,7 +361,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     secondaryId: "abc"
 })
 ```
@@ -370,9 +372,10 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
     "secondaryId": "abc"
 })
 ```
+
 </TabItem>
 </Tabs>
