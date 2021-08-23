@@ -69,7 +69,7 @@ notificationapi.send({
   user: {
     id: 'TEST_USER_ID',
     email: 'EMAIL@TEST.COM',
-    number: '00123456'
+    number: '+15005550006'
   }
 });
 ```
@@ -90,6 +90,7 @@ notificationapi.send({
         "user": {
             "id": "test_user_id",
             "email": "test@test.com",
+             "number": "+15005550006"
         }
     })
 ```

@@ -115,7 +115,7 @@ values={[
 ```js
 notificationapi.send({
   notificationId: 'hello_world',
-  user: { id: '123', email: 'test@test.com', number: '00123456' }
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' }
 });
 ```
 
@@ -125,7 +125,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" }
+    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"}
 })
 ```
 
@@ -137,6 +137,7 @@ Parameters:
 - `notificationId` (string): The ID of the notification you wish to send. You can find this value from the dashboard.
 - `user.id` (string): The ID of the user in your system.
 - `user.email` (string): User's email address.
+- `user.number` (string): User's phone number. Phone numbers should be formatted with a + and country code, for example: +15005550006. Also unformatted US numbers are accepted, e.g., (415) 555-1212 or 415-555-1212.
 
 Below you can find additional parameters and use-cases.
 
@@ -157,7 +158,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "00123456" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     mergeTags: { firstName: 'Jane' }
 })
 ```
@@ -168,7 +169,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"},
     "mergeTags": { "firstName": "Jane" }
 })
 ```
@@ -205,7 +206,7 @@ const user = {
 }
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "00123456" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     mergeTags: { user }
 })
 ```
@@ -230,7 +231,7 @@ user = {
 }
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
     "mergeTags": { "user": user }
 })
 ```
@@ -255,7 +256,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "00123456" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     options: {
         email: {
             replyToAddresses: ['noreply@test.com']
@@ -270,7 +271,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
     "options": {
             "email": {
                 "replyToAddresses": ["noreply@test.com"]
@@ -360,7 +361,7 @@ values={[
 ```js
 notificationapi.send({
     notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "00123456" },
+    user: { id: "123", email: "test@test.com", number: "+15005550006" },
     secondaryId: "abc"
 })
 ```
@@ -371,7 +372,7 @@ notificationapi.send({
 ```python
 notificationapi.send({
     "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
+    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
     "secondaryId": "abc"
 })
 ```
