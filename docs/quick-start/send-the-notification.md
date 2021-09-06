@@ -1,14 +1,12 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Send Your First Notification
+# Send the Notification
 
-## Prerequisite: Create an account
+#### Prerequisite: A Configured Notification
 
-[Create a NotificationAPI account here](https://app.notificationapi.com). There is already a default "Hello World Notification" configured in your dashboard. Don't worry, this notification isn't sent to anyone without your knowledge.
-
-## 1. Install a back-end SDK
+## 1. Install back-end SDK
 
 Notifications are triggered from your back-end. So install one of our back-end SDKs:
 
@@ -34,7 +32,7 @@ yarn add notificationapi-node-server-sdk
 </TabItem>
 <TabItem value="py">
 
-```py
+```bash
 pip install notificationapi_python_server_sdk
 ```
 
@@ -43,7 +41,7 @@ pip install notificationapi_python_server_sdk
 
 ## 2. Send
 
-The example below sends the "Hello World Notification" to the test user. Feel free to replace the user values with your user so you can receive and view the notifications.
+The example below sends the "New Comment Notification" to the test user:
 
 <Tabs
 groupId="backend-language"
@@ -56,20 +54,20 @@ values={[
 <TabItem value="js">
 
 ```js
-// import:
+// import/require:
 import notificationapi from 'notificationapi-node-server-sdk';
-// Or using require: const notificationapi = require('notificationapi-node-server-sdk').default
+// const notificationapi = require('notificationapi-node-server-sdk').default
 
 // init
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
 notificationapi.send({
-  notificationId: 'hello_world_notification',
+  notificationId: 'new_comment_notification',
   user: {
     id: 'TEST_USER_ID',
-    email: 'EMAIL@TEST.COM',
-    number: '+15005550006'
+    email: 'TEST@TEST.COM', // required for email notifications
+    number: '+15005550006' // required for SMS
   }
 });
 ```
@@ -86,11 +84,11 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
 notificationapi.send({
-        "notificationId": "hello_world_notification",
+        "notificationId": "new_comment_notification",
         "user": {
-            "id": "test_user_id",
-            "email": "test@test.com",
-             "number": "+15005550006"
+            "id": "TEST_USER_ID",
+            "email": "TEST@TEST.COM",   # required for email notifications
+            "number": "+15005550006"    # required for SMS
         }
     })
 ```
@@ -98,12 +96,16 @@ notificationapi.send({
 </TabItem>
 </Tabs>
 
-:::important
-
+:::info
 You must replace the CLIENT_ID and CLIENT_SECRET with real values. You can get yours from [here](https://app.notificationapi.com/environments).
-
 :::
 
-## What's next?
+## That's it?
 
-At this point, the test user has received a "Hello World Notification" email. Next, you can configure one of our front-end SDKs to show the in-app notifications.
+You are now sending notifications through email, SMS, automated voice calls, etc.
+
+Please take the time to review:
+
+- In-App Notifications require our [Front-End SDK](guides/display-inapp-notifications)
+- [Free usage tier](https://www.notificationapi.com/pricing)
+- [SMS/Voice Details](guides/sms-voice)
