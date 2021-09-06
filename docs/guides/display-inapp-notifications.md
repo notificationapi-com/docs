@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Display In-App Notifications
@@ -27,9 +27,9 @@ values={[
 
 ```console
 # using npm:
-npm install notificationapi-js-client-sdk 
+npm install notificationapi-js-client-sdk
 # using yarn:
-yarn add notificationapi-js-client-sdk 
+yarn add notificationapi-js-client-sdk
 ```
 
 </TabItem>
@@ -59,16 +59,16 @@ values={[
 Create the following `NotificationAPIComponent`:
 
 ```jsx
-import NotificationAPI from "notificationapi-js-client-sdk";
+import NotificationAPI from 'notificationapi-js-client-sdk';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import { memo, useEffect } from "react";
+import { memo, useEffect } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
   useEffect(() => {
     new NotificationAPI({
-      clientId: "CLIENT_ID",
+      clientId: 'CLIENT_ID',
       userId: props.userId,
-      root: "CONTAINER_DIV_ID",
+      root: 'CONTAINER_DIV_ID',
       popupPosition: PopupPosition.BottomLeft
     });
   });
@@ -85,7 +85,7 @@ React's state management and re-rendering would normally cause our widget to be 
 Now use the component anywhere you wish, for example in `App.js`:
 
 ```jsx
-import NotificationAPIComponent from "./NotificationAPIComponent";
+import NotificationAPIComponent from './NotificationAPIComponent';
 
 function App() {
   return (
@@ -105,10 +105,10 @@ export default App;
 ```html
 <script>
   new NotificationAPI({
-    clientId: "CLIENT_ID",
-    userId: "TEST_USER_ID",
-    root: "CONTAINER_DIV_ID",
-    popupPosition: "bottomLeft"
+    clientId: 'CLIENT_ID',
+    userId: 'TEST_USER_ID',
+    root: 'CONTAINER_DIV_ID',
+    popupPosition: 'bottomLeft'
   });
 </script>
 ```
