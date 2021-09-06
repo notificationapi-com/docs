@@ -8,7 +8,7 @@ import InappGif from '@site/static/inapp.gif';
 
 <img src={InappGif} />
 
-While email or SMS notifications only require the [back-end part](send-a-notification), you need our front-end SDK to display in-app notifications:
+While email or SMS notifications only require the [back-end part](../quick-start/send-the-notification), you need our front-end SDK to display in-app notifications:
 
 ## 1. Install a front-end SDK
 
