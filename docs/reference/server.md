@@ -141,7 +141,7 @@ Parameters:
 
 Below you can find additional parameters and use-cases.
 
-## Merge Tags: Dynamically values in notifications
+## Merge Tags: Dynamic values in notifications
 
 If you are using `{{mergeTags}}` in your notification designs, be sure to pass the actual values into the SDK. The example below replaces the `{{firstName}}` merge tag in your design with the value `Jane`.
 
@@ -238,6 +238,50 @@ notificationapi.send({
 
 </TabItem>
 </Tabs>
+
+## forceChannels: dynamically setting channels
+
+By default, notifications are sent over the channels that you specify in the dashboard. This allows you to turn channels on/off without any code changes.
+
+However, you may wish to override these settings dynamically at run-time. That is where you would use the `forceChannels` field:
+
+<Tabs
+groupId="back-end-language"
+defaultValue="nodejs"
+values={[
+{ label: 'Node.js', value: 'nodejs', },
+{ label: 'Python', value: 'python', }
+]
+}>
+<TabItem value="nodejs">
+
+```js
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com' },
+  forceChannels: ['EMAIL', 'INAPP_WEB']
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.send({
+    "notificationId": "hello_world",
+    "user": { "id": "123", "email": "test@test.com" },
+    "forceChannels": [ "EMAIL", "INAPP_WEB" ]
+})
+```
+
+</TabItem>
+</Tabs>
+
+The code above sends the notification over email and in-app regardless of what channels are active/inactive in the dashboard.
+
+:::info
+forceChannels field does not override the notification itself being inactive. For it to work, the notification must be in active mode.
+:::
 
 ## Options: Additional Email Features
 
