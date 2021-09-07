@@ -115,7 +115,3 @@ export default App;
 
 </TabItem>
 </Tabs>
-
-## What's next?
-
-Instead of the `Hello World` notification, it's time to learn how to create and customize your own notifications.
