@@ -22,3 +22,6 @@ jobs:
 
       - name: Pretty
         run: npm run-script prettier-check
+
+      - name: Build
+        run: npm run-script build

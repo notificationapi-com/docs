@@ -106,6 +106,6 @@ You are now sending notifications through email, SMS, automated voice calls, etc
 
 Please take the time to review:
 
-- In-App Notifications require our [Front-End SDK](guides/display-inapp-notifications)
+- In-App Notifications require our [Front-End SDK](../guides/display-inapp-notifications)
 - [Free usage tier](https://www.notificationapi.com/pricing)
-- [SMS/Voice Details](guides/sms-voice)
+- [SMS/Voice Details](../guides/sms-voice)
