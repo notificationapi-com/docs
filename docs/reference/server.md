@@ -306,7 +306,7 @@ notificationapi.send({
             replyToAddresses: ['noreply@test.com'],
             attachments: [
                 {
-                name: 'sample',
+                filename: 'sample.jpg',
                 url:
                     'https://app.notificationapi.com'
                 }
@@ -326,7 +326,7 @@ notificationapi.send({
     "options": {
             "email": {
                 "replyToAddresses": ["noreply@test.com"],
-                "attachments": [{"name": "sample", "url": "https://app.notificationapi.com"}]
+                "attachments": [{"filename": "sample.jpg", "url": "https://app.notificationapi.com"}]
             }
         }
 })
@@ -340,7 +340,7 @@ Available options:
 - `options.email.replyToAddresses` (string[]): An array of email addresses to be used in the reply-to field of emails notifications.
 - `options.email.ccAddresses` (string[]): An array of emails to be CC'ed on the email notifications.
 - `options.email.bccAddresses` (string[]): An array of emails to be BCC'ed on the email notifications.
-- `options.email.attachments` ({ name: string; url: string }[]): An array of publicly accessible URLs and filenames pointing to files that you wish to include as attachments. The URLs only need to be valid for a few minutes after calling the SDK method. After that, the public URLs can be disabled for privacy. The maximum email size (including the content and all attachments) is 10MB.
+- `options.email.attachments` ({ filename: string; url: string }[]): An array of publicly accessible URLs and filenames pointing to files that you wish to include as attachments. The URLs only need to be valid for a few minutes after calling the SDK method. After that, the public URLs can be disabled for privacy. The maximum email size (including the content and all attachments) is 10MB. File extensions in the filename property are necessary for the file to show up nicely in the recipient's device.
 
 ## Retract: unsending or deleting notifications
 
