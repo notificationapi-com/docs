@@ -28,8 +28,8 @@ values={[
 */
 
 // 2. import or require:
-import NotificationAPI from "notificationapi-js-client-sdk";
-const NotificationAPI = require("notificationapi-js-client-sdk").default;
+import NotificationAPI from 'notificationapi-js-client-sdk';
+const NotificationAPI = require('notificationapi-js-client-sdk').default;
 ```
 
 </TabItem>
@@ -48,9 +48,9 @@ The example below creates a NotificationAPI widget that automatically connects t
 
 ```js
 new NotificationAPI({
-  root: "parentDivID",
+  root: 'parentDivID',
   clientId: YOU_CLIENT_ID,
-  userId: USER_ID,
+  userId: USER_ID
 });
 ```
 
@@ -84,14 +84,14 @@ values={[
 <TabItem value="NotificationAPIComponent.js">
 
 ```jsx
-import NotificationAPI from "notificationapi-js-client-sdk";
+import NotificationAPI from 'notificationapi-js-client-sdk';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
 import React, { memo, useEffect } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
   useEffect(() => {
     new NotificationAPI({
-      root: "container",
+      root: 'container',
       clientId: YOUR_CLIENT_ID,
       userId: props.userId,
       popupPosition: PopupPosition.BottomLeft
@@ -108,7 +108,7 @@ export default NotificationAPIComponent;
 <TabItem value="App.js">
 
 ```jsx
-import NotificationAPIComponent from "./NotificationAPIComponent";
+import NotificationAPIComponent from './NotificationAPIComponent';
 
 function App() {
   return (
@@ -127,7 +127,7 @@ export default App;
 
 ## Secure Mode
 
-Front-end code is observable and mutable by end-users and  malicious actors can take advantage this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing in different parameters to the library. Secure Mode makes our front-end SDK secure against this threat.
+Front-end code is observable and mutable by end-users and malicious actors can take advantage this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing in different parameters to the library. Secure Mode makes our front-end SDK secure against this threat.
 
 ### Step by Step:
 
@@ -148,6 +148,7 @@ const hashedUserId = require('crypto') // crypto is part of nodejs
   .update('ACTUAL_USER_ID')
   .digest('base64');
 ```
+
 </TabItem>
 <TabItem value="Python">
 
@@ -155,10 +156,11 @@ const hashedUserId = require('crypto') // crypto is part of nodejs
 import hmac
 import hashlib
 import base64
-hashedUserId = base64.b64encode(hmac.new( 'YOUR_CLIENT_SECRET'.encode('utf-8'), 
+hashedUserId = base64.b64encode(hmac.new( 'YOUR_CLIENT_SECRET'.encode('utf-8'),
             'ACTUAL_USER_ID'.encode('utf-8'),
              hashlib.sha256).digest())
 ```
+
 </TabItem>
 </Tabs>
 2. Front-end: pass the hashed userId to the NotificationAPI SDK:
@@ -180,6 +182,7 @@ new NotificationAPI({
   popupPosition: PopupPosition.BottomLeft
 });
 ```
+
 </TabItem>
 <TabItem value="Typescript">
 
@@ -192,6 +195,7 @@ new NotificationAPI({
   popupPosition: PopupPosition.BottomLeft
 });
 ```
+
 </TabItem>
 </Tabs>
 3. Enable secure mode in your account settings. When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
