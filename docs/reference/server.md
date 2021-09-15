@@ -123,10 +123,16 @@ notificationapi.send({
 <TabItem value="python">
 
 ```python
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"}
-})
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {
+            "id": "123",
+            "email": "test@test.com",
+            "number": "+15005550006",
+        },
+    }
+)
 ```
 
 </TabItem>
@@ -157,21 +163,27 @@ values={[
 
 ```js
 notificationapi.send({
-    notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "+15005550006" },
-    mergeTags: { firstName: 'Jane' }
-})
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  mergeTags: { firstName: 'Jane' }
+});
 ```
 
 </TabItem>
 <TabItem value="python">
 
 ```python
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com", "number": "+15005550006"},
-    "mergeTags": { "firstName": "Jane" }
-})
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {
+            "id": "123",
+            "email": "test@test.com",
+            "number": "+15005550006",
+        },
+        "mergeTags": {"firstName": "Jane"},
+    }
+)
 ```
 
 </TabItem>
@@ -191,24 +203,24 @@ values={[
 
 ```js
 const user = {
-    firstName: 'Jane',
-    lastName: 'Doe',
-    orders: [
-        {
-            id: '123',
-            productName: 'socks'
-        },
-        {
-            id: '124',
-            productName: 'socks'
-        }
-    ]
-}
+  firstName: 'Jane',
+  lastName: 'Doe',
+  orders: [
+    {
+      id: '123',
+      productName: 'socks'
+    },
+    {
+      id: '124',
+      productName: 'socks'
+    }
+  ]
+};
 notificationapi.send({
-    notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "+15005550006" },
-    mergeTags: { user }
-})
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  mergeTags: { user }
+});
 ```
 
 </TabItem>
@@ -219,21 +231,21 @@ user = {
     "firstName": "Jane",
     "lastName": "Doe",
     "orders": [
-        {
-            "id": "123",
-            "productName": "socks"
-        },
-        {
-            "id": "124",
-            "productName": "socks"
-        }
-    ]
+        {"id": "123", "productName": "socks"},
+        {"id": "124", "productName": "socks"},
+    ],
 }
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
-    "mergeTags": { "user": user }
-})
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {
+            "id": "123",
+            "email": "test@test.com",
+            "number": "+15005550006",
+        },
+        "mergeTags": {"user": user},
+    }
+)
 ```
 
 </TabItem>
@@ -267,11 +279,13 @@ notificationapi.send({
 <TabItem value="python">
 
 ```python
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com" },
-    "forceChannels": [ "EMAIL", "INAPP_WEB" ]
-})
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {"id": "123", "email": "test@test.com"},
+        "forceChannels": ["EMAIL", "INAPP_WEB"],
+    }
+)
 ```
 
 </TabItem>
@@ -299,37 +313,47 @@ values={[
 
 ```js
 notificationapi.send({
-    notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "+15005550006" },
-    options: {
-        email: {
-            replyToAddresses: ['noreply@test.com'],
-            attachments: [
-                {
-                filename: 'sample.jpg',
-                url:
-                    'https://app.notificationapi.com'
-                }
-            ]
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  options: {
+    email: {
+      replyToAddresses: ['noreply@test.com'],
+      attachments: [
+        {
+          filename: 'sample.jpg',
+          url: 'https://app.notificationapi.com'
         }
+      ]
     }
-})
+  }
+});
 ```
 
 </TabItem>
 <TabItem value="python">
 
 ```python
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
-    "options": {
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {
+            "id": "123",
+            "email": "test@test.com",
+            "number": "+15005550006",
+        },
+        "options": {
             "email": {
                 "replyToAddresses": ["noreply@test.com"],
-                "attachments": [{"filename": "sample.jpg", "url": "https://app.notificationapi.com"}]
+                "attachments": [
+                    {
+                        "filename": "sample.jpg",
+                        "url": "https://app.notificationapi.com",
+                    }
+                ],
             }
-        }
-})
+        },
+    }
+)
 ```
 
 </TabItem>
@@ -358,19 +382,16 @@ values={[
 
 ```js
 notificationapi.retract({
-    notificationId: 'hello_world'
-    userId "123"
-})
+  notificationId: 'hello_world',
+  userId: '123'
+});
 ```
 
 </TabItem>
 <TabItem value="python">
 
 ```python
-notificationapi.retract({
-    "notificationId": "hello_world",
-    "userId": "123"
-})
+notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
 ```
 
 </TabItem>
@@ -413,21 +434,27 @@ values={[
 
 ```js
 notificationapi.send({
-    notificationId: 'hello_world'
-    user: { id: "123", email: "test@test.com", number: "+15005550006" },
-    secondaryId: "abc"
-})
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  secondaryId: 'abc'
+});
 ```
 
 </TabItem>
 <TabItem value="python">
 
 ```python
-notificationapi.send({
-    "notificationId": "hello_world",
-    "user": { "id": "123", "email": "test@test.com","number": "+15005550006" },
-    "secondaryId": "abc"
-})
+notificationapi.send(
+    {
+        "notificationId": "hello_world",
+        "user": {
+            "id": "123",
+            "email": "test@test.com",
+            "number": "+15005550006",
+        },
+        "secondaryId": "abc",
+    }
+)
 ```
 
 </TabItem>
