@@ -321,8 +321,7 @@ notificationapi.send({
       attachments: [
         {
           filename: 'lorem-ipsum.pdf',
-          url:
-            'https://github.com/notificationapi-com/docs/raw/main/static/lorem-ipsum.pdf'
+          url: 'https://docs.notificationapi.com/lorem-ipsum.pdf'
         }
       ]
     }
@@ -348,7 +347,7 @@ notificationapi.send(
                 "attachments": [
                     {
                         "filename": "lorem-ipsum.pdf",
-                        "url": "https://github.com/notificationapi-com/docs/raw/main/static/lorem-ipsum.pdf",
+                        "url": "https://docs.notificationapi.com/lorem-ipsum.pdf",
                     }
                 ],
             }
