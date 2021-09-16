@@ -320,7 +320,7 @@ notificationapi.send({
       replyToAddresses: ['noreply@test.com'],
       attachments: [
         {
-          filename: 'lorem-ipsum.pdf',
+          filename: 'sample.pdf',
           url: 'https://docs.notificationapi.com/lorem-ipsum.pdf'
         }
       ]
@@ -346,7 +346,7 @@ notificationapi.send(
                 "replyToAddresses": ["noreply@test.com"],
                 "attachments": [
                     {
-                        "filename": "lorem-ipsum.pdf",
+                        "filename": "sample.pdf",
                         "url": "https://docs.notificationapi.com/lorem-ipsum.pdf",
                     }
                 ],
