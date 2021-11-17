@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "NotificationAPI Documentation",
-  tagline: "Send notifications in a few minutes!",
+  tagline: "Implement any notification in just a few minutes",
   url: "https://docs.notificationapi.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -11,7 +11,7 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     navbar: {
-      title: "NotificationAPI Documentation",
+      title: "Docs Home",
       style: "dark",
       logo: {
         alt: "NotificationAPI",
@@ -22,7 +22,7 @@ module.exports = {
           type: "doc",
           docId: "intro",
           position: "left",
-          label: "Docs",
+          label: "All Docs",
         },
         {
           href: "http://status.notificationapi.com",

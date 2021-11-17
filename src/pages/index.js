@@ -4,7 +4,6 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -13,33 +12,69 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/docs/intro"
-          >
-            Quick Start - 5min ⏱️
-          </Link>
-        </div>
       </div>
     </header>
   );
 }
 
+const FeatureList = [
+  {
+    title: 'Quick Start Guide',
+    Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
+    description: <>Easily setup everything in a few minutes</>,
+    cta: 'Start - 10 min ⏱️',
+    ctaPath: 'docs/intro'
+  },
+  {
+    title: 'Full Reference',
+    Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+    description: (
+      <>Learn about the advanced features from the in-depth library docs.</>
+    ),
+    cta: 'Go to References',
+    ctaPath: 'docs/reference/server'
+  }
+];
+
+function Feature({ Svg, title, description, cta, ctaPath }) {
+  return (
+    <div className={clsx('col col--6')}>
+      <div className="text--center">
+        <Svg className={styles.featureSvg} alt={title} />
+      </div>
+      <div className="text--center padding-horiz--md">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+      <div className="text--center">
+        <Link className="button button--secondary button--lg" to={ctaPath}>
+          {cta}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
-  useEffect(() => {
-    window.location.href = 'docs/intro';
-  });
+
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="NotificationAPI Documentation - How to programmatically send email, push, in-app, text, sms notifications in a few lines of code"
+      description="NotificationAPI Documentation - Send email, push, in-app, text, call notifications in a few lines of code"
     >
-      {/* <HomepageHeader />
+      <HomepageHeader />
       <main>
-        <HomepageFeatures></HomepageFeatures>
-      </main> */}
+        <section className={styles.features}>
+          <div className="container">
+            <div className="row">
+              {FeatureList.map((props, idx) => (
+                <Feature key={idx} {...props} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
     </Layout>
   );
 }
