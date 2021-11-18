@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # Send the Notification
 
-#### Prerequisite: A Configured Notification
+### Prerequisite
+
+[NotificationAPI account and Notification setup](./setup-the-notification)
 
 ## 1. Install back-end SDK
 

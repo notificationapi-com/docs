@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Setup the Notification
+# Setup a Notification
 
 #### Prerequisite: [Create an account here](https://app.notificationapi.com).
 

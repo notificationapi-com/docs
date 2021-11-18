@@ -2,14 +2,20 @@
 sidebar_position: 1
 ---
 
-# What is NotificationAPI?
+# Intro
 
-With NotificationAPI, software developers can implement any kind of notifications into their app in a matter of minutes. It works like this:
+If you need to add notifications to your software, NotificationAPI is perhaps the fastest way to do it.
 
-1. Setup and design the Notification in our dashboard 👉 [guide](https://docs.notificationapi.com/docs/quick-start/setup-the-notification)
+Think of it like: <b>Notifications-as-a-Service</b>
+
+Out of the box, you will get:
+
+- Various types of Notifications (email, in-app, SMS, call, ...)
+- End-User Notification Preferences
+- A dashboard to visually control & monitor notifications
+
+## Let's Get Started:
+
+1. Setup your dashboard & configure a notification 👉 [guide](https://docs.notificationapi.com/docs/quick-start/setup-the-notification)
 2. Use our back-end SDK to trigger the notification 👉 [guide](https://docs.notificationapi.com/docs/quick-start/send-the-notification)
-
-You can do other cool stuff too:
-
-- [No code in-app notifications popup](https://docs.notificationapi.com/docs/guides/display-inapp-notifications)
-- No code notification preferences for your users (coming soon)
+3. Optionally, use our front-end SDK to show in-app notifications or end-user preferences [guide](https://docs.notificationapi.com/docs/guides/display-inapp-notifications)
