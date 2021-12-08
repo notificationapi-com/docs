@@ -143,7 +143,7 @@ Parameters:
 - `notificationId` (string): The ID of the notification you wish to send. You can find this value from the dashboard.
 - `user.id` (string): The ID of the user in your system.
 - `user.email` (string): User's email address.
-- `user.number` (string): User's phone number. Phone numbers should be formatted with a + and country code, for example: +15005550006. Also unformatted US numbers are accepted, e.g., (415) 555-1212 or 415-555-1212.
+- `user.number` (string): User's phone number. You should format it with a + and country code, for example, +15005550006. Unformatted US/Canada numbers are also accepted, e.g., (415) 555-1212, 415-555-1212, or 4155551212.
 
 Below you can find additional parameters and use-cases.
 
