@@ -11,7 +11,7 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     navbar: {
-      title: "Docs Home",
+      title: "Documentation",
       style: "dark",
       logo: {
         alt: "NotificationAPI",
@@ -19,18 +19,16 @@ module.exports = {
       },
       items: [
         {
-          type: "doc",
-          docId: "intro",
-          position: "left",
-          label: "All Docs",
-        },
-        {
           href: "http://status.notificationapi.com",
           label: "API Status",
         },
         {
           href: "https://www.notificationapi.com",
-          label: "Back to homepage",
+          label: "Website",
+        },
+        {
+          href: "https://app.notificationapi.com",
+          label: "Login",
         },
       ],
     },
@@ -72,15 +70,11 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/notificationapi-com/docs/edit/main/",
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   editUrl:
-        //     "https://github.com/facebook/docusaurus/edit/master/website/blog/",
-        // },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
