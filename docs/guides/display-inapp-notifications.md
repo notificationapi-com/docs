@@ -65,9 +65,11 @@ import { memo, useEffect } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
   useEffect(() => {
-    new NotificationAPI({
+    const notificationapi = new NotificationAPI({
       clientId: 'CLIENT_ID',
-      userId: props.userId,
+      userId: props.userId
+    });
+    notificationapi.showInApp({
       root: 'CONTAINER_DIV_ID',
       popupPosition: PopupPosition.BottomLeft
     });
@@ -79,10 +81,10 @@ export default NotificationAPIComponent;
 ```
 
 :::important
-React's state management and re-rendering would normally cause our widget to be destroyed and re-initialized with every state change which is inefficient. That's why the NotificationAPIComponent is "memo"-ized to prevent re-rendering.
+React's state management and re-rendering would usually cause our widget to be destroyed and re-initialized with every state change. So, we have "memo"-ized the component to prevent re-rendering.
 :::
 
-Now use the component anywhere you wish, for example in `App.js`:
+Now use the component anywhere you wish, for example, in `App.js`:
 
 ```jsx
 import NotificationAPIComponent from './NotificationAPIComponent';
@@ -104,9 +106,11 @@ export default App;
 
 ```html
 <script>
-  new NotificationAPI({
+  const notificationapi = new NotificationAPI({
     clientId: 'CLIENT_ID',
-    userId: 'TEST_USER_ID',
+    userId: 'TEST_USER_ID'
+  });
+  notificationapi.showInApp({
     root: 'CONTAINER_DIV_ID',
     popupPosition: 'bottomLeft'
   });
