@@ -42,33 +42,48 @@ const NotificationAPI = require('notificationapi-js-client-sdk').default;
 </TabItem>
 </Tabs>
 
-## Usage
+## Initialization
 
-The example below creates a NotificationAPI widget that automatically connects to our servers and pulls the notifications for the user.
+The example below creates a NotificationAPI client that connects to our servers through a WebSocket connection from your front-end. It does not show anything yet.
 
 ```js
-new NotificationAPI({
-  root: 'parentDivID',
-  clientId: YOU_CLIENT_ID,
-  userId: USER_ID
+const notificationapi = new NotificationAPI({
+  clientId: YOUR_CLIENT_ID,
+  userId: UNIQUE_USER_ID
 });
 ```
 
+:::info
+
+For performance reasons, avoid initializing more than once. React users can follow the [React section](#with-reactjs).
+
+:::
+
+### Parameters:
+
+- `clientId` (string): Your NotificationAPI account clientId, get it from [here](https://app.notificationapi.com/environments)
+
+- `userId` (string): The unique ID of the user in your system
+
+- `userIdHash` (string/optional): only used for [Secure Mode](#secure-mode)
+
+## Show In-App Notifications
+
 ![Sample](https://github.com/notificationapi-com/notificationapi-js-client-sdk/blob/master/sample/popup.gif?raw=true)
 
-### Configuration Parameters:
+Having the client object, the command below displays the in-app notifications widget.
 
-- `root` (string): The ID of the HTML element that will contain the NotificationAPI widget. Ideally an empty div.
+```js
+notificationapi.showInApp({
+  root: 'parentDivID'
+});
+```
 
-- `clientId` (string): Your NotificationAPI account clientId, which you can get from [here](https://app.notificationapi.com/environments).
+### Parameters:
 
-- `userId` (string): The ID of the user in your system. Same as the user ID used to trigger notifications in the server-side SDK.
+- `root` (string): The ID of the HTML element that will contain the NotificationAPI widget. Ideally, an empty div.
 
 - `popupPosition` (string/optional): The position of the notifications popup relative to the button. Valid options: topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom. Default: RightBottom.
-
-- `inline` (boolean/optional): whether to render a notification bell button that opens a popup, or to directly render the notifications as a list. Default: false.
-
-Warning: Each instantiation will create a new instance of this widget, thus for performance reason it is recommended to only run it once, e.g. after page load. React users should read below.
 
 ## With React.js
 
@@ -90,10 +105,12 @@ import React, { memo, useEffect } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
   useEffect(() => {
-    new NotificationAPI({
-      root: 'container',
+    const notificationapi = new NotificationAPI({
       clientId: YOUR_CLIENT_ID,
-      userId: props.userId,
+      userId: props.userId
+    });
+    notificationapi.showInApp({
+      root: 'container',
       popupPosition: PopupPosition.BottomLeft
     });
   });
@@ -127,11 +144,11 @@ export default App;
 
 ## Secure Mode
 
-Front-end code is observable and mutable by end-users and malicious actors can take advantage this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing in different parameters to the library. Secure Mode makes our front-end SDK secure against this threat.
+Front-end code is observable and mutable by end-users. Malicious actors can take advantage of this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing different parameters to the library. Secure Mode makes our front-end SDK safe against this threat.
 
 ### Step by Step:
 
-1. Back-end: hash the userId using your client secret. Send the hashed userId to your front-end, for example from an API right after the page loads:
+1. Back-end: hash the userId using your client secret. Send the hashed userId to your front-end; for example, from an API right after the page loads:
 
 <Tabs
 defaultValue="Node.js"
