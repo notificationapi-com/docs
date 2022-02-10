@@ -3,7 +3,7 @@ module.exports = {
   title: "NotificationAPI Documentation",
   tagline: "Implement any notification in just a few minutes",
   url: "https://docs.notificationapi.com",
-  baseUrl: "/",
+  baseUrl: "/handbook/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
