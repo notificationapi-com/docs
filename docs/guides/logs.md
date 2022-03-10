@@ -12,7 +12,7 @@ This is specifically useful for ensuring new notifications are working correctly
 
 1. Received: Our servers received your request and have begun processing it.
 2. Failed: Something went wrong with your notification. E.g. Bad parameters, bounce.
-3. Blocked: The notification was blocked due to an expected condition. E.g. Notification preferences, user preferences. plan limits.
+3. Blocked: The notification was blocked due to an expected condition such as Notification preferences, user preferences and plan limits.
 4. Processed: We successfully processed your notification and await delivery.
 5. Delivered: The notification was successfully delivered to the user. The user has access to the notification.
 
@@ -23,15 +23,15 @@ Email Specific Sub-Events:
 
 SMS Specific Sub-Events:
 
-- Failed - Undelivered: We have received a delivery receipt indicating that the message was not delivered. This can happen for a number of reasons including carrier content filtering, availability of the destination handset, etc.
+- Failed - Undelivered: We have received a delivery receipt indicating that the message was not delivered. This can happen for a number of reasons, including carrier content filtering, availability of the destination handset, etc.
 - Failed - Infrastructure: The message could not be sent due to problems with the underlying telecom service.
 
 Call Specific Sub-Events:
 
 - Delivered - Completed: The call was made, answered and disconnected.
-- Delivered - Busy: NotificationAPI dialed the number, but received a busy response.
-- Delivered - No Answer: NotificationAPI dialed the number but no one answered after 30 seconds.
-- Failed - Cannot Reach: We could not connect the call. Possible causes include the destination is unreachable, or the number may have been input incorrectly.
+- Delivered - Busy: NotificationAPI dialled the number, but received a busy response.
+- Delivered - No Answer: NotificationAPI dialled the number, but no one answered after 30 seconds.
+- Failed - Cannot Reach: We could not connect the call. Possible causes include the destination being unreachable or the number may have been input incorrectly.
 
 <!-- Subscriptions – The email was successfully delivered, but the recipient updated the subscription preferences by clicking List-Unsubscribe in the email header or the Unsubscribe link in the footer. -->
 
