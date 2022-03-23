@@ -16,11 +16,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-groupId="backend-language"
+groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'js', },
-{ label: 'Python', value: 'py', }
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
 ]
 }>
 <TabItem value="js">
@@ -32,10 +33,17 @@ yarn add notificationapi-node-server-sdk
 ```
 
 </TabItem>
-<TabItem value="py">
+<TabItem value="python">
 
 ```bash
 pip install notificationapi_python_server_sdk
+```
+
+</TabItem>
+<TabItem value="php">
+
+```bash
+composer require notificationapi/notificationapi-php-server-sdk
 ```
 
 </TabItem>
@@ -46,11 +54,12 @@ pip install notificationapi_python_server_sdk
 The example below sends the "New Comment Notification" to the test user:
 
 <Tabs
-groupId="backend-language"
+groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'js', },
-{ label: 'Python', value: 'py', }
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
 ]
 }>
 <TabItem value="js">
@@ -75,7 +84,7 @@ notificationapi.send({
 ```
 
 </TabItem>
-<TabItem value="py">
+<TabItem value="python">
 
 ```py
 # import
@@ -93,6 +102,27 @@ notificationapi.send({
             "number": "+15005550006"    # required for SMS
         }
     })
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+# import
+use NotificationAPI\NotificationAPI;
+
+# init
+$notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
+
+# send
+$notificationapi->send([
+    "notificationId" => "new_comment_notification",
+    "user" => [
+        "id" => "TEST_USER_ID",
+        "email" => "TEST@TEST.COM",   # required for email notifications
+        "number" => "+15005550006"    # required for SMS
+    ]
+]);
 ```
 
 </TabItem>

@@ -8,6 +8,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 
 - Node.js
 - Python
+- PHP
 
 ## Installation
 
@@ -16,13 +17,14 @@ import TabItem from '@theme/TabItem';
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```bash
 npm install notificationapi-node-server-sdk
@@ -38,6 +40,13 @@ pip install notificationapi_python_server_sdk
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```bash
+composer require notificationapi/notificationapi-php-server-sdk
+```
+
+</TabItem>
 </Tabs>
 
 ## Basic Usage
@@ -46,13 +55,14 @@ pip install notificationapi_python_server_sdk
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 import notificationapi from 'notificationapi-node-server-sdk';
@@ -68,21 +78,29 @@ from notificationapi_python_server_sdk import (notificationapi)
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+use NotificationAPI\NotificationAPI;
+```
+
+</TabItem>
 </Tabs>
 
 ### 2. init
 
-The init function is to configure the SDK and must run before the [send](#3-send) function. It requires your `clientId` and `clientSecret` which you can get from [here](https://app.notificationapi.com/environments).
+You must initialize the SDK before the [send](#3-send) function. It requires your `clientId` and `clientSecret` which you can get from [here](https://app.notificationapi.com/environments).
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
@@ -96,26 +114,38 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
 </TabItem>
+<TabItem value="python">
+
+```php
+$notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
+```
+
+</TabItem>
 </Tabs>
 
 ### 3. send
 
-The code sample below will send the `hello_world` notification to the specified user.
+After doing the above, the sample code below will send the `hello_world` notification to the specified user:
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.send({
   notificationId: 'hello_world',
-  user: { id: '123', email: 'test@test.com', number: '+15005550006' }
+  user: {
+    id: '123',
+    email: 'test@test.com',
+    number: '+15005550006'
+  }
 });
 ```
 
@@ -136,6 +166,20 @@ notificationapi.send(
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->send([
+    "notificationId" => "hello_world",
+    "user" => [
+        "id" => "123",
+        "email" => "test@test.com",
+        "number" => "+15005550006"
+    ]
+]);
+```
+
+</TabItem>
 </Tabs>
 
 Parameters:
@@ -149,17 +193,18 @@ Below you can find additional parameters and use-cases.
 
 ## Merge Tags: Dynamic values in notifications
 
-If you are using `{{mergeTags}}` in your notification designs, be sure to pass the actual values into the SDK. The example below replaces the `{{firstName}}` merge tag in your design with the value `Jane`.
+Merge tags are scripts that you can insert into your designs and look like this: `{{firstName}}`. You can use them to pass in dynamic values programmatically. The example below replaces the `{{firstName}}` merge tag in your design with the value `Jane` when the notification is being sent.
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.send({
@@ -187,19 +232,35 @@ notificationapi.send(
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+notificationapi.send([
+    "notificationId" => "hello_world",
+    "user" => [
+        "id" => "123",
+        "email" => "test@test.com",
+        "number" => "+15005550006",
+    ],
+    "mergeTags" => ["firstName" => "Jane"],
+]);
+```
+
+</TabItem>
 </Tabs>
 
 You can actually pass in complex objects and arrays into mergeTags to make your notifications future-proof. The example below sends a whole user object to the mergeTag. You can now use merge tags such as `{{user.firstName}}`, `{{user.lastName}}` or even `{{user.orders[1].productName}}` in the designs without going back to change your server code.
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 const user = {
@@ -249,6 +310,31 @@ notificationapi.send(
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+$user = [
+    "firstName" => "Jane",
+    "lastName" => "Doe",
+    "orders" => [
+        ["id" => "123", "productName" => "socks"],
+        ["id" => "124", "productName" => "socks"],
+    ],
+];
+$notificationapi.send(
+    [
+        "notificationId" => "hello_world",
+        "user" => [
+            "id" => "123",
+            "email" => "test@test.com",
+            "number" => "+15005550006",
+        ],
+        "mergeTags" => ["user" => $user],
+    ]
+);
+```
+
+</TabItem>
 </Tabs>
 
 ## forceChannels: dynamically setting channels
@@ -259,13 +345,14 @@ However, you may wish to override these settings dynamically at run-time. That i
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.send({
@@ -289,6 +376,19 @@ notificationapi.send(
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi.send(
+    [
+        "notificationId" => "hello_world",
+        "user" => ["id" => "123", "email" => "test@test.com"],
+        "forceChannels" => ["EMAIL", "INAPP_WEB"],
+    ]
+);
+```
+
+</TabItem>
 </Tabs>
 
 The code above sends the notification over email and in-app regardless of what channels are active/inactive in the dashboard.
@@ -303,13 +403,14 @@ You can dynamically modify certain notification behavior by passing in options. 
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.send({
@@ -357,6 +458,33 @@ notificationapi.send(
 ```
 
 </TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi.send(
+    [
+        "notificationId" => "hello_world",
+        "user" => [
+            "id" => "123",
+            "email" => "test@test.com",
+            "number" => "+15005550006",
+        ],
+        "options" => [
+            "email" => [
+                "replyToAddresses" => ["noreply@test.com"],
+                "attachments" => [
+                    [
+                        "filename" => "sample.pdf",
+                        "url" => "https://docs.notificationapi.com/lorem-ipsum.pdf",
+                    ]
+                ],
+            ]
+        ],
+    ]
+);
+```
+
+</TabItem>
 </Tabs>
 
 Available options:
@@ -372,13 +500,14 @@ Sometimes you need older notifications to be deleted for a certain user. For exa
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.retract({
@@ -392,6 +521,13 @@ notificationapi.retract({
 
 ```python
 notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi.retract(["notificationId" => "hello_world", "userId" => "123"]);
 ```
 
 </TabItem>
@@ -418,19 +554,20 @@ Example 2: In a project management tool, there will be notifications such as "ta
 Use-cases:
 
 - You can use the secondaryId in the [retract function](#retract-unsending-or-deleting-notifications)
-- Other use-cases are coming soon
+- The secondaryId can be used to create sub preferences in [User Preferences](#user-preferences)
 
 Usage:
 
 <Tabs
 groupId="back-end-language"
-defaultValue="nodejs"
+defaultValue="js"
 values={[
-{ label: 'Node.js', value: 'nodejs', },
-{ label: 'Python', value: 'python', }
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
 ]
 }>
-<TabItem value="nodejs">
+<TabItem value="js">
 
 ```js
 notificationapi.send({
@@ -455,6 +592,23 @@ notificationapi.send(
         "secondaryId": "abc",
     }
 )
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi.send(
+    [
+        "notificationId" => "hello_world",
+        "user" => [
+            "id" => "123",
+            "email" => "test@test.com",
+            "number" => "+15005550006",
+        ],
+        "secondaryId" => "abc",
+    ]
+);
 ```
 
 </TabItem>
