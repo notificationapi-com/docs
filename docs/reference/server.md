@@ -114,7 +114,7 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
 </TabItem>
-<TabItem value="python">
+<TabItem value="php">
 
 ```php
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
