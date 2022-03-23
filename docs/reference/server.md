@@ -554,7 +554,7 @@ Example 2: In a project management tool, there will be notifications such as "ta
 Use-cases:
 
 - You can use the secondaryId in the [retract function](#retract-unsending-or-deleting-notifications)
-- The secondaryId can be used to create sub preferences in [User Preferences](#user-preferences)
+- The secondaryId can be used to create sub preferences in [User Preferences](../guides/user-preferences)
 
 Usage:
 
