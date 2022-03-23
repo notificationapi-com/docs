@@ -235,7 +235,7 @@ notificationapi.send(
 <TabItem value="php">
 
 ```php
-notificationapi.send([
+notificationapi->send([
     "notificationId" => "hello_world",
     "user" => [
         "id" => "123",
@@ -321,7 +321,7 @@ $user = [
         ["id" => "124", "productName" => "socks"],
     ],
 ];
-$notificationapi.send(
+$notificationapi->send(
     [
         "notificationId" => "hello_world",
         "user" => [
@@ -379,7 +379,7 @@ notificationapi.send(
 <TabItem value="php">
 
 ```php
-$notificationapi.send(
+$notificationapi->send(
     [
         "notificationId" => "hello_world",
         "user" => ["id" => "123", "email" => "test@test.com"],
@@ -461,7 +461,7 @@ notificationapi.send(
 <TabItem value="php">
 
 ```php
-$notificationapi.send(
+$notificationapi->send(
     [
         "notificationId" => "hello_world",
         "user" => [
@@ -527,7 +527,7 @@ notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
 <TabItem value="php">
 
 ```php
-$notificationapi.retract(["notificationId" => "hello_world", "userId" => "123"]);
+$notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]);
 ```
 
 </TabItem>
@@ -598,7 +598,7 @@ notificationapi.send(
 <TabItem value="php">
 
 ```php
-$notificationapi.send(
+$notificationapi->send(
     [
         "notificationId" => "hello_world",
         "user" => [
