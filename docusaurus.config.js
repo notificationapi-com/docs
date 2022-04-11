@@ -84,4 +84,7 @@ module.exports = {
       },
     ],
   ],
+  customFields: {
+    trailingSlash: false,
+  }
 };
