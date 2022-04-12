@@ -9,6 +9,7 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "notificationapi-com",
   projectName: "docs",
+  trailingSlash: true,
   themeConfig: {
     navbar: {
       title: "Documentation",
@@ -83,8 +84,5 @@ module.exports = {
         },
       },
     ],
-  ],
-  customFields: {
-    trailingSlash: false,
-  }
+  ]
 };
