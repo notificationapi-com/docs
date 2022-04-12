@@ -19,7 +19,7 @@ module.exports = {
       },
       items: [
         {
-          href: "http://status.notificationapi.com",
+          href: "https://status.notificationapi.com",
           label: "API Status",
         },
         {
