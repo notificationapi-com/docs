@@ -8,13 +8,24 @@ After receiving your request to send a notification, we start tracking the progr
 
 This is specifically useful for ensuring new notifications are working correctly and for customer support staff to handle tickets related to notifications.
 
+## Notification States
+
+Each `send()` request creates a record in the log table with the following statuses:
+
+- `success`: we have successfully delivered everything to the necessary\* channels
+- `failure`: something has gone wrong or not delivered (see events below)
+- `received`: notification is in this state until it enters `success` or `failure`
+
 ## Tracked Events
 
-1. Received: Our servers received your request and have begun processing it.
-2. Failed: Something went wrong with your notification. E.g. Bad parameters, bounce.
-3. Blocked: The notification was blocked due to an expected condition such as Notification preferences, user preferences and plan limits.
-4. Processed: We successfully processed your notification and await delivery.
-5. Delivered: The notification was successfully delivered to the user. The user has access to the notification.
+When you click on a notification in the log table, you will see the following events:
+
+- Received: Our servers received your request and have begun processing it.
+- Ignored: The request was ignored due to an expected condition such as dashboard preferences, user preferences or plan limits.
+- Sending: We have validated your request and are going to send it.
+- Sent: We have successfully sent the notification to responsible 3rd-parties such email servers or mobile networks.
+- Delivered: The notification was successfully delivered to the user.
+- Failed: Something went wrong unexpectedly during processing or delivery. E.g. Bad parameters, email bounces.
 
 Email Specific Sub-Events:
 
@@ -57,7 +68,7 @@ There could be up to 15 minutes of delay between events happening and seeing the
 
 <b>5. Does the Logs come with alarm and monitoring?</b>
 
-No.
+No. If you are interested in this feature, please contact us to discuss the product roadmap.
 
 <b>6. What kind of integration capability does it have? Can we connect it to other data analytic services like dataDog?</b>
 
