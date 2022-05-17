@@ -10,9 +10,9 @@ This is specifically useful for ensuring new notifications are working correctly
 
 ## Notification States
 
-Each `send()` request creates a record in the log table with the following statuses:
+Each `send()` request creates a record in the logs table with either of the following statuses:
 
-- `success`: we have successfully delivered everything to the necessary\* channels
+- `success`: we have successfully delivered everything to the expected channels
 - `failure`: something has gone wrong or not delivered (see events below)
 - `received`: notification is in this state until it enters `success` or `failure`
 
