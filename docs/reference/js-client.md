@@ -101,9 +101,11 @@ values={[
 ```jsx
 import NotificationAPI from 'notificationapi-js-client-sdk';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
+  const containerRef = useRef()
+
   useEffect(() => {
     const notificationapi = new NotificationAPI({
       clientId: YOUR_CLIENT_ID,
@@ -113,9 +115,13 @@ const NotificationAPIComponent = memo((props) => {
       root: 'container',
       popupPosition: PopupPosition.BottomLeft
     });
-  });
+    const container = containerRef.current;
+    return () => {
+      container.innerHTML = '';
+    };
+  }, [props.userId]);
 
-  return <div id="container"></div>;
+  return <div id="container" ref={containerRef}></div>;
 });
 
 export default NotificationAPIComponent;
