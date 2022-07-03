@@ -16,7 +16,7 @@ groupId="js-package-manager"
 defaultValue="npm/yarn"
 values={[
 { label: 'npm/yarn', value: 'npm/yarn' },
-{ label: '<script>', value: 'script' }
+{ label: 'script tag', value: 'script' }
 ]
 }>
 <TabItem value="npm/yarn">
@@ -46,7 +46,7 @@ const NotificationAPI = require('notificationapi-js-client-sdk').default;
 
 The example below creates a NotificationAPI client that connects to our servers through a WebSocket connection from your front-end. It does not show anything yet.
 
-```js
+```js title="Example"
 const notificationapi = new NotificationAPI({
   clientId: YOUR_CLIENT_ID,
   userId: UNIQUE_USER_ID
@@ -55,35 +55,73 @@ const notificationapi = new NotificationAPI({
 
 :::info
 
-For performance reasons, avoid initializing more than once. React users can follow the [React section](#with-reactjs).
+Initializing the library more than once is safe, but will generate unnecessary resources and network calls.
+
+React users should follow the [React section](#with-reactjs).
 
 :::
 
-### Parameters:
+**Parameters:**
 
-- `clientId` (string): Your NotificationAPI account clientId, get it from [here](https://app.notificationapi.com/environments)
+`clientId` (required)  
+Type: string
 
-- `userId` (string): The unique ID of the user in your system
+Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).
 
-- `userIdHash` (string/optional): only used for [Secure Mode](#secure-mode)
+`userId` (required)  
+Type: string
 
-## Show In-App Notifications
+The unique ID of the user in your system.
+
+`userIdHash`
+Type: string
+
+Only used for [Secure Mode](#secure-mode).
+
+## showInApp()
+
+This function adds the in-app notifications (the bell icon along with all its functionality) to your app.
 
 ![Sample](https://github.com/notificationapi-com/notificationapi-js-client-sdk/blob/master/sample/popup.gif?raw=true)
 
-Having the client object, the command below displays the in-app notifications widget.
-
-```js
+```js title="Example"
 notificationapi.showInApp({
   root: 'parentDivID'
 });
 ```
 
-### Parameters:
+**Parameters**
 
-- `root` (string): The ID of the HTML element that will contain the NotificationAPI widget. Ideally, an empty div.
+`root` (required)  
+Type: string
 
-- `popupPosition` (string/optional): The position of the notifications popup relative to the button. Valid options: topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom. Default: RightBottom.
+The ID of the HTML element that will contain the NotificationAPI widget. Ideally an empty div.
+
+`popupPosition`  
+Type: string (JS), PopupPosition enum (TS)
+
+The position of the notifications popup relative to the button. Defaults to rightBottom.  
+Valid string options: topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom.
+
+## showUserPreferences()
+
+User preferences is accessible from the in-app popup (similar to the gif below). However, you may use this function to programmatically open the user preferences from your code.
+
+import UserPref from '@site/static/userpref.gif';
+
+<img src={UserPref} />
+
+```js title="Example"
+notificationapi.showUserPreferences();
+```
+
+**Parameters**
+
+`parent`  
+Type: string  
+Default: undefined
+
+When undefined (default behavior), the user preferences will show as a modal. Given this parameter, the user preferences will render in inline mode inside an existing HTML element on your page. You can pass the ID of the parent element to this parameter. Ideally, use an empty div for the parent.
 
 ## With React.js
 
@@ -152,9 +190,9 @@ export default App;
 
 Front-end code is observable and mutable by end-users. Malicious actors can take advantage of this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing different parameters to the library. Secure Mode makes our front-end SDK safe against this threat.
 
-### Step by Step:
+**Step by Step Guide**
 
-1. Back-end: hash the userId using your client secret. Send the hashed userId to your front-end; for example, from an API right after the page loads:
+1. Back-end: hash the userId using your client secret. Pass the hashed userId to your front-end. For example, from an API right after the page loads.
 
 <Tabs
 defaultValue="Node.js"
@@ -187,38 +225,14 @@ hashedUserId = base64.b64encode(hmac.new( 'YOUR_CLIENT_SECRET'.encode('utf-8'),
 </TabItem>
 </Tabs>
 2. Front-end: pass the hashed userId to the NotificationAPI SDK:
-<Tabs
-defaultValue="Javascript"
-values={[
-{ label: 'Javascript', value: 'Javascript', },
-{ label: 'Typescript', value: 'Typescript' }
-]
-}>
-<TabItem value="Javascript">
 
 ```jsx
 new NotificationAPI({
   root: '...',
   clientId: '...',
   userId: 'ACTUAL_USER_ID',
-  userIdHash: 'HASHED_USER_ID',
-  popupPosition: PopupPosition.BottomLeft
+  userIdHash: 'HASHED_USER_ID'
 });
 ```
 
-</TabItem>
-<TabItem value="Typescript">
-
-```jsx
-new NotificationAPI({
-  root: '...',
-  clientId: '...',
-  userId: 'ACTUAL_USER_ID',
-  userIdHash: 'HASHED_USER_ID',
-  popupPosition: PopupPosition.BottomLeft
-});
-```
-
-</TabItem>
-</Tabs>
 3. Enable secure mode in your account settings. When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
