@@ -153,7 +153,12 @@ const NotificationAPIComponent = memo((props) => {
       root: 'container',
       popupPosition: PopupPosition.BottomLeft
     });
+
+    // Store a reference to the container DOM element.
     const container = containerRef.current;
+    // This effect can run multiple times due to the `userId` changing
+    // or Hot Module Replacement (HMR). Ensure the container is cleared
+    // as `showInApp` will append to the container instead of overwriting it.
     return () => {
       container.innerHTML = '';
     };
