@@ -178,7 +178,7 @@ By default, notifications are sent using the default template of each channel. Y
 - White-labeling: using a specific template that you designed for a white-labeled customer
 - Language: creating and using multiple templates for multiple languages
 
-If the provided templateId does not exist for a channel, the default template will be used and a warning message will be generated.
+If the provided templateId does not exist for a channel, the default template will be used, and a warning message will be generated.
 
 ## Retract: unsending or deleting notifications
 
@@ -538,7 +538,7 @@ Available options:
 
 The `subNotificationId` is used to specify further subcategories within a notification.
 
-Example 1: Facebook generates "new post from group" notifications. These notifications look and work exactly the same, however they are generated from different groups and users belong to different groups. `subNotificationId` allows you to specify which group the "new post from group" notification belongs to. This allows the users to subscribe/unsubscribe to groups individually.
+Example 1: Facebook generates "new post from group" notifications. These notifications look and work exactly the same, however they are generated from different groups which notify different users. `subNotificationId` allows you to specify which group the "new post from group" notification belongs to. This allows the users to subscribe/unsubscribe to groups individually.
 
 Example 2: In a project management tool, there will be notifications such as "task completed" for every project. However, not every user is involved in every project. `subNotificationId` allows you to subscribe users to "task completed" notifications of some projects, but not others.
 

@@ -80,7 +80,7 @@ Only used for [Secure Mode](#secure-mode).
 
 ## getUserPreferences()
 
-Allows you to access the raw data of user's preferences from the front-end.
+Allows you to access the raw data of the user's notification preferences from the front-end.
 
 Please note that unless you require extreme customization, you can rely on [showUserPreferences()](#showuserpreferences) function to display and edit notification preferences without any additional code.
 
@@ -226,7 +226,7 @@ import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
 import React, { memo, useEffect, useRef } from 'react';
 
 const NotificationAPIComponent = memo((props) => {
-  const containerRef = useRef()
+  const containerRef = useRef();
 
   useEffect(() => {
     const notificationapi = new NotificationAPI({
