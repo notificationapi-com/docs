@@ -78,6 +78,90 @@ Type: string
 
 Only used for [Secure Mode](#secure-mode).
 
+## getUserPreferences()
+
+Allows you to access the raw data of user's preferences from the front-end.
+
+Please note that unless you require extreme customization, you can rely on [showUserPreferences()](#showuserpreferences) function to display and edit notification preferences without any additional code.
+
+```js title="Example"
+notificationapi.getUserPreferences().then((prefs) => {
+  console.log(prefs);
+});
+
+/* prints:
+[
+  {
+      "notificationId": "new_order",
+      "title": "New Order",
+      "settings": [
+          {
+              "channel": "SMS",
+              "state": false,
+              "channelName": "SMS"
+          },
+          {
+              "channel": "EMAIL",
+              "state": true,
+              "channelName": "Email"
+          }
+      ],
+      "subNotificationPreferences": []
+  },
+  ... more items for all notifications
+] */
+```
+
+**Returns**
+
+```ts
+getUserPreferences() : Promise<Preference[]>
+
+interface Preference {
+  notificationId: string;
+  title: string; // the friendly title of the notification
+  settings: {
+    channel: string; // EMAIL, INAPP_WEB, SMS, CALL
+    channelName: string; // channel friendly name: Email, In-App, SMS, Call
+    state: boolean; // indicating the preference
+  }[];
+  subNotificationPreferences: Preference[]; // when using subNotificationIds, it will contain a similar item for each subNotificationId
+}
+```
+
+## patchUserPreference()
+
+Allows you to programmatically change the user's notification preferences from the front-end.
+
+Please note that unless you require extreme customization, you can rely on [showUserPreferences()](#showuserpreferences) function to display and edit notification preferences without any additional code.
+
+```js title="Example"
+notificationapi.patchUserPreference('myNotificationId', 'EMAIL', false);
+```
+
+**Parameters**
+
+`notificationId` (required)  
+Type: string
+
+The ID of the notification in NotificationAPI.
+
+`channel` (required)  
+Type: string
+
+The channel for which you wish to change the setting.  
+Accepted values: `EMAIL`, `INAPP_WEB`, `SMS`, `CALL`.
+
+`state` (required)  
+Type: boolean
+
+The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup.
+
+`subNotificationId` (optional)  
+Type: string
+
+For setting the preference of a subNotificationId within a notification.
+
 ## showInApp()
 
 This function adds the in-app notifications (the bell icon along with all its functionality) to your app.
