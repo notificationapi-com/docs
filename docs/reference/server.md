@@ -10,7 +10,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 - Python
 - PHP
 
-## Installation
+## Setup
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -49,9 +49,9 @@ composer require notificationapi/notificationapi-php-server-sdk
 </TabItem>
 </Tabs>
 
-## Basic Usage
+## send()
 
-### 1. import or require
+Used to send a notification to the specified user.
 
 <Tabs
 groupId="back-end-language"
@@ -64,87 +64,19 @@ values={[
 }>
 <TabItem value="js">
 
-```js
+```js title="Example"
 import notificationapi from 'notificationapi-node-server-sdk';
-// or with require:
-const notificationapi = require('notificationapi-node-server-sdk').default;
-```
 
-</TabItem>
-<TabItem value="python">
-
-```python
-from notificationapi_python_server_sdk import (notificationapi)
-```
-
-</TabItem>
-<TabItem value="php">
-
-```php
-use NotificationAPI\NotificationAPI;
-```
-
-</TabItem>
-</Tabs>
-
-### 2. init
-
-You must initialize the SDK before the [send](#3-send) function. It requires your `clientId` and `clientSecret` which you can get from [here](https://app.notificationapi.com/environments).
-
-<Tabs
-groupId="back-end-language"
-defaultValue="js"
-values={[
-{ label: 'JavaScript', value: 'js', },
-{ label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
-]
-}>
-<TabItem value="js">
-
-```js
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
-```
-
-</TabItem>
-<TabItem value="python">
-
-```python
-notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
-```
-
-</TabItem>
-<TabItem value="php">
-
-```php
-$notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
-```
-
-</TabItem>
-</Tabs>
-
-### 3. send
-
-After doing the above, the sample code below will send the `hello_world` notification to the specified user:
-
-<Tabs
-groupId="back-end-language"
-defaultValue="js"
-values={[
-{ label: 'JavaScript', value: 'js', },
-{ label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
-]
-}>
-<TabItem value="js">
-
-```js
 notificationapi.send({
   notificationId: 'hello_world',
   user: {
     id: '123',
     email: 'test@test.com',
     number: '+15005550006'
+  },
+  mergeTags: {
+    firstName: 'test'
   }
 });
 ```
@@ -152,7 +84,10 @@ notificationapi.send({
 </TabItem>
 <TabItem value="python">
 
-```python
+```python title="Example"
+from notificationapi_python_server_sdk import (notificationapi)
+
+notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 notificationapi.send(
     {
         "notificationId": "hello_world",
@@ -161,6 +96,9 @@ notificationapi.send(
             "email": "test@test.com",
             "number": "+15005550006",
         },
+        "mergeTags": {
+            "firstName": "test"
+        }
     }
 )
 ```
@@ -168,13 +106,19 @@ notificationapi.send(
 </TabItem>
 <TabItem value="php">
 
-```php
+```php title="Example"
+use NotificationAPI\NotificationAPI;
+
+$notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 $notificationapi->send([
     "notificationId" => "hello_world",
     "user" => [
         "id" => "123",
         "email" => "test@test.com",
         "number" => "+15005550006"
+    ],
+    "mergeTags" => [
+        "firstName" => "test"
     ]
 ]);
 ```
@@ -182,16 +126,112 @@ $notificationapi->send([
 </TabItem>
 </Tabs>
 
+**Parameters**
+
+##### `notificationId` (required)
+
+Type: string
+
+The ID of the notification you wish to send. You can find this value from the dashboard.
+
+##### `user` (required)
+
+Type: object
+
+The user to send the notification to. Fields:
+
+- `id`: The ID of the user in your system. Required.
+- `email`: Required for sending email notifications, otherwise optional.
+- `number`: Required for SMS/CALL notifications, otherwise optional. Valid format: `+15005550006`. Unformatted US/Canada numbers are also accepted, e.g., (415) 555-1212, 415-555-1212, or 4155551212.
+
+##### `mergeTags` (optional)
+
+Type: object
+
+Used to pass in dynamic values into the notification design. Read more: [Passing dynamic values to notifications](#merge-tags-passing-dynamic-values-to-notifications)
+
+##### `forceChannels` (optional)
+
+type: string[]
+
+Used to override the channels which are used for the notification. Read more: [forceChannels: Dynamically setting channels](#forcechannels-dynamically-overriding-the-channels)
+
+##### `options` (optional)
+
+type: object
+
+For additional features such as: attachments, custom replyTo address, BCC, CC. Read more: [Options](#options-additional-customization)
+
+##### `subNotificationId` (optional)
+
+type: string
+
+To break down your notification into multiple categories or groups. Read more: [subNotificationId](#subnotificationid-categorizing-notifications-of-the-same-type)
+
+##### `templateId` (optional)
+
+type: string
+
+By default, notifications are sent using the default template of each channel. You can permanently change the default template from the dashboard. However, you can also use this parameter to force using a specific template. This is useful in multiple situations:
+
+- Design variation: using different wording and design, e.g. "You have new updates" vs. "You don't have any updates"
+- White-labeling: using a specific template that you designed for a white-labeled customer
+- Language: creating and using multiple templates for multiple languages
+
+If the provided templateId does not exist for a channel, the default template will be used, and a warning message will be generated.
+
+## Retract: unsending or deleting notifications
+
+Sometimes you need older notifications to be deleted for a certain user. For example when a notification is not valid anymore. The retract function helps you do this.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'JavaScript', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.retract({
+  notificationId: 'hello_world',
+  userId: '123'
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]);
+```
+
+</TabItem>
+</Tabs>
+
+This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
+
 Parameters:
 
-- `notificationId` (string): The ID of the notification you wish to send. You can find this value from the dashboard.
-- `user.id` (string): The ID of the user in your system.
-- `user.email` (string): User's email address.
-- `user.number` (string): User's phone number. You should format it with a + and country code, for example, +15005550006. Unformatted US/Canada numbers are also accepted, e.g., (415) 555-1212, 415-555-1212, or 4155551212.
+- `notificationId` (string)
+- `userId` (string)
+- `secondaryId` (string/optional): when used, only notifications are deleted that were given this secondaryId at send
 
-Below you can find additional parameters and use-cases.
+Please note that this only works with: push, inapp, browser notifications. There is no way to undo emails/sms/voice notifications.
 
-## Merge Tags: Dynamic values in notifications
+## Features
+
+### mergeTags: Passing dynamic values to notifications
 
 Merge tags are scripts that you can insert into your designs and look like this: `{{firstName}}`. You can use them to pass in dynamic values programmatically. The example below replaces the `{{firstName}}` merge tag in your design with the value `Jane` when the notification is being sent.
 
@@ -337,7 +377,7 @@ $notificationapi->send(
 </TabItem>
 </Tabs>
 
-## forceChannels: dynamically setting channels
+### forceChannels: Dynamically overriding the channels
 
 By default, notifications are sent over the channels that you specify in the dashboard. This allows you to turn channels on/off without any code changes.
 
@@ -397,7 +437,7 @@ The code above sends the notification over email and in-app regardless of what c
 forceChannels field does not override the notification itself being inactive. For it to work, the notification must be in active mode.
 :::
 
-## Options: Additional Email Features
+### options: Additional customization
 
 You can dynamically modify certain notification behavior by passing in options. Example:
 
@@ -494,67 +534,18 @@ Available options:
 - `options.email.bccAddresses` (string[]): An array of emails to be BCC'ed on the email notifications.
 - `options.email.attachments` ({ filename: string; url: string }[]): An array of publicly accessible URLs and filenames pointing to files that you wish to include as attachments. The URLs only need to be valid for a few minutes after calling the SDK method. After that, the public URLs can be disabled for privacy. The maximum email size (including the content and all attachments) is 10MB. File extensions in the filename property are necessary for the file to show up nicely in the recipient's device.
 
-## Retract: unsending or deleting notifications
+### subNotificationId: Categorizing notifications of the same type
 
-Sometimes you need older notifications to be deleted for a certain user. For example when a notification is not valid anymore. The retract function helps you do this.
+The `subNotificationId` is used to specify further subcategories within a notification.
 
-<Tabs
-groupId="back-end-language"
-defaultValue="js"
-values={[
-{ label: 'JavaScript', value: 'js' },
-{ label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
-]
-}>
-<TabItem value="js">
+Example 1: Facebook generates "new post from group" notifications. These notifications look and work exactly the same, however they are generated from different groups which notify different users. `subNotificationId` allows you to specify which group the "new post from group" notification belongs to. This allows the users to subscribe/unsubscribe to groups individually.
 
-```js
-notificationapi.retract({
-  notificationId: 'hello_world',
-  userId: '123'
-});
-```
+Example 2: In a project management tool, there will be notifications such as "task completed" for every project. However, not every user is involved in every project. `subNotificationId` allows you to subscribe users to "task completed" notifications of some projects, but not others.
 
-</TabItem>
-<TabItem value="python">
+Benefits:
 
-```python
-notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
-```
-
-</TabItem>
-<TabItem value="php">
-
-```php
-$notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]);
-```
-
-</TabItem>
-</Tabs>
-
-This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
-
-Parameters:
-
-- `notificationId` (string)
-- `userId` (string)
-- `secondaryId` (string/optional): when used, only notifications are deleted that were given this secondaryId at send
-
-Please note that this only works with: push, inapp, browser notifications. There is no way to undo emails/sms/voice notifications.
-
-## SecondaryId: categorizing notifications of the same type
-
-The `secondaryId` is used toto specify further subcategories within a notification.
-
-Example 1: YouTube generates "new content alert" notifications. `secondaryId` allows categorizing that same notification based on the YouTube channel.
-
-Example 2: In a project management tool, there will be notifications such as "task completed". `secondaryId` can be used to specify which project the notification belongs to.
-
-Use-cases:
-
-- You can use the secondaryId in the [retract function](#retract-unsending-or-deleting-notifications)
-- The secondaryId can be used to create sub preferences in [User Preferences](../guides/user-preferences)
+- To create sub preferences in [User Preferences](../guides/user-preferences)
+- To retract some notifications but not others, using the [retract function](#retract-unsending-or-deleting-notifications)
 
 Usage:
 
@@ -573,7 +564,7 @@ values={[
 notificationapi.send({
   notificationId: 'hello_world',
   user: { id: '123', email: 'test@test.com', number: '+15005550006' },
-  secondaryId: 'abc'
+  subNotificationId: 'abc'
 });
 ```
 
@@ -589,7 +580,7 @@ notificationapi.send(
             "email": "test@test.com",
             "number": "+15005550006",
         },
-        "secondaryId": "abc",
+        "subNotificationId": "abc",
     }
 )
 ```
@@ -606,7 +597,7 @@ $notificationapi->send(
             "email" => "test@test.com",
             "number" => "+15005550006",
         ],
-        "secondaryId" => "abc",
+        "subNotificationId" => "abc",
     ]
 );
 ```
