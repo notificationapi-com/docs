@@ -12,7 +12,7 @@ With Emails and SMS, frustrated users will mark your notifications as spam if yo
 
 ## How does it work?
 
-1. Add `{{notificationapi:unsubscribe_url}}` anywhere in your templates, e.g. as the URL of an "unsubscribe" button.
+1. Add `{{notificationapi:unsubscribe_url}}` anywhere in your templates, e.g. as the URL of an "unsubscribe" button
 2. Our system replaces this with a unique URL
 3. Clicking the URK will unsubscribe the user from that particular channel for that particular notification
 4. The user will see the following page:
