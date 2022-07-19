@@ -8,6 +8,10 @@ After receiving your request to send a notification, we start tracking the progr
 
 This is specifically useful for ensuring new notifications are working correctly and for customer support staff to handle tickets related to notifications.
 
+import logs from '@site/static/Logs.png';
+
+<img src={logs} />
+
 ## Notification States
 
 Each `send()` request creates a record in the logs table with either of the following statuses:
@@ -47,6 +51,61 @@ Call Specific Sub-Events:
 <!-- Subscriptions – The email was successfully delivered, but the recipient updated the subscription preferences by clicking List-Unsubscribe in the email header or the Unsubscribe link in the footer. -->
 
 <!-- - Soft Bounce -->
+
+## Custom Queries
+
+Besides the predefined filters on the logs table, you can use any custom queries to dig deep. For example: `$.request.mergeTags.firstName="Jane"`
+
+You can search for anything in the `$.request`, which contains the [original parameters you passed to send()](../reference/server.md#send). Here's an example of a `$.request` object:
+
+```js title="$.request"
+{
+    notificationId: '...',
+    user: {
+        id: '123',
+        email: 'jane@doe.com',
+        number: '+19999999999'
+    },
+    mergeTags: {
+        firstName: 'jane'
+    }
+}
+```
+
+### Query Structure
+
+##### Query Format
+
+`Property Operator MatchedPattern`
+
+##### Property Examples:
+
+- `$.trackingId`
+- `$.request.notificationId`
+- `$.request.user.number`
+- `$.request.mergeTags.firstName`
+- `$.request.mergeTags.products[0].sku.title`
+
+##### Operators:
+
+- String Operators: `=`, `!=`
+- Numeric Operators: `=` `!=` `>` `>=` `<` `<=`
+- Logical Operators:
+  - `IS`, can only be used with `NULL`, `FALSE` or `TRUE`
+  - `NOT EXISTS`, e.g. `$.request.user.number NOT EXISTS`
+
+##### MatchedPattern:
+
+A string or number. You can use `*` as a wild-card for string matching. Example: `$.request.user.email="*@gmail.com"`
+
+### AND/OR Queries
+
+You can use `&&`, `||` and `()` to combine multiple queries. Examples:
+
+```
+($.request.notificationId='new-user' && $.request.user.number='+19999999999') ||
+    $.request.mergeTags.firstName="Jane"
+```
 
 ## FAQ
 
