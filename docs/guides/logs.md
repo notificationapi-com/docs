@@ -96,7 +96,7 @@ You can search for anything in the `$.request`, which contains the [original par
 
 ##### MatchedPattern:
 
-A string or number. You can use `*` as a wild-card for string matching. Example: `$.request.user.email="*@gmail.com"`
+A string or number. You can use `*` as a wildcard for string matching. Example: `$.request.user.email="*@gmail.com"`
 
 ### AND/OR Queries
 
