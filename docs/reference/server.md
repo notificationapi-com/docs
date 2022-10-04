@@ -174,7 +174,7 @@ notificationapi.send({
   ...,
   replace: {
     "Dollars": "Euros",
-    "#FF0000": "#0000FF"
+    "#ff0000": "#0000ff"
   }
 });
 ```
@@ -191,7 +191,7 @@ notificationapi.send(
         ...,
         "replace": {
             "Dollars": "Euros",
-            "#FF0000": "#0000FF"
+            "#ff0000": "#0000ff"
         }
     }
 )
@@ -208,7 +208,7 @@ $notificationapi->send([
     ...,
     "replace" => [
         "Dollars" => "Euros",
-        "#FF0000": "#0000FF"
+        "#ff0000": "#0000ff"
     ]
 ]);
 ```
@@ -219,7 +219,7 @@ $notificationapi->send([
 In the example above:
 
 - The word "Dollars" will be replaced with "Euros" in all the templates used for this notification
-- The HTML red color code `#FF0000` will be replaced with the blue color code `0000FF`, making it possible to dynamically brand the email content.
+- The HTML red color code `#ff0000` will be replaced with the blue color code `0000ff`, making it possible to dynamically brand the email content.
 
 ##### `forceChannels` (optional)
 
