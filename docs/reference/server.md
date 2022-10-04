@@ -150,6 +150,77 @@ Type: object
 
 Used to pass in dynamic values into the notification design. Read more: [Passing dynamic values to notifications](#merge-tags-passing-dynamic-values-to-notifications)
 
+##### `replace` (optional)
+
+Type: object, string key/value pair
+
+Similar to mergeTags, but more flexible. Like the programmatic string replace function, this parameter will replace any string in the notification templates with another string. This operation happens on the fly when sending the notification and does not actually modify the templates.
+
+This operation is case-sensitive and happens after mergeTags are injected.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'JavaScript', value: 'js', },
+{ label: 'Python', value: 'python', },
+{ label: 'PHP', value: 'php', }
+]
+}>
+<TabItem value="js">
+
+```js title="Example"
+notificationapi.send({
+  ...,
+  replace: {
+    "Dollars": "Euros",
+    "#FF0000": "#0000FF"
+  }
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python title="Example"
+from notificationapi_python_server_sdk import (notificationapi)
+
+notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
+notificationapi.send(
+    {
+        ...,
+        "replace": {
+            "Dollars": "Euros",
+            "#FF0000": "#0000FF"
+        }
+    }
+)
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php title="Example"
+use NotificationAPI\NotificationAPI;
+
+$notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
+$notificationapi->send([
+    ...,
+    "replace" => [
+        "Dollars" => "Euros",
+        "#FF0000": "#0000FF"
+    ]
+]);
+```
+
+</TabItem>
+</Tabs>
+
+In the example above:
+
+- The word "Dollars" will be replaced with "Euros" in all the templates used for this notification
+- The HTML red color code `#FF0000` will be replaced with the blue color code `0000FF`, making it possible to dynamically brand the email content.
+
 ##### `forceChannels` (optional)
 
 type: string[]
