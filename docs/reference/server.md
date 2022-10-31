@@ -9,6 +9,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 - Node.js
 - Python
 - PHP
+- Go
 
 ## Setup
 
