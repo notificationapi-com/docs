@@ -139,20 +139,23 @@ $notificationapi->send([
 package main
 
 import (
-  notificationapi"github.com/notificationapi-com/notificationapi-go-server-sdk"
+	notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
 )
 
 func main() {
-notificationapi.Init("CLIENT_ID","CLIENT_SECRET")
-  	 params:=notificationapi.SendRequest{NotificationId:"new_comment_notification",User: notificationapi.User
-{
-  Id:"TEST_USER_ID",
-  Email:"TEST@TEST.COM",  // required for email notifications
-  Number:"+15005550006"   // # required for SMS and call
-  }
-  }
-  notificationapi.Send(params)
+	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+	mergeTags := make(map[string]string)
+	mergeTags["firstName"] = "test"
+	params := notificationapi.SendRequest{NotificationId: "hello_world", User: notificationapi.User{
+		Id:     "123",
+		Email:  "test@test.com",
+		Number: "+15005550006",
+	},
+		MergeTags: mergeTags,
+	}
+	notificationapi.Send(params)
 }
+
 
 ```
 
