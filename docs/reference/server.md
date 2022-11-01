@@ -656,7 +656,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -737,8 +738,27 @@ $notificationapi->send(
 <TabItem value="go">
 
 ```go
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},Options: &notificationapi.SendRequestOptions{Email: notificationapi.SendRequestEmailOptions{ReplyToAddresses:[]string{"noreply@test.com"},Attachments:[]notificationapi.EmailAttachments{{Filename:"sample.pdf",Url: "https://docs.notificationapi.com/lorem-ipsum.pdf"}}}},
-	})
+	notificationapi.Send(
+		notificationapi.SendRequest{
+			NotificationId: "hello_world",
+			User: notificationapi.User{
+				Id:     "123",
+				Email:  "test@test.com",
+				Number: "+15005550006",
+			},
+			Options: &notificationapi.SendRequestOptions{
+				Email: notificationapi.SendRequestEmailOptions{
+					ReplyToAddresses: []string{"noreply@test.com"},
+					Attachments: []notificationapi.EmailAttachments{
+						{
+							Filename: "sample.pdf",
+							Url:      "https://docs.notificationapi.com/lorem-ipsum.pdf",
+						},
+					},
+				},
+			},
+		},
+	)
 ```
 
 </TabItem>
