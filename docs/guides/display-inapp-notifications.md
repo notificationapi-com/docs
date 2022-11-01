@@ -51,6 +51,7 @@ groupId="frontend-language"
 defaultValue="react"
 values={[
 { label: 'React.js', value: 'react' },
+{ label: 'Vue.js', value: 'vue' },
 { label: 'JavaScript', value: 'js' }
 ]
 }>
@@ -92,13 +93,38 @@ import NotificationAPIComponent from './NotificationAPIComponent';
 function App() {
   return (
     <div>
-      <NotificationAPIComponent userId="TEST_USER_ID" />
-      <div> ... </div>
+      <div>Hello World!</div>
+      <NotificationAPIComponent userId="USER_ID" />
     </div>
   );
 }
 
 export default App;
+```
+
+</TabItem>
+<TabItem value="vue">
+
+```html
+<script setup>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import { onMounted } from 'vue';
+  onMounted(() => {
+    const notificationapi = new NotificationAPI({
+      clientId: 'CLIENT_ID',
+      userId: 'USER_ID'
+    });
+
+    notificationapi.showInApp({
+      root: 'myNotifications'
+    });
+  });
+</script>
+
+<template>
+  <div>Hello World!</div>
+  <div id="myNotifications"></div>
+</template>
 ```
 
 </TabItem>
@@ -108,7 +134,7 @@ export default App;
 <script>
   const notificationapi = new NotificationAPI({
     clientId: 'CLIENT_ID',
-    userId: 'TEST_USER_ID'
+    userId: 'USER_ID'
   });
   notificationapi.showInApp({
     root: 'CONTAINER_DIV_ID',
