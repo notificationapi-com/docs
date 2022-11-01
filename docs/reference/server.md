@@ -201,7 +201,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -256,19 +257,16 @@ $notificationapi->send([
 ```go title="Example"
 package main
 
-# import
 import (
   notificationapi"github.com/notificationapi-com/notificationapi-go-server-sdk"
 )
 
 func main() {
-# init
 notificationapi.Init("CLIENT_ID","CLIENT_SECRET")
 
 	replace:=make(map[string]string)
 	replace["Dollars"]="Euros"
     replace["#ff0000"]="#0000ff"
-# send
 params:=notificationapi.SendRequest{...,
     Replace: replace
   }
@@ -324,7 +322,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -351,7 +350,6 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 ```
 
 </TabItem>
-</Tabs>
 <TabItem value="go">
 
 ```go
@@ -362,6 +360,8 @@ notificationapi.Retract(RetractRequest{
 ```
 
 </TabItem>
+
+</Tabs>
 
 This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
 
@@ -435,10 +435,19 @@ notificationapi->send([
 <TabItem value="go">
 
 ```go
-    mergeTags:=make(map[string]string)
-	mergeTags["firstName"]="Jane"
-    notificationapi.Retract(SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com", Number:"+15005550006"},MergeTags: mergeTags,
-	});
+mergeTags:=make(map[string]string)
+mergeTags["firstName"]="Jane"
+notificationapi.Send(
+	SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+			 Number:"+15005550006"
+		},
+		MergeTags: mergeTags,
+	}
+);
 ```
 
 </TabItem>
@@ -453,7 +462,7 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
 ]
 }>
 <TabItem value="js">
@@ -531,6 +540,31 @@ $notificationapi->send(
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```go
+user := map[string]interface{}{
+	"firstName": "Jane",
+	"lastName": "Doe",
+	"orders": []interface{}{
+		map[string]string{"id": "123", "productName": "hasan"},
+		map[string]string{"id": "124", "productName": "socks"},
+	},
+}
+notificationapi.Send(
+	SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+			 Number:"+15005550006"
+		},
+		MergeTags: user,
+	}
+);
+```
+
+</TabItem>
 </Tabs>
 
 ### forceChannels: Dynamically overriding the channels
@@ -590,8 +624,16 @@ $notificationapi->send(
 
 ```go
 
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com"},MergeTags: mergeTags,ForceChannels: []string{"EMAIL","INAPP_WEB"},
-	})
+ notificationapi.Send(
+	notificationapi.SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+		},
+		ForceChannels: []string{"EMAIL","INAPP_WEB"},
+	},
+)
 
 ```
 
@@ -614,7 +656,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -695,8 +738,27 @@ $notificationapi->send(
 <TabItem value="go">
 
 ```go
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},Options: &notificationapi.SendRequestOptions{Email: notificationapi.SendRequestEmailOptions{ReplyToAddresses:[]string{"noreply@test.com"},Attachments:[]notificationapi.EmailAttachments{{Filename:"sample.pdf",Url: "https://docs.notificationapi.com/lorem-ipsum.pdf"}}}},
-	})
+	notificationapi.Send(
+		notificationapi.SendRequest{
+			NotificationId: "hello_world",
+			User: notificationapi.User{
+				Id:     "123",
+				Email:  "test@test.com",
+				Number: "+15005550006",
+			},
+			Options: &notificationapi.SendRequestOptions{
+				Email: notificationapi.SendRequestEmailOptions{
+					ReplyToAddresses: []string{"noreply@test.com"},
+					Attachments: []notificationapi.EmailAttachments{
+						{
+							Filename: "sample.pdf",
+							Url:      "https://docs.notificationapi.com/lorem-ipsum.pdf",
+						},
+					},
+				},
+			},
+		},
+	)
 ```
 
 </TabItem>
@@ -782,8 +844,17 @@ $notificationapi->send(
 <TabItem value="go">
 
 ```go
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},SubNotificationId: "abc",
-	})
+	notificationapi.Send(
+		notificationapi.SendRequest{
+			NotificationId: "hello_world",
+			User: notificationapi.User{
+				Id:     "123",
+				Email:  "test@test.com",
+				Number: "+15005550006",
+			},
+			SubNotificationId: "abc",
+		},
+	)
 ```
 
 </TabItem>
