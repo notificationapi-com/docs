@@ -201,7 +201,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -256,19 +257,16 @@ $notificationapi->send([
 ```go title="Example"
 package main
 
-# import
 import (
   notificationapi"github.com/notificationapi-com/notificationapi-go-server-sdk"
 )
 
 func main() {
-# init
 notificationapi.Init("CLIENT_ID","CLIENT_SECRET")
 
 	replace:=make(map[string]string)
 	replace["Dollars"]="Euros"
     replace["#ff0000"]="#0000ff"
-# send
 params:=notificationapi.SendRequest{...,
     Replace: replace
   }
@@ -439,7 +437,7 @@ notificationapi->send([
 ```go
 mergeTags:=make(map[string]string)
 mergeTags["firstName"]="Jane"
-notificationapi.Retract(
+notificationapi.Send(
 	SendRequest{
 		NotificationId:"hello_world",
 		User: notificationapi.User{
@@ -464,6 +462,7 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
 ]
 }>
 <TabItem value="js">
@@ -541,6 +540,31 @@ $notificationapi->send(
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```go
+user := map[string]interface{}{
+	"firstName": "Jane",
+	"lastName": "Doe",
+	"orders": []interface{}{
+		map[string]string{"id": "123", "productName": "hasan"},
+		map[string]string{"id": "124", "productName": "socks"},
+	},
+}
+notificationapi.Send(
+	SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+			 Number:"+15005550006"
+		},
+		MergeTags: user,
+	}
+);
+```
+
+</TabItem>
 </Tabs>
 
 ### forceChannels: Dynamically overriding the channels
@@ -600,8 +624,16 @@ $notificationapi->send(
 
 ```go
 
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com"},MergeTags: mergeTags,ForceChannels: []string{"EMAIL","INAPP_WEB"},
-	})
+ notificationapi.Send(
+	notificationapi.SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+		},
+		ForceChannels: []string{"EMAIL","INAPP_WEB"},
+	},
+)
 
 ```
 
