@@ -57,7 +57,7 @@ const notificationapi = new NotificationAPI({
 
 Initializing the library more than once is safe, but will generate unnecessary resources and network calls.
 
-React users should follow the [React section](#with-reactjs).
+React users should follow the [React section](#reactjs).
 
 :::
 
@@ -207,7 +207,7 @@ Default: undefined
 
 When undefined (default behavior), the user preferences will show as a modal. Given this parameter, the user preferences will render in inline mode inside an existing HTML element on your page. You can pass the ID of the parent element to this parameter. Ideally, use an empty div for the parent.
 
-## With React.js
+## React.js
 
 React's state management and re-rendering causes this widget to be destroyed and re-initialized with every state change. To avoid this issue, place the initialization and the root element in a "memo"-ized React component. Example:
 
@@ -274,6 +274,30 @@ export default App;
 
 </TabItem>
 </Tabs>
+
+## Vue.js
+
+```html
+<script setup>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import { onMounted } from 'vue';
+  onMounted(() => {
+    const notificationapi = new NotificationAPI({
+      clientId: 'CLIENT_ID',
+      userId: 'USER_ID'
+    });
+
+    notificationapi.showInApp({
+      root: 'myNotifications'
+    });
+  });
+</script>
+
+<template>
+  <div>Hello World!</div>
+  <div id="myNotifications"></div>
+</template>
+```
 
 ## Secure Mode
 
