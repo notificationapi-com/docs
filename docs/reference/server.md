@@ -844,8 +844,17 @@ $notificationapi->send(
 <TabItem value="go">
 
 ```go
-  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},SubNotificationId: "abc",
-	})
+	notificationapi.Send(
+		notificationapi.SendRequest{
+			NotificationId: "hello_world",
+			User: notificationapi.User{
+				Id:     "123",
+				Email:  "test@test.com",
+				Number: "+15005550006",
+			},
+			SubNotificationId: "abc",
+		},
+	)
 ```
 
 </TabItem>
