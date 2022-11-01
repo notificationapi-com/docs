@@ -9,6 +9,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 - Node.js
 - Python
 - PHP
+- Go
 
 ## Setup
 
@@ -21,7 +22,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -47,6 +49,13 @@ composer require notificationapi/notificationapi-php-server-sdk
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```bash
+go get github.com/notificationapi-com/notificationapi-go-server-sdk
+```
+
+</TabItem>
 </Tabs>
 
 ## send()
@@ -59,7 +68,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -124,6 +134,33 @@ $notificationapi->send([
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```go title="Example"
+package main
+
+import (
+	notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
+)
+
+func main() {
+	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+	mergeTags := make(map[string]string)
+	mergeTags["firstName"] = "test"
+	params := notificationapi.SendRequest{NotificationId: "hello_world", User: notificationapi.User{
+		Id:     "123",
+		Email:  "test@test.com",
+		Number: "+15005550006",
+	},
+		MergeTags: mergeTags,
+	}
+	notificationapi.Send(params)
+}
+
+
+```
+
+</TabItem>
 </Tabs>
 
 **Parameters**
@@ -164,7 +201,7 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' }
 ]
 }>
 <TabItem value="js">
@@ -211,6 +248,32 @@ $notificationapi->send([
         "#ff0000": "#0000ff"
     ]
 ]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go title="Example"
+package main
+
+# import
+import (
+  notificationapi"github.com/notificationapi-com/notificationapi-go-server-sdk"
+)
+
+func main() {
+# init
+notificationapi.Init("CLIENT_ID","CLIENT_SECRET")
+
+	replace:=make(map[string]string)
+	replace["Dollars"]="Euros"
+    replace["#ff0000"]="#0000ff"
+# send
+params:=notificationapi.SendRequest{...,
+    Replace: replace
+  }
+  notificationapi.Send(params)
+}
 ```
 
 </TabItem>
@@ -289,6 +352,16 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 
 </TabItem>
 </Tabs>
+<TabItem value="go">
+
+```go
+notificationapi.Retract(RetractRequest{
+  NotificationId: "hello_world",
+  UserId: "123"
+});
+```
+
+</TabItem>
 
 This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
 
@@ -312,7 +385,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -358,6 +432,16 @@ notificationapi->send([
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```go
+    mergeTags:=make(map[string]string)
+	mergeTags["firstName"]="Jane"
+    notificationapi.Retract(SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com", Number:"+15005550006"},MergeTags: mergeTags,
+	});
+```
+
+</TabItem>
 </Tabs>
 
 You can actually pass in complex objects and arrays into mergeTags to make your notifications future-proof. The example below sends a whole user object to the mergeTag. You can now use merge tags such as `{{user.firstName}}`, `{{user.lastName}}` or even `{{user.orders[1].productName}}` in the designs without going back to change your server code.
@@ -368,7 +452,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -460,7 +545,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
-{ label: 'PHP', value: 'php', }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -497,6 +583,16 @@ $notificationapi->send(
         "forceChannels" => ["EMAIL", "INAPP_WEB"],
     ]
 );
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+
+  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com"},MergeTags: mergeTags,ForceChannels: []string{"EMAIL","INAPP_WEB"},
+	})
+
 ```
 
 </TabItem>
@@ -596,6 +692,14 @@ $notificationapi->send(
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```go
+  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},Options: &notificationapi.SendRequestOptions{Email: notificationapi.SendRequestEmailOptions{ReplyToAddresses:[]string{"noreply@test.com"},Attachments:[]notificationapi.EmailAttachments{{Filename:"sample.pdf",Url: "https://docs.notificationapi.com/lorem-ipsum.pdf"}}}},
+	})
+```
+
+</TabItem>
 </Tabs>
 
 Available options:
@@ -626,7 +730,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -671,6 +776,14 @@ $notificationapi->send(
         "subNotificationId" => "abc",
     ]
 );
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+  notificationapi.Send(notificationapi.SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com",Number:"+15005550006"},SubNotificationId: "abc",
+	})
 ```
 
 </TabItem>

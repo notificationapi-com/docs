@@ -21,7 +21,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -47,6 +48,13 @@ composer require notificationapi/notificationapi-php-server-sdk
 ```
 
 </TabItem>
+<TabItem value="go">
+
+```bash
+go get github.com/notificationapi-com/notificationapi-go-server-sdk
+```
+
+</TabItem>
 </Tabs>
 
 ## 2. Send
@@ -59,7 +67,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -123,6 +132,33 @@ $notificationapi->send([
         "number" => "+15005550006"    # required for SMS
     ]
 ]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+package main
+
+// import
+import (
+	notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
+)
+
+func main() {
+	// init
+	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+
+	// send
+	params := notificationapi.SendRequest{NotificationId: "new_comment_notification", User: notificationapi.User{
+		Id:     "TEST_USER_ID",
+		Email:  "TEST@TEST.COM", // required for email notifications
+		Number: "+15005550006",  // required for SMS and call
+	},
+	}
+	notificationapi.Send(params)
+}
+
 ```
 
 </TabItem>
