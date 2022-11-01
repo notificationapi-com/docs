@@ -324,7 +324,8 @@ defaultValue="js"
 values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
-{ label: 'PHP', value: 'php' }
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
@@ -351,7 +352,6 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 ```
 
 </TabItem>
-</Tabs>
 <TabItem value="go">
 
 ```go
@@ -362,6 +362,8 @@ notificationapi.Retract(RetractRequest{
 ```
 
 </TabItem>
+
+</Tabs>
 
 This function deletes all notifications that were generated from the `hello_world` notification type for user `123`. Optionally, you can filter notifications down to [secondaryId](#secondaryid-categorizing-notifications-of-the-same-type).
 
@@ -435,10 +437,19 @@ notificationapi->send([
 <TabItem value="go">
 
 ```go
-    mergeTags:=make(map[string]string)
-	mergeTags["firstName"]="Jane"
-    notificationapi.Retract(SendRequest{NotificationId:"hello_world",User: notificationapi.User{Id:"123",Email:"test@test.com", Number:"+15005550006"},MergeTags: mergeTags,
-	});
+mergeTags:=make(map[string]string)
+mergeTags["firstName"]="Jane"
+notificationapi.Retract(
+	SendRequest{
+		NotificationId:"hello_world",
+		User: notificationapi.User{
+			Id:"123",
+			Email:"test@test.com",
+			 Number:"+15005550006"
+		},
+		MergeTags: mergeTags,
+	}
+);
 ```
 
 </TabItem>
@@ -453,7 +464,6 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
 ]
 }>
 <TabItem value="js">
