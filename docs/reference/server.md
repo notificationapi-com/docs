@@ -185,7 +185,7 @@ The user to send the notification to. Fields:
 
 Type: object
 
-Used to pass in dynamic values into the notification design. Read more: [Passing dynamic values to notifications](#merge-tags-passing-dynamic-values-to-notifications)
+Used to pass in dynamic values into the notification design. Read more: [Passing dynamic values to notifications](#mergetags-passing-dynamic-values-to-notifications)
 
 ##### `replace` (optional)
 
