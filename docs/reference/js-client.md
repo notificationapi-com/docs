@@ -4,7 +4,16 @@ sidebar_position: 2
 
 # JS Client SDK (Front-End)
 
-This client-side SDK for JavaScript allows you to show in-app notifications in your front-end.
+The client-side SDK is mainly used for displaying **In-App Notifications** and allowing users to see and change their **Notification Preferences**.
+
+Supported environments:
+
+- Vanilla JavaScript
+- React.js
+- Vue.js
+- Angular.js
+- Next.js
+- Any other JS-based framework, including server-side rendering
 
 ## Setup
 
@@ -16,31 +25,36 @@ groupId="js-package-manager"
 defaultValue="npm/yarn"
 values={[
 { label: 'npm/yarn', value: 'npm/yarn' },
-{ label: 'script tag', value: 'script' }
+{ label: '<script>', value: '<script>' }
 ]
 }>
 <TabItem value="npm/yarn">
 
-```js
-/* 1. Install using npm or yarn:
-  npm install notificationapi-js-client-sdk
-  yarn add notificationapi-js-client-sdk
-*/
+```shell title="1. Install"
+npm install notificationapi-js-client-sdk
+yarn add notificationapi-js-client-sdk
+```
 
-// 2. import or require:
+```js title="2. Import"
 import NotificationAPI from 'notificationapi-js-client-sdk';
-const NotificationAPI = require('notificationapi-js-client-sdk').default;
+import 'notificationapi-js-client-sdk/dist/styles.css';
 ```
 
 </TabItem>
-<TabItem value="script">
+<TabItem value="<script>">
 
 ```html
 <script src="https://unpkg.com/notificationapi-js-client-sdk/dist/notificationapi-js-client-sdk.js"></script>
+<link
+  href="https://unpkg.com/notificationapi-js-client-sdk/dist/styles.css"
+  rel="stylesheet"
+/>
 ```
 
 </TabItem>
 </Tabs>
+
+## Your First Example
 
 ## Initialization
 
@@ -164,9 +178,11 @@ For setting the preference of a subNotificationId within a notification.
 
 ## showInApp()
 
-This function adds the in-app notifications (the bell icon along with all its functionality) to your app.
+import InAppGif from '@site/static/inapp.gif';
 
-![Sample](https://github.com/notificationapi-com/notificationapi-js-client-sdk/blob/master/sample/popup.gif?raw=true)
+<img src={InAppGif} />
+
+This function adds the in-app notifications (the bell icon along with all its functionality) to your app.
 
 ```js title="Example"
 notificationapi.showInApp({
@@ -176,16 +192,45 @@ notificationapi.showInApp({
 
 **Parameters**
 
-`root` (required)  
+##### `root` (required)
+
 Type: string
 
 The ID of the HTML element that will contain the NotificationAPI widget. Ideally an empty div.
 
-`popupPosition`  
+##### `inline`
+
+Type: boolean
+
+Default: false
+
+By default, the showInApp() function will display a 🔔 button. The in-app notifications are displayed in a popup when the button is clicked. With inline set to `true`, the in-app notifications are displayed in the `root` element without the popup.
+
+##### `popupPosition`
+
 Type: string (JS), PopupPosition enum (TS)
 
-The position of the notifications popup relative to the button. Defaults to rightBottom.  
+Default: rightBottom
+
+The position of the notifications popup relative to the button.
+
 Valid string options: topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom.
+
+##### `paginated`
+
+Type: boolean
+
+Default: false
+
+By default, the in-app notifications are displayed in endless scrolling mode. Setting this field to `true` will show in-app notifications in paginated mode with controls to change pages.
+
+##### `pageSize`
+
+Type: number
+
+Default: 5
+
+The number of in-app notifications per page. Only valid for `paginated` mode.
 
 ## showUserPreferences()
 
@@ -222,6 +267,7 @@ values={[
 
 ```jsx
 import NotificationAPI from 'notificationapi-js-client-sdk';
+import 'notificationapi-js-client-sdk/dist/styles.css';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
 import React, { memo, useEffect, useRef } from 'react';
 
@@ -280,6 +326,7 @@ export default App;
 ```html
 <script setup>
   import NotificationAPI from 'notificationapi-js-client-sdk';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
   import { onMounted } from 'vue';
   onMounted(() => {
     const notificationapi = new NotificationAPI({

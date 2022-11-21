@@ -61,6 +61,7 @@ Create the following `NotificationAPIComponent`:
 
 ```jsx
 import NotificationAPI from 'notificationapi-js-client-sdk';
+import 'notificationapi-js-client-sdk/dist/styles.css';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
 import { memo, useEffect } from 'react';
 
@@ -108,6 +109,7 @@ export default App;
 ```html
 <script setup>
   import NotificationAPI from 'notificationapi-js-client-sdk';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
   import { onMounted } from 'vue';
   onMounted(() => {
     const notificationapi = new NotificationAPI({
