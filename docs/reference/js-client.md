@@ -206,6 +206,26 @@ Default: false
 
 By default, the showInApp() function will display a 🔔 button. The in-app notifications are displayed in a popup when the button is clicked. With inline set to `true`, the in-app notifications are displayed in the `root` element without the popup.
 
+import inline from '@site/static/inline.png';
+
+Preview:
+<img src={inline} width="400" />
+
+##### `markAsReadMode`
+
+Type: string (JS), MarkAsReadModes enum (TS)
+
+Default: AUTOMATIC
+
+By default, in-app notifications are set to read when they are displayed to the user and the unread notification count is reset to 0. Switching to the `MANUAL` mode will not set notifications to read on display. Instead, the user can set notifications to read using an overall "Mark All As Read" button and a "Mark as read" for each notification.
+
+Valid string options: AUTOMATIC, MANUAL
+
+import manualread from '@site/static/manualread.gif';
+
+Preview:
+<img src={manualread} width="400" />
+
 ##### `popupPosition`
 
 Type: string (JS), PopupPosition enum (TS)
@@ -223,6 +243,11 @@ Type: boolean
 Default: false
 
 By default, the in-app notifications are displayed in endless scrolling mode. Setting this field to `true` will show in-app notifications in paginated mode with controls to change pages.
+
+import paginated from '@site/static/paginated.gif';
+
+Preview:
+<img src={paginated} width="400" />
 
 ##### `pageSize`
 
