@@ -9,11 +9,12 @@ The client-side SDK is mainly used for displaying **In-App Notifications** and a
 Supported environments:
 
 - Vanilla JavaScript
-- React.js
-- Vue.js
-- Angular.js
-- Next.js
-- Any other JS-based framework, including server-side rendering
+- React
+- Vue
+- Angular
+- Next
+- Remix
+- Most JS Frameworks, including those with server-side rendering, are supported. If you don't see your framework here, just ping us on support and we will add it to the docs!
 
 ## Setup
 

@@ -10,6 +10,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 - Python
 - PHP
 - Go
+- Some libraries are not fully documented here yet. If you don't see your language/framework here, just ping us on support and we will provide samples and docs.
 
 ## Setup
 
