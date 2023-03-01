@@ -167,14 +167,6 @@ func main() {
 :::info
 You must replace the CLIENT_ID and CLIENT_SECRET with real values. You can get yours from [here](https://app.notificationapi.com/environments).
 :::
-:::info
-To specify your region, you must pass the base URL. For example, if your account is in the Canada region, pass 'https://api.ca.notificationapi.com'.
-
-```
-notificationapi.init('CLIENT_ID', 'CLIENT_SECRET','https://api.ca.notificationapi.com');
-```
-
-:::
 
 ## That's it?
 
