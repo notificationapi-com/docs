@@ -81,10 +81,38 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        gtag: {
+          trackingID: 'G-LK2SW2E54M'
+        }
       },
     ],
   ],
   customFields: {
     trailingSlash: false,
-  }
+  },
+  scripts: [
+    "/custom.js"
+  ],
+  headTags: [
+    // hubspot
+    {
+      tagName: 'script',
+      attributes: {
+        id: 'hs-script-loader',
+        type: 'text/javascript',
+        async: 'true',
+        defer: 'true',
+        src:"//js.hs-scripts.com/21854845.js"
+      }
+    },
+    // fullstory
+    {
+      tagName: 'script',
+      attributes: {
+        async: 'true',
+        defer: 'true',
+        src:"//js.hs-scripts.com/21854845.js"
+      }
+    },
+  ],
 };
