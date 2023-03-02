@@ -93,6 +93,11 @@ Type: string
 
 Only used for [Secure Mode](#secure-mode).
 
+`websocket`
+Type: string
+
+Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'.
+
 ## getUserPreferences()
 
 Allows you to access the raw data of the user's notification preferences from the front-end.
