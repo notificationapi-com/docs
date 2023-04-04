@@ -222,9 +222,9 @@ Type: string (JS), MarkAsReadModes enum (TS)
 
 Default: AUTOMATIC
 
-By default, in-app notifications are set to read when they are displayed to the user and the unread notification count is reset to 0. Switching to the `MANUAL` mode will not set notifications to read on display. Instead, the user can set notifications to read using an overall "Mark All As Read" button and a "Mark as read" for each notification.
+By default, in-app notifications are set to read when they are displayed to the user and the unread notification count is reset to 0. Switching to the `MANUAL` mode will not set notifications to read on display. Instead, the user can set notifications to read using an overall "Mark All As Read" button, or by using the individual "Mark as read" on each notification. The `MANUAL_AND_CLICK` mode works similar to `MANUAL` mode, but also sets notifications to read when user clicks the notification.
 
-Valid string options: AUTOMATIC, MANUAL
+Valid string options: AUTOMATIC, MANUAL, MANUAL_AND_CLICK
 
 import manualread from '@site/static/manualread.gif';
 
