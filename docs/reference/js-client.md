@@ -332,7 +332,7 @@ new NotificationAPI({
 });
 ```
 
-3. Enable secure mode in your account settings. When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
+3. Enable secure mode in your account settings (Settings -> Security). When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
 
 ## Framework Specific Configurations
 
