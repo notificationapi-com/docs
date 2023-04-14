@@ -78,7 +78,7 @@ values={[
 ```js title="Example"
 import notificationapi from 'notificationapi-node-server-sdk';
 
-notificationapi.init('CLIENT_ID', 'CLIENT_SECRET', 'Based_URL');
+notificationapi.init('CLIENT_ID', 'CLIENT_SECRET', 'BASE_URL');
 notificationapi.send({
   notificationId: 'hello_world',
   user: {
@@ -178,11 +178,11 @@ Type: string
 
 Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).
 
-##### `Based_URL` (optional)
+##### `BASE_URL` (optional)
 
 Type: string
 
-Only if you want to specify your region, for example, if your account is in Canada region you must pass 'https://api.ca.notificationapi.com'.
+To choose a different region than default. Pass 'https://api.ca.notificationapi.com' for the Canada region.
 
 ##### `notificationId` (required)
 
