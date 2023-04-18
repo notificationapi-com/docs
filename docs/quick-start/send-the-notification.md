@@ -22,7 +22,8 @@ values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -55,6 +56,46 @@ go get github.com/notificationapi-com/notificationapi-go-server-sdk
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+// Create the followinng class in your application:
+
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class NotificationAPI {
+  private string baseURL = "https://api.notificationapi.com";
+  private string clientId;
+  private HttpClient httpClient;
+
+  public NotificationAPI(string clientId, string clientSecret) {
+    this.clientId = clientId;
+    string authToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
+    this.httpClient = new HttpClient();
+    this.httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {authToken}");
+  }
+
+  public async Task<string> send(string request) {
+    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
+    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender", payload);
+    var responseContent = await response.Content.ReadAsStringAsync();
+    return responseContent;
+  }
+
+  public async Task<string> retract(string request) {
+    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
+    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender/retract", payload);
+    var responseContent = await response.Content.ReadAsStringAsync();
+    return responseContent;
+  }
+
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## 2. Send
@@ -68,7 +109,8 @@ values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -159,6 +201,25 @@ func main() {
 	notificationapi.Send(params)
 }
 
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006""
+    },
+    ""mergeTags"": {
+        ""firstName"": ""FIRST_NAME""
+    }
+}";
+notificationapi.send(request);
 ```
 
 </TabItem>

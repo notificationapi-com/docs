@@ -4,13 +4,29 @@ sidebar_position: 1
 
 # Server SDKs (Back-end)
 
+export const Highlight = ({children, color}) => (
+<span
+style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+      fontSize: '0.75rem'
+    }}>
+{children}
+</span>
+);
+
 The server-side SDKs allow you to trigger sending notifications. Supported environments:
 
-- Node.js
-- Python
-- PHP
-- Go
-- Some libraries are not fully documented here yet. If you don't see your language/framework here, just ping us on support and we will provide samples and docs.
+- Node.js <Highlight color="#25c2a0">official</Highlight>
+- Python <Highlight color="#25c2a0">official</Highlight>
+- PHP <Highlight color="#25c2a0">official</Highlight>
+- Go <Highlight color="#25c2a0">official</Highlight>
+- C# <Highlight color="#ff9966">documented</Highlight>
+- Any environment that supports HTTP calls
+
+If you don't see your language/framework documented here, just ping us on support and we will provide samples and docs.
 
 ## Setup
 
@@ -24,7 +40,8 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -57,6 +74,46 @@ go get github.com/notificationapi-com/notificationapi-go-server-sdk
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+// Create the followinng class in your application:
+
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class NotificationAPI {
+  private string baseURL = "https://api.notificationapi.com";
+  private string clientId;
+  private HttpClient httpClient;
+
+  public NotificationAPI(string clientId, string clientSecret) {
+    this.clientId = clientId;
+    string authToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
+    this.httpClient = new HttpClient();
+    this.httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {authToken}");
+  }
+
+  public async Task<string> send(string request) {
+    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
+    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender", payload);
+    var responseContent = await response.Content.ReadAsStringAsync();
+    return responseContent;
+  }
+
+  public async Task<string> retract(string request) {
+    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
+    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender/retract", payload);
+    var responseContent = await response.Content.ReadAsStringAsync();
+    return responseContent;
+  }
+
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## send()
@@ -70,7 +127,8 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -162,6 +220,25 @@ func main() {
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006""
+    },
+    ""mergeTags"": {
+        ""firstName"": ""FIRST_NAME""
+    }
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 **Parameters**
@@ -221,7 +298,8 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -294,6 +372,21 @@ params:=notificationapi.SendRequest{...,
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
+string request = @"{
+    ...,
+    ""replace"": {
+        ""Dollars"": ""Euros"",
+        ""#ff0000"": ""#0000ff""
+    }
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 In the example above:
@@ -342,7 +435,8 @@ values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -379,6 +473,18 @@ notificationapi.Retract(RetractRequest{
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""userId"": ""123""
+}";
+notificationapi.retract(request);
+```
+
+</TabItem>
 
 </Tabs>
 
@@ -405,7 +511,8 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -470,6 +577,24 @@ notificationapi.Send(
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006""
+    },
+    ""mergeTags"": {
+        ""firstName"": ""Jane""
+    }
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 You can actually pass in complex objects and arrays into mergeTags to make your notifications future-proof. The example below sends a whole user object to the mergeTag. You can now use merge tags such as `{{user.firstName}}`, `{{user.lastName}}` or even `{{user.orders[1].productName}}` in the designs without going back to change your server code.
@@ -482,6 +607,7 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
 ]
 }>
 <TabItem value="js">
@@ -584,6 +710,37 @@ notificationapi.Send(
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006""
+    },
+    ""mergeTags"": {
+        ""user"": {
+            ""firstName"": ""Jane"",
+            ""lastName"": ""Doe"",
+            ""orders"": [
+                {
+                    ""id"": ""123"",
+                    ""productName"": ""socks""
+                },
+                {
+                    ""id"": ""124"",
+                    ""productName"": ""socks""
+                }
+            ]
+        }
+    }
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 ### forceChannels: Dynamically overriding the channels
@@ -599,7 +756,8 @@ values={[
 { label: 'JavaScript', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -657,6 +815,21 @@ $notificationapi->send(
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com""
+    },
+    ""forceChannels"": [""EMAIL"", ""INAPP_WEB""]
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 The code above sends the notification over email and in-app regardless of what channels are active/inactive in the dashboard.
@@ -676,7 +849,8 @@ values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -781,6 +955,32 @@ $notificationapi->send(
 ```
 
 </TabItem>
+<TabItem value="csharp">
+
+```csharp
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006"",
+    },
+    ""options"": {
+        ""email"": {
+            ""replyToAddresses"": [""noreply@test.com""],
+            ""attachments"": [
+                {
+                    ""filename"": ""sample.pdf"",
+                    ""url"": ""https://docs.notificationapi.com/lorem-ipsum.pdf"",
+                }
+            ],
+        }
+    }
+}";
+notificationapi.send(request);
+```
+
+</TabItem>
 </Tabs>
 
 Available options:
@@ -812,7 +1012,8 @@ values={[
 { label: 'JavaScript', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
-{ label: 'Go', value: 'go' }
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' }
 ]
 }>
 <TabItem value="js">
@@ -874,6 +1075,22 @@ $notificationapi->send(
 			SubNotificationId: "abc",
 		},
 	)
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+string request = @"{
+    ""notificationId"": ""hello_world"",
+    ""user"": {
+        ""id"": ""123"",
+        ""email"": ""test@test.com"",
+        ""number"": ""+15005550006"",
+    },
+    ""subNotificationId"": ""abc""
+}";
+notificationapi.send(request);
 ```
 
 </TabItem>
