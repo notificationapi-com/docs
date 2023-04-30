@@ -65,7 +65,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} NotificationAPI Software Inc.`,
     },
     prism: {
-      additionalLanguages: ['php', 'csharp', 'java'],
+      additionalLanguages: ['php', 'csharp', 'java', 'ruby'],
     }
   },
   presets: [

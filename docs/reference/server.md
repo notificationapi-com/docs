@@ -24,6 +24,7 @@ The server-side SDKs allow you to trigger sending notifications. Supported envir
 - PHP <Highlight color="#25c2a0">official</Highlight>
 - Go <Highlight color="#25c2a0">official</Highlight>
 - C# <Highlight color="#ff9966">documented</Highlight>
+- Ruby <Highlight color="#ff9966">documented</Highlight>
 - Any environment that supports HTTP calls
 
 If you don't see your language/framework documented here, just ping us on support and we will provide samples and docs.
@@ -41,7 +42,8 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -114,6 +116,53 @@ class NotificationAPI {
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+# Create the following class in your application
+
+require 'net/http'
+require 'json'
+require 'base64'
+
+class NotificationAPI
+  def initialize(client_id, client_secret)
+    @base_url = 'https://api.notificationapi.com'
+    @client_id = client_id
+    @auth_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
+    @http_client = Net::HTTP.new('api.notificationapi.com', 443)
+    @http_client.use_ssl = true
+  end
+
+  def send(request)
+    payload = request.to_json
+    response = @http_client.post(
+      "/#{@client_id}/sender",
+      payload,
+      {
+        'Content-Type' => 'application/json',
+        'Authorization' => "Basic #{@auth_token}"
+      }
+    )
+    response.body
+  end
+
+  def retract(request)
+    payload = request.to_json
+    response = @http_client.post(
+      "/#{@client_id}/sender/retract",
+      payload,
+      {
+        'Content-Type' => 'application/json',
+        'Authorization' => "Basic #{@auth_token}"
+      }
+    )
+    response.body
+  end
+end
+```
+
+</TabItem>
 </Tabs>
 
 ## send()
@@ -128,7 +177,8 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -239,6 +289,26 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby title="Example"
+require './NotificationAPI'
+
+notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: {
+    id: '123',
+    email: 'test@test.com',
+    number: '+15005550006'
+  },
+  mergeTags: {
+    firstName: 'test'
+  }
+});
+```
+
+</TabItem>
 </Tabs>
 
 **Parameters**
@@ -299,7 +369,8 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -387,6 +458,19 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby title="Example"
+notificationapi.send({
+  ...,
+  replace: {
+    "Dollars": "Euros",
+    "#ff0000": "#0000ff"
+  }
+});
+```
+
+</TabItem>
 </Tabs>
 
 In the example above:
@@ -436,7 +520,8 @@ values={[
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -485,6 +570,16 @@ notificationapi.retract(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.retract({
+  notificationId: 'hello_world',
+  userId: '123'
+});
+```
+
+</TabItem>
 
 </Tabs>
 
@@ -512,7 +607,8 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -595,6 +691,17 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  mergeTags: { firstName: 'Jane' }
+});
+```
+
+</TabItem>
 </Tabs>
 
 You can actually pass in complex objects and arrays into mergeTags to make your notifications future-proof. The example below sends a whole user object to the mergeTag. You can now use merge tags such as `{{user.firstName}}`, `{{user.lastName}}` or even `{{user.orders[1].productName}}` in the designs without going back to change your server code.
@@ -608,6 +715,7 @@ values={[
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -741,6 +849,31 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+user = {
+  firstName: 'Jane',
+  lastName: 'Doe',
+  orders: [
+    {
+      id: '123',
+      productName: 'socks'
+    },
+    {
+      id: '124',
+      productName: 'socks'
+    }
+  ]
+};
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  mergeTags: { user: user }
+});
+```
+
+</TabItem>
 </Tabs>
 
 ### forceChannels: Dynamically overriding the channels
@@ -757,7 +890,8 @@ values={[
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -830,6 +964,17 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com' },
+  forceChannels: ['EMAIL', 'INAPP_WEB']
+});
+```
+
+</TabItem>
 </Tabs>
 
 The code above sends the notification over email and in-app regardless of what channels are active/inactive in the dashboard.
@@ -850,7 +995,8 @@ values={[
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -981,6 +1127,27 @@ notificationapi.send(request);
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  options: {
+    email: {
+      replyToAddresses: ['noreply@test.com'],
+      attachments: [
+        {
+          filename: 'sample.pdf',
+          url: 'https://docs.notificationapi.com/lorem-ipsum.pdf'
+        }
+      ]
+    }
+  }
+});
+```
+
+</TabItem>
 </Tabs>
 
 Available options:
@@ -1013,7 +1180,8 @@ values={[
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -1091,6 +1259,17 @@ string request = @"{
     ""subNotificationId"": ""abc""
 }";
 notificationapi.send(request);
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.send({
+  notificationId: 'hello_world',
+  user: { id: '123', email: 'test@test.com', number: '+15005550006' },
+  subNotificationId: 'abc'
+});
 ```
 
 </TabItem>

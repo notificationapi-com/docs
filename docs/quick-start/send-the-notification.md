@@ -23,7 +23,8 @@ values={[
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -96,6 +97,53 @@ class NotificationAPI {
 ```
 
 </TabItem>
+<TabItem value="ruby">
+
+```ruby
+# Create the following class in your application
+
+require 'net/http'
+require 'json'
+require 'base64'
+
+class NotificationAPI
+  def initialize(client_id, client_secret)
+    @base_url = 'https://api.notificationapi.com'
+    @client_id = client_id
+    @auth_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
+    @http_client = Net::HTTP.new('api.notificationapi.com', 443)
+    @http_client.use_ssl = true
+  end
+
+  def send(request)
+    payload = request.to_json
+    response = @http_client.post(
+      "/#{@client_id}/sender",
+      payload,
+      {
+        'Content-Type' => 'application/json',
+        'Authorization' => "Basic #{@auth_token}"
+      }
+    )
+    response.body
+  end
+
+  def retract(request)
+    payload = request.to_json
+    response = @http_client.post(
+      "/#{@client_id}/sender/retract",
+      payload,
+      {
+        'Content-Type' => 'application/json',
+        'Authorization' => "Basic #{@auth_token}"
+      }
+    )
+    response.body
+  end
+end
+```
+
+</TabItem>
 </Tabs>
 
 ## 2. Send
@@ -110,7 +158,8 @@ values={[
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
-{ label: 'C#', value: 'csharp' }
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -220,6 +269,27 @@ string request = @"{
     }
 }";
 notificationapi.send(request);
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+# require:
+require './NotificationAPI'
+
+# init
+notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
+
+# send
+notificationapi.send({
+  notificationId: 'new_comment_notification',
+  user: {
+    id: 'TEST_USER_ID',
+    email: 'TEST@TEST.COM', # required for email notifications
+    number: '+15005550006' # required for SMS
+  }
+});
 ```
 
 </TabItem>
