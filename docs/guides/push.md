@@ -4,9 +4,9 @@ sidebar_position: 4
 
 # Push Notifications
 
-NotificationAPI supports Apple Push Notifications Service (APNS) and Firebase Cloud Messaging (FCM) Push Providers. Each provider has different requirements that need to be met to deliver a message to a recipient.
+NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cloud Messaging (FCM) Push Providers. Each provider has different requirements that need to be met to deliver a message to a recipient.
 
-## Apple Push Notifications Service (APNS)
+## Apple Push Notifications Service (APNs)
 
 ### Setup
 
@@ -20,17 +20,17 @@ NotificationAPI supports Apple Push Notifications Service (APNS) and Firebase Cl
 8. Click "Register"
 9. Click "Download"
 <!-- ToDo: update URL to the push setting tab -->
-10. Go to the [APNS Provider Configuration](https://app.notificationapi.com/settings/push)
+10. Go to the [APNs Provider Configuration](https://app.notificationapi.com/settings/push)
 11. Enter the required information
 12. Click "Save"
 
-### Getting APNS Tokens
+### Getting APNs Tokens
 
 #### With a NotificationAPI Mobile SDK
 
-Using a NotificationAPI Mobile SDK is the best way to set this up. All NotificationAPI Mobile SDKs sync APNS tokens to NotificationAPI and will be automatically managed. This allows you to send pushes directly to a `userId` rather than APNS tokens.
+Using a NotificationAPI Mobile SDK is the best way to set this up. All NotificationAPI Mobile SDKs sync APNs tokens to NotificationAPI and will be automatically managed. This allows you to send pushes directly to a `userId` rather than APNs tokens.
 
-| Mobile SDK                                                                   | APNS Token Management | Tracking Analytics |
+| Mobile SDK                                                                   | APNs Token Management | Tracking Analytics |
 | :--------------------------------------------------------------------------- | :-------------------: | :----------------: |
 | [iOS](https://github.com/notificationapi-com/notificationapi-ios-sdk#readme) |       Automatic       |     Automatic      |
 
@@ -38,7 +38,7 @@ Using a NotificationAPI Mobile SDK is the best way to set this up. All Notificat
 
 Follow [Apple's Documentation](https://developer.apple.com/documentation/usernotifications) to setup push notifications on your iOS device.
 
-What APNS tokens look like:
+What APNs tokens look like:
 
 ```
 469d754f85604fa6bcf98c4299ba9aa760a5a3b01c5ca7277342cf3fbcea5c91
@@ -46,7 +46,7 @@ What APNS tokens look like:
 
 :::danger Manual Implementation Requirements
 
-You will need to sync, store, and manage your user's APNS tokens. This likely will require you to create entries in your database, deploy separate endpoints, and add extra development time that can be avoided with a [NotificationAPI Mobile SDK](#with-a-notificationapi-mobile-sdk).
+You will need to sync, store, and manage your user's APNs tokens. This likely will require you to create entries in your database, deploy separate endpoints, and add extra development time that can be avoided with a [NotificationAPI Mobile SDK](#with-a-notificationapi-mobile-sdk).
 
 <!-- ToDo: add tracking -->
 <!-- If you'd like NotificationAPI delivery and click tracking, you will also need to manually make a request to the `trackingUrl`. -->
