@@ -34,25 +34,6 @@ Using a NotificationAPI Mobile SDK is the best way to set this up. All Notificat
 | :--------------------------------------------------------------------------- | :-------------------: | :----------------: |
 | [iOS](https://github.com/notificationapi-com/notificationapi-ios-sdk#readme) |       Automatic       |     Automatic      |
 
-#### Without a NotificationAPI Mobile SDK
-
-Follow [Apple's Documentation](https://developer.apple.com/documentation/usernotifications) to setup push notifications on your iOS device.
-
-What APNs tokens look like:
-
-```
-469d754f85604fa6bcf98c4299ba9aa760a5a3b01c5ca7277342cf3fbcea5c91
-```
-
-:::danger Manual Implementation Requirements
-
-You will need to sync, store, and manage your user's APNs tokens. This likely will require you to create entries in your database, deploy separate endpoints, and add extra development time that can be avoided with a [NotificationAPI Mobile SDK](#with-a-notificationapi-mobile-sdk).
-
-<!-- ToDo: add tracking -->
-<!-- If you'd like NotificationAPI delivery and click tracking, you will also need to manually make a request to the `trackingUrl`. -->
-
-:::
-
 ### Sending Messages with more customizations
 
 To add more customizations to your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.
