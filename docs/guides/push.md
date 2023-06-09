@@ -10,7 +10,7 @@ NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cl
 
 ### Setup
 
-To send a push notification to your mobile app on an iOS device, we need some credentials from your Apple Developer Account. Bellow are the required steps to generate and save APNs credentials.
+To send a push notification to your mobile app on an Apple device, we need some credentials from your Apple Developer account. Bellow are the required steps to generate and save APNs credentials.
 
 1. Go to your [Apple Developer Account](https://developer.apple.com/account)
 2. Click "Certificates"
@@ -36,6 +36,30 @@ NotificationAPI Mobile SDKs automatically managing and sync APNs tokens with Not
 | Mobile SDK                                                | APNs Token Management | Tracking Analytics |
 | :-------------------------------------------------------- | :-------------------: | :----------------: |
 | [iOS](https://docs.notificationapi.com/reference/ios_sdk) |       Automatic       |     Automatic      |
+
+## Firebase Cloud Messaging (FCM)
+
+### Setup
+
+To send a push notification to your mobile app on an Android device, we need some credentials from your Firebase Cloud Messaging account. Bellow are the required steps to generate and save FCM credentials.
+
+1. Create a Firebase project [here](https://firebase.google.com/)
+2. Go to Project Settings
+3. Click "Service Accounts"
+4. Click "Generate new private key"
+5. Copy the private key JSON
+6. Paste the private key JSON into the [FCM Provider Configuration](https://app.notificationapi.com/settings/push)
+
+7. Click "Save"
+
+:::info Sending push notifications to an Android device requires generating a special token on the device that is referred to as FCM token or device token.
+:::
+
+NotificationAPI Mobile SDKs automatically managing and sync FCM tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the FCM token.
+
+| Mobile SDK                                                        | APNs Token Management | Tracking Analytics |
+| :---------------------------------------------------------------- | :-------------------: | :----------------: |
+| [Android](https://docs.notificationapi.com/reference/android_sdk) |       Automatic       |     Automatic      |
 
 ## Sending Messages with more customizations
 
