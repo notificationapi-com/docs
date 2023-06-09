@@ -10,6 +10,8 @@ NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cl
 
 ### Setup
 
+To send a push notification to your mobile app on an iOS device, we need some credentials from your Apple Developer Account. Bellow are the required steps to generate and save APNs credentials.
+
 1. Go to your [Apple Developer Account](https://developer.apple.com/account)
 2. Click "Certificates"
 3. Click "Keys"
@@ -24,11 +26,11 @@ NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cl
 11. Enter the required information
 12. Click "Save"
 
-### Getting APNs Tokens
+### Managing APNs Tokens
 
-#### With a NotificationAPI Mobile SDK
+:::info Sending push notifications to an Apple device requires generating a special token on the device that is referred to as APNs token or device token. :::
 
-Using a NotificationAPI Mobile SDK is the best way to set this up. All NotificationAPI Mobile SDKs sync APNs tokens to NotificationAPI and will be automatically managed. This allows you to send pushes directly to a `userId` rather than APNs tokens.
+NotificationAPI Mobile SDKs automatically managing and sync APNs tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the APNs token.
 
 | Mobile SDK                                                                   | APNs Token Management | Tracking Analytics |
 | :--------------------------------------------------------------------------- | :-------------------: | :----------------: |
