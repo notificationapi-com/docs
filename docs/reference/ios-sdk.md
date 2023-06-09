@@ -94,7 +94,8 @@ Requests the user's permission to recieve push notifications.
 
 import IosRequestAuth from '@site/static/ios_request_auth.png';
 
-<img src={IosRequestAuth} />
+<img src={IosRequestAuth
+} />
 
 #### Parameters
 
