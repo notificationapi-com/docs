@@ -28,14 +28,15 @@ To send a push notification to your mobile app on an iOS device, we need some cr
 
 ### Managing APNs Tokens
 
-:::info Sending push notifications to an Apple device requires generating a special token on the device that is referred to as APNs token or device token. :::
+:::info Sending push notifications to an Apple device requires generating a special token on the device that is referred to as APNs token or device token.
+:::
 
 NotificationAPI Mobile SDKs automatically managing and sync APNs tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the APNs token.
 
-| Mobile SDK                                                                   | APNs Token Management | Tracking Analytics |
-| :--------------------------------------------------------------------------- | :-------------------: | :----------------: |
-| [iOS](https://github.com/notificationapi-com/notificationapi-ios-sdk#readme) |       Automatic       |     Automatic      |
+| Mobile SDK                                                | APNs Token Management | Tracking Analytics |
+| :-------------------------------------------------------- | :-------------------: | :----------------: |
+| [iOS](https://docs.notificationapi.com/reference/ios_sdk) |       Automatic       |     Automatic      |
 
-### Sending Messages with more customizations
+## Sending Messages with more customizations
 
 To add more customizations to your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.
