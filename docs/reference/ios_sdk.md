@@ -12,7 +12,7 @@ Supported environments:
 
 ## Setup
 
-You can add follow Apple's instructions for installing a package dependency [here](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app). 
+You can follow Apple's instructions for installing a package dependency [here](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app). 
 
 The URL is `https://github.com/notificationapi-com/notificationapi-ios-sdk.git`
 
@@ -44,7 +44,7 @@ The `NotificationApiAppDelegate` class handles device token synchronization with
 
 ### func notificationApi(apnTokenDidChange token: String)
 
-This function is called whenever the device generates a new APN token.
+This function is called whenever the device generates a new APN token. You can use this to sync the device token to services other than NotificationAPI.
 
 #### Parameters
 
@@ -91,6 +91,10 @@ Config object for the NotificationApi SDK.
 ### func requestAuthorization(completionHandler handler: @escaping (Bool, Error?) -> Void)
 
 Requests the user's permission to recieve push notifications.
+
+import IosRequestAuth from '@site/static/ios_request_auth.png';
+
+<img src={IosRequestAuth} />
 
 #### Parameters
 
