@@ -10,7 +10,7 @@ NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cl
 
 ### Setup
 
-To send a push notification to your mobile app on an Apple device, we need some credentials from your Apple Developer account. Bellow are the required steps to generate and save APNs credentials.
+To send a push notification to your mobile app on an Apple device, we need some credentials from your Apple Developer account. Below are the required steps to generate and save APNs credentials.
 
 1. Go to your [Apple Developer Account](https://developer.apple.com/account)
 2. Click "Certificates"
@@ -27,20 +27,20 @@ To send a push notification to your mobile app on an Apple device, we need some 
 
 ### Managing APNs Tokens
 
-:::info Sending push notifications to an Apple device requires generating a special token on the device that is referred to as APNs token or device token.
+:::info Sending push notifications to an Apple device requires generating a special token on the device that is referred to as an APNs token or device token.
 :::
 
-NotificationAPI Mobile SDKs automatically managing and sync APNs tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the APNs token.
+NotificationAPI Mobile SDKs automatically manage and sync APNs tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a user from your back-end, rather than worrying about generating, storing and retrieving the APNs token.
 
-| Mobile SDK                                                | APNs Token Management | Tracking Analytics |
-| :-------------------------------------------------------- | :-------------------: | :----------------: |
-| [iOS](https://docs.notificationapi.com/reference/ios_sdk) |       Automatic       |     Automatic      |
+| Mobile SDK                                                | APNs Token Management |
+| :-------------------------------------------------------- | :-------------------: |
+| [iOS](https://docs.notificationapi.com/reference/ios_sdk) |       Automatic       |
 
 ## Firebase Cloud Messaging (FCM)
 
 ### Setup
 
-To send a push notification to your mobile app on an Android device, we need some credentials from your Firebase Cloud Messaging account. Bellow are the required steps to generate and save FCM credentials.
+To send a push notification to your mobile app on an Android device, we need some credentials from your Firebase Cloud Messaging account. Below are the required steps to generate and save FCM credentials.
 
 1. Create a Firebase project [here](https://firebase.google.com/)
 2. Go to Project Settings
@@ -50,17 +50,16 @@ To send a push notification to your mobile app on an Android device, we need som
 6. Paste the private key JSON into the [FCM Provider Configuration](https://app.notificationapi.com/settings/push)
 7. Click "Save"
 
-### Managing APNs Tokens
+### Managing FCM Tokens
 
-:::info Sending push notifications to an Android device requires generating a special token on the device that is referred to as FCM token or device token.
-:::
+:::info Sending push notifications to an Android device requires generating a special token on the device that is referred to as a FCM token or device token.
 
-NotificationAPI Mobile SDKs automatically managing and sync FCM tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the FCM token.
+NotificationAPI Mobile SDKs automatically manage and sync FCM tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the FCM token.
 
-| Mobile SDK                                                        | APNs Token Management | Tracking Analytics |
-| :---------------------------------------------------------------- | :-------------------: | :----------------: |
-| [Android](https://docs.notificationapi.com/reference/android_sdk) |       Automatic       |     Automatic      |
+| Mobile SDK                                                        | APNs Token Management |
+| :---------------------------------------------------------------- | :-------------------: |
+| [Android](https://docs.notificationapi.com/reference/android_sdk) |       Automatic       |
 
-## Sending Messages with more customizations
+## Sending Customized Messages
 
-To add more customizations to your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.
+To further customize your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.

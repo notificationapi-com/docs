@@ -1107,10 +1107,10 @@ $notificationapi->send(
 						},
 					},
 				},
-              apn: notificationapi.SendRequestEmailOptions{
-                expiry: 1685983222,
-                priority: 10
-              },
+                Apn: notificationapi.SendRequestApnOptions{
+                  expiry: 1685983222,
+                  priority: 10
+                },
 			},
 		},
 	)
