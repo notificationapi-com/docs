@@ -21,7 +21,6 @@ To send a push notification to your mobile app on an Apple device, we need some 
 7. Click "Continue"
 8. Click "Register"
 9. Click "Download"
-<!-- ToDo: update URL to the push setting tab -->
 10. Go to the [APNs Provider Configuration](https://app.notificationapi.com/settings/push)
 11. Enter the required information
 12. Click "Save"
@@ -49,8 +48,9 @@ To send a push notification to your mobile app on an Android device, we need som
 4. Click "Generate new private key"
 5. Copy the private key JSON
 6. Paste the private key JSON into the [FCM Provider Configuration](https://app.notificationapi.com/settings/push)
-
 7. Click "Save"
+
+### Managing APNs Tokens
 
 :::info Sending push notifications to an Android device requires generating a special token on the device that is referred to as FCM token or device token.
 :::
