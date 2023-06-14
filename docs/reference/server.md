@@ -1014,6 +1014,10 @@ notificationapi.send({
           url: 'https://docs.notificationapi.com/lorem-ipsum.pdf'
         }
       ]
+    },
+    apn: {
+      expiry: 1685983222,
+      priority: 10
     }
   }
 });
@@ -1040,6 +1044,10 @@ notificationapi.send(
                         "url": "https://docs.notificationapi.com/lorem-ipsum.pdf",
                     }
                 ],
+            },
+            "apn": {
+                "expiry": 1685983222,
+                "priority": 10
             }
         },
     }
@@ -1067,7 +1075,11 @@ $notificationapi->send(
                         "url" => "https://docs.notificationapi.com/lorem-ipsum.pdf",
                     ]
                 ],
-            ]
+            ],
+            "apn" => [
+              "expiry" => 1685983222,
+              "priority" => 10
+            ],
         ],
     ]
 );
@@ -1095,6 +1107,10 @@ $notificationapi->send(
 						},
 					},
 				},
+                Apn: notificationapi.SendRequestApnOptions{
+                  expiry: 1685983222,
+                  priority: 10
+                },
 			},
 		},
 	)
@@ -1120,6 +1136,10 @@ string request = @"{
                     ""url"": ""https://docs.notificationapi.com/lorem-ipsum.pdf"",
                 }
             ],
+        },
+        ""apn"": {
+            ""expiry"": 1685983222,
+            ""priority"": 10
         }
     }
 }";
@@ -1142,6 +1162,10 @@ notificationapi.send({
           url: 'https://docs.notificationapi.com/lorem-ipsum.pdf'
         }
       ]
+    },
+    apn: {
+      expiry: 1685983222,
+      priority: 10
     }
   }
 });
@@ -1156,6 +1180,13 @@ Available options:
 - `options.email.ccAddresses` (string[]): An array of emails to be CC'ed on the email notifications.
 - `options.email.bccAddresses` (string[]): An array of emails to be BCC'ed on the email notifications.
 - `options.email.attachments` ({ filename: string; url: string }[]): An array of publicly accessible URLs and filenames pointing to files that you wish to include as attachments. The URLs only need to be valid for a few minutes after calling the SDK method. After that, the public URLs can be disabled for privacy. The maximum email size (including the content and all attachments) is 10MB. File extensions in the filename property are necessary for the file to show up nicely in the recipient's device.
+- `options.apn.expiry` (number): The UNIX timestamp representing when the notification should expire. This does not contribute to the 2048 byte payload size limit. An expiry of 0 indicates that the notification expires immediately.
+- `options.apn.priority` (number): The priority of the notification. If you omit this header, APNs sets the notification priority to 10. Specify 10 to send the notification immediately. Specify 5 to send the notification based on power considerations on the user’s device. Specify 1 to prioritize the device’s power considerations over all other factors for delivery, and prevent awakening the device.
+- `options.apn.collapseId` (string): An identifier you use to merge multiple notifications into a single notification for the user. Typically, each notification request displays a new notification on the user’s device. When sending the same notification more than once, use the same value in this header to merge the requests. The value of this key must not exceed 64 bytes.
+- `options.apn.threadId` (string): Provide this key with a string value that represents the app-specific identifier for grouping notifications. If you provide a Notification Content app extension, you can use this value to group your notifications together. For local notifications, this key corresponds to the threadIdentifier property of the UNNotificationContent object.
+- `options.apn.badge` (number): Include this key when you want the system to modify the badge of your app icon. If this key is not included in the dictionary, the badge is not changed. To remove the badge, set the value of this key to 0.
+- `options.apn.sound` (string): Include this key when you want the system to play a sound. The value of this key is the name of a sound file in your app’s main bundle or in the Library/Sounds folder of your app’s data container. If the sound file cannot be found, or if you specify default for the value, the system plays the default alert sound. For details about providing sound files for notifications; see [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW10)
+- `options.apn.contentAvailable` (boolean): Include this key with a value of 1 to configure a background update notification. When this key is present, the system wakes up your app in the background and delivers the notification to its app delegate. For information about configuring and handling background update notifications, see [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html#//apple_ref/doc/uid/TP40008194-CH10-SW8)
 
 ### subNotificationId: Categorizing notifications of the same type
 
