@@ -10,8 +10,8 @@ NotificationAPI supports sending web push notifications. While most notification
 
 It works out-of-the-box with our front-end library. To display web push notifications, you need to initialize the NotificationAPI SDK in your front-end code. The SDK will automatically prompt your users for permission to deliver web push notifications. All you need to do is:
 
-1-Setup our [front-end library ](../reference/js-client#setup)
+1. Setup our [front-end library ](../reference/js-client#setup)
 
-2-Initialize our [front-end library](../reference/js-client#initialization)
+2. Initialize our [front-end library](../reference/js-client#initialization)
 
-3-Send notifications from the backend [backend](../reference/server#send)
+3. Send notifications from the backend [backend](../reference/server#send)
