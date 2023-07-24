@@ -55,6 +55,10 @@ import 'notificationapi-js-client-sdk/dist/styles.css';
 </TabItem>
 </Tabs>
 
+### Service Worker Setup (Required for Web Push)
+
+Download [this file](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application. For example, if you are using react, the file should go in the `public` folder.
+
 ## Your First Example
 
 ## Initialization
