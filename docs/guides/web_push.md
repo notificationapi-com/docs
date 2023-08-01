@@ -12,7 +12,7 @@ Sending and displaying web push notifications work out-of-the-box with our libra
 
 1. Setup our [front-end library ](../reference/js-client#setup)
    :::warning
-   The [Service Worker](https://docs.notificationapi.com/reference/js-client#service-worker-setup-required-for-web-push) integration is required for web push to work.
+   The <a href="https://docs.notificationapi.com/reference/js-client#service-worker-setup-required-for-web-push" target="_self">Service Worker</a> integration is required for web push to work.
    :::
 
 2. Initialize our [front-end library](../reference/js-client#initialization)
