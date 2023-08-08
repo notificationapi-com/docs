@@ -445,12 +445,12 @@ serverDependenciesToBundle: ['notificationapi-js-client-sdk'];
 2. Add our CSS styles to your root component:
 
 ```js
-import NotificationAPICSS from "notificationapi-js-client-sdk/dist/styles.css";
+import NotificationAPICSS from 'notificationapi-js-client-sdk/dist/styles.css';
 
 export const links: LinksFunction = () => {
   return [
-    ...,
-    { rel: "stylesheet", href: NotificationAPICSS },
+    { rel: 'stylesheet', href: NotificationAPICSS }
+    // and the other links ...
   ];
 };
 ```
@@ -479,4 +479,33 @@ export default function Index() {
     </main>
   );
 }
+```
+
+### Angular
+
+1. Add our CSS to your styles.scss file:
+
+```js
+@import 'node_modules/notificationapi-js-client-sdk/dist/styles.css'
+```
+
+2. Import and use our library:
+
+```jsx
+import NotificationAPI from 'notificationapi-js-client-sdk';
+import {PopupPosition} from 'notificationapi-js-client-sdk/lib/interfaces';
+
+ngOnInit() {
+  const notificationapi = new NotificationAPI({
+      userId: "USERS_ID",
+      clientId: "CLIENT_ID",
+    });
+  notificationapi.showInApp({
+    root: 'bell-container', // root element containing the button
+    popupPosition: PopupPosition.BottomLeft
+  });
+}
+
+// This goes inside the template
+<div id="bell-container"></div>
 ```
