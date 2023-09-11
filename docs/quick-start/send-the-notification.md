@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ### Prerequisite
 
-[NotificationAPI account and Notification setup](./setup-the-notification)
+NotificationAPI account and a configured notification in the dashboard. If you don't have an account, you can [sign up for free](https://app.notificationapi.com/signup).
 
 ## 1. Install back-end SDK
 

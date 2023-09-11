@@ -44,7 +44,7 @@ module.exports = {
             },
             {
               label: "Quick Start",
-              to: "/quick-start/setup-the-notification",
+              to: "/quick-start/send-the-notification",
             },
             {
               label: "Homepage",
