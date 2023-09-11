@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 import dkim from '@site/static/DKIM.jpg';
 import mailfrom from '@site/static/mailfrom.png';
 
