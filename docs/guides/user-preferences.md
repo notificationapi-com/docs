@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Notification Preferences
 
 import UserPref from '@site/static/userpref.gif';

@@ -17,6 +17,5 @@ Out of the box, you will get:
 
 ## Let's Get Started:
 
-1. Setup your dashboard & configure a notification 👉 [guide](quick-start/setup-the-notification)
-2. Use our back-end SDK to trigger the notification 👉 [guide](quick-start/send-the-notification)
-3. Optionally, use our front-end SDK to show in-app notifications or end-user preferences [guide](guides/display-inapp-notifications)
+1. Use our back-end SDK to trigger the notification 👉 [guide](quick-start/send-the-notification)
+2. Use our front-end SDK to show in-app notifications or end-user preferences [guide](guides/display-inapp-notifications)

@@ -1,7 +1,3 @@
----
-sidebar_position: 7
----
-
 # Logs
 
 After receiving your request to send a notification, we start tracking the progress of the notification and show that in our Logs dashboard.

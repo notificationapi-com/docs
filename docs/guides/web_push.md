@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # Web Push Notifications
 
 NotificationAPI supports sending web push notifications. While most notification channels like email or call only require the [back-end integration](../quick-start/send-the-notification), web push notification requires our front-end SDK and service worker to display them.

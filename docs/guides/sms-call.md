@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # SMS/Call Notifications
 
 ## Origin Phone Number

@@ -1,7 +1,3 @@
----
-sidebar_position: 8
----
-
 # Unsubscribe Link
 
 This feature allows you to add an "Unsubscribe Link" to your notifications without writing any code.
