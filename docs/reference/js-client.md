@@ -287,6 +287,22 @@ Default: undefined
 
 When undefined (default behavior), the user preferences will show as a modal. Given this parameter, the user preferences will render in inline mode inside an existing HTML element on your page. You can pass the ID of the parent element to this parameter. Ideally, use an empty div for the parent.
 
+## identify()
+
+Stores the user information for a given user id. When sending a notification to the given user id via `send()` you can omit the user's email or phone number: NotificationAPI will automatically lookup the user's stored email or phone number. Recommended to call `identify()` once after the user signs in or when the user updates their information to sync to NotificationAPI.
+
+```js title="Example"
+notificationapi.identify({ id: 'testId', email: 'test@example.com' });
+```
+
+**Parameters**
+
+`user`  
+Type: object  
+Default: undefined
+
+The user's data.
+
 ## Secure Mode
 
 Front-end code is observable and mutable by end-users. Malicious actors can take advantage of this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing different parameters to the library. Secure Mode makes our front-end SDK safe against this threat.
