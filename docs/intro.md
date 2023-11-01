@@ -41,6 +41,8 @@ alert(
 
 You can use our [REST APIs](reference/api).
 
+---
+
 #### Server-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
@@ -53,6 +55,8 @@ You can use our [REST APIs](reference/api).
     <SupportedEnvironment logo="devicon-ruby-plain" name="Ruby" path="" />
 </div>
 
+---
+
 #### Client-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
@@ -63,6 +67,8 @@ You can use our [REST APIs](reference/api).
     <SupportedEnvironment  logo="devicon-vuejs-plain" name="Vue" path="" />
 </div>
 
+---
+
 #### Mobile
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
@@ -71,3 +77,7 @@ You can use our [REST APIs](reference/api).
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
+
+---
+
+Want to get involved? [Our docs are on GitHub.](https://github.com/notificationapi-com/docs)
