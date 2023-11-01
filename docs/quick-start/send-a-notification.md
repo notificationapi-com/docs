@@ -1,16 +1,23 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Send the Notification
+# Send a notification
 
-### Prerequisite
+#### Prerequisite
 
-NotificationAPI account and a configured notification in the dashboard. If you don't have an account, you can [sign up for free](https://app.notificationapi.com/signup).
+- A NotificationAPI account - [sign up](https://app.notificationapi.com/signup)
+- A notification configured in our dashboard (new accounts already have a demo notification)
 
-## 1. Install back-end SDK
+## Overview
 
-Notifications are triggered from your back-end. So install one of our back-end SDKs:
+Your team, even non-technical members, can use our dashboard to configure and design your standard notifications without any coding knowledge. For example, they would configure an alert to go over email and completely design its content, subject, etc.
+
+Then, through our SDKs or API, your back-end lets us know when to send this notification to a user. We then take care of the rest.
+
+Let's learn...
+
+## Step 1: Setup the SDK
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,20 +26,19 @@ import TabItem from '@theme/TabItem';
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js' },
+{ label: 'Node', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
 { label: 'Ruby', value: 'ruby' }
-]
-}>
+]}>
 <TabItem value="js">
 
 ```bash
 npm install notificationapi-node-server-sdk
-// or using yarn:
-yarn add notificationapi-node-server-sdk
+# yarn add notificationapi-node-server-sdk
+# pnpm add notificationapi-node-server-sdk
 ```
 
 </TabItem>
@@ -146,15 +152,15 @@ end
 </TabItem>
 </Tabs>
 
-## 2. Send
+## Step 2: Send the Notification
 
-The example below sends the "New Comment Notification" to the test user:
+Our `send` function or `POST /sender` API call takes a JSON payload that specifies which notification to send and to whom. It also has a `mergeTags` field that you can use to personalize the notification.
 
 <Tabs
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js' },
+{ label: 'Node', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
@@ -179,6 +185,9 @@ notificationapi.send({
     id: 'TEST_USER_ID',
     email: 'TEST@TEST.COM', // required for email notifications
     number: '+15005550006' // required for SMS
+  },
+  mergeTags: {
+    firstName: 'Stranger'
   }
 });
 ```
@@ -296,10 +305,10 @@ notificationapi.send({
 </Tabs>
 
 :::info
-You must replace the CLIENT_ID and CLIENT_SECRET with real values. You can get yours from [here](https://app.notificationapi.com/environments).
+You can get your CLIENT_ID and CLIENT_SECRET from [here](https://app.notificationapi.com/environments).
 :::
 
-## That's it?
+## Next Steps
 
 You are now sending notifications through email, SMS, automated voice calls, etc.
 
