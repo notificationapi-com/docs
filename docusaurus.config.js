@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "NotificationAPI Documentation",
-  tagline: "Implement any notification in just a few minutes",
+  tagline: "Modern product-to-user notifications for B2B SaaS products",
   url: "https://docs.notificationapi.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -11,20 +11,27 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     navbar: {
-      title: "Documentation",
       style: "dark",
       logo: {
         alt: "NotificationAPI",
-        src: "img/logo.svg",
+        src: "img/logo.png",
+        style: {
+          marginRight: '130px'
+        }
       },
       items: [
+        {
+          href: "/",
+          label: "Home",
+        },
         {
           href: "http://status.notificationapi.com",
           label: "API Status",
         },
         {
           href: "https://www.notificationapi.com",
-          label: "Website",
+          label: "Back to the website",
+          position: 'right'
         },
         {
           href: "https://app.notificationapi.com",
@@ -74,12 +81,11 @@ module.exports = {
       {
         docs: {
           routeBasePath: '/',
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/notificationapi-com/docs/edit/main/",
+          sidebarPath: require.resolve("./sidebars.js")
         },
         blog: false,
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve("./src/css/custom.css")
         },
         gtag: {
           trackingID: 'G-LK2SW2E54M'
