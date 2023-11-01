@@ -43,31 +43,31 @@ You can use our [REST APIs](reference/api).
 
 #### Server-Side
 
-<div style={{display: 'flex', gap: 64, marginBottom: 32}}>
-    <SupportedEnvironment logo="devicon-nodejs-plain" name="nodejs" path="" />
-    <SupportedEnvironment logo="devicon-typescript-plain" name="typescript" path="" />
-    <SupportedEnvironment logo="devicon-python-plain" name="python" path="" />
-    <SupportedEnvironment logo="devicon-php-plain" name="php" path="" />
-    <SupportedEnvironment logo="devicon-go-original-wordmark" name="original" path="" />
-    <SupportedEnvironment logo="devicon-csharp-plain" name="csharp" path="" />
-    <SupportedEnvironment logo="devicon-ruby-plain" name="ruby" path="" />
+<div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
+    <SupportedEnvironment logo="devicon-nodejs-plain" name="Node.js" path="" />
+    <SupportedEnvironment logo="devicon-typescript-plain" name="Typescript" path="" />
+    <SupportedEnvironment logo="devicon-python-plain" name="Python" path="" />
+    <SupportedEnvironment logo="devicon-php-plain" name="PHP" path="" />
+    <SupportedEnvironment logo="devicon-go-original-wordmark" name="Go" path="" />
+    <SupportedEnvironment logo="devicon-csharp-plain" name="C#" path="" />
+    <SupportedEnvironment logo="devicon-ruby-plain" name="Ruby" path="" />
 </div>
 
 #### Client-Side
 
-<div style={{display: 'flex', gap: 64, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-react-plain" name="react" path="" />
-    <SupportedEnvironment  logo="devicon-javascript-plain" name="javascript" path="" />
-    <SupportedEnvironment  logo="devicon-angularjs-plain" name="angularjs" path="" />
-    <SupportedEnvironment  logo="devicon-vuejs-plain" name="vuejs" path="" />
-    <SupportedEnvironment  logo="devicon-nextjs-plain" name="nextjs" path="" />
+<div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
+    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="" />
+    <SupportedEnvironment  logo="devicon-nextjs-plain" name="Next.js" path="" />
+    <SupportedEnvironment  logo="devicon-javascript-plain" name="JavaScript" path="" />
+    <SupportedEnvironment  logo="devicon-angularjs-plain" name="Angular" path="" />
+    <SupportedEnvironment  logo="devicon-vuejs-plain" name="Vue" path="" />
 </div>
 
 #### Mobile
 
-<div style={{display: 'flex', gap: 64, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-apple-plain" name="apple" path="" />
-    <SupportedEnvironment logo="devicon-android-plain" name="android" path="" />
+<div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
+    <SupportedEnvironment  logo="devicon-apple-plain" name="iOS" path="" />
+    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="" />
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
