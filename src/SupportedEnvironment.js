@@ -8,7 +8,11 @@ const SupportedEnvironment = (props) => {
       href={props.path}
       style={{
         textDecoration: 'none',
-        filter: isHovered ? 'none' : 'grayscale(100%)',
+        filter: isHovered
+          ? 'grayscale(0%) brightness(100%)'
+          : 'grayscale(100%) brightness(0%)',
+        transition: 'all 0.5s ease',
+        opacity: isHovered ? '1' : '0.5',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -16,10 +20,7 @@ const SupportedEnvironment = (props) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <i
-        class={props.logo + (isHovered ? ' colored' : '')}
-        style={{ fontSize: '3em' }}
-      ></i>
+      <i class={props.logo + ' colored'} style={{ fontSize: '3em' }}></i>
       <div style={{ textAlign: 'center' }}>{props.name}</div>
     </a>
   );
