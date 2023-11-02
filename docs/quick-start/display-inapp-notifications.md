@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Display in-app notifications
+# 🔔 Display in-app notifications
 
 ## Overview
 

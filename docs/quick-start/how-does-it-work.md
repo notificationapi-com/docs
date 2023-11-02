@@ -1,4 +1,4 @@
-# How does it work?
+# 📄 How does it work?
 
 import diagram from '@site/static/diagram.png';
 

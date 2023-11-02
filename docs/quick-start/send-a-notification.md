@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Send a notification
+# 🚀 Send a notification
 
 #### Prerequisite
 

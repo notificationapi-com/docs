@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Manage notification preferences
+# ⚙️ User notification preferences
 
 ## Overview
 
