@@ -1,23 +1,21 @@
----
-sidebar_position: 2
----
+# 🎁 Dynamic Parameters (Merge Tags)
 
-# Merge Tags
+**Merge tags** are values that cannot be hard-coded into notification designs and must be passed in programmatically from your code. For examples:
 
-Used to customize the templates with dynamic data or logic.
+- `Hello {{firstName}}`
+- A button's URL: `https://dashboard.com/{{org.id}}`
+- A user photo: `/imgs/{{user.imagePath}}.png`
+- Or even logic: `Hello{%if user.firstName %} {{user.firstName}}{%endif%}!`
 
-Examples:
+## Support
 
-- Customizing the content: `Hello {{firstName}}`
-- Redirecting the user to a dynamic location: `myapp.com/{{alerts[0].id}}`
-- Showing dynamic images: `s3.aws.com/imgs/{{user.imagePath}}.png`
-- Logic (if, loops) in the templates: `You have alert{%if alerts.size>1%}s{%endif%}!`
+You can use merge tags almost everywhere:
 
-:::info
-We have built our templating engine based on [Shopify's Liquid](https://shopify.github.io/liquid/), so you can use the same syntax and features.
-:::
+- Email Subject Line
+- Email Content: Text, Button Link, Image Link, ...
+- All fields of In-App, SMS, Call, Mobile Push and Web Push
 
-## Passing dynamic data from the back-end
+## Passing the values
 
 Use the `mergeTags` fields in the SDKs or APIs to pass in dynamic data. You can even pass in very complex objects and arrays.
 
@@ -38,21 +36,11 @@ notificationapi.send({
 );
 ```
 
-## Displaying merge tags in templates
+## Placing the merge tags in templates
 
-In any of the template editors, use `{{` and `}}` to display dynamic values:
+In any of the template editors, use `{{` and `}}` to place the merge tag. For example, when editing an email, you can type:
 
-```md title="Template Editor"
-Hello {{ firstName }}!
-
-Your have a new alert: {{ alerts[0].title }}
-```
-
-You can use tags pretty much everywhere:
-
-- Email Subject Line
-- Email Content: Text, Button Link, Image Link, ...
-- All fields of In-App, SMS, Call, Mobile Push and Web Push
+> Hello {{ firstName }}! You have a new alert: {{ alerts[0].title }}
 
 ## Filters
 
@@ -114,4 +102,8 @@ URL: https://myapp.com/alerts/{{alert.id}}
 {% endfor %}
 ```
 
-[More complex examples](https://liquidjs.com/tags/for.html) with else, break and continue.
+Here are [more complex examples](https://liquidjs.com/tags/for.html) with else, break and continue.
+
+## Complete Documentation
+
+We have built our templating engine based on Shopify's [Liquid templating engine](https://shopify.github.io/liquid/), so you can use the same syntax and features.
