@@ -6,15 +6,15 @@ This is specifically useful for ensuring new notifications are working correctly
 
 import logs from '@site/static/Logs.png';
 
-<img src={logs} />
+<img src={logs} style={{maxWidth: 800}} />
 
 ## Notification States
 
-Each `send()` request creates a record in the logs table with either of the following statuses:
+Each request creates a record in the logs table with either of the following statuses:
 
+- `received`: notification is in this state until it enters `success` or `failure`
 - `success`: we have successfully delivered everything to the expected channels
 - `failure`: something has gone wrong or not delivered (see events below)
-- `received`: notification is in this state until it enters `success` or `failure`
 
 ## Tracked Events
 
@@ -102,37 +102,3 @@ You can use `&&`, `||` and `()` to combine multiple queries. Examples:
 ($.request.notificationId='new-user' && $.request.user.number='+19999999999') ||
     $.request.mergeTags.firstName="Jane"
 ```
-
-## FAQ
-
-<b>1. Do the logs display the final delivered notifications?</b>
-
-Yes. The logs display exactly what the user receives, except for the minor differences due to browsers and environments.
-
-<b>2. Does using logs require technical knowledge?</b>
-
-No. Anyone on your team can use it to debug issues. This is especially useful for customer support teams.
-
-<b>3. Does Logs provide a rest API? Can we read the logs through the SDK?</b>
-
-There are undocumented APIs to access logs. Please contact support to learn more.
-
-<b>4. Are the logs real-time?</b>
-
-There could be up to 15 minutes of delay between events happening and seeing them in the Logs dashboard.
-
-<b>5. Does the Logs come with alarm and monitoring?</b>
-
-No. If you are interested in this feature, please contact us to discuss the product roadmap.
-
-<b>6. What kind of integration capability does it have? Can we connect it to other data analytic services like dataDog?</b>
-
-No.
-
-<b>7. Can we see the response rate for each notification, channel, and template? Can we see the response rate of a specific user?</b>
-
-Such requests fall under another feature requests titled "Insights".
-
-<b>8. What is the data retention of the logs?</b>
-
-7 days.
