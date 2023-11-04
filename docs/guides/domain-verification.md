@@ -1,7 +1,11 @@
+---
+sidebar_position: 1
+---
+
 import dkim from '@site/static/DKIM.jpg';
 import mailfrom from '@site/static/mailfrom.png';
 
-# Update Sender Address
+# ✅ Verify Your Domain
 
 By default, email notifications are sent from noreply@notificationapi.com. Changing the sender to an address of your choice requires verification.
 

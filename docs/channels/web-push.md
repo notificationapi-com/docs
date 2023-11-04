@@ -13,6 +13,20 @@ Web push notifications look almost identical to native notification on the devic
 
 Not to be confused with [Mobile Push](./mobile-push) notifications that are truly native (delivered from installed apps), or [In-App Notifications](./inapp) that are displayed inside your UI, e.g. inside a bell icon or webpage.
 
+## Supported Browsers
+
+- Chrome v20 (2012)
+- Safari 7 (2013)
+- Edge v14 (2016)
+- Firefox 22 (2013)
+- Opera 23 (2014)
+- Chrome Android v42 (2015)
+- Firefox Android v22 (2013)
+- Opera Android v29 (2015)
+- Safari iOS v16.4 (2023)
+- Samsung Internet v4 (2016)
+- WebView Android: Not Supported.
+
 ## Requirements
 
 - Our front-end SDK which takes care of the opt-in process, subscribing user's devices, ...

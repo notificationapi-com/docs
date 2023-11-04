@@ -10,6 +10,17 @@ import InAppPNG from '@site/static/inapp.png';
 
 <img src={InAppPNG} style={{maxWidth: 400}} />
 
+## Supported Environments
+
+Any JavaScript based front-end framework, including:
+
+- React
+- Angular
+- Vue
+- Vanilla JavaScript
+- Next.js
+- Remix
+
 ## Requirements
 
 - Implementing our in-app notifications widget in your front-end. [See step-by-step guide here.](guides/displaying-in-app-notifications)

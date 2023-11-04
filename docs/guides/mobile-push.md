@@ -1,4 +1,4 @@
-# Push Notifications
+# 📱 Setup Mobile Push
 
 NotificationAPI supports Apple Push Notifications Service (APNs) and Firebase Cloud Messaging (FCM) Push Providers. Each provider has different requirements that need to be met to deliver a message to a recipient.
 

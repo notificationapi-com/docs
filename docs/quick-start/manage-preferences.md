@@ -10,7 +10,7 @@ NotificationAPI stores your end-users' notification preferences and automaticall
 
 - Our pre-built **Notification Preferences Widget** for your front-end (for users)
 - Our APIs and SDKs to **programmatically set the preferences** (for developers)
-- Upcoming: **visually set the preferences from our dashboard** (for non-technical team members)
+- Coming soon: **visually set the preferences from our dashboard** (for non-technical team members)
 
 Let's cover this all:
 
@@ -37,11 +37,6 @@ const notificationapi = new NotificationAPIClient({
   userId: 'USER_ID'
 });
 notificationapi.showUserPreferences();
-
-// to embed in an existing div:
-// notificationapi.showUserPreferences({
-//   parent: "DIV-ID"
-// });
 ```
 
 ## Programmatically Update Preferences

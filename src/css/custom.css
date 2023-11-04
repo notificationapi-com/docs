@@ -39,6 +39,6 @@ a:hover {
   display: none;
 }
 
-.container {
+main .container {
   padding-bottom: 100px !important;
 }
