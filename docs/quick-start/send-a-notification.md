@@ -243,6 +243,7 @@ package main
 // import
 import (
 	notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
+  "encoding/json"
 )
 
 func main() {
@@ -250,13 +251,21 @@ func main() {
 	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 
 	// send
-	params := notificationapi.SendRequest{NotificationId: "new_comment_notification", User: notificationapi.User{
-		Id:     "TEST_USER_ID",
-		Email:  "TEST@TEST.COM", // required for email notifications
-		Number: "+15005550006",  // required for SMS and call
-	},
-	}
-	notificationapi.Send(params)
+	jsonParams := `{
+    "notificationId": "new_comment_notification",
+    "user": {
+      "id": "TEST_USER_ID",
+      "email": "TEST@TEST.com",
+      "number": "+15005550006"
+    },
+    "mergeTags": {
+      "firstName": "Stranger"
+    }
+  }`
+  var params notificationapi.SendRequest
+  json.Unmarshal([]byte(jsonParams), &params)
+
+  notificationapi.Send(params)
 }
 
 ```

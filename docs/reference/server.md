@@ -277,7 +277,7 @@ $notificationapi->send([
         "number" => "+15005550006"
     ],
     "mergeTags" => [
-        "firstName" => "test"
+        "firstName" => "Stranger"
     ]
 ]);
 ```
@@ -286,16 +286,20 @@ $notificationapi->send([
 <TabItem value="go">
 
 ```go
-notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
-mergeTags := make(map[string]string)
-mergeTags["firstName"] = "test"
-params := notificationapi.SendRequest{NotificationId: "hello_world", User: notificationapi.User{
-  Id:     "123",
-  Email:  "test@test.com",
-  Number: "+15005550006",
-},
-  MergeTags: mergeTags,
-}
+jsonParams := `{
+  "notificationId": "hello_world",
+  "user": {
+    "id": "123",
+    "email": "test@test.com",
+    "number": "+15005550006"
+  },
+  "mergeTags": {
+    "firstName": "Stranger"
+  }
+}`
+var params notificationapi.SendRequest
+json.Unmarshal([]byte(jsonParams), &params)
+
 notificationapi.Send(params)
 ```
 
@@ -451,18 +455,21 @@ $notificationapi->setUserPreferences("userId", [
 <TabItem value="go">
 
 ```go
-notificationapi.SetUserPreferences("userId", []notificationapi.UserPreference{
+jsonParams := `[
   {
-    NotificationId: "notificationId1",
-    Channel: "EMAIL",
-    State: false
+    notificationId: "notificationId1",
+    channel: "EMAIL",
+    state: false
   },
   {
-    NotificationId: "notificationId2",
-    Channel: "SMS",
-    State: true
+    notificationId: "notificationId2",
+    channel: "SMS",
+    state: true
   }
-})
+]`
+var params notificationapi.SendRequest
+json.Unmarshal([]byte(jsonParams), &params)
+notificationapi.SetUserPreferences("userId", params)
 ```
 
 </TabItem>
@@ -563,10 +570,13 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 <TabItem value="go">
 
 ```go
-notificationapi.Retract(RetractRequest{
+jsonParams := `{
   NotificationId: "hello_world",
   UserId: "123"
-});
+}`
+var params notificationapi.SendRequest
+json.Unmarshal([]byte(jsonParams), &params)
+notificationapi.Retract(params);
 ```
 
 </TabItem>
