@@ -323,13 +323,13 @@ notificationapi.patchUserPreference('myNotificationId', 'EMAIL', false);
 | notificationId\*  | string  | The ID of the notification in NotificationAPI.                                                                                                                                                                   |
 | channel\*         | string  | The channel for which you wish to change the setting. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH`                                                                              |
 | state\*           | boolean | The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup. |
-| subNotificationId | string  | Only when using [subNotificationIds](../guides/subnotificationid)                                                                                                                                                |
+| subNotificationId | string  | Only when using [subNotificationIds](../features/subnotifications)                                                                                                                                               |
 
 ## showInApp
 
 This function renders the in-app notifications widget on your front-end.
 
-Complete guide: [In-App Notifications Widget](../prebuilt/inapp)
+Complete guide: [In-App Notifications Widget](../components/inapp)
 
 ```js
 notificationapi.showInApp({
@@ -352,7 +352,7 @@ notificationapi.showInApp({
 
 This function renders the user preferences widget on your front-end.
 
-Complete guide: [User Preferences Widget](../prebuilt/userpreferences)
+Complete guide: [User Preferences Widget](../components/user-preferences)
 
 ```js
 notificationapi.showUserPreferences();

@@ -23,21 +23,21 @@ Any JavaScript based front-end framework, including:
 
 ## Requirements
 
-- Implementing our in-app notifications widget in your front-end. [See step-by-step guide here.](guides/displaying-in-app-notifications)
+- Implementing our in-app notifications widget in your front-end. [See step-by-step guide here.](../quick-start/display-inapp-notifications)
 
 :::tip
 You don't need any database or other APIs. We manage all the necessary storage and APIs under-the-hood. Our widget automatically connects to our servers and gets the job done.
 :::
 
-The widget is open-sourceand fully customizable. You can modify the look and feel to match your brand or fork it to change the behavior. Alternatively, you can write your own UI from scratch. You can use our [REST API](docs/api) to fetch the notifications, mark them as read, etc. However, our team is happy to take any feature requests and apply them to our open-source widget.
+The widget is open-sourceand fully customizable. You can modify the look and feel to match your brand or fork it to change the behavior. Alternatively, you can write your own UI from scratch. You can use our REST API to fetch the notifications, mark them as read, etc. However, our team is happy to take any feature requests and apply them to our open-source widget.
 
 ## Important Features
 
 - Fully customizable look and feel through CSS
 - Live updates (new notifications appear without refreshing the page)
-- Popup vs. Page modes - [see docs](docs)
-- Multiple Mark as read modes - [see docs](docs)
-- Pagination or endless scrolling - [see docs](docs)
+- Popup vs. Page modes - [see docs](../reference/js-client#showinapp)
+- Multiple Mark as read modes - [see docs](../reference/js-client#showinapp)
+- Pagination or endless scrolling - [see docs](../reference/js-client#showinapp)
 
 ## Tracking Options
 

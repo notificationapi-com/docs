@@ -6,8 +6,8 @@ This widget is part of our Front-end SDK which is written in Vanilla JavaScript,
 
 Relevant docs:
 
-- [Add the widget to your front-end](/guides/inapp)
-- [Front-end SDK reference](/reference/client-sdk)
+- [Add the widget to your front-end](../quick-start/display-inapp-notifications)
+- [Front-end SDK reference](../reference/js-client.md)
 
 ## How It Works
 

@@ -24,10 +24,10 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 ## Important Features
 
 - High delivery through SPF, DKIM and DMARC
-- Merge tags (injecting dynamic values into the email content) - [see docs](docs)
-- Pre-built Unsubscribe Link and Web Page - [see docs](docs)
-- Attachments - [see docs](docs)
-- CC, BCC fields - [see docs](docs)
+- Merge tags (injecting dynamic values into the email content) - [see docs](../features/mergetags)
+- Pre-built Unsubscribe Link and Web Page - [see docs](../components/unsubscribe-page)
+- Attachments - [see docs](../reference/server#send)
+- CC, BCC fields - [see docs](../reference/server#send)
 
 ## Email Editor
 

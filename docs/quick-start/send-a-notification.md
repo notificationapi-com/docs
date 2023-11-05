@@ -184,7 +184,7 @@ notificationapi.send({
   user: {
     id: 'TEST_USER_ID',
     email: 'TEST@TEST.COM', // required for email notifications
-    number: '+15005550006' // required for SMS
+    number: '+15005550006' // required for SMS/Calls
   },
   mergeTags: {
     firstName: 'Stranger'
@@ -310,10 +310,11 @@ You can get your CLIENT_ID and CLIENT_SECRET from [here](https://app.notificatio
 
 ## Next Steps
 
-You are now sending notifications through email, SMS, automated voice calls, etc.
+You are now successfully sending Email, SMS, and Call notifications to your users. 🎉
 
-Please take the time to review:
+Let's do a few more things:
 
-- In-App Notifications require our [Front-End SDK](../guides/display-inapp-notifications)
-- [Free usage tier](https://www.notificationapi.com/pricing)
-- [SMS/Voice Details](../guides/sms-call)
+- [🔔 Display In-App Notifications](../quick-start/display-inapp-notifications)
+- [⚙️ Manage User Notification Preferences](../quick-start/manage-preferences)
+- [📱 Setup Mobile Push](../guides/mobile-push)
+- [🌐 Setup Web Push](../guides/web-push)

@@ -39,7 +39,7 @@ alert(
 
 #### REST API
 
-You can use our [REST APIs](reference/api).
+You can use our REST API (documentation available to paid customers).
 
 ---
 
