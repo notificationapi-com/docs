@@ -66,8 +66,8 @@ defaultValue="react"
 values={[
 { label: 'React', value: 'react' },
 { label: 'Next.js', value: 'next' },
-{ label: 'Vue', value: 'vue' },
 { label: 'Remix', value: 'remix' },
+{ label: 'Vue', value: 'vue' },
 { label: 'Angular', value: 'angular' },
 { label: 'JavaScript', value: 'js' }
 ]
@@ -92,7 +92,7 @@ const NotificationAPIComponent = memo((props) => {
       root: 'CONTAINER_DIV_ID',
       popupPosition: PopupPosition.BottomLeft
     });
-  }, [props.userId]]);
+  }, [props.userId]);
 
   return <div id="CONTAINER_DIV_ID"></div>;
 });
@@ -131,33 +131,6 @@ export default NotificationAPIComponent;
 ```
 
 </TabItem>
-<TabItem value="vue">
-
-```html
-<script setup>
-  import NotificationAPI from 'notificationapi-js-client-sdk';
-  import 'notificationapi-js-client-sdk/dist/styles.css';
-  import { onMounted } from 'vue';
-  onMounted(() => {
-    const notificationapi = new NotificationAPI({
-      clientId: 'CLIENT_ID',
-      userId: 'USER_ID'
-    });
-
-    notificationapi.showInApp({
-      root: 'myNotifications'
-    });
-  });
-</script>
-
-<template>
-  <div>Hello World!</div>
-  <div id="myNotifications"></div>
-</template>
-```
-
-</TabItem>
-
 <TabItem value="remix">
   
 a) Add the following to your remix.config.js:
@@ -207,6 +180,33 @@ export default function Index() {
 ```
 
 </TabItem>
+<TabItem value="vue">
+
+```html
+<script setup>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
+  import { onMounted } from 'vue';
+  onMounted(() => {
+    const notificationapi = new NotificationAPI({
+      clientId: 'CLIENT_ID',
+      userId: 'USER_ID'
+    });
+
+    notificationapi.showInApp({
+      root: 'myNotifications'
+    });
+  });
+</script>
+
+<template>
+  <div>Hello World!</div>
+  <div id="myNotifications"></div>
+</template>
+```
+
+</TabItem>
+
 <TabItem value="angular">
 a) Add our CSS to your styles.scss file:
 

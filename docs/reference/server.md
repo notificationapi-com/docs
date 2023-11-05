@@ -38,7 +38,7 @@ import TabItem from '@theme/TabItem';
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js', },
+{ label: 'Node', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
@@ -222,7 +222,7 @@ Used to send a notification to the specified user.
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js', },
+{ label: 'Node', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
@@ -386,7 +386,7 @@ Used to set a user's notification preferences. This function will override the u
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js' },
+{ label: 'Node', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
@@ -528,7 +528,7 @@ Only applicable to in-app notifications. This function helps you delete all noti
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'JavaScript', value: 'js' },
+{ label: 'Node', value: 'js' },
 { label: 'Python', value: 'python' },
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
