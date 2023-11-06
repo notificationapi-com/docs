@@ -26,17 +26,13 @@ module.exports = {
         },
         {
           href: "http://status.notificationapi.com",
-          label: "API Status",
+          label: "Status Page",
         },
         {
           href: "https://www.notificationapi.com",
           label: "Back to the website",
           position: 'right'
-        },
-        {
-          href: "https://app.notificationapi.com",
-          label: "Login",
-        },
+        }
       ],
     },
     footer: {
@@ -46,7 +42,7 @@ module.exports = {
           title: "Docs",
           items: [
             {
-              label: "Start here",
+              label: "Home",
               to: "/",
             },
             {
@@ -54,18 +50,18 @@ module.exports = {
               to: "/quick-start/send-a-notification",
             },
             {
-              label: "Homepage",
+              label: "Back to the website",
               to: "https://www.notificationapi.com",
             },
           ],
         },
         {
-          title: "Community",
+          title: "Other Resources",
           items: [
             {
-              label: "GitHub",
-              href: "https://github.com/notificationapi-com",
-            },
+              label: "Status Page",
+              href: "https://status.notificationapi.com",
+            }
           ],
         },
       ],
