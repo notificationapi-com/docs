@@ -7,54 +7,23 @@ import mailfrom from '@site/static/mailfrom.png';
 
 # ✅ Verify Your Domain
 
-By default, email notifications are sent from noreply@notificationapi.com. Changing the sender to an address of your choice requires verification.
+By default, email notifications are sent from noreply@notificationapi.com; which is not good for production use. Changing the sender address to your domain requires domain verification.
 
-We support two verification methods:
+The domain verification process is similar to the process used by other email providers, such as SendGrid and Mailgun. Our domain verification covers a few features:
 
-1. Domain Verification: Recommended, but requires updating DNS records
-2. Individual Email Address Verification: Easier setup, but not as good as domain verification
+- SPF and DKIM; which contributes to high email deliverability.
+- MAIL-FROM field; which is better for branding and deliverability.
 
-## Method 1: Domain Verification
+## How to
 
-##### Technical details:
-
-- Excellent Deliverability: Uses both DKIM and SPF policies
-- Sender/From Address: Any email under the domain
-- MAIL-FROM Field: Set to notificationapi.yourdomain.com. [What is this?](#mail-from-field)
-
-##### Step by Step:
-
-1. Add the domain from the Dashboard -> Settings -> Domain Verification
+1. Add your domain from the `Dashboard -> Settings -> Domain Verification`
 2. Add the 5 DNS records displayed on the dashboard to your DNS settings
 3. Wait, usually a few minutes, but sometimes it could take 72 hours
 
-:::tip **Most Common Issue**
+## What is the MAIL-FROM Field?
 
-<img src={dkim} />
+The MAIL-FROM field is different than the "From" address. This field indicates which server originated the email. Users can see this field if they dig into the email details (see the image below from Gmail).
 
-Some DNS providers, such as AWS Route53, will automatically add your domain to the `NAME` field of the DNS records. In this case, you don't need to do anything.
-
-Some DNS providers expect you to add the domain yourself. In this case, add `.YOUR_DOMAIN.com` to the end of the `NAME` field for each record.
-
-:::
-
-## Method 2: Individual Email Address Verification
-
-##### Technical details:
-
-- Ok Deliverability: Only uses DKIM policy, not SPF
-- Sender/From Address: Only the individually verified email
-- MAIL-FROM Field: Set to amazonses.com. [What is this?](#mail-from-field)
-
-##### Step by Step:
-
-1. Add the email address from the Dashboard -> Settings -> Domain Verification
-2. Click the verification link you should have received in that email inbox
-
-## MAIL-FROM Field
-
-The MAIL-FROM field is different than the Sender/From address. This field indicates which server originated the email. Users can see this field if they dig into the email details (see the image below from Gmail).
-
-The Domain Verification method sets this field to _notificationapi.yourdomain.com_, which is better for deliverability and branding. The Individual Email Address Verification sets this field to _amazonses.com_.
+The Domain Verification method sets this field to _notificationapi.yourdomain.com_, which is better for deliverability and branding.
 
 <img src={mailfrom} style={{maxWidth: "600px"}} />
