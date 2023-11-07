@@ -16,24 +16,25 @@ Supported environments:
 - Remix
 - Most JS Frameworks, including those with server-side rendering, are supported. If you don't see your framework here, just ping us on support and we will add it to the docs!
 
-## Setup
+## Setup & Initialization
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-groupId="js-package-manager"
-defaultValue="npm/yarn"
+groupId="package-manager"
+defaultValue="manager"
 values={[
-{ label: 'npm/yarn', value: 'npm/yarn' },
-{ label: '<script>', value: '<script>' }
+{ label: 'Package Manager', value: 'manager' },
+{ label: 'UMD', value: 'umd' }
 ]
 }>
-<TabItem value="npm/yarn">
+<TabItem value="manager">
 
 ```shell title="1. Install"
 npm install notificationapi-js-client-sdk
-yarn add notificationapi-js-client-sdk
+# yarn add notificationapi-js-client-sdk
+# pnpm add notificationapi-js-client-sdk
 ```
 
 ```js title="2. Import"
@@ -41,424 +42,127 @@ import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
 ```
 
-</TabItem>
-<TabItem value="<script>">
-
-```html
-<script src="https://unpkg.com/notificationapi-js-client-sdk/dist/notificationapi-js-client-sdk.js"></script>
-<link
-  href="https://unpkg.com/notificationapi-js-client-sdk/dist/styles.css"
-  rel="stylesheet"
-/>
-```
-
-</TabItem>
-</Tabs>
-
-### Service Worker Setup (Required for Web Push)
-
-Download [this file](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application. For example, if you are using react, the file should go in the `public` folder.
-
-## Your First Example
-
-## Initialization
-
-The example below creates a NotificationAPI client that connects to our servers through a WebSocket connection from your front-end. It does not show anything yet.
-
-```js title="Example"
+```js title="3. Initialize"
 const notificationapi = new NotificationAPI({
   clientId: YOUR_CLIENT_ID,
   userId: UNIQUE_USER_ID
 });
 ```
 
-:::info
-
-Initializing the library more than once is safe, but will generate unnecessary resources and network calls.
-
-React users should follow the [React section](#reactjs).
-
-:::
-
-**Parameters:**
-
-`clientId` (required)  
-Type: string
-
-Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).
-
-`userId` (required)  
-Type: string
-
-The unique ID of the user in your system.
-
-`userIdHash`
-Type: string
-
-Only used for [Secure Mode](#secure-mode).
-
-`websocket`
-Type: string
-
-Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'.
-
-## getUserPreferences()
-
-Allows you to access the raw data of the user's notification preferences from the front-end.
-
-Please note that unless you require extreme customization, you can rely on [showUserPreferences()](#showuserpreferences) function to display and edit notification preferences without any additional code.
-
-```js title="Example"
-notificationapi.getUserPreferences().then((prefs) => {
-  console.log(prefs);
-});
-
-/* prints:
-[
-  {
-      "notificationId": "new_order",
-      "title": "New Order",
-      "settings": [
-          {
-              "channel": "SMS",
-              "state": false,
-              "channelName": "SMS"
-          },
-          {
-              "channel": "EMAIL",
-              "state": true,
-              "channelName": "Email"
-          }
-      ],
-      "subNotificationPreferences": []
-  },
-  ... more items for all notifications
-] */
-```
-
-**Returns**
-
-```ts
-getUserPreferences() : Promise<Preference[]>
-
-interface Preference {
-  notificationId: string;
-  title: string; // the friendly title of the notification
-  settings: {
-    channel: string; // EMAIL, INAPP_WEB, SMS, CALL
-    channelName: string; // channel friendly name: Email, In-App, SMS, Call
-    state: boolean; // indicating the preference
-  }[];
-  subNotificationPreferences: Preference[]; // when using subNotificationIds, it will contain a similar item for each subNotificationId
-}
-```
-
-## patchUserPreference()
-
-Allows you to programmatically change the user's notification preferences from the front-end.
-
-Please note that unless you require extreme customization, you can rely on [showUserPreferences()](#showuserpreferences) function to display and edit notification preferences without any additional code.
-
-```js title="Example"
-notificationapi.patchUserPreference('myNotificationId', 'EMAIL', false);
-```
-
-**Parameters**
-
-`notificationId` (required)  
-Type: string
-
-The ID of the notification in NotificationAPI.
-
-`channel` (required)  
-Type: string
-
-The channel for which you wish to change the setting.  
-Accepted values: `EMAIL`, `INAPP_WEB`, `SMS`, `CALL`.
-
-`state` (required)  
-Type: boolean
-
-The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup.
-
-`subNotificationId` (optional)  
-Type: string
-
-For setting the preference of a subNotificationId within a notification.
-
-## showInApp()
-
-import InAppGif from '@site/static/inapp.gif';
-
-<img src={InAppGif} />
-
-This function adds the in-app notifications (the bell icon along with all its functionality) to your app.
-
-```js title="Example"
-notificationapi.showInApp({
-  root: 'parentDivID'
-});
-```
-
-**Parameters**
-
-##### `root` (required)
-
-Type: string
-
-The ID of the HTML element that will contain the NotificationAPI widget. Ideally an empty div.
-
-##### `inline`
-
-Type: boolean
-
-Default: false
-
-By default, the showInApp() function will display a 🔔 button. The in-app notifications are displayed in a popup when the button is clicked. With inline set to `true`, the in-app notifications are displayed in the `root` element without the popup.
-
-import inline from '@site/static/inline.png';
-
-Preview:
-<img src={inline} width="400" />
-
-##### `markAsReadMode`
-
-Type: string (JS), MarkAsReadModes enum (TS)
-
-Default: AUTOMATIC
-
-By default, in-app notifications are set to read when they are displayed to the user and the unread notification count is reset to 0. Switching to the `MANUAL` mode will not set notifications to read on display. Instead, the user can set notifications to read using an overall "Mark All As Read" button, or by using the individual "Mark as read" on each notification. The `MANUAL_AND_CLICK` mode works similar to `MANUAL` mode, but also sets notifications to read when user clicks the notification.
-
-Valid string options: AUTOMATIC, MANUAL, MANUAL_AND_CLICK
-
-import manualread from '@site/static/manualread.gif';
-
-Preview:
-<img src={manualread} width="400" />
-
-##### `popupPosition`
-
-Type: string (JS), PopupPosition enum (TS)
-
-Default: rightBottom
-
-The position of the notifications popup relative to the button.
-
-Valid string options: topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom.
-
-##### `paginated`
-
-Type: boolean
-
-Default: false
-
-By default, the in-app notifications are displayed in endless scrolling mode. Setting this field to `true` will show in-app notifications in paginated mode with controls to change pages.
-
-import paginated from '@site/static/paginated.gif';
-
-Preview:
-<img src={paginated} width="400" />
-
-##### `pageSize`
-
-Type: number
-
-Default: 5
-
-The number of in-app notifications per page. Only valid for `paginated` mode.
-
-## showUserPreferences()
-
-User preferences is accessible from the in-app popup (similar to the gif below). However, you may use this function to programmatically open the user preferences from your code.
-
-import UserPref from '@site/static/userpref.gif';
-
-<img src={UserPref} />
-
-```js title="Example"
-notificationapi.showUserPreferences();
-```
-
-**Parameters**
-
-`parent`  
-Type: string  
-Default: undefined
-
-When undefined (default behavior), the user preferences will show as a modal. Given this parameter, the user preferences will render in inline mode inside an existing HTML element on your page. You can pass the ID of the parent element to this parameter. Ideally, use an empty div for the parent.
-
-## identify()
-
-Stores the user information for a given user id. When sending a notification to the given user id via `send()` you can omit the user's email or phone number: NotificationAPI will automatically lookup the user's stored email or phone number. Recommended to call `identify()` once after the user signs in or when the user updates their information to sync to NotificationAPI.
-
-```js title="Example"
-notificationapi.identify({ id: 'testId', email: 'test@example.com' });
-```
-
-**Parameters**
-
-`user`  
-Type: object  
-Default: undefined
-
-The user's data.
-
-## Secure Mode
-
-Front-end code is observable and mutable by end-users. Malicious actors can take advantage of this. For example, someone can impersonate another user on your website's chat tool or NotificationAPI by passing different parameters to the library. Secure Mode makes our front-end SDK safe against this threat.
-
-**Step by Step Guide**
-
-1. Back-end: hash the userId using your client secret. Pass the hashed userId to your front-end. For example, from an API right after the page loads.
-
-<Tabs
-defaultValue="Node.js"
-values={[
-{ label: 'Node.js', value: 'Node.js', },
-{ label: 'Python', value: 'Python' }
-]
-}>
-<TabItem value="Node.js">
-
-```jsx
-const hashedUserId = require('crypto') // crypto is part of nodejs
-  .createHmac('sha256', 'YOUR_CLIENT_SECRET')
-  .update('ACTUAL_USER_ID')
-  .digest('base64');
-```
-
 </TabItem>
-<TabItem value="Python">
+<TabItem value="umd">
 
-```py
-import hmac
-import hashlib
-import base64
-hashedUserId = base64.b64encode(hmac.new( 'YOUR_CLIENT_SECRET'.encode('utf-8'),
-            'ACTUAL_USER_ID'.encode('utf-8'),
-             hashlib.sha256).digest())
+```html title="1. Add to HTML, before </head>"
+<script src="https://unpkg.com/notificationapi-js-client-sdk@4.4.0/dist/notificationapi-js-client-sdk.js"></script>
+<link
+  href="https://unpkg.com/notificationapi-js-client-sdk/dist/styles.css"
+  rel="stylesheet"
+/>
+```
+
+```js title="2. Initialize"
+const notificationapi = new NotificationAPI({
+  clientId: YOUR_CLIENT_ID,
+  userId: UNIQUE_USER_ID
+});
 ```
 
 </TabItem>
 </Tabs>
-2. Front-end: pass the hashed userId to the NotificationAPI SDK:
 
-```jsx
-new NotificationAPI({
-  root: '...',
-  clientId: '...',
-  userId: 'ACTUAL_USER_ID',
-  userIdHash: 'HASHED_USER_ID'
-});
-```
+#### Parameters
 
-3. Enable secure mode in your account settings (Settings -> Security). When our SDK starts, it sends both the userId and hashed userId to our servers and we compare the values to ensure the userId and its hash match, indicating userId has not been tampered.
+| Parameter  | Type   | Description                                                                                                                                |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| clientId\* | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
+| userId\*   | string | The unique ID of the user in your system.                                                                                                  |
+| userIdHash | string | Only used for [Secure Mode](#secure-mode).                                                                                                 |
+| websocket  | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
 
-## Framework Specific Configurations
-
-### React.js
-
-React's state management and re-rendering causes this widget to be destroyed and re-initialized with every state change. To avoid this issue, place the initialization and the root element in a "memo"-ized React component. Example:
+## Framework Specific Gotcha's
 
 <Tabs
-defaultValue="NotificationAPIComponent.js"
+groupId="frontend-language"
+defaultValue="react"
 values={[
-{ label: 'NotificationAPIComponent.js', value: 'NotificationAPIComponent.js', },
-{ label: 'App.js', value: 'App.js' }
+{ label: 'React', value: 'react' },
+{ label: 'Next.js', value: 'next' },
+{ label: 'Remix', value: 'remix' },
+{ label: 'Vue', value: 'vue' },
+{ label: 'Angular', value: 'angular' }
 ]
 }>
-<TabItem value="NotificationAPIComponent.js">
+<TabItem value="react">
+
+To prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function:
 
 ```jsx
 import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
 import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import React, { memo, useEffect, useRef } from 'react';
+import { memo, useEffect } from 'react';
 
-const NotificationAPIComponent = memo((props) => {
-  const containerRef = useRef();
-
+const NotificationAPIContainer = memo((props) => {
   useEffect(() => {
     const notificationapi = new NotificationAPI({
-      clientId: YOUR_CLIENT_ID,
+      clientId: 'CLIENT_ID',
+      userId: props.userId
+    });
+    notificationapi.showInApp({
+      root: 'CONTAINER_DIV_ID',
+      popupPosition: PopupPosition.BottomLeft
+    });
+  }, [props.userId]);
+
+  return <div id="CONTAINER_DIV_ID"></div>;
+});
+export default NotificationAPIContainer;
+```
+
+</TabItem>
+<TabItem value="next">
+
+The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
+
+```jsx
+'use client';
+
+import NotificationAPI from 'notificationapi-js-client-sdk';
+import 'notificationapi-js-client-sdk/dist/styles.css';
+import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
+import React, { memo, useEffect } from 'react';
+
+const NotificationAPIComponent = memo((props: { userId: string }) => {
+  useEffect(() => {
+    const notificationapi = new NotificationAPI({
+      clientId: '24nojpnrsdc53fkslha0roov05',
       userId: props.userId
     });
     notificationapi.showInApp({
       root: 'container',
       popupPosition: PopupPosition.BottomLeft
     });
-
-    // Store a reference to the container DOM element.
-    const container = containerRef.current;
-    // This effect can run multiple times due to the `userId` changing
-    // or Hot Module Replacement (HMR). Ensure the container is cleared
-    // as `showInApp` will append to the container instead of overwriting it.
-    return () => {
-      container.innerHTML = '';
-    };
   }, [props.userId]);
 
-  return <div id="container" ref={containerRef}></div>;
+  return <div id="container"></div>;
 });
 
 export default NotificationAPIComponent;
 ```
 
 </TabItem>
-<TabItem value="App.js">
 
-```jsx
-import NotificationAPIComponent from './NotificationAPIComponent';
-
-function App() {
-  return (
-    <div>
-      <NotificationAPIComponent userId="USER_ID" />
-      <div> ... </div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-</TabItem>
-</Tabs>
-
-### Vue.js
-
-```html
-<script setup>
-  import NotificationAPI from 'notificationapi-js-client-sdk';
-  import 'notificationapi-js-client-sdk/dist/styles.css';
-  import { onMounted } from 'vue';
-  onMounted(() => {
-    const notificationapi = new NotificationAPI({
-      clientId: 'CLIENT_ID',
-      userId: 'USER_ID'
-    });
-
-    notificationapi.showInApp({
-      root: 'myNotifications'
-    });
-  });
-</script>
-
-<template>
-  <div>Hello World!</div>
-  <div id="myNotifications"></div>
-</template>
-```
-
-### Remix
-
-1. Add the following to your remix.config.js: [what is this?](https://remix.run/docs/en/1.13.0/pages/gotchas#importing-esm-packages)
+<TabItem value="remix">
+  
+a) Add the following to your remix.config.js:
 
 ```js
 serverDependenciesToBundle: ['notificationapi-js-client-sdk'];
+
+// for more info, read: https://remix.run/docs/en/main/guides/gotchas#importing-esm-packages
 ```
 
-2. Add our CSS styles to your root component:
+b) Add our CSS styles to your root component:
 
 ```js
 import NotificationAPICSS from 'notificationapi-js-client-sdk/dist/styles.css';
@@ -471,7 +175,7 @@ export const links: LinksFunction = () => {
 };
 ```
 
-3. Import and use our library normally, similar to React. Example:
+c) Import and use our library:
 
 ```jsx
 import NotificationAPIClient from 'notificationapi-js-client-sdk';
@@ -497,15 +201,41 @@ export default function Index() {
 }
 ```
 
-### Angular
+</TabItem>
+<TabItem value="vue">
 
-1. Add our CSS to your styles.scss file:
+```html
+<script setup>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
+  import { onMounted } from 'vue';
+  onMounted(() => {
+    const notificationapi = new NotificationAPI({
+      clientId: 'CLIENT_ID',
+      userId: 'USER_ID'
+    });
+
+    notificationapi.showInApp({
+      root: 'myNotifications'
+    });
+  });
+</script>
+
+<template>
+  <div>Hello World!</div>
+  <div id="myNotifications"></div>
+</template>
+```
+
+</TabItem>
+<TabItem value="angular">
+a) Add our CSS to your styles.scss file:
 
 ```js
 @import 'node_modules/notificationapi-js-client-sdk/dist/styles.css'
 ```
 
-2. Import and use our library:
+b) Import and use our library:
 
 ```jsx
 import NotificationAPI from 'notificationapi-js-client-sdk';
@@ -525,3 +255,119 @@ ngOnInit() {
 // This goes inside the template
 <div id="bell-container"></div>
 ```
+
+</TabItem>
+</Tabs>
+
+## Service Worker Setup
+
+_Only required for Web Push notifications:_
+
+Download [this file](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application. For example, if you are using react, the file should go in the `public` folder.
+
+## getUserPreferences
+
+Returns the user's notification preferences.
+
+```js
+notificationapi.getUserPreferences().then((prefs) => {
+  console.log(prefs);
+});
+```
+
+#### Response Example
+
+```json
+[
+  {
+    "notificationId": "new_order",
+    "title": "New Order",
+    "settings": [
+      {
+        "channel": "SMS",
+        "state": false,
+        "channelName": "SMS"
+      },
+      {
+        "channel": "EMAIL",
+        "state": true,
+        "channelName": "Email"
+      }
+    ]
+  }
+]
+```
+
+## identify
+
+Stores the end-user information for a given user.
+
+By using this function, you can omit the contact information when using `send()`. NotificationAPI will automatically lookup the user's stored email or phone number and use it for sending the notification. Recommended to call `identify()` every time the user signs, or upon signup and changing of the user contact info.
+
+```js
+notificationapi.identify({ id: 'testId', email: 'test@example.com' });
+```
+
+## patchUserPreference
+
+Allows you update the user's notification preferences.
+
+```js
+notificationapi.patchUserPreference('myNotificationId', 'EMAIL', false);
+```
+
+**Parameters**
+
+| Parameter         | Type    | Description                                                                                                                                                                                                      |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| notificationId\*  | string  | The ID of the notification in NotificationAPI.                                                                                                                                                                   |
+| channel\*         | string  | The channel for which you wish to change the setting. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH`                                                                              |
+| state\*           | boolean | The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup. |
+| subNotificationId | string  | Only when using [subNotificationIds](../features/subnotifications)                                                                                                                                               |
+
+## showInApp
+
+This function renders the in-app notifications widget on your front-end.
+
+Complete guide: [In-App Notifications Widget](../components/inapp)
+
+```js
+notificationapi.showInApp({
+  root: 'PARENT_DIV_ID'
+});
+```
+
+#### Parameters
+
+| Parameter      | Type                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| root\*         | string                                 | The ID of the HTML element that will contain the in-app widget. Ideally an empty div.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| inline         | boolean                                | Default: false. By default, the showInApp() function will display a 🔔 button. The in-app notifications are displayed in a popup when the button is clicked. With inline set to `true`, the in-app notifications are displayed in the `root` element without the popup.                                                                                                                                                                                                                                                                                                                                 |
+| markAsReadMode | string (JS), MarkAsReadModes enum (TS) | Default: AUTOMATIC. In AUTOMATIC mode, in-app notifications are set to read when they are displayed to the user and the unread notification count is reset to 0. Switching to the `MANUAL` mode will not set notifications to read on display. Instead, the user can set notifications to read using an overall "Mark All As Read" button, or by using the individual "Mark as read" on each notification. The `MANUAL_AND_CLICK` mode works similar to `MANUAL` mode, but also sets notifications to read when user clicks the notification. Valid string options: AUTOMATIC, MANUAL, MANUAL_AND_CLICK |
+| popupPosition  | string (JS), PopupPosition enum (TS)   | Default: rightBottom. The position of the notifications popup relative to the button.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| paginated      | boolean                                | Default: false. By default, the in-app notifications are displayed in endless scrolling mode. Setting this field to `true` will show in-app notifications in paginated mode with controls to change pages.                                                                                                                                                                                                                                                                                                                                                                                              |
+| pageSize       | number                                 | Default: 5. The number of in-app notifications per page. Only valid for `paginated` mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+
+## showUserPreferences
+
+This function renders the user preferences widget on your front-end.
+
+Complete guide: [User Preferences Widget](../components/user-preferences)
+
+```js
+notificationapi.showUserPreferences();
+```
+
+#### Parameters
+
+| Parameter | Type   | Description                                                                                                                                                                                                                                                                                              |
+| --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parent    | string | When undefined (default behavior), the user preferences will show as a modal. Given this parameter, the user preferences will render in inline mode inside an existing HTML element on your page. You can pass the ID of the parent element to this parameter. Ideally, use an empty div for the parent. |
+
+#### Parameters
+
+| Parameter | Type   | Description                                                  |
+| --------- | ------ | ------------------------------------------------------------ |
+| id\*      | string | The unique ID of the user in your system.                    |
+| email     | string | The email of the user.                                       |
+| phone     | string | The phone number of the user. Expected format: +15554443333. |

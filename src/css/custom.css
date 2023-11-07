@@ -15,6 +15,7 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+  --ifm-navbar-height: 4.5rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -22,4 +23,22 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+a {
+  text-decoration: underline 0.15em rgba(37, 194, 160, 0);
+  text-decoration-thickness: 1px;
+  transition: all 500ms;
+}
+
+a:hover {
+  text-decoration-color: (37, 194, 160, 1);
+}
+
+.pagination-nav {
+  display: none;
+}
+
+main .container {
+  padding-bottom: 100px !important;
 }
