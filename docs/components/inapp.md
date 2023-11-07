@@ -72,7 +72,7 @@ import paginated from '@site/static/paginated.gif';
 
 This mode is useful in combination with the inline mode to create a stand-alone Notifications page in your app.
 
-## Styling / Branding
+## Styling and Branding
 
 There is no "NotificationAPI" branding on the in-app widget, even in our free tier.
 

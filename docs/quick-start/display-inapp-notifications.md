@@ -17,7 +17,9 @@ We provide an <strong>in-app notification widget</strong> compatible with most f
 
 import InAppPNG from '@site/static/inapp.png';
 
-<img src={InAppPNG} style={{maxWidth: 400}} />
+<div style={{display: "flex", justifyContent: "center"}}>
+  <img src={InAppPNG} style={{maxWidth: 400}} />
+</div>
 
 ## Playground
 
@@ -58,7 +60,7 @@ npm install notificationapi-js-client-sdk
 
 ## Step 2: Render the In-App Widget
 
-The example shows the NotificationAPI widget in your front-end. It will automatically pull the in-app notifications from our servers and keep a live connection. The widget is placed in the container div specified by ID. The widget automatically connects to our servers and pull all the in-app notifications for the test user.
+The example shows the NotificationAPI widget in your front-end. It will automatically pull the in-app notifications from our servers for the given userId and keeps a live connection to receive any new notifications. The widget is placed in the container div specified by ID.
 
 <Tabs
 groupId="frontend-language"
@@ -253,3 +255,13 @@ ngOnInit() {
 
 </TabItem>
 </Tabs>
+
+## Next Steps
+
+You are now receiving in-app notifications on your front-end! 🎉
+
+Let's do a few more things:
+
+- [⚙️ Manage User Notification Preferences](../quick-start/manage-preferences)
+- [📱 Setup Mobile Push](../guides/mobile-push)
+- [🌐 Setup Web Push](../guides/web-push)
