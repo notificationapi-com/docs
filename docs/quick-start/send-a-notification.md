@@ -6,8 +6,8 @@ sidebar_position: 1
 
 #### Prerequisite
 
-- A NotificationAPI account - [sign up](https://app.notificationapi.com/signup)
-- A notification configured in our dashboard (new accounts already have a demo notification)
+- A NotificationAPI account - [sign up for free](https://app.notificationapi.com/signup)
+- A configured notification in the dashboard (new accounts already have a demo notification)
 
 ## Overview
 
@@ -319,7 +319,7 @@ You can get your CLIENT_ID and CLIENT_SECRET from [here](https://app.notificatio
 
 ## Next Steps
 
-You are now successfully sending Email, SMS, and Call notifications to your users. 🎉
+You are now successfully sending notifications to any channel you wish. 🎉
 
 Let's do a few more things:
 
