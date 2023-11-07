@@ -40,7 +40,7 @@ By default, the `showUserPreferences()` will display a popup similar to the imag
 
 Alternatively, by using `parent: "DIV_ID"` parameter, the widget will render the preferences directly onto the parent element (ideally an empty div). This is referred to as the inline mode. This mode is useful for creating a stand-alone notification settings page in your app.
 
-## Styling / Branding
+## Styling and Branding
 
 There is no "NotificationAPI" branding on this widget, even in our free tier.
 

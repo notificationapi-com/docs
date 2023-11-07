@@ -36,6 +36,6 @@ import notificationapi_unsub2 from '@site/static/notificationapi_unsub2.png';
 
 ## Can I customize this page?
 
-You can replace the graphic with your own logo (PNG) from the Dashboard => Settings => Organization. We are working on providing more branding options in the future.
+You can replace the graphic with your own logo (PNG) from the [Organization Settings Tab](https://app.notificationapi.com/settings/organization). We are working on providing more branding options in the future.
 
 For enterprise customers, we provide completely customized experiences.

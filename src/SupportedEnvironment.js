@@ -8,9 +8,7 @@ const SupportedEnvironment = (props) => {
       href={props.path}
       style={{
         textDecoration: 'none',
-        filter: isHovered
-          ? 'grayscale(0%) brightness(100%)'
-          : 'grayscale(100%) brightness(0%)',
+        filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%) brightness(0%)',
         transition: 'all 0.5s ease',
         opacity: isHovered ? '1' : '0.5',
         display: 'flex',
@@ -18,6 +16,7 @@ const SupportedEnvironment = (props) => {
         alignItems: 'center',
         width: '60px'
       }}
+      className="SupportedEnvironment"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

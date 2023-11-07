@@ -18,7 +18,7 @@ The domain verification process is similar to the process used by other email pr
 
 1. Add your domain from the `Dashboard -> Settings -> Domain Verification`
 2. Add the 5 DNS records displayed on the dashboard to your DNS settings
-3. Wait, usually a few minutes, but sometimes it could take 72 hours
+3. Wait until the status is updated in the dashboard. This usually takes a few minutes, but sometimes it could take up to 72 hours
 
 ## What is the MAIL-FROM Field?
 
