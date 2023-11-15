@@ -457,6 +457,151 @@ The send() method accepts an object with the following fields:
 | `fcm.android.priority`    | string                              | Sets the priority of the message. Valid values are "normal" and "high." On iOS, these correspond to APNs priorities 5 and 10. By default, notification messages are sent with high priority, and data messages are sent with normal priority. Normal priority optimizes the client app's battery consumption and should be used unless immediate delivery is required. For messages with normal priority, the app may receive the message with unspecified delay. When a message is sent with high priority, it is sent immediately, and the app can wake a sleeping device and open a network connection to your server.                                                                    |
 | `fcm.android.ttl`         | string                              | This parameter specifies how long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks. For more information, see [Setting the lifespan of a message](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl)                                                                                                                                                                                                                                                                                                                                                      |
 
+## identifyUser
+
+Stores the end-user information for a given user.
+
+By using this function, you can omit the contact information when using send(). NotificationAPI will automatically lookup the user's stored email or phone number and use it for sending the notification.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.identifyUser({
+  id: 'user-unique-identifier',
+  email: 'user@example.com',
+  number: '+15005550006'
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.identify_user({
+    'id': 'user-unique-identifier',
+    'email': 'user@example.com',
+    'number': '+15005550006'
+})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$user = [
+    'id' => 'user-unique-identifier',
+    'email' => 'user@example.com',
+    'number' => '+15005550006'
+];
+
+$notificationAPI->identifyUser($user);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+number := "+15005550006"
+user := NotificationAPI.User{
+		Id:     "user-unique-identifier",
+		Email:  "user@example.com",
+		Number: &number
+	}
+var params notificationapi.SetUserPreferencesRequest
+NotificationAPI.IdentifyUser(user)
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+var userId = "user-unique-identifier";
+var userData = new Dictionary<string, string> {
+    { "email", "user@example.com" },
+    { "number", "+15005550006" }
+};
+
+await notificationApi.IdentifyUser(userId, userData);
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+user_id = "user-unique-identifier"
+user_data = {
+  email: "user@example.com",
+  number: "+15005550006"
+}
+
+notification_api.identify_user(user_id, user_data)
+```
+
+</TabItem>
+
+</Tabs>
+
+### Parameters
+
+| Name            | Type     | Description                                                                                                                                                                              |
+| --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`\*          | string   | The ID of the user in your system. Required.                                                                                                                                             |
+| `email`         | string   | Required for sending email notifications, otherwise optional.                                                                                                                            |
+| `number`        | string   | Required for SMS/CALL notifications, otherwise optional. Valid format: +15005550006. Unformatted US/Canada numbers are also accepted, e.g., (415) 555-1212, 415-555-1212, or 4155551212. |
+| `pushTokens`    | object[] | Tokens which are required to send mobile push notifications, a user can have multiple devices and a push token is required for each device.                                              |
+| `webPushTokens` | object[] | Tokens which are required to send web push notification, a user can have multiple devices and a web push token is required for each device.                                              |
+
+#### pushTokens object
+
+| Name       | Type   | Description                                                          |
+| ---------- | ------ | -------------------------------------------------------------------- |
+| `type`\*   | string | [apn,fcm] The provider token is to be associated with. Required.     |
+| `token`\*  | string | The full token string. Required.                                     |
+| `device`\* | object | Information about the device the token is associated with. Required. |
+
+##### device object
+
+| Name           | Type   | Description                                              |
+| -------------- | ------ | -------------------------------------------------------- |
+| `app_id`       | string | Id of the application the token is used for.             |
+| `ad_id`        | string | Id of the advertising identifier.                        |
+| `device`\*     | string | Id of the device the token is associated with. Required. |
+| `platform`     | string | The device platform i.e. android, ios.                   |
+| `manufacturer` | string | The device manufacturer.                                 |
+| `model`        | string | The device model .                                       |
+
+#### webPushTokens object
+
+| Name    | Type   | Description                      |
+| ------- | ------ | -------------------------------- |
+| `sub`\* | object | Web push subscription. Required. |
+
+##### Web push subscription (sub) object
+
+| Name         | Type   | Description                                                                               |
+| ------------ | ------ | ----------------------------------------------------------------------------------------- |
+| `endpoint`\* | string | The string value containing the endpoint associated with the push subscription. Required. |
+| `keys`\*     | object | The keys associated with the push subscription. Required.                                 |
+
+##### Web push subscription keys object
+
+| Name       | Type   | Description                                                                                                                                                                             |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `p256dh`\* | string | An Elliptic curve Diffie–Hellman public key on the P-256 curve (that is, the NIST secp256r1 elliptic curve). The resulting key is an uncompressed point in ANSI X9.62 format. Required. |
+| `auth`\*   | string | An authentication secret, as described in Message Encryption for Web Push. Required.                                                                                                    |
+
 ## setUserPreferences
 
 Used to set a user's notification preferences. This function will override the user's existing preferences.
