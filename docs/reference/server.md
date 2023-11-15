@@ -551,36 +551,36 @@ notificationapi.SetUserPreferences("userId", params)
 <TabItem value="csharp">
 
 ```csharp
-notificationapi.SetUserPreferences("userId", @"[
-    {
-        ""notificationId"": ""notificationId1"",
-        ""channel"": ""EMAIL"",
-        ""state"": false
-    },
-    {
-        ""notificationId"": ""notificationId2"",
-        ""channel"": ""SMS"",
-        ""state"": true
-    }
-]");
+string userPreferencesRequest = @"
+{
+    ""userId"": ""userId"",
+    ""preferences"": [
+        {
+            ""notificationId"": ""notificationId1"",
+            ""channel"": ""EMAIL"",
+            ""state"": false
+        },
+        {
+            ""notificationId"": ""notificationId2"",
+            ""channel"": ""SMS"",
+            ""state"": true
+        }
+    ]
+}";
+
+await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 ```
 
 </TabItem>
 <TabItem value="ruby">
 
 ```ruby
-notificationapi.setUserPreferences('userId', [
-  {
-    notificationId: 'notificationId1',
-    channel: 'EMAIL',
-    state: false
-  },
-  {
-    notificationId: 'notificationId2',
-    channel: 'SMS',
-    state: true
-  }
-]);
+user_preferences = [
+  { 'notificationId' => 'notificationId1', 'channel' => 'EMAIL', 'state' => false },
+  { 'notificationId' => 'notificationId2', 'channel' => 'SMS', 'state' => true }
+]
+
+notification_api.set_user_preferences('userId', user_preferences)
 ```
 
 </TabItem>
