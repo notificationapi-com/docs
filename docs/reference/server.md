@@ -467,7 +467,7 @@ jsonParams := `[
     state: true
   }
 ]`
-var params notificationapi.SendRequest
+var params notificationapi.SetUserPreferencesRequest
 json.Unmarshal([]byte(jsonParams), &params)
 notificationapi.SetUserPreferences("userId", params)
 ```
@@ -574,7 +574,7 @@ jsonParams := `{
   NotificationId: "hello_world",
   UserId: "123"
 }`
-var params notificationapi.SendRequest
+var params notificationapi.RetractRequest
 json.Unmarshal([]byte(jsonParams), &params)
 notificationapi.Retract(params);
 ```
