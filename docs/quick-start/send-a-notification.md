@@ -71,7 +71,9 @@ go get github.com/notificationapi-com/notificationapi-go-server-sdk
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 class NotificationAPI {
   private string baseURL = "https://api.notificationapi.com";
@@ -99,6 +101,39 @@ class NotificationAPI {
     return responseContent;
   }
 
+  public async Task<string> IdentifyUser(string userId, object userData) {
+      using (var hmac = new HMACSHA256(Encoding.ASCII.GetBytes(clientSecret))) {
+          string hashedUserId = Convert.ToBase64String(hmac.ComputeHash(Encoding.ASCII.GetBytes(userId)));
+          string customAuth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{userId}:{hashedUserId}"));
+          httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", customAuth);
+
+          string jsonString = JsonConvert.SerializeObject(userData);
+          HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+          var response = await httpClient.PostAsync($"{baseURL}/{clientId}/users/{Uri.EscapeDataString(userId)}", content);
+          return await response.Content.ReadAsStringAsync();
+      }
+  }
+
+  public async Task<string> CreateSubNotification(string notificationId, string subNotificationId, string title) {
+      var payload = new { title = title };
+      string jsonString = JsonConvert.SerializeObject(payload);
+      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+      var response = await httpClient.PutAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}", content);
+      return await response.Content.ReadAsStringAsync();
+  }
+
+  public async Task<string> DeleteSubNotification(string notificationId, string subNotificationId) {
+      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}");
+      return await response.Content.ReadAsStringAsync();
+  }
+
+  public async Task<string> SetUserPreferences(string userId, object userPreferences) {
+      string jsonString = JsonConvert.SerializeObject(userPreferences);
+      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+      var response = await httpClient.PostAsync($"{baseURL}/{clientId}/user_preferences/{userId}", content);
+      return await response.Content.ReadAsStringAsync();
+  }
+
 }
 ```
 
@@ -111,6 +146,7 @@ class NotificationAPI {
 require 'net/http'
 require 'json'
 require 'base64'
+require 'openssl'
 
 class NotificationAPI
   def initialize(client_id, client_secret)
@@ -146,6 +182,45 @@ class NotificationAPI
     )
     response.body
   end
+
+  def identify_user(user_id, user_data)
+    digest = OpenSSL::Digest::SHA256.new
+    hmac = OpenSSL::HMAC.digest(digest, @client_secret, user_id)
+    hashed_user_id = Base64.strict_encode64(hmac)
+    custom_auth = Base64.strict_encode64("#{@client_id}:#{user_id}:#{hashed_user_id}")
+
+    send_request('POST', "users/#{URI.escape(user_id)}", user_data, custom_auth)
+  end
+
+  def create_sub_notification(notification_id, sub_notification_id, title)
+    payload = { title: title }
+    send_request('PUT', "notifications/#{notification_id}/subNotifications/#{sub_notification_id}", payload)
+  end
+
+  def delete_sub_notification(notification_id, sub_notification_id)
+    send_request('DELETE', "notifications/#{notification_id}/subNotifications/#{sub_notification_id}")
+  end
+
+  def set_user_preferences(user_id, user_preferences)
+    send_request('POST', "user_preferences/#{user_id}", user_preferences)
+  end
+
+  private
+
+  def send_request(method, uri, data = {}, auth = "Basic #{@auth_token}")
+    payload = data.to_json
+    response = @http_client.send_request(
+      method,
+      "/#{@client_id}/#{uri}",
+      payload,
+      {
+        'Content-Type' => 'application/json',
+        'Authorization' => auth
+      }
+    )
+    response.body
+  end
+
 end
 ```
 
