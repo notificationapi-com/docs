@@ -307,11 +307,12 @@ $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 
 # send
 $notificationapi->send([
-    "notificationId" => "new_comment_notification",
+    #The ID of the notification you wish to send. You can find this
+    #value from the dashboard.
+    "notificationId" => "welcome",
     "user" => [
-        "id" => "TEST_USER_ID",
-        "email" => "TEST@TEST.COM",   # required for email notifications
-        "number" => "+15005550006"    # required for SMS
+        "id" => "test_user_id_doc_example",
+        "email" => "testDocExample@notificationapi.com",   # required for email notifications
     ]
 ]);
 ```

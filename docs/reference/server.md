@@ -347,14 +347,14 @@ notificationapi.send(
 
 ```php
 $notificationapi->send([
-    "notificationId" => "hello_world",
+    "notificationId" => "welcome",
     "user" => [
-        "id" => "123",
-        "email" => "test@test.com",
+        "id" => "test_user_id_doc_example",
+        "email" => "testDocExample@notificationapi.com",
         "number" => "+15005550006"
     ],
     "mergeTags" => [
-        "firstName" => "Stranger"
+        "firstName" => "John"
     ]
 ]);
 ```
@@ -364,14 +364,14 @@ $notificationapi->send([
 
 ```go
 jsonParams := `{
-  "notificationId": "hello_world",
+  "notificationId": "welcome",
   "user": {
-    "id": "123",
-    "email": "test@test.com",
+    "id": "test_user_id_doc_example",
+    "email": "testDocExample@notificationapi.com",
     "number": "+15005550006"
   },
   "mergeTags": {
-    "firstName": "Stranger"
+    "firstName": "John"
   }
 }`
 var params notificationapi.SendRequest
@@ -385,14 +385,14 @@ notificationapi.Send(params)
 
 ```csharp
 string request = @"{
-    ""notificationId"": ""hello_world"",
+    ""notificationId"": ""welcome"",
     ""user"": {
-        ""id"": ""123"",
-        ""email"": ""test@test.com"",
+        ""id"": ""test_user_id_doc_example"",
+        ""email"": ""testDocExample@notificationapi.com"",
         ""number"": ""+15005550006""
     },
     ""mergeTags"": {
-        ""firstName"": ""FIRST_NAME""
+        ""firstName"": ""John""
     }
 }";
 notificationapi.send(request);
@@ -403,14 +403,14 @@ notificationapi.send(request);
 
 ```ruby
 notificationapi.send({
-  notificationId: 'hello_world',
+  notificationId: 'welcome',
   user: {
-    id: '123',
-    email: 'test@test.com',
+    id: 'test_user_id_doc_example',
+    email: 'testDocExample@notificationapi.com',
     number: '+15005550006'
   },
   mergeTags: {
-    firstName: 'test'
+    firstName: 'John'
   }
 });
 ```
@@ -481,8 +481,8 @@ values={[
 
 ```js
 notificationapi.identifyUser({
-  id: 'user-unique-identifier',
-  email: 'user@example.com',
+  id: 'test_user_id_doc_example',
+  email: 'testDocExample@notificationapi.com',
   number: '+15005550006',
   pushTokens: [
     {
@@ -519,8 +519,8 @@ notificationapi.identifyUser({
 
 ```python
 notificationapi.identify_user({
-    "id": "user-unique-identifier",
-    "email": "user@example.com",
+    "id": "test_user_id_doc_example",
+    "email": "testDocExample@notificationapi.com",
     "number": "+15005550006",
     "pushTokens": [
         {
@@ -555,9 +555,34 @@ notificationapi.identify_user({
 
 ```php
 $user = [
-    'id' => 'user-unique-identifier',
-    'email' => 'user@example.com',
-    'number' => '+15005550006'
+    'id' => 'test_user_id_doc_example',
+    'email' => 'testDocExample@notificationapi.com',
+    'number' => '+15005550006',
+    'pushTokens' => [
+        [
+            'type' => 'FCM',
+            'token' => 'samplePushToken',
+            'device' => [
+                'app_id' => 'com.example.app',
+                'ad_id' => '1234567890',
+                'device_id' => '1234567890',
+                'platform' => 'android',
+                'manufacturer' => 'Samsung',
+                'model' => 'SM-G930F'
+            ]
+        ]
+    ],
+    'webPushTokens' => [
+        [
+            'sub' => [
+                'endpoint' => 'https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi',
+                'keys' => [
+                    'p256dh' => 'zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ',
+                    'auth' => 'CXEFun************tYe8g'
+                ]
+            ]
+        ]
+    ]
 ];
 
 $notificationAPI->identifyUser($user);
@@ -569,9 +594,43 @@ $notificationAPI->identifyUser($user);
 ```go
 number := "+15005550006"
 user := NotificationAPI.User{
-		Id:     "user-unique-identifier",
-		Email:  "user@example.com",
-		Number: &number
+		Id:     "test_user_id_doc_example",
+		Email:  "testDocExample@notificationapi.com",
+		Number: &number,
+		PushTokens: &[]NotificationAPI.UserPushToken{
+			{
+				Type:  String("FCM"),
+				Token: String("samplePushToken"),
+				Device: &NotificationAPI.UserPushTokenDevice{
+					App_id:        String("com.example.app"),
+					Ad_id:         String("1234567890"),
+					Device_id:     String("1234567890"),
+					Platform:      String("android"),
+					Manufacturer:  String("Samsung"),
+					Model:         String("SM-G930F"),
+				},
+			},
+		},
+		WebPushTokens: &[]NotificationAPI.UserWebPushToken{
+			{
+				Sub: struct {
+					Endpoint string `json:"endpoint,omitempty"`
+					Keys     struct {
+						P256DH string `json:"p256dh,omitempty"`
+						Auth   string `json:"auth,omitempty"`
+					} `json:"keys,omitempty"`
+				}{
+					Endpoint: "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+					Keys: struct {
+						P256DH string `json:"p256dh,omitempty"`
+						Auth   string `json:"auth,omitempty"`
+					}{
+						P256DH: "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+						Auth:   "CXEFun************tYe8g",
+					},
+				},
+			},
+		},
 	}
 var params notificationapi.SetUserPreferencesRequest
 NotificationAPI.IdentifyUser(user)
@@ -581,10 +640,49 @@ NotificationAPI.IdentifyUser(user)
 <TabItem value="csharp">
 
 ```csharp
-var userId = "user-unique-identifier";
-var userData = new Dictionary<string, string> {
-    { "email", "user@example.com" },
-    { "number", "+15005550006" }
+var userId = "test_user_id_doc_example";
+var userData = new Dictionary<string, object>
+{
+    { "email", "testDocExample@notificationapi.com" },
+    { "number", "+15005550006" },
+    {
+        "pushTokens", new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object>
+            {
+                { "type", PushProviders.FCM },
+                { "token", "samplePushToken" },
+                {
+                    "device", new Dictionary<string, object>
+                    {
+                        { "app_id", "com.example.app" },
+                        { "ad_id", "1234567890" },
+                        { "device_id", "1234567890" },
+                        { "platform", "android" },
+                        { "manufacturer", "Samsung" },
+                        { "model", "SM-G930F" }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "webPushTokens", new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object>
+            {
+                "sub", new Dictionary<string, object>
+                {
+                    { "endpoint", "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi" },
+                    "keys", new Dictionary<string, string>
+                    {
+                        { "p256dh", "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ" },
+                        { "auth", "CXEFun************tYe8g" }
+                    }
+                }
+            }
+        }
+    }
 };
 
 await notificationApi.IdentifyUser(userId, userData);
@@ -594,10 +692,35 @@ await notificationApi.IdentifyUser(userId, userData);
 <TabItem value="ruby">
 
 ```ruby
-user_id = "user-unique-identifier"
+user_id = "test_user_id_doc_example"
 user_data = {
-  email: "user@example.com",
-  number: "+15005550006"
+  email: "testDocExample@notificationapi.com",
+  number: "+15005550006",
+  pushTokens: [
+    {
+      type: PushProviders::FCM, # Assuming PushProviders::FCM is defined
+      token: "samplePushToken",
+      device: {
+        app_id: "com.example.app",
+        ad_id: "1234567890",
+        device_id: "1234567890",
+        platform: "android",
+        manufacturer: "Samsung",
+        model: "SM-G930F"
+      }
+    }
+  ],
+  webPushTokens: [
+    {
+      sub: {
+        endpoint: "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+        keys: {
+          p256dh: "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+          auth: "CXEFun************tYe8g"
+        }
+      }
+    }
+  ]
 }
 
 notification_api.identify_user(user_id, user_data)
@@ -713,12 +836,12 @@ notificationapi.setUserPreferences("userId", [
 ```php
 $notificationapi->setUserPreferences("userId", [
     [
-        "notificationId" => "notificationId1",
+        "notificationId" => "welcome",
         "channel" => "EMAIL",
         "state" => false
     ],
     [
-        "notificationId" => "notificationId2",
+        "notificationId" => "usage_alert",
         "channel" => "SMS",
         "state" => true
     ]
@@ -731,12 +854,12 @@ $notificationapi->setUserPreferences("userId", [
 ```go
 jsonParams := `[
   {
-    notificationId: "notificationId1",
+    notificationId: "welcome",
     channel: "EMAIL",
     state: false
   },
   {
-    notificationId: "notificationId2",
+    notificationId: "usage_alert",
     channel: "SMS",
     state: true
   }
@@ -755,12 +878,12 @@ string userPreferencesRequest = @"
     ""userId"": ""userId"",
     ""preferences"": [
         {
-            ""notificationId"": ""notificationId1"",
+            ""notificationId"": ""welcome"",
             ""channel"": ""EMAIL"",
             ""state"": false
         },
         {
-            ""notificationId"": ""notificationId2"",
+            ""notificationId"": ""usage_alert"",
             ""channel"": ""SMS"",
             ""state"": true
         }
@@ -775,8 +898,8 @@ await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 
 ```ruby
 user_preferences = [
-  { 'notificationId' => 'notificationId1', 'channel' => 'EMAIL', 'state' => false },
-  { 'notificationId' => 'notificationId2', 'channel' => 'SMS', 'state' => true }
+  { 'notificationId' => 'welcome', 'channel' => 'EMAIL', 'state' => false },
+  { 'notificationId' => 'usage_alert', 'channel' => 'SMS', 'state' => true }
 ]
 
 notification_api.set_user_preferences('userId', user_preferences)
@@ -837,7 +960,7 @@ notificationapi.retract({"notificationId": "welcome", "userId": "test_user_id_do
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]);
+$notificationapi->retract(["notificationId" => "welcome", "userId" => "test_user_id_doc_example"]);
 ```
 
 </TabItem>
@@ -845,8 +968,8 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 
 ```go
 jsonParams := `{
-  NotificationId: "hello_world",
-  UserId: "123"
+  NotificationId: "welcome",
+  UserId: "test_user_id_doc_example"
 }`
 var params notificationapi.RetractRequest
 json.Unmarshal([]byte(jsonParams), &params)
@@ -859,8 +982,8 @@ notificationapi.Retract(params);
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""hello_world"",
-    ""userId"": ""123""
+    ""notificationId"": ""welcome"",
+    ""userId"": ""test_user_id_doc_example""
 }";
 notificationapi.retract(request);
 ```
@@ -870,8 +993,8 @@ notificationapi.retract(request);
 
 ```ruby
 notificationapi.retract({
-  notificationId: 'hello_world',
-  userId: '123'
+  notificationId: 'welcome',
+  userId: 'test_user_id_doc_example'
 });
 ```
 
