@@ -309,14 +309,15 @@ values={[
 
 ```js
 notificationapi.send({
-  notificationId: 'hello_world',
+  notificationId: 'welcome',
   user: {
-    id: '123',
-    email: 'test@test.com',
+    id: 'test_user_id_doc_example',
+    email: 'testDocExample@notificationapi.com',
     number: '+15005550006'
   },
   mergeTags: {
-    firstName: 'test'
+    firstName: 'John',
+    alerts: [{ title: 'This is a new alert from your software!' }]
   }
 });
 ```
@@ -327,14 +328,15 @@ notificationapi.send({
 ```python
 notificationapi.send(
     {
-        "notificationId": "hello_world",
+        "notificationId": "welcome",
         "user": {
-            "id": "123",
-            "email": "test@test.com",
+            "id": "test_user_id_doc_example",
+            "email": "testDocExample@notificationapi.com",
             "number": "+15005550006",
         },
         "mergeTags": {
-            "firstName": "test"
+            "firstName": "John",
+            "alerts": [{"title": "This is a new alert from your software!"}]
         }
     }
 )
@@ -481,7 +483,34 @@ values={[
 notificationapi.identifyUser({
   id: 'user-unique-identifier',
   email: 'user@example.com',
-  number: '+15005550006'
+  number: '+15005550006',
+  pushTokens: [
+    {
+      type: PushProviders.FCM,
+      token: 'samplePushToken',
+      device: {
+        app_id: 'com.example.app',
+        ad_id: '1234567890',
+        device_id: '1234567890',
+        platform: 'android',
+        manufacturer: 'Samsung',
+        model: 'SM-G930F'
+      }
+    }
+  ],
+  webPushTokens: [
+    {
+      sub: {
+        endpoint:
+          'https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi',
+        keys: {
+          p256dh:
+            'zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ',
+          auth: 'CXEFun************tYe8g'
+        }
+      }
+    }
+  ]
 });
 ```
 
@@ -490,9 +519,34 @@ notificationapi.identifyUser({
 
 ```python
 notificationapi.identify_user({
-    'id': 'user-unique-identifier',
-    'email': 'user@example.com',
-    'number': '+15005550006'
+    "id": "user-unique-identifier",
+    "email": "user@example.com",
+    "number": "+15005550006",
+    "pushTokens": [
+        {
+            "type": "FCM",
+            "token": "samplePushToken",
+            "device": {
+                "app_id": "com.example.app",
+                "ad_id": "1234567890",
+                "device_id": "1234567890",
+                "platform": "android",
+                "manufacturer": "Samsung",
+                "model": "SM-G930F"
+            }
+        }
+      ],
+    "webPushTokens": [
+        {
+            "sub": {
+                "endpoint": "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+                "keys": {
+                    "p256dh": "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+                    "auth": "CXEFun************tYe8g"
+                }
+            }
+        }
+    ]
 })
 ```
 
@@ -623,12 +677,12 @@ values={[
 ```js
 notificationapi.setUserPreferences('userId', [
   {
-    notificationId: 'notificationId1',
+    notificationId: 'welcome',
     channel: 'EMAIL',
     state: false
   },
   {
-    notificationId: 'notificationId2',
+    notificationId: 'usage_alert',
     channel: 'SMS',
     state: true
   }
@@ -641,12 +695,12 @@ notificationapi.setUserPreferences('userId', [
 ```python
 notificationapi.setUserPreferences("userId", [
     {
-        "notificationId": "notificationId1",
+        "notificationId": "welcome",
         "channel": "EMAIL",
         "state": False
     },
     {
-        "notificationId": "notificationId2",
+        "notificationId": "usage_alert",
         "channel": "SMS",
         "state": True
     }
@@ -767,8 +821,8 @@ values={[
 
 ```js
 notificationapi.retract({
-  notificationId: 'hello_world',
-  userId: '123'
+  notificationId: 'welcome',
+  userId: 'test_user_id_doc_example'
 });
 ```
 
@@ -776,7 +830,7 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
+notificationapi.retract({"notificationId": "welcome", "userId": "test_user_id_doc_example"})
 ```
 
 </TabItem>

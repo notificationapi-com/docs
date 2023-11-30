@@ -255,14 +255,18 @@ notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
 notificationapi.send({
-  notificationId: 'new_comment_notification',
+  // The ID of the notification you wish to send.
+  // You can find this value from the dashboard.
+  notificationId: 'welcome',
+  // The user to send the notification to.
   user: {
-    id: 'TEST_USER_ID',
-    email: 'TEST@TEST.COM', // required for email notifications
-    number: '+15005550006' // required for SMS/Calls
+    id: 'test_user_id_doc_example',
+    email: 'testDocExample@notificationapi.com' //required for email notifications
   },
+  // mergeTags is to pass dynamic values into the notification design.
   mergeTags: {
-    firstName: 'Stranger'
+    firstName: 'John',
+    alerts: [{ title: 'This is a new alert from your software!' }]
   }
 });
 ```
@@ -279,11 +283,14 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
 notificationapi.send({
-        "notificationId": "new_comment_notification",
+        #The ID of the notification you wish to send. You can find this
+        #value from the dashboard.
+        "notificationId": "welcome",
+
+        # The user to send the notification to.
         "user": {
-            "id": "TEST_USER_ID",
-            "email": "TEST@TEST.COM",   # required for email notifications
-            "number": "+15005550006"    # required for SMS
+            "id": "test_user_id_doc_example",
+            "email": "testDocExample@notificationapi.com", # required for email notifications
         }
     })
 ```
@@ -334,7 +341,7 @@ func main() {
       "number": "+15005550006"
     },
     "mergeTags": {
-      "firstName": "Stranger"
+      "firstName": "John" //Replace "John" with the user's first name
     }
   }`
   var params notificationapi.SendRequest
@@ -358,7 +365,7 @@ string request = @"{
         ""number"": ""+15005550006""
     },
     ""mergeTags"": {
-        ""firstName"": ""FIRST_NAME""
+        ""firstName"": ""John"" // Replace 'John' with the user's first name
     }
 }";
 notificationapi.send(request);
