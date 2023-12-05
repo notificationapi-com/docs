@@ -311,7 +311,7 @@ values={[
 notificationapi.send({
   notificationId: 'welcome',
   user: {
-    id: 'test_user_id_doc_example',
+    id: 'userId_123abc',
     email: 'john_doe@example.com',
     number: '+15005550006'
   },
@@ -330,7 +330,7 @@ notificationapi.send(
     {
         "notificationId": "welcome",
         "user": {
-            "id": "test_user_id_doc_example",
+            "id": "userId_123abc",
             "email": "john_doe@example.com",
             "number": "+15005550006",
         },
@@ -349,7 +349,7 @@ notificationapi.send(
 $notificationapi->send([
     "notificationId" => "welcome",
     "user" => [
-        "id" => "test_user_id_doc_example",
+        "id" => "userId_123abc",
         "email" => "john_doe@example.com",
         "number" => "+15005550006"
     ],
@@ -366,7 +366,7 @@ $notificationapi->send([
 jsonParams := `{
   "notificationId": "welcome",
   "user": {
-    "id": "test_user_id_doc_example",
+    "id": "userId_123abc",
     "email": "john_doe@example.com",
     "number": "+15005550006"
   },
@@ -387,7 +387,7 @@ notificationapi.Send(params)
 string request = @"{
     ""notificationId"": ""welcome"",
     ""user"": {
-        ""id"": ""test_user_id_doc_example"",
+        ""id"": ""userId_123abc"",
         ""email"": ""john_doe@example.com"",
         ""number"": ""+15005550006""
     },
@@ -405,7 +405,7 @@ notificationapi.send(request);
 notificationapi.send({
   notificationId: 'welcome',
   user: {
-    id: 'test_user_id_doc_example',
+    id: 'userId_123abc',
     email: 'john_doe@example.com',
     number: '+15005550006'
   },
@@ -481,7 +481,7 @@ values={[
 
 ```js
 notificationapi.identifyUser({
-  id: 'test_user_id_doc_example',
+  id: 'userId_123abc',
   email: 'john_doe@example.com',
   number: '+15005550006',
   pushTokens: [
@@ -519,7 +519,7 @@ notificationapi.identifyUser({
 
 ```python
 notificationapi.identify_user({
-    "id": "test_user_id_doc_example",
+    "id": "userId_123abc",
     "email": "john_doe@example.com",
     "number": "+15005550006",
     "pushTokens": [
@@ -555,7 +555,7 @@ notificationapi.identify_user({
 
 ```php
 $user = [
-    'id' => 'test_user_id_doc_example',
+    'id' => 'userId_123abc',
     'email' => 'john_doe@example.com',
     'number' => '+15005550006',
     'pushTokens' => [
@@ -594,7 +594,7 @@ $notificationAPI->identifyUser($user);
 ```go
 number := "+15005550006"
 user := NotificationAPI.User{
-		Id:     "test_user_id_doc_example",
+		Id:     "userId_123abc",
 		Email:  "john_doe@example.com",
 		Number: &number,
 		PushTokens: &[]NotificationAPI.UserPushToken{
@@ -640,7 +640,7 @@ NotificationAPI.IdentifyUser(user)
 <TabItem value="csharp">
 
 ```csharp
-var userId = "test_user_id_doc_example";
+var userId = "userId_123abc";
 var userData = new Dictionary<string, object>
 {
     { "email", "john_doe@example.com" },
@@ -692,7 +692,7 @@ await notificationApi.IdentifyUser(userId, userData);
 <TabItem value="ruby">
 
 ```ruby
-user_id = "test_user_id_doc_example"
+user_id = "userId_123abc"
 user_data = {
   email: "john_doe@example.com",
   number: "+15005550006",
@@ -945,7 +945,7 @@ values={[
 ```js
 notificationapi.retract({
   notificationId: 'welcome',
-  userId: 'test_user_id_doc_example'
+  userId: 'userId_123abc'
 });
 ```
 
@@ -953,14 +953,14 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "welcome", "userId": "test_user_id_doc_example"})
+notificationapi.retract({"notificationId": "welcome", "userId": "userId_123abc"})
 ```
 
 </TabItem>
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "welcome", "userId" => "test_user_id_doc_example"]);
+$notificationapi->retract(["notificationId" => "welcome", "userId" => "userId_123abc"]);
 ```
 
 </TabItem>
@@ -969,7 +969,7 @@ $notificationapi->retract(["notificationId" => "welcome", "userId" => "test_user
 ```go
 jsonParams := `{
   NotificationId: "welcome",
-  UserId: "test_user_id_doc_example"
+  UserId: "userId_123abc"
 }`
 var params notificationapi.RetractRequest
 json.Unmarshal([]byte(jsonParams), &params)
@@ -983,7 +983,7 @@ notificationapi.Retract(params);
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
     ""notificationId"": ""welcome"",
-    ""userId"": ""test_user_id_doc_example""
+    ""userId"": ""userId_123abc""
 }";
 notificationapi.retract(request);
 ```
@@ -994,7 +994,7 @@ notificationapi.retract(request);
 ```ruby
 notificationapi.retract({
   notificationId: 'welcome',
-  userId: 'test_user_id_doc_example'
+  userId: 'userId_123abc'
 });
 ```
 

@@ -260,7 +260,7 @@ notificationapi.send({
   notificationId: 'welcome',
   // The user to send the notification to.
   user: {
-    id: 'test_user_id_doc_example',
+    id: 'userId_123abc',
     email: 'john_doe@example.com' //required for email notifications
   },
   // mergeTags is to pass dynamic values into the notification design.
@@ -289,7 +289,7 @@ notificationapi.send({
 
         # The user to send the notification to.
         "user": {
-            "id": "test_user_id_doc_example",
+            "id": "userId_123abc",
             "email": "john_doe@example.com", # required for email notifications
         }
     })
@@ -311,7 +311,7 @@ $notificationapi->send([
     #value from the dashboard.
     "notificationId" => "welcome",
     "user" => [
-        "id" => "test_user_id_doc_example",
+        "id" => "userId_123abc",
         "email" => "john_doe@example.com",   # required for email notifications
     ]
 ]);
