@@ -261,7 +261,7 @@ notificationapi.send({
   // The user to send the notification to.
   user: {
     id: 'test_user_id_doc_example',
-    email: 'testDocExample@notificationapi.com' //required for email notifications
+    email: 'john_doe@example.com' //required for email notifications
   },
   // mergeTags is to pass dynamic values into the notification design.
   mergeTags: {
@@ -290,7 +290,7 @@ notificationapi.send({
         # The user to send the notification to.
         "user": {
             "id": "test_user_id_doc_example",
-            "email": "testDocExample@notificationapi.com", # required for email notifications
+            "email": "john_doe@example.com", # required for email notifications
         }
     })
 ```
@@ -312,7 +312,7 @@ $notificationapi->send([
     "notificationId" => "welcome",
     "user" => [
         "id" => "test_user_id_doc_example",
-        "email" => "testDocExample@notificationapi.com",   # required for email notifications
+        "email" => "john_doe@example.com",   # required for email notifications
     ]
 ]);
 ```

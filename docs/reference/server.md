@@ -312,7 +312,7 @@ notificationapi.send({
   notificationId: 'welcome',
   user: {
     id: 'test_user_id_doc_example',
-    email: 'testDocExample@notificationapi.com',
+    email: 'john_doe@example.com',
     number: '+15005550006'
   },
   mergeTags: {
@@ -331,7 +331,7 @@ notificationapi.send(
         "notificationId": "welcome",
         "user": {
             "id": "test_user_id_doc_example",
-            "email": "testDocExample@notificationapi.com",
+            "email": "john_doe@example.com",
             "number": "+15005550006",
         },
         "mergeTags": {
@@ -350,7 +350,7 @@ $notificationapi->send([
     "notificationId" => "welcome",
     "user" => [
         "id" => "test_user_id_doc_example",
-        "email" => "testDocExample@notificationapi.com",
+        "email" => "john_doe@example.com",
         "number" => "+15005550006"
     ],
     "mergeTags" => [
@@ -367,7 +367,7 @@ jsonParams := `{
   "notificationId": "welcome",
   "user": {
     "id": "test_user_id_doc_example",
-    "email": "testDocExample@notificationapi.com",
+    "email": "john_doe@example.com",
     "number": "+15005550006"
   },
   "mergeTags": {
@@ -388,7 +388,7 @@ string request = @"{
     ""notificationId"": ""welcome"",
     ""user"": {
         ""id"": ""test_user_id_doc_example"",
-        ""email"": ""testDocExample@notificationapi.com"",
+        ""email"": ""john_doe@example.com"",
         ""number"": ""+15005550006""
     },
     ""mergeTags"": {
@@ -406,7 +406,7 @@ notificationapi.send({
   notificationId: 'welcome',
   user: {
     id: 'test_user_id_doc_example',
-    email: 'testDocExample@notificationapi.com',
+    email: 'john_doe@example.com',
     number: '+15005550006'
   },
   mergeTags: {
@@ -482,7 +482,7 @@ values={[
 ```js
 notificationapi.identifyUser({
   id: 'test_user_id_doc_example',
-  email: 'testDocExample@notificationapi.com',
+  email: 'john_doe@example.com',
   number: '+15005550006',
   pushTokens: [
     {
@@ -520,7 +520,7 @@ notificationapi.identifyUser({
 ```python
 notificationapi.identify_user({
     "id": "test_user_id_doc_example",
-    "email": "testDocExample@notificationapi.com",
+    "email": "john_doe@example.com",
     "number": "+15005550006",
     "pushTokens": [
         {
@@ -556,7 +556,7 @@ notificationapi.identify_user({
 ```php
 $user = [
     'id' => 'test_user_id_doc_example',
-    'email' => 'testDocExample@notificationapi.com',
+    'email' => 'john_doe@example.com',
     'number' => '+15005550006',
     'pushTokens' => [
         [
@@ -595,7 +595,7 @@ $notificationAPI->identifyUser($user);
 number := "+15005550006"
 user := NotificationAPI.User{
 		Id:     "test_user_id_doc_example",
-		Email:  "testDocExample@notificationapi.com",
+		Email:  "john_doe@example.com",
 		Number: &number,
 		PushTokens: &[]NotificationAPI.UserPushToken{
 			{
@@ -643,7 +643,7 @@ NotificationAPI.IdentifyUser(user)
 var userId = "test_user_id_doc_example";
 var userData = new Dictionary<string, object>
 {
-    { "email", "testDocExample@notificationapi.com" },
+    { "email", "john_doe@example.com" },
     { "number", "+15005550006" },
     {
         "pushTokens", new List<Dictionary<string, object>>
@@ -694,7 +694,7 @@ await notificationApi.IdentifyUser(userId, userData);
 ```ruby
 user_id = "test_user_id_doc_example"
 user_data = {
-  email: "testDocExample@notificationapi.com",
+  email: "john_doe@example.com",
   number: "+15005550006",
   pushTokens: [
     {
