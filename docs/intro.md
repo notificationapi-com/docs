@@ -4,7 +4,7 @@ sidebar_position: 1
 title: Home
 ---
 
-# notification_id_123abc to NotificationAPI Docs
+# Welcome to NotificationAPI Docs
 
 import css from 'devicon/devicon.min.css'
 

@@ -309,7 +309,7 @@ values={[
 
 ```js
 notificationapi.send({
-  notificationId: 'notification_id_123abc',
+  notificationId: 'usage_alert',
   user: {
     id: 'userId_123abc',
     email: 'john_doe@example.com',
@@ -328,7 +328,7 @@ notificationapi.send({
 ```python
 notificationapi.send(
     {
-        "notificationId": "notification_id_123abc",
+        "notificationId": "usage_alert",
         "user": {
             "id": "userId_123abc",
             "email": "john_doe@example.com",
@@ -347,7 +347,7 @@ notificationapi.send(
 
 ```php
 $notificationapi->send([
-    "notificationId" => "notification_id_123abc",
+    "notificationId" => "usage_alert",
     "user" => [
         "id" => "userId_123abc",
         "email" => "john_doe@example.com",
@@ -364,7 +364,7 @@ $notificationapi->send([
 
 ```go
 jsonParams := `{
-  "notificationId": "notification_id_123abc",
+  "notificationId": "usage_alert",
   "user": {
     "id": "userId_123abc",
     "email": "john_doe@example.com",
@@ -385,7 +385,7 @@ notificationapi.Send(params)
 
 ```csharp
 string request = @"{
-    ""notificationId"": ""notification_id_123abc"",
+    ""notificationId"": ""usage_alert"",
     ""user"": {
         ""id"": ""userId_123abc"",
         ""email"": ""john_doe@example.com"",
@@ -403,7 +403,7 @@ notificationapi.send(request);
 
 ```ruby
 notificationapi.send({
-  notificationId: 'notification_id_123abc',
+  notificationId: 'usage_alert',
   user: {
     id: 'userId_123abc',
     email: 'john_doe@example.com',
@@ -800,8 +800,8 @@ values={[
 ```js
 notificationapi.setUserPreferences('userId', [
   {
-    notificationId: 'notification_id_123abc',
-    channel: 'EMAIL',
+    notificationId: 'new_comment',
+    channel: 'INAPP_WEB',
     state: false
   },
   {
@@ -818,8 +818,8 @@ notificationapi.setUserPreferences('userId', [
 ```python
 notificationapi.setUserPreferences("userId", [
     {
-        "notificationId": "notification_id_123abc",
-        "channel": "EMAIL",
+        "notificationId": "new_comment",
+        "channel": "INAPP_WEB",
         "state": False
     },
     {
@@ -836,8 +836,8 @@ notificationapi.setUserPreferences("userId", [
 ```php
 $notificationapi->setUserPreferences("userId", [
     [
-        "notificationId" => "notification_id_123abc",
-        "channel" => "EMAIL",
+        "notificationId" => "new_comment",
+        "channel" => "INAPP_WEB",
         "state" => false
     ],
     [
@@ -854,8 +854,8 @@ $notificationapi->setUserPreferences("userId", [
 ```go
 jsonParams := `[
   {
-    notificationId: "notification_id_123abc",
-    channel: "EMAIL",
+    notificationId: "new_comment",
+    channel: "INAPP_WEB",
     state: false
   },
   {
@@ -878,8 +878,8 @@ string userPreferencesRequest = @"
     ""userId"": ""userId"",
     ""preferences"": [
         {
-            ""notificationId"": ""notification_id_123abc"",
-            ""channel"": ""EMAIL"",
+            ""notificationId"": ""new_comment"",
+            ""channel"": ""INAPP_WEB"",
             ""state"": false
         },
         {
@@ -898,7 +898,7 @@ await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 
 ```ruby
 user_preferences = [
-  { 'notificationId' => 'notification_id_123abc', 'channel' => 'EMAIL', 'state' => false },
+  { 'notificationId' => 'new_comment', 'channel' => 'INAPP_WEB', 'state' => false },
   { 'notificationId' => 'usage_alert', 'channel' => 'SMS', 'state' => true }
 ]
 
@@ -944,7 +944,7 @@ values={[
 
 ```js
 notificationapi.retract({
-  notificationId: 'notification_id_123abc',
+  notificationId: 'usage_alert',
   userId: 'userId_123abc'
 });
 ```
@@ -953,14 +953,14 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "notification_id_123abc", "userId": "userId_123abc"})
+notificationapi.retract({"notificationId": "usage_alert", "userId": "userId_123abc"})
 ```
 
 </TabItem>
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "notification_id_123abc", "userId" => "userId_123abc"]);
+$notificationapi->retract(["notificationId" => "usage_alert", "userId" => "userId_123abc"]);
 ```
 
 </TabItem>
@@ -968,7 +968,7 @@ $notificationapi->retract(["notificationId" => "notification_id_123abc", "userId
 
 ```go
 jsonParams := `{
-  NotificationId: "notification_id_123abc",
+  NotificationId: "usage_alert",
   UserId: "userId_123abc"
 }`
 var params notificationapi.RetractRequest
@@ -982,7 +982,7 @@ notificationapi.Retract(params);
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""notification_id_123abc"",
+    ""notificationId"": ""usage_alert"",
     ""userId"": ""userId_123abc""
 }";
 notificationapi.retract(request);
@@ -993,7 +993,7 @@ notificationapi.retract(request);
 
 ```ruby
 notificationapi.retract({
-  notificationId: 'notification_id_123abc',
+  notificationId: 'usage_alert',
   userId: 'userId_123abc'
 });
 ```
