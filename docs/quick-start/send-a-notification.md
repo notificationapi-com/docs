@@ -265,8 +265,9 @@ notificationapi.send({
   },
   // mergeTags is to pass dynamic values into the notification design.
   mergeTags: {
-    firstName: 'John',
-    alerts: [{ title: 'This is a new alert from your software!' }]
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```
