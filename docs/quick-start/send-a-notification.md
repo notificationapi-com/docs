@@ -292,6 +292,12 @@ notificationapi.send({
         "user": {
             "id": "userId_123abc",
             "email": "john_doe@example.com", # required for email notifications
+        },
+        # mergeTags is to pass dynamic values into the notification design.
+        "mergeTags": {
+            "item": "Krabby Patty Burger",
+            "address": "124 Conch Street",
+            "orderId": "1234567890"
         }
     })
 ```
@@ -311,9 +317,16 @@ $notificationapi->send([
     #The ID of the notification you wish to send. You can find this
     #value from the dashboard.
     "notificationId" => "order_tracking",
+    # The user to send the notification to.
     "user" => [
         "id" => "userId_123abc",
         "email" => "john_doe@example.com",   # required for email notifications
+    ],
+    # mergeTags is to pass dynamic values into the notification design.
+    "mergeTags" => [
+        "item" => "Krabby Patty Burger",
+        "address" => "124 Conch Street",
+        "orderId" => "1234567890"
     ]
 ]);
 ```
@@ -334,22 +347,25 @@ func main() {
 	// init
 	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 
-	// send
-	jsonParams := `{
-    "notificationId": "new_comment_notification",
-    "user": {
-      "id": "TEST_USER_ID",
-      "email": "TEST@TEST.com",
-      "number": "+15005550006"
-    },
-    "mergeTags": {
-      "firstName": "John" //Replace "John" with the user's first name
-    }
-  }`
-  var params notificationapi.SendRequest
-  json.Unmarshal([]byte(jsonParams), &params)
+  //mergeTags is to pass dynamic values into the notification design.
+  mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
+  mergeTags["item"] = "Krabby Patty Burger"
+  mergeTags["address"] = "124 Conch Street"
+  mergeTags["orderId"] = "1234567890"
 
-  notificationapi.Send(params)
+  notificationapi.Send(
+    notificationapi.SendRequest{
+      //The ID of the notification you wish to send. You can find this
+      //value from the dashboard.
+      NotificationId: "order_tracking",
+      //The user to send the notification to.
+      User: notificationapi.User{
+        Id:     "userId_123abc",
+        Email:  "john_doe@example.com",
+      },
+      MergeTags: mergeTags,
+    },
+  )
 }
 
 ```
@@ -360,14 +376,15 @@ func main() {
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""hello_world"",
+    ""notificationId"": ""order_tracking"",
     ""user"": {
-        ""id"": ""123"",
-        ""email"": ""test@test.com"",
-        ""number"": ""+15005550006""
+        ""id"": ""userId_123abc"",
+        ""email"": ""john_doe@example.com""
     },
     ""mergeTags"": {
-        ""firstName"": ""John"" // Replace 'John' with the user's first name
+        ""item"": ""Krabby Patty Burger"",
+        ""address"": ""124 Conch Street"",
+        ""orderId"": ""1234567890""
     }
 }";
 notificationapi.send(request);
@@ -385,11 +402,19 @@ notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
 
 # send
 notificationapi.send({
+  #The ID of the notification you wish to send. You can find this
+  #value from the dashboard.
   notificationId: 'new_comment_notification',
+  # The user to send the notification to.
   user: {
-    id: 'TEST_USER_ID',
-    email: 'TEST@TEST.COM', # required for email notifications
-    number: '+15005550006' # required for SMS
+    id: 'userId_123abc',
+    email: 'john_doe@example.com', # required for email notifications
+  },
+  # mergeTags is to pass dynamic values into the notification design.
+  mergeTags: {
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```

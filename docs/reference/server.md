@@ -336,8 +336,9 @@ notificationapi.send(
             "number": "+15005550006",
         },
         "mergeTags": {
-            "firstName": "John",
-            "alerts": [{"title": "This is a new alert from your software!"}]
+            "item": "Krabby Patty Burger",
+            "address": "124 Conch Street",
+            "orderId": "1234567890"
         }
     }
 )
@@ -354,9 +355,11 @@ $notificationapi->send([
         "email" => "john_doe@example.com",
         "number" => "+15005550006"
     ],
-    "mergeTags" => [
-        "firstName" => "John"
-    ]
+  "mergeTags" => [
+    "item" => "Krabby Patty Burger",
+    "address" => "124 Conch Street",
+    "orderId" => "1234567890"
+  ]
 ]);
 ```
 
@@ -364,21 +367,21 @@ $notificationapi->send([
 <TabItem value="go">
 
 ```go
-jsonParams := `{
-  "notificationId": "order_tracking",
-  "user": {
-    "id": "userId_123abc",
-    "email": "john_doe@example.com",
-    "number": "+15005550006"
-  },
-  "mergeTags": {
-    "firstName": "John"
-  }
-}`
-var params notificationapi.SendRequest
-json.Unmarshal([]byte(jsonParams), &params)
+mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
+mergeTags["item"] = "Krabby Patty Burger"
+mergeTags["address"] = "124 Conch Street"
+mergeTags["orderId"] = "1234567890"
 
-notificationapi.Send(params)
+notificationapi.Send(
+  notificationapi.SendRequest{
+    NotificationId: "order_tracking",
+    User: notificationapi.User{
+      Id:     "test_user_id",
+      Email:  "mohammad+20231220@notificationapi.com",
+    },
+    MergeTags: mergeTags,
+  },
+)
 ```
 
 </TabItem>
@@ -389,11 +392,12 @@ string request = @"{
     ""notificationId"": ""order_tracking"",
     ""user"": {
         ""id"": ""userId_123abc"",
-        ""email"": ""john_doe@example.com"",
-        ""number"": ""+15005550006""
+        ""email"": ""john_doe@example.com""
     },
     ""mergeTags"": {
-        ""firstName"": ""John""
+        ""item"": ""Krabby Patty Burger"",
+        ""address"": ""124 Conch Street"",
+        ""orderId"": ""1234567890""
     }
 }";
 notificationapi.send(request);
@@ -411,7 +415,9 @@ notificationapi.send({
     number: '+15005550006'
   },
   mergeTags: {
-    firstName: 'John'
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```
