@@ -257,7 +257,7 @@ notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 notificationapi.send({
   // The ID of the notification you wish to send.
   // You can find this value from the dashboard.
-  notificationId: 'usage_alert',
+  notificationId: 'order_tracking',
   // The user to send the notification to.
   user: {
     id: 'userId_123abc',
@@ -285,7 +285,7 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 notificationapi.send({
         #The ID of the notification you wish to send. You can find this
         #value from the dashboard.
-        "notificationId": "usage_alert",
+        "notificationId": "order_tracking",
 
         # The user to send the notification to.
         "user": {
@@ -309,7 +309,7 @@ $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 $notificationapi->send([
     #The ID of the notification you wish to send. You can find this
     #value from the dashboard.
-    "notificationId" => "usage_alert",
+    "notificationId" => "order_tracking",
     "user" => [
         "id" => "userId_123abc",
         "email" => "john_doe@example.com",   # required for email notifications

@@ -309,7 +309,7 @@ values={[
 
 ```js
 notificationapi.send({
-  notificationId: 'usage_alert',
+  notificationId: 'order_tracking',
   user: {
     id: 'userId_123abc',
     email: 'john_doe@example.com',
@@ -328,7 +328,7 @@ notificationapi.send({
 ```python
 notificationapi.send(
     {
-        "notificationId": "usage_alert",
+        "notificationId": "order_tracking",
         "user": {
             "id": "userId_123abc",
             "email": "john_doe@example.com",
@@ -347,7 +347,7 @@ notificationapi.send(
 
 ```php
 $notificationapi->send([
-    "notificationId" => "usage_alert",
+    "notificationId" => "order_tracking",
     "user" => [
         "id" => "userId_123abc",
         "email" => "john_doe@example.com",
@@ -364,7 +364,7 @@ $notificationapi->send([
 
 ```go
 jsonParams := `{
-  "notificationId": "usage_alert",
+  "notificationId": "order_tracking",
   "user": {
     "id": "userId_123abc",
     "email": "john_doe@example.com",
@@ -385,7 +385,7 @@ notificationapi.Send(params)
 
 ```csharp
 string request = @"{
-    ""notificationId"": ""usage_alert"",
+    ""notificationId"": ""order_tracking"",
     ""user"": {
         ""id"": ""userId_123abc"",
         ""email"": ""john_doe@example.com"",
@@ -403,7 +403,7 @@ notificationapi.send(request);
 
 ```ruby
 notificationapi.send({
-  notificationId: 'usage_alert',
+  notificationId: 'order_tracking',
   user: {
     id: 'userId_123abc',
     email: 'john_doe@example.com',
@@ -805,7 +805,7 @@ notificationapi.setUserPreferences('userId', [
     state: false
   },
   {
-    notificationId: 'usage_alert',
+    notificationId: 'order_tracking',
     channel: 'SMS',
     state: true
   }
@@ -823,7 +823,7 @@ notificationapi.setUserPreferences("userId", [
         "state": False
     },
     {
-        "notificationId": "usage_alert",
+        "notificationId": "order_tracking",
         "channel": "SMS",
         "state": True
     }
@@ -841,7 +841,7 @@ $notificationapi->setUserPreferences("userId", [
         "state" => false
     ],
     [
-        "notificationId" => "usage_alert",
+        "notificationId" => "order_tracking",
         "channel" => "SMS",
         "state" => true
     ]
@@ -859,7 +859,7 @@ jsonParams := `[
     state: false
   },
   {
-    notificationId: "usage_alert",
+    notificationId: "order_tracking",
     channel: "SMS",
     state: true
   }
@@ -883,7 +883,7 @@ string userPreferencesRequest = @"
             ""state"": false
         },
         {
-            ""notificationId"": ""usage_alert"",
+            ""notificationId"": ""order_tracking"",
             ""channel"": ""SMS"",
             ""state"": true
         }
@@ -899,7 +899,7 @@ await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 ```ruby
 user_preferences = [
   { 'notificationId' => 'new_comment', 'channel' => 'INAPP_WEB', 'state' => false },
-  { 'notificationId' => 'usage_alert', 'channel' => 'SMS', 'state' => true }
+  { 'notificationId' => 'order_tracking', 'channel' => 'SMS', 'state' => true }
 ]
 
 notification_api.set_user_preferences('userId', user_preferences)
@@ -944,7 +944,7 @@ values={[
 
 ```js
 notificationapi.retract({
-  notificationId: 'usage_alert',
+  notificationId: 'order_tracking',
   userId: 'userId_123abc'
 });
 ```
@@ -953,14 +953,14 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "usage_alert", "userId": "userId_123abc"})
+notificationapi.retract({"notificationId": "order_tracking", "userId": "userId_123abc"})
 ```
 
 </TabItem>
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "usage_alert", "userId" => "userId_123abc"]);
+$notificationapi->retract(["notificationId" => "order_tracking", "userId" => "userId_123abc"]);
 ```
 
 </TabItem>
@@ -968,7 +968,7 @@ $notificationapi->retract(["notificationId" => "usage_alert", "userId" => "userI
 
 ```go
 jsonParams := `{
-  NotificationId: "usage_alert",
+  NotificationId: "order_tracking",
   UserId: "userId_123abc"
 }`
 var params notificationapi.RetractRequest
@@ -982,7 +982,7 @@ notificationapi.Retract(params);
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""usage_alert"",
+    ""notificationId"": ""order_tracking"",
     ""userId"": ""userId_123abc""
 }";
 notificationapi.retract(request);
@@ -993,7 +993,7 @@ notificationapi.retract(request);
 
 ```ruby
 notificationapi.retract({
-  notificationId: 'usage_alert',
+  notificationId: 'order_tracking',
   userId: 'userId_123abc'
 });
 ```

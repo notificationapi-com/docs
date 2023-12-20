@@ -316,7 +316,7 @@ notificationapi.identify({
 Allows you update the user's notification preferences.
 
 ```js
-notificationapi.patchUserPreference('usage_alert', 'EMAIL', false);
+notificationapi.patchUserPreference('order_tracking', 'EMAIL', false);
 ```
 
 **Parameters**
