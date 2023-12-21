@@ -307,7 +307,7 @@ By using this function, you can omit the contact information when using `send()`
 ```js
 notificationapi.identify({
   id: 'testId',
-  email: 'john_doe@example.com'
+  email: 'spongebob@squarepants.com'
 });
 ```
 

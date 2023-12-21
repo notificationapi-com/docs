@@ -261,7 +261,7 @@ notificationapi.send({
   // The user to send the notification to.
   user: {
     id: 'userId_123abc',
-    email: 'john_doe@example.com' //required for email notifications
+    email: 'spongebob@squarepants.com' //required for email notifications
   },
   // mergeTags is to pass dynamic values into the notification design.
   mergeTags: {
@@ -291,7 +291,7 @@ notificationapi.send({
         # The user to send the notification to.
         "user": {
             "id": "userId_123abc",
-            "email": "john_doe@example.com", # required for email notifications
+            "email": "spongebob@squarepants.com", # required for email notifications
         },
         # mergeTags is to pass dynamic values into the notification design.
         "mergeTags": {
@@ -320,7 +320,7 @@ $notificationapi->send([
     # The user to send the notification to.
     "user" => [
         "id" => "userId_123abc",
-        "email" => "john_doe@example.com",   # required for email notifications
+        "email" => "spongebob@squarepants.com",   # required for email notifications
     ],
     # mergeTags is to pass dynamic values into the notification design.
     "mergeTags" => [
@@ -361,7 +361,7 @@ func main() {
       //The user to send the notification to.
       User: notificationapi.User{
         Id:     "userId_123abc",
-        Email:  "john_doe@example.com",
+        Email:  "spongebob@squarepants.com",
       },
       MergeTags: mergeTags,
     },
@@ -379,7 +379,7 @@ string request = @"{
     ""notificationId"": ""order_tracking"",
     ""user"": {
         ""id"": ""userId_123abc"",
-        ""email"": ""john_doe@example.com""
+        ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
         ""item"": ""Krabby Patty Burger"",
@@ -404,11 +404,11 @@ notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
 notificationapi.send({
   #The ID of the notification you wish to send. You can find this
   #value from the dashboard.
-  notificationId: 'new_comment_notification',
+  notificationId: 'order_tracking',
   # The user to send the notification to.
   user: {
     id: 'userId_123abc',
-    email: 'john_doe@example.com', # required for email notifications
+    email: 'spongebob@squarepants.com', # required for email notifications
   },
   # mergeTags is to pass dynamic values into the notification design.
   mergeTags: {

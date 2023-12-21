@@ -312,7 +312,7 @@ notificationapi.send({
   notificationId: 'order_tracking',
   user: {
     id: 'userId_123abc',
-    email: 'john_doe@example.com',
+    email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
   mergeTags: {
@@ -332,7 +332,7 @@ notificationapi.send(
         "notificationId": "order_tracking",
         "user": {
             "id": "userId_123abc",
-            "email": "john_doe@example.com",
+            "email": "spongebob@squarepants.com",
             "number": "+15005550006",
         },
         "mergeTags": {
@@ -352,7 +352,7 @@ $notificationapi->send([
     "notificationId" => "order_tracking",
     "user" => [
         "id" => "userId_123abc",
-        "email" => "john_doe@example.com",
+        "email" => "spongebob@squarepants.com",
         "number" => "+15005550006"
     ],
   "mergeTags" => [
@@ -377,7 +377,7 @@ notificationapi.Send(
     NotificationId: "order_tracking",
     User: notificationapi.User{
       Id:     "test_user_id",
-      Email:  "mohammad+20231220@notificationapi.com",
+      Email:  "spongebob@squarepants.com",
     },
     MergeTags: mergeTags,
   },
@@ -392,7 +392,7 @@ string request = @"{
     ""notificationId"": ""order_tracking"",
     ""user"": {
         ""id"": ""userId_123abc"",
-        ""email"": ""john_doe@example.com""
+        ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
         ""item"": ""Krabby Patty Burger"",
@@ -411,7 +411,7 @@ notificationapi.send({
   notificationId: 'order_tracking',
   user: {
     id: 'userId_123abc',
-    email: 'john_doe@example.com',
+    email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
   mergeTags: {
@@ -489,7 +489,7 @@ values={[
 ```js
 notificationapi.identifyUser({
   id: 'userId_123abc',
-  email: 'john_doe@example.com',
+  email: 'spongebob@squarepants.com',
   number: '+15005550006',
   pushTokens: [
     {
@@ -527,7 +527,7 @@ notificationapi.identifyUser({
 ```python
 notificationapi.identify_user({
     "id": "userId_123abc",
-    "email": "john_doe@example.com",
+    "email": "spongebob@squarepants.com",
     "number": "+15005550006",
     "pushTokens": [
         {
@@ -563,7 +563,7 @@ notificationapi.identify_user({
 ```php
 $user = [
     'id' => 'userId_123abc',
-    'email' => 'john_doe@example.com',
+    'email' => 'spongebob@squarepants.com',
     'number' => '+15005550006',
     'pushTokens' => [
         [
@@ -602,7 +602,7 @@ $notificationAPI->identifyUser($user);
 number := "+15005550006"
 user := NotificationAPI.User{
 		Id:     "userId_123abc",
-		Email:  "john_doe@example.com",
+		Email:  "spongebob@squarepants.com",
 		Number: &number,
 		PushTokens: &[]NotificationAPI.UserPushToken{
 			{
@@ -650,7 +650,7 @@ NotificationAPI.IdentifyUser(user)
 var userId = "userId_123abc";
 var userData = new Dictionary<string, object>
 {
-    { "email", "john_doe@example.com" },
+    { "email", "spongebob@squarepants.com" },
     { "number", "+15005550006" },
     {
         "pushTokens", new List<Dictionary<string, object>>
@@ -701,7 +701,7 @@ await notificationApi.IdentifyUser(userId, userData);
 ```ruby
 user_id = "userId_123abc"
 user_data = {
-  email: "john_doe@example.com",
+  email: "spongebob@squarepants.com",
   number: "+15005550006",
   pushTokens: [
     {
@@ -807,7 +807,7 @@ values={[
 ```js
 notificationapi.setUserPreferences('userId', [
   {
-    notificationId: 'new_comment',
+    notificationId: 'new_order',
     channel: 'INAPP_WEB',
     state: false
   },
@@ -825,7 +825,7 @@ notificationapi.setUserPreferences('userId', [
 ```python
 notificationapi.setUserPreferences("userId", [
     {
-        "notificationId": "new_comment",
+        "notificationId": "new_order",
         "channel": "INAPP_WEB",
         "state": False
     },
@@ -843,7 +843,7 @@ notificationapi.setUserPreferences("userId", [
 ```php
 $notificationapi->setUserPreferences("userId", [
     [
-        "notificationId" => "new_comment",
+        "notificationId" => "new_order",
         "channel" => "INAPP_WEB",
         "state" => false
     ],
@@ -861,7 +861,7 @@ $notificationapi->setUserPreferences("userId", [
 ```go
 jsonParams := `[
   {
-    notificationId: "new_comment",
+    notificationId: "new_order",
     channel: "INAPP_WEB",
     state: false
   },
@@ -885,7 +885,7 @@ string userPreferencesRequest = @"
     ""userId"": ""userId"",
     ""preferences"": [
         {
-            ""notificationId"": ""new_comment"",
+            ""notificationId"": ""new_order"",
             ""channel"": ""INAPP_WEB"",
             ""state"": false
         },
@@ -905,7 +905,7 @@ await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 
 ```ruby
 user_preferences = [
-  { 'notificationId' => 'new_comment', 'channel' => 'INAPP_WEB', 'state' => false },
+  { 'notificationId' => 'new_order', 'channel' => 'INAPP_WEB', 'state' => false },
   { 'notificationId' => 'order_tracking', 'channel' => 'SMS', 'state' => true }
 ]
 
