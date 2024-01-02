@@ -311,7 +311,7 @@ values={[
 notificationapi.send({
   notificationId: 'order_tracking',
   user: {
-    id: 'userId_123abc',
+    id: 'spongebob.squarepants',
     email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
@@ -331,7 +331,7 @@ notificationapi.send(
     {
         "notificationId": "order_tracking",
         "user": {
-            "id": "userId_123abc",
+            "id": "spongebob.squarepants",
             "email": "spongebob@squarepants.com",
             "number": "+15005550006",
         },
@@ -351,7 +351,7 @@ notificationapi.send(
 $notificationapi->send([
     "notificationId" => "order_tracking",
     "user" => [
-        "id" => "userId_123abc",
+        "id" => "spongebob.squarepants",
         "email" => "spongebob@squarepants.com",
         "number" => "+15005550006"
     ],
@@ -391,7 +391,7 @@ notificationapi.Send(
 string request = @"{
     ""notificationId"": ""order_tracking"",
     ""user"": {
-        ""id"": ""userId_123abc"",
+        ""id"": ""spongebob.squarepants"",
         ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
@@ -410,7 +410,7 @@ notificationapi.send(request);
 notificationapi.send({
   notificationId: 'order_tracking',
   user: {
-    id: 'userId_123abc',
+    id: 'spongebob.squarepants',
     email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
@@ -488,7 +488,7 @@ values={[
 
 ```js
 notificationapi.identifyUser({
-  id: 'userId_123abc',
+  id: 'spongebob.squarepants',
   email: 'spongebob@squarepants.com',
   number: '+15005550006',
   pushTokens: [
@@ -526,7 +526,7 @@ notificationapi.identifyUser({
 
 ```python
 notificationapi.identify_user({
-    "id": "userId_123abc",
+    "id": "spongebob.squarepants",
     "email": "spongebob@squarepants.com",
     "number": "+15005550006",
     "pushTokens": [
@@ -562,7 +562,7 @@ notificationapi.identify_user({
 
 ```php
 $user = [
-    'id' => 'userId_123abc',
+    'id' => 'spongebob.squarepants',
     'email' => 'spongebob@squarepants.com',
     'number' => '+15005550006',
     'pushTokens' => [
@@ -601,7 +601,7 @@ $notificationAPI->identifyUser($user);
 ```go
 number := "+15005550006"
 user := NotificationAPI.User{
-		Id:     "userId_123abc",
+		Id:     "spongebob.squarepants",
 		Email:  "spongebob@squarepants.com",
 		Number: &number,
 		PushTokens: &[]NotificationAPI.UserPushToken{
@@ -647,7 +647,7 @@ NotificationAPI.IdentifyUser(user)
 <TabItem value="csharp">
 
 ```csharp
-var userId = "userId_123abc";
+var userId = "spongebob.squarepants";
 var userData = new Dictionary<string, object>
 {
     { "email", "spongebob@squarepants.com" },
@@ -699,7 +699,7 @@ await notificationApi.IdentifyUser(userId, userData);
 <TabItem value="ruby">
 
 ```ruby
-user_id = "userId_123abc"
+user_id = "spongebob.squarepants"
 user_data = {
   email: "spongebob@squarepants.com",
   number: "+15005550006",
@@ -952,7 +952,7 @@ values={[
 ```js
 notificationapi.retract({
   notificationId: 'order_tracking',
-  userId: 'userId_123abc'
+  userId: 'spongebob.squarepants'
 });
 ```
 
@@ -960,14 +960,14 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "order_tracking", "userId": "userId_123abc"})
+notificationapi.retract({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
 ```
 
 </TabItem>
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "order_tracking", "userId" => "userId_123abc"]);
+$notificationapi->retract(["notificationId" => "order_tracking", "userId" => "spongebob.squarepants"]);
 ```
 
 </TabItem>
@@ -976,7 +976,7 @@ $notificationapi->retract(["notificationId" => "order_tracking", "userId" => "us
 ```go
 jsonParams := `{
   NotificationId: "order_tracking",
-  UserId: "userId_123abc"
+  UserId: "spongebob.squarepants"
 }`
 var params notificationapi.RetractRequest
 json.Unmarshal([]byte(jsonParams), &params)
@@ -990,7 +990,7 @@ notificationapi.Retract(params);
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
     ""notificationId"": ""order_tracking"",
-    ""userId"": ""userId_123abc""
+    ""userId"": ""spongebob.squarepants""
 }";
 notificationapi.retract(request);
 ```
@@ -1001,7 +1001,7 @@ notificationapi.retract(request);
 ```ruby
 notificationapi.retract({
   notificationId: 'order_tracking',
-  userId: 'userId_123abc'
+  userId: 'spongebob.squarepants'
 });
 ```
 

@@ -260,7 +260,7 @@ notificationapi.send({
   notificationId: 'order_tracking',
   // The user to send the notification to.
   user: {
-    id: 'userId_123abc',
+    id: 'spongebob.squarepants',
     email: 'spongebob@squarepants.com' //required for email notifications
   },
   // mergeTags is to pass dynamic values into the notification design.
@@ -290,7 +290,7 @@ notificationapi.send({
 
         # The user to send the notification to.
         "user": {
-            "id": "userId_123abc",
+            "id": "spongebob.squarepants",
             "email": "spongebob@squarepants.com", # required for email notifications
         },
         # mergeTags is to pass dynamic values into the notification design.
@@ -319,7 +319,7 @@ $notificationapi->send([
     "notificationId" => "order_tracking",
     # The user to send the notification to.
     "user" => [
-        "id" => "userId_123abc",
+        "id" => "spongebob.squarepants",
         "email" => "spongebob@squarepants.com",   # required for email notifications
     ],
     # mergeTags is to pass dynamic values into the notification design.
@@ -360,7 +360,7 @@ func main() {
       NotificationId: "order_tracking",
       //The user to send the notification to.
       User: notificationapi.User{
-        Id:     "userId_123abc",
+        Id:     "spongebob.squarepants",
         Email:  "spongebob@squarepants.com",
       },
       MergeTags: mergeTags,
@@ -378,7 +378,7 @@ NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRE
 string request = @"{
     ""notificationId"": ""order_tracking"",
     ""user"": {
-        ""id"": ""userId_123abc"",
+        ""id"": ""spongebob.squarepants"",
         ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
@@ -407,7 +407,7 @@ notificationapi.send({
   notificationId: 'order_tracking',
   # The user to send the notification to.
   user: {
-    id: 'userId_123abc',
+    id: 'spongebob.squarepants',
     email: 'spongebob@squarepants.com', # required for email notifications
   },
   # mergeTags is to pass dynamic values into the notification design.
