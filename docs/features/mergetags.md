@@ -1,4 +1,4 @@
-# 🎁 Dynamic Parameters (Merge Tags)
+# 📦 Parameters (Merge Tags)
 
 **Merge tags** are values that cannot be hard-coded into notification designs and must be passed in programmatically from your code. For examples:
 
