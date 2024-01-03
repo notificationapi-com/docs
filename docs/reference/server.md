@@ -309,14 +309,16 @@ values={[
 
 ```js
 notificationapi.send({
-  notificationId: 'hello_world',
+  notificationId: 'order_tracking',
   user: {
-    id: '123',
-    email: 'test@test.com',
+    id: 'spongebob.squarepants',
+    email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
   mergeTags: {
-    firstName: 'test'
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```
@@ -327,14 +329,16 @@ notificationapi.send({
 ```python
 notificationapi.send(
     {
-        "notificationId": "hello_world",
+        "notificationId": "order_tracking",
         "user": {
-            "id": "123",
-            "email": "test@test.com",
+            "id": "spongebob.squarepants",
+            "email": "spongebob@squarepants.com",
             "number": "+15005550006",
         },
         "mergeTags": {
-            "firstName": "test"
+            "item": "Krabby Patty Burger",
+            "address": "124 Conch Street",
+            "orderId": "1234567890"
         }
     }
 )
@@ -345,15 +349,17 @@ notificationapi.send(
 
 ```php
 $notificationapi->send([
-    "notificationId" => "hello_world",
+    "notificationId" => "order_tracking",
     "user" => [
-        "id" => "123",
-        "email" => "test@test.com",
+        "id" => "spongebob.squarepants",
+        "email" => "spongebob@squarepants.com",
         "number" => "+15005550006"
     ],
-    "mergeTags" => [
-        "firstName" => "Stranger"
-    ]
+  "mergeTags" => [
+    "item" => "Krabby Patty Burger",
+    "address" => "124 Conch Street",
+    "orderId" => "1234567890"
+  ]
 ]);
 ```
 
@@ -361,21 +367,21 @@ $notificationapi->send([
 <TabItem value="go">
 
 ```go
-jsonParams := `{
-  "notificationId": "hello_world",
-  "user": {
-    "id": "123",
-    "email": "test@test.com",
-    "number": "+15005550006"
-  },
-  "mergeTags": {
-    "firstName": "Stranger"
-  }
-}`
-var params notificationapi.SendRequest
-json.Unmarshal([]byte(jsonParams), &params)
+mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
+mergeTags["item"] = "Krabby Patty Burger"
+mergeTags["address"] = "124 Conch Street"
+mergeTags["orderId"] = "1234567890"
 
-notificationapi.Send(params)
+notificationapi.Send(
+  notificationapi.SendRequest{
+    NotificationId: "order_tracking",
+    User: notificationapi.User{
+      Id:     "test_user_id",
+      Email:  "spongebob@squarepants.com",
+    },
+    MergeTags: mergeTags,
+  },
+)
 ```
 
 </TabItem>
@@ -383,14 +389,15 @@ notificationapi.Send(params)
 
 ```csharp
 string request = @"{
-    ""notificationId"": ""hello_world"",
+    ""notificationId"": ""order_tracking"",
     ""user"": {
-        ""id"": ""123"",
-        ""email"": ""test@test.com"",
-        ""number"": ""+15005550006""
+        ""id"": ""spongebob.squarepants"",
+        ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
-        ""firstName"": ""FIRST_NAME""
+        ""item"": ""Krabby Patty Burger"",
+        ""address"": ""124 Conch Street"",
+        ""orderId"": ""1234567890""
     }
 }";
 notificationapi.send(request);
@@ -401,14 +408,16 @@ notificationapi.send(request);
 
 ```ruby
 notificationapi.send({
-  notificationId: 'hello_world',
+  notificationId: 'order_tracking',
   user: {
-    id: '123',
-    email: 'test@test.com',
+    id: 'spongebob.squarepants',
+    email: 'spongebob@squarepants.com',
     number: '+15005550006'
   },
   mergeTags: {
-    firstName: 'test'
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```
@@ -479,9 +488,36 @@ values={[
 
 ```js
 notificationapi.identifyUser({
-  id: 'user-unique-identifier',
-  email: 'user@example.com',
-  number: '+15005550006'
+  id: 'spongebob.squarepants',
+  email: 'spongebob@squarepants.com',
+  number: '+15005550006',
+  pushTokens: [
+    {
+      type: PushProviders.FCM,
+      token: 'samplePushToken',
+      device: {
+        app_id: 'com.example.app',
+        ad_id: '1234567890',
+        device_id: '1234567890',
+        platform: 'android',
+        manufacturer: 'Samsung',
+        model: 'SM-G930F'
+      }
+    }
+  ],
+  webPushTokens: [
+    {
+      sub: {
+        endpoint:
+          'https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi',
+        keys: {
+          p256dh:
+            'zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ',
+          auth: 'CXEFun************tYe8g'
+        }
+      }
+    }
+  ]
 });
 ```
 
@@ -490,9 +526,34 @@ notificationapi.identifyUser({
 
 ```python
 notificationapi.identify_user({
-    'id': 'user-unique-identifier',
-    'email': 'user@example.com',
-    'number': '+15005550006'
+    "id": "spongebob.squarepants",
+    "email": "spongebob@squarepants.com",
+    "number": "+15005550006",
+    "pushTokens": [
+        {
+            "type": "FCM",
+            "token": "samplePushToken",
+            "device": {
+                "app_id": "com.example.app",
+                "ad_id": "1234567890",
+                "device_id": "1234567890",
+                "platform": "android",
+                "manufacturer": "Samsung",
+                "model": "SM-G930F"
+            }
+        }
+      ],
+    "webPushTokens": [
+        {
+            "sub": {
+                "endpoint": "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+                "keys": {
+                    "p256dh": "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+                    "auth": "CXEFun************tYe8g"
+                }
+            }
+        }
+    ]
 })
 ```
 
@@ -501,9 +562,34 @@ notificationapi.identify_user({
 
 ```php
 $user = [
-    'id' => 'user-unique-identifier',
-    'email' => 'user@example.com',
-    'number' => '+15005550006'
+    'id' => 'spongebob.squarepants',
+    'email' => 'spongebob@squarepants.com',
+    'number' => '+15005550006',
+    'pushTokens' => [
+        [
+            'type' => 'FCM',
+            'token' => 'samplePushToken',
+            'device' => [
+                'app_id' => 'com.example.app',
+                'ad_id' => '1234567890',
+                'device_id' => '1234567890',
+                'platform' => 'android',
+                'manufacturer' => 'Samsung',
+                'model' => 'SM-G930F'
+            ]
+        ]
+    ],
+    'webPushTokens' => [
+        [
+            'sub' => [
+                'endpoint' => 'https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi',
+                'keys' => [
+                    'p256dh' => 'zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ',
+                    'auth' => 'CXEFun************tYe8g'
+                ]
+            ]
+        ]
+    ]
 ];
 
 $notificationAPI->identifyUser($user);
@@ -515,9 +601,43 @@ $notificationAPI->identifyUser($user);
 ```go
 number := "+15005550006"
 user := NotificationAPI.User{
-		Id:     "user-unique-identifier",
-		Email:  "user@example.com",
-		Number: &number
+		Id:     "spongebob.squarepants",
+		Email:  "spongebob@squarepants.com",
+		Number: &number,
+		PushTokens: &[]NotificationAPI.UserPushToken{
+			{
+				Type:  String("FCM"),
+				Token: String("samplePushToken"),
+				Device: &NotificationAPI.UserPushTokenDevice{
+					App_id:        String("com.example.app"),
+					Ad_id:         String("1234567890"),
+					Device_id:     String("1234567890"),
+					Platform:      String("android"),
+					Manufacturer:  String("Samsung"),
+					Model:         String("SM-G930F"),
+				},
+			},
+		},
+		WebPushTokens: &[]NotificationAPI.UserWebPushToken{
+			{
+				Sub: struct {
+					Endpoint string `json:"endpoint,omitempty"`
+					Keys     struct {
+						P256DH string `json:"p256dh,omitempty"`
+						Auth   string `json:"auth,omitempty"`
+					} `json:"keys,omitempty"`
+				}{
+					Endpoint: "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+					Keys: struct {
+						P256DH string `json:"p256dh,omitempty"`
+						Auth   string `json:"auth,omitempty"`
+					}{
+						P256DH: "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+						Auth:   "CXEFun************tYe8g",
+					},
+				},
+			},
+		},
 	}
 var params notificationapi.SetUserPreferencesRequest
 NotificationAPI.IdentifyUser(user)
@@ -527,10 +647,49 @@ NotificationAPI.IdentifyUser(user)
 <TabItem value="csharp">
 
 ```csharp
-var userId = "user-unique-identifier";
-var userData = new Dictionary<string, string> {
-    { "email", "user@example.com" },
-    { "number", "+15005550006" }
+var userId = "spongebob.squarepants";
+var userData = new Dictionary<string, object>
+{
+    { "email", "spongebob@squarepants.com" },
+    { "number", "+15005550006" },
+    {
+        "pushTokens", new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object>
+            {
+                { "type", PushProviders.FCM },
+                { "token", "samplePushToken" },
+                {
+                    "device", new Dictionary<string, object>
+                    {
+                        { "app_id", "com.example.app" },
+                        { "ad_id", "1234567890" },
+                        { "device_id", "1234567890" },
+                        { "platform", "android" },
+                        { "manufacturer", "Samsung" },
+                        { "model", "SM-G930F" }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "webPushTokens", new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object>
+            {
+                "sub", new Dictionary<string, object>
+                {
+                    { "endpoint", "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi" },
+                    "keys", new Dictionary<string, string>
+                    {
+                        { "p256dh", "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ" },
+                        { "auth", "CXEFun************tYe8g" }
+                    }
+                }
+            }
+        }
+    }
 };
 
 await notificationApi.IdentifyUser(userId, userData);
@@ -540,10 +699,35 @@ await notificationApi.IdentifyUser(userId, userData);
 <TabItem value="ruby">
 
 ```ruby
-user_id = "user-unique-identifier"
+user_id = "spongebob.squarepants"
 user_data = {
-  email: "user@example.com",
-  number: "+15005550006"
+  email: "spongebob@squarepants.com",
+  number: "+15005550006",
+  pushTokens: [
+    {
+      type: PushProviders::FCM, # Assuming PushProviders::FCM is defined
+      token: "samplePushToken",
+      device: {
+        app_id: "com.example.app",
+        ad_id: "1234567890",
+        device_id: "1234567890",
+        platform: "android",
+        manufacturer: "Samsung",
+        model: "SM-G930F"
+      }
+    }
+  ],
+  webPushTokens: [
+    {
+      sub: {
+        endpoint: "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+        keys: {
+          p256dh: "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+          auth: "CXEFun************tYe8g"
+        }
+      }
+    }
+  ]
 }
 
 notification_api.identify_user(user_id, user_data)
@@ -623,12 +807,12 @@ values={[
 ```js
 notificationapi.setUserPreferences('userId', [
   {
-    notificationId: 'notificationId1',
-    channel: 'EMAIL',
+    notificationId: 'new_order',
+    channel: 'INAPP_WEB',
     state: false
   },
   {
-    notificationId: 'notificationId2',
+    notificationId: 'order_tracking',
     channel: 'SMS',
     state: true
   }
@@ -641,12 +825,12 @@ notificationapi.setUserPreferences('userId', [
 ```python
 notificationapi.setUserPreferences("userId", [
     {
-        "notificationId": "notificationId1",
-        "channel": "EMAIL",
+        "notificationId": "new_order",
+        "channel": "INAPP_WEB",
         "state": False
     },
     {
-        "notificationId": "notificationId2",
+        "notificationId": "order_tracking",
         "channel": "SMS",
         "state": True
     }
@@ -659,12 +843,12 @@ notificationapi.setUserPreferences("userId", [
 ```php
 $notificationapi->setUserPreferences("userId", [
     [
-        "notificationId" => "notificationId1",
-        "channel" => "EMAIL",
+        "notificationId" => "new_order",
+        "channel" => "INAPP_WEB",
         "state" => false
     ],
     [
-        "notificationId" => "notificationId2",
+        "notificationId" => "order_tracking",
         "channel" => "SMS",
         "state" => true
     ]
@@ -677,12 +861,12 @@ $notificationapi->setUserPreferences("userId", [
 ```go
 jsonParams := `[
   {
-    notificationId: "notificationId1",
-    channel: "EMAIL",
+    notificationId: "new_order",
+    channel: "INAPP_WEB",
     state: false
   },
   {
-    notificationId: "notificationId2",
+    notificationId: "order_tracking",
     channel: "SMS",
     state: true
   }
@@ -701,12 +885,12 @@ string userPreferencesRequest = @"
     ""userId"": ""userId"",
     ""preferences"": [
         {
-            ""notificationId"": ""notificationId1"",
-            ""channel"": ""EMAIL"",
+            ""notificationId"": ""new_order"",
+            ""channel"": ""INAPP_WEB"",
             ""state"": false
         },
         {
-            ""notificationId"": ""notificationId2"",
+            ""notificationId"": ""order_tracking"",
             ""channel"": ""SMS"",
             ""state"": true
         }
@@ -721,8 +905,8 @@ await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
 
 ```ruby
 user_preferences = [
-  { 'notificationId' => 'notificationId1', 'channel' => 'EMAIL', 'state' => false },
-  { 'notificationId' => 'notificationId2', 'channel' => 'SMS', 'state' => true }
+  { 'notificationId' => 'new_order', 'channel' => 'INAPP_WEB', 'state' => false },
+  { 'notificationId' => 'order_tracking', 'channel' => 'SMS', 'state' => true }
 ]
 
 notification_api.set_user_preferences('userId', user_preferences)
@@ -767,8 +951,8 @@ values={[
 
 ```js
 notificationapi.retract({
-  notificationId: 'hello_world',
-  userId: '123'
+  notificationId: 'order_tracking',
+  userId: 'spongebob.squarepants'
 });
 ```
 
@@ -776,14 +960,14 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "hello_world", "userId": "123"})
+notificationapi.retract({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
 ```
 
 </TabItem>
 <TabItem value="php">
 
 ```php
-$notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]);
+$notificationapi->retract(["notificationId" => "order_tracking", "userId" => "spongebob.squarepants"]);
 ```
 
 </TabItem>
@@ -791,8 +975,8 @@ $notificationapi->retract(["notificationId" => "hello_world", "userId" => "123"]
 
 ```go
 jsonParams := `{
-  NotificationId: "hello_world",
-  UserId: "123"
+  NotificationId: "order_tracking",
+  UserId: "spongebob.squarepants"
 }`
 var params notificationapi.RetractRequest
 json.Unmarshal([]byte(jsonParams), &params)
@@ -805,8 +989,8 @@ notificationapi.Retract(params);
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""hello_world"",
-    ""userId"": ""123""
+    ""notificationId"": ""order_tracking"",
+    ""userId"": ""spongebob.squarepants""
 }";
 notificationapi.retract(request);
 ```
@@ -816,8 +1000,8 @@ notificationapi.retract(request);
 
 ```ruby
 notificationapi.retract({
-  notificationId: 'hello_world',
-  userId: '123'
+  notificationId: 'order_tracking',
+  userId: 'spongebob.squarepants'
 });
 ```
 

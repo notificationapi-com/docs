@@ -44,8 +44,8 @@ import 'notificationapi-js-client-sdk/dist/styles.css';
 
 ```js title="3. Initialize"
 const notificationapi = new NotificationAPI({
-  clientId: YOUR_CLIENT_ID,
-  userId: UNIQUE_USER_ID
+  clientId: 'YOUR_CLIENT_ID',
+  userId: 'UNIQUE_USER_ID'
 });
 ```
 
@@ -153,7 +153,7 @@ export default NotificationAPIComponent;
 </TabItem>
 
 <TabItem value="remix">
-  
+
 a) Add the following to your remix.config.js:
 
 ```js
@@ -305,7 +305,10 @@ Stores the end-user information for a given user.
 By using this function, you can omit the contact information when using `send()`. NotificationAPI will automatically lookup the user's stored email or phone number and use it for sending the notification. Recommended to call `identify()` every time the user signs, or upon signup and changing of the user contact info.
 
 ```js
-notificationapi.identify({ id: 'testId', email: 'test@example.com' });
+notificationapi.identify({
+  id: 'testId',
+  email: 'spongebob@squarepants.com'
+});
 ```
 
 ## patchUserPreference
@@ -313,7 +316,7 @@ notificationapi.identify({ id: 'testId', email: 'test@example.com' });
 Allows you update the user's notification preferences.
 
 ```js
-notificationapi.patchUserPreference('myNotificationId', 'EMAIL', false);
+notificationapi.patchUserPreference('order_tracking', 'EMAIL', false);
 ```
 
 **Parameters**
@@ -333,7 +336,7 @@ Complete guide: [In-App Notifications Widget](../components/inapp)
 
 ```js
 notificationapi.showInApp({
-  root: 'PARENT_DIV_ID'
+  root: 'CONTAINER_DIV_ID'
 });
 ```
 

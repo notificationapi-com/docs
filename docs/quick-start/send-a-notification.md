@@ -255,14 +255,19 @@ notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
 notificationapi.send({
-  notificationId: 'new_comment_notification',
+  // The ID of the notification you wish to send.
+  // You can find this value from the dashboard.
+  notificationId: 'order_tracking',
+  // The user to send the notification to.
   user: {
-    id: 'TEST_USER_ID',
-    email: 'TEST@TEST.COM', // required for email notifications
-    number: '+15005550006' // required for SMS/Calls
+    id: 'spongebob.squarepants',
+    email: 'spongebob@squarepants.com' //required for email notifications
   },
+  // mergeTags is to pass dynamic values into the notification design.
   mergeTags: {
-    firstName: 'Stranger'
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```
@@ -279,11 +284,20 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
 notificationapi.send({
-        "notificationId": "new_comment_notification",
+        #The ID of the notification you wish to send. You can find this
+        #value from the dashboard.
+        "notificationId": "order_tracking",
+
+        # The user to send the notification to.
         "user": {
-            "id": "TEST_USER_ID",
-            "email": "TEST@TEST.COM",   # required for email notifications
-            "number": "+15005550006"    # required for SMS
+            "id": "spongebob.squarepants",
+            "email": "spongebob@squarepants.com", # required for email notifications
+        },
+        # mergeTags is to pass dynamic values into the notification design.
+        "mergeTags": {
+            "item": "Krabby Patty Burger",
+            "address": "124 Conch Street",
+            "orderId": "1234567890"
         }
     })
 ```
@@ -300,11 +314,19 @@ $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 
 # send
 $notificationapi->send([
-    "notificationId" => "new_comment_notification",
+    #The ID of the notification you wish to send. You can find this
+    #value from the dashboard.
+    "notificationId" => "order_tracking",
+    # The user to send the notification to.
     "user" => [
-        "id" => "TEST_USER_ID",
-        "email" => "TEST@TEST.COM",   # required for email notifications
-        "number" => "+15005550006"    # required for SMS
+        "id" => "spongebob.squarepants",
+        "email" => "spongebob@squarepants.com",   # required for email notifications
+    ],
+    # mergeTags is to pass dynamic values into the notification design.
+    "mergeTags" => [
+        "item" => "Krabby Patty Burger",
+        "address" => "124 Conch Street",
+        "orderId" => "1234567890"
     ]
 ]);
 ```
@@ -325,22 +347,25 @@ func main() {
 	// init
 	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 
-	// send
-	jsonParams := `{
-    "notificationId": "new_comment_notification",
-    "user": {
-      "id": "TEST_USER_ID",
-      "email": "TEST@TEST.com",
-      "number": "+15005550006"
-    },
-    "mergeTags": {
-      "firstName": "Stranger"
-    }
-  }`
-  var params notificationapi.SendRequest
-  json.Unmarshal([]byte(jsonParams), &params)
+  //mergeTags is to pass dynamic values into the notification design.
+  mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
+  mergeTags["item"] = "Krabby Patty Burger"
+  mergeTags["address"] = "124 Conch Street"
+  mergeTags["orderId"] = "1234567890"
 
-  notificationapi.Send(params)
+  notificationapi.Send(
+    notificationapi.SendRequest{
+      //The ID of the notification you wish to send. You can find this
+      //value from the dashboard.
+      NotificationId: "order_tracking",
+      //The user to send the notification to.
+      User: notificationapi.User{
+        Id:     "spongebob.squarepants",
+        Email:  "spongebob@squarepants.com",
+      },
+      MergeTags: mergeTags,
+    },
+  )
 }
 
 ```
@@ -351,14 +376,15 @@ func main() {
 ```csharp
 NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
 string request = @"{
-    ""notificationId"": ""hello_world"",
+    ""notificationId"": ""order_tracking"",
     ""user"": {
-        ""id"": ""123"",
-        ""email"": ""test@test.com"",
-        ""number"": ""+15005550006""
+        ""id"": ""spongebob.squarepants"",
+        ""email"": ""spongebob@squarepants.com""
     },
     ""mergeTags"": {
-        ""firstName"": ""FIRST_NAME""
+        ""item"": ""Krabby Patty Burger"",
+        ""address"": ""124 Conch Street"",
+        ""orderId"": ""1234567890""
     }
 }";
 notificationapi.send(request);
@@ -376,11 +402,19 @@ notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
 
 # send
 notificationapi.send({
-  notificationId: 'new_comment_notification',
+  #The ID of the notification you wish to send. You can find this
+  #value from the dashboard.
+  notificationId: 'order_tracking',
+  # The user to send the notification to.
   user: {
-    id: 'TEST_USER_ID',
-    email: 'TEST@TEST.COM', # required for email notifications
-    number: '+15005550006' # required for SMS
+    id: 'spongebob.squarepants',
+    email: 'spongebob@squarepants.com', # required for email notifications
+  },
+  # mergeTags is to pass dynamic values into the notification design.
+  mergeTags: {
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 });
 ```

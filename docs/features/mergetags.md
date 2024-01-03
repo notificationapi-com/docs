@@ -23,15 +23,9 @@ Use the `mergeTags` fields in the SDKs or APIs to pass in dynamic data. You can 
 notificationapi.send({
   ...,
   mergeTags: {
-   firstName: 'John',
-   accountId: 123,
-   isActivated: true,
-   alerts: [
-      {
-         id: 123,
-         title: 'This is a new alert!'
-      }
-   ]
+    item: 'Krabby Patty Burger',
+    address: '124 Conch Street',
+    orderId: '1234567890'
   }
 );
 ```
