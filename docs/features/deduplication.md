@@ -13,7 +13,7 @@ A notification is duplicate if it is:
 - Using the same channels as before, e.g. email & in-app
 - With the same exact content (same subject, same message, same attachments, ...)
 
-## Deduplication Duration
+## How does it work?
 
 import img from '@site/static/NotificationAPI notification as a service deduplication feature.png';
 
@@ -26,6 +26,8 @@ Example: duplication window of 1 hour
 - A notification is sent to user at 10:00:00AM (successful)
 - Same notification to user at 10:59:59AM (ignored)
 - Same notification to user at 11:02:00AM (successful)
+
+Ignored requests are properly logged in our logs and insights features
 
 ## How to use the deduplication feature?
 
