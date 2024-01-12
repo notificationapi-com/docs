@@ -1,4 +1,4 @@
-# Sub Notifications
+# 🥈 Sub Notifications
 
 Sub notifications are used to provide more granularity to end-users in their notification preferences. With subNotificationId, a user can sub/unsub to subgroup of a notification.
 
