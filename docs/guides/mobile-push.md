@@ -54,7 +54,7 @@ NotificationAPI Mobile SDKs automatically manage and sync FCM tokens with Notifi
 
 | Mobile SDK                          | APNs Token Management |
 | :---------------------------------- | :-------------------: |
-| [Android](../reference/android_sdk) |       Automatic       |
+| [Android](../reference/android-sdk) |       Automatic       |
 
 ## Sending Customized Messages
 
