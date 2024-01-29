@@ -46,13 +46,13 @@ You can use our REST API (documentation available to paid customers).
 #### Server-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
-    <SupportedEnvironment logo="devicon-nodejs-plain" name="Node.js" path="" />
-    <SupportedEnvironment logo="devicon-typescript-plain" name="Typescript" path="" />
-    <SupportedEnvironment logo="devicon-python-plain" name="Python" path="" />
-    <SupportedEnvironment logo="devicon-php-plain" name="PHP" path="" />
-    <SupportedEnvironment logo="devicon-go-original-wordmark" name="Go" path="" />
-    <SupportedEnvironment logo="devicon-csharp-plain" name="C#" path="" />
-    <SupportedEnvironment logo="devicon-ruby-plain" name="Ruby" path="" />
+    <SupportedEnvironment logo="devicon-nodejs-plain" name="Node.js" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-typescript-plain" name="Typescript" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-python-plain" name="Python" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-php-plain" name="PHP" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-go-original-wordmark" name="Go" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-csharp-plain" name="C#" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-ruby-plain" name="Ruby" path="./reference/server" />
 </div>
 
 ---
@@ -60,11 +60,11 @@ You can use our REST API (documentation available to paid customers).
 #### Client-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="" />
-    <SupportedEnvironment  logo="devicon-nextjs-plain" name="Next.js" path="" />
-    <SupportedEnvironment  logo="devicon-javascript-plain" name="JavaScript" path="" />
-    <SupportedEnvironment  logo="devicon-angularjs-plain" name="Angular" path="" />
-    <SupportedEnvironment  logo="devicon-vuejs-plain" name="Vue" path="" />
+    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-nextjs-plain" name="Next.js" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-javascript-plain" name="JavaScript" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-angularjs-plain" name="Angular" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-vuejs-plain" name="Vue" path="./reference/js-client" />
 </div>
 
 ---
@@ -72,8 +72,8 @@ You can use our REST API (documentation available to paid customers).
 #### Mobile
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-apple-plain" name="iOS" path="" />
-    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="" />
+    <SupportedEnvironment  logo="devicon-apple-plain" name="iOS" path="./reference/ios-sdk" />
+    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="./reference/android_sdk" />
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
