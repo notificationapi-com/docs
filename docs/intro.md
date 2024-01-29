@@ -73,7 +73,7 @@ You can use our REST API (documentation available to paid customers).
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
     <SupportedEnvironment  logo="devicon-apple-plain" name="iOS" path="./reference/ios-sdk" />
-    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="./reference/android_sdk" />
+    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="./reference//android-sdk" />
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
