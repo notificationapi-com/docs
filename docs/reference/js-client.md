@@ -89,8 +89,8 @@ values={[
 { label: 'Remix', value: 'remix' },
 { label: 'Vue', value: 'vue' },
 { label: 'Angular', value: 'angular' },
-{ label: 'Next.js', value: 'next14' },
-{ label: `Next.js version<14`, value: 'next13' }
+{ label: `Next.js v14+`, value: 'next14' },
+{ label: `Next.js v13.5 or less`, value: 'next13' }
 ]
 }>
 <TabItem value="react">
