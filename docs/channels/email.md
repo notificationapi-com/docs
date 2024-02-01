@@ -23,7 +23,7 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 
 ## Important Features
 
-- High delivery through SPF, DKIM and DMARC
+- High delivery through SPF, DKIM and DMARC - [see docs](../guides/domain-verification.md)
 - Merge tags (injecting dynamic values into the email content) - [see docs](../features/mergetags)
 - Pre-built Unsubscribe Link and Web Page - [see docs](../components/unsubscribe-page)
 - Attachments - [see docs](../reference/server#send)
