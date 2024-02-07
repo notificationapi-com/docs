@@ -86,10 +86,11 @@ groupId="frontend-language"
 defaultValue="react"
 values={[
 { label: 'React', value: 'react' },
-{ label: 'Next.js', value: 'next' },
 { label: 'Remix', value: 'remix' },
 { label: 'Vue', value: 'vue' },
-{ label: 'Angular', value: 'angular' }
+{ label: 'Angular', value: 'angular' },
+{ label: `Next.js v14+`, value: 'next14' },
+{ label: `Next.js v13.5 or less`, value: 'next13' }
 ]
 }>
 <TabItem value="react">
@@ -120,7 +121,7 @@ export default NotificationAPIContainer;
 ```
 
 </TabItem>
-<TabItem value="next">
+<TabItem value="next14">
 
 The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
 
@@ -135,7 +136,7 @@ import React, { memo, useEffect } from 'react';
 const NotificationAPIComponent = memo((props: { userId: string }) => {
   useEffect(() => {
     const notificationapi = new NotificationAPI({
-      clientId: '24nojpnrsdc53fkslha0roov05',
+      clientId: 'CLIENT_ID',
       userId: props.userId
     });
     notificationapi.showInApp({
@@ -146,6 +147,42 @@ const NotificationAPIComponent = memo((props: { userId: string }) => {
 
   return <div id="container"></div>;
 });
+
+export default NotificationAPIComponent;
+```
+
+</TabItem>
+
+<TabItem value="next13">
+
+The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
+
+```jsx
+'use client';
+
+import 'notificationapi-js-client-sdk/dist/styles.css';
+import { memo, useEffect } from 'react';
+const NotificationAPIComponent = memo(() => {
+  useEffect(() => {
+    const loadNotificationAPI = async () => {
+      const NotificationAPI = (await import('notificationapi-js-client-sdk'))
+        .default;
+      const notificationapi = new NotificationAPI({
+        clientId: 'CLIENT_ID',
+        userId: 'USERS_ID'
+      });
+      notificationapi.showInApp({
+        root: 'CONTAINER_DIV_ID'
+      });
+    };
+
+    loadNotificationAPI();
+  }, []);
+
+  return <div id="CONTAINER_DIV_ID"></div>;
+});
+
+NotificationAPIComponent.displayName = 'NotificationAPIComponent';
 
 export default NotificationAPIComponent;
 ```
@@ -379,6 +416,6 @@ notificationapi.showUserPreferences();
 
 ### Why Can I Not Send Notifications from a Front-end SDK?
 
-NotificationAPI back-end SDKs require your `clientId` and `clientSecret` keys that are unique to your account. If anyone else obtained your keys then they would be able to edit or delete your notifications, and be able to send requests to NotificationAPI from your account. This is a security risk to you and your clients. 
+NotificationAPI back-end SDKs require your `clientId` and `clientSecret` keys that are unique to your account. If anyone else obtained your keys then they would be able to edit or delete your notifications, and be able to send requests to NotificationAPI from your account. This is a security risk to you and your clients.
 
 To better protect you, the NotificationAPI front-end SDKs do not allow _sending_ notifications: they only allow _receiving_ notifications. If you require sending notifications from your front-end, it is recommended to use a NotificationAPI back-end SDK on your back-end and expose an API for your front-end.
