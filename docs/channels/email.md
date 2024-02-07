@@ -23,7 +23,8 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 
 ## Important Features
 
-- High delivery through SPF, DKIM and DMARC
+- High delivery through SPF, DKIM and DMARC - [see docs](../guides/domain-verification.md)
+- Compliant with Google's and Yahoo's email sender policies and best practices for high deliverability - [see docs](email.md#Google and Yahoo Bulk Sender Requirements)
 - Merge tags (injecting dynamic values into the email content) - [see docs](../features/mergetags)
 - Pre-built Unsubscribe Link and Web Page - [see docs](../components/unsubscribe-page)
 - Attachments - [see docs](../reference/server#send)
@@ -50,6 +51,12 @@ The following are the events that we track and report on under our logs and insi
 - Bounces
 - Complaints
 - Opens and Clicks (coming soon)
+
+## Google and Yahoo Bulk Sender Requirements
+
+In light of recent announcements by [Google](https://blog.google/products/gmail/gmail-security-authentication-spam-protection/) and [Yahoo](https://blog.postmaster.yahooinc.com/post/730172167494483968/more-secure-less-spam), it has become mandatory for bulk email senders to implement various requirements in place to reduce spam ([read more on our blog](https://www.notificationapi.com/blog/the-developers-guide-to-google-bulk-sender-requirements)). Our account setup process ensures that you are compliant with these requirements by configuring SPF, DKIM, DMARC correctly.
+
+Moreover, it's essential to ensure that your emails support an easy, one-click unsubscribe process for end-users. This includes incorporating a clearly visible unsubscribe link within the body of your messages and providing unsubscribe end-points in the email header. NotificationAPI fully supports these functionalities, adhering to the standards set forth by [RFC 2369](https://datatracker.ietf.org/doc/html/rfc2369) and [RFC 8058](https://datatracker.ietf.org/doc/html/rfc8058). Our system automatically includes the necessary header and an unsubscribe footer in your outgoing messages, providing your recipients with a straightforward method to opt-out of future communications.
 
 ## Your Own Email Team
 
