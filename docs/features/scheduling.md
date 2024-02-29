@@ -6,7 +6,7 @@ Status: This feature is under active development.
 
 :::
 
-Scheduling a notification works just like sending a regular notification through NotificationAPI, with the addition of a datetime field that specifies when you want the notification sent. Our system takes care of the rest. Our dashboard will keep track of scheduled notifications in the logs section, marking them as scheduled and showing the time they are scheduled to be sent. You can also update or delete a scheduled notification by using the trackingId.
+Scheduling a notification works just like sending a regular notification through NotificationAPI, with the addition of a `schedule` field that specifies when you want the notification sent. Our system takes care of the rest. Our dashboard will keep track of scheduled notifications in the logs section, marking them as scheduled and showing the time they are scheduled to be sent. You can also update or delete a scheduled notification by using the trackingId.
 
 ## Example Use Cases
 
