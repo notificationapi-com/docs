@@ -171,17 +171,24 @@ Yes, you can update the request after sending it by using the `trackingId` befor
 
 Yes, with the `trackingId`, you can cancel a scheduled notification before it is sent. If the notification has already been sent, you can retract in-app notifications using the [retract function](../reference/server.md#retract).
 
-### How are errors handled in scheduled notifications?
+### How is error checking and logical operations handled with scheduled notifications?
 
-We check your request at two stages. First, when you submit a request to schedule a notification, we verify the format and accuracy of the request, including the correctness of the `notificationId`. The results of this step can be found in the response body of your request and in our [log dashboard](logs.md). Secondly, we check the request at the scheduled time for logic and usage limits. The outcomes of this step are also available on our [log dashboard](logs.md).
+Every notification request is evaluated for correct notificationId, being below the usage quota, valid user preferences, and more. For scheduled notifications, these checks are done twice:
+
+1. Once at the time of receiving the initial request, similar to regular notifications. The results of this step can be found in the response body of your request and in our [log dashboard](logs.md).
+2. Once again at the scheduled time. The results of this step can also be found in our [log dashboard](logs.md).
+
+The only exceptions are throttling and deduplication checks that only happen at the scheduled time.
+
+So for example, an invalid `notificationId` error might be generated initially if the notificationId is incorrect, or later if the notification is deleted.
 
 ### How are logics managed for scheduled notifications?
 
-We evaluate logics, such as [Deduplication](deduplication.md), and [throttling](throttling.md) at the scheduled time, not when the request is initially made.
+We evaluate logical, such as [Deduplication](deduplication.md), and [throttling](throttling.md) at the scheduled time, not when the request is initially made.
 
 ### How can I review scheduled notifications before they are sent?
 
-Currently, our [log dashboard](logs.md) does not support this feature, but we are considering adding it in the near future.
+We are working on the [log dashboard](logs.md) to show scheduled notifications.
 
 ### How far in advance can I schedule a notification?
 
@@ -189,4 +196,4 @@ You can schedule a notification up to 1 year in advance.
 
 ### How early in the future can I schedule a notification?
 
-If the schedule is set for a past time, we send the notification immediately.
+There are no limitations. If the schedule is set for a time in the past, the notification is sent immediately.
