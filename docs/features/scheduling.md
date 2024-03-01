@@ -161,6 +161,8 @@ notificationapi.send({
 </TabItem>
 </Tabs>
 
+You have the option to [update](../reference/server.md#updateschedule) or [delete](../reference/server.md#deleteschedule) the schedule before it is sent.
+
 ## Frequently Asked Questions (FAQ)
 
 ### Can I update a notification request after scheduling it?
