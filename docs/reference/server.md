@@ -174,6 +174,18 @@ class NotificationAPI {
       return await response.Content.ReadAsStringAsync();
   }
 
+  public async Task<string> UpdateSchedule(string trackingId, object scheduleRequest) {
+      string jsonString = JsonConvert.SerializeObject(scheduleRequest);
+      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+      var response = await httpClient.PutAsync($"{baseURL}/{clientId}/schedule/{trackingId}", content);
+      return await response.Content.ReadAsStringAsync();
+  }
+
+  public async Task<string> DeleteSchedule(string trackingId) {
+      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/schedule/{trackingId}");
+      return await response.Content.ReadAsStringAsync();
+  }
+
   public async Task<string> SetUserPreferences(string userId, object userPreferences) {
       string jsonString = JsonConvert.SerializeObject(userPreferences);
       HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -248,6 +260,14 @@ class NotificationAPI
 
   def delete_sub_notification(notification_id, sub_notification_id)
     send_request('DELETE', "notifications/#{notification_id}/subNotifications/#{sub_notification_id}")
+  end
+
+  def update_schedule(tracking_id, scheduleUpdate)
+    send_request('PATCH', "notifications/#{tracking_id}", scheduleUpdate)
+  end
+
+  def delete_schedule(tracking_id)
+    send_request('DELETE', "notifications/#{tracking_id}")
   end
 
   def set_user_preferences(user_id, user_preferences)
@@ -1015,3 +1035,159 @@ notificationapi.retract({
 | `notificationId`\* | string | The ID of the notification you wish to retract. You can find this value from the dashboard. |
 | `userId`\*         | string | The ID of the user in your system. Required.                                                |
 | `secondaryId`      | string | For when you want to delete a specific subNotificationId.                                   |
+
+## updateSchedule
+
+This function enables you to update a scheduled notification by providing a `trackingId`.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.updateSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c', {
+  schedule: '2024-02-20T14:38:03.509Z'
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.update_schedule({
+  "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",
+  "sendRequest":{"schedule": "2024-02-20T14:38:03.509Z"}
+  })
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->updateSchedule([
+    "trackingId" => "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",
+    "sendRequest" => [
+        "schedule" => "2024-02-20T14:38:03.509Z"
+    ]
+]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+updateReq := NotificationAPI.UpdateScheduleRequest{
+		Schedule: "2024-02-20T14:38:03.509Z",
+	}
+trackingId := "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+notificationapi.UpdateSchedule(trackingId, updateReq)
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+notificationapi.UpdateSchedule("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",{
+schedule: "2024-02-20T14:38:03.509Z"
+});
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.update_schedule(
+  tracking_id: '172cf2f4-18cd-4f1f-b2ac-e50c7d71891c',
+  {
+		schedule: "2024-02-20T14:38:03.509Z",
+	}
+);
+```
+
+</TabItem>
+
+</Tabs>
+
+| Name           | Type   | Description                                                                                                   |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| `trackingId`\* | string | The tracking ID of the scheduled notification you wish to update. You can find this value from the dashboard. |  |
+
+## deleteSchedule
+
+This function allows you to delete a scheduled notification by providing a `trackingId`.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.deleteSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.update_schedule({
+  "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->deleteSchedule([
+    "trackingId" => "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+ trackingId := "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+ notificationapi.DeleteSchedule(trackingId)
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+notificationapi.DeleteSchedule("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c");
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.delete_schedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
+```
+
+</TabItem>
+
+</Tabs>
+
+| Name           | Type   | Description                                                                                                   |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| `trackingId`\* | string | The tracking ID of the scheduled notification you wish to delete. You can find this value from the dashboard. |  |
