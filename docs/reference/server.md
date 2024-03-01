@@ -1089,8 +1089,8 @@ $notificationapi->updateSchedule([
 updateReq := NotificationAPI.UpdateScheduleRequest{
 		Schedule: "2024-02-20T14:38:03.509Z",
 	}
-	trackingId := "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
- notificationapi.UpdateSchedule(trackingId, updateReq)
+trackingId := "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+notificationapi.UpdateSchedule(trackingId, updateReq)
 ```
 
 </TabItem>
@@ -1098,8 +1098,8 @@ updateReq := NotificationAPI.UpdateScheduleRequest{
 
 ```csharp
 notificationapi.UpdateSchedule("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",{
-		schedule: "2024-02-20T14:38:03.509Z",
-	});
+schedule: "2024-02-20T14:38:03.509Z"
+});
 ```
 
 </TabItem>
@@ -1150,7 +1150,7 @@ notificationapi.deleteSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
 ```python
 notificationapi.update_schedule({
   "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
-  })
+})
 ```
 
 </TabItem>
