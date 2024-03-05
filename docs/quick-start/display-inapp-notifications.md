@@ -109,32 +109,37 @@ Create the following component and use it anywhere in your app:
 ```jsx
 'use client';
 
-import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
-import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import React, { memo, useEffect } from 'react';
-
+import { memo, useEffect } from 'react';
 const NotificationAPIComponent = memo((props: { userId: string }) => {
   useEffect(() => {
-    const notificationapi = new NotificationAPI({
-      clientId: '24nojpnrsdc53fkslha0roov05',
-      userId: props.userId
-    });
-    notificationapi.showInApp({
-      root: 'container',
-      popupPosition: PopupPosition.BottomLeft
-    });
+    const loadNotificationAPI = async () => {
+      const NotificationAPI = (await import('notificationapi-js-client-sdk'))
+        .default;
+      const notificationapi = new NotificationAPI({
+        clientId: 'CLIENT_ID',
+        userId: props.userId
+      });
+      notificationapi.showInApp({
+        root: 'CONTAINER_DIV_ID'
+      });
+    };
+
+    // Call the async function
+    loadNotificationAPI();
   }, [props.userId]);
 
-  return <div id="container"></div>;
+  return <div id="CONTAINER_DIV_ID"></div>;
 });
+
+NotificationAPIComponent.displayName = 'NotificationAPIComponent';
 
 export default NotificationAPIComponent;
 ```
 
 </TabItem>
 <TabItem value="remix">
-  
+
 a) Add the following to your remix.config.js:
 
 ```js

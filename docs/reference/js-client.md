@@ -89,8 +89,7 @@ values={[
 { label: 'Remix', value: 'remix' },
 { label: 'Vue', value: 'vue' },
 { label: 'Angular', value: 'angular' },
-{ label: `Next.js v14+`, value: 'next14' },
-{ label: `Next.js v13.5 or less`, value: 'next13' }
+{ label: `Next.js`, value: 'next' }
 ]
 }>
 <TabItem value="react">
@@ -121,39 +120,8 @@ export default NotificationAPIContainer;
 ```
 
 </TabItem>
-<TabItem value="next14">
 
-The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
-
-```jsx
-'use client';
-
-import NotificationAPI from 'notificationapi-js-client-sdk';
-import 'notificationapi-js-client-sdk/dist/styles.css';
-import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import React, { memo, useEffect } from 'react';
-
-const NotificationAPIComponent = memo((props: { userId: string }) => {
-  useEffect(() => {
-    const notificationapi = new NotificationAPI({
-      clientId: 'CLIENT_ID',
-      userId: props.userId
-    });
-    notificationapi.showInApp({
-      root: 'container',
-      popupPosition: PopupPosition.BottomLeft
-    });
-  }, [props.userId]);
-
-  return <div id="container"></div>;
-});
-
-export default NotificationAPIComponent;
-```
-
-</TabItem>
-
-<TabItem value="next13">
+<TabItem value="next">
 
 The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
 
