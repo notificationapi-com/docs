@@ -25,7 +25,7 @@ module.exports = {
           label: "Home",
         },
         {
-          href: "http://status.notificationapi.com",
+          href: "https://status.notificationapi.com",
           label: "Status Page",
         },
         {
