@@ -88,6 +88,7 @@ values={[
 { label: 'React', value: 'react' },
 { label: 'Remix', value: 'remix' },
 { label: 'Vue', value: 'vue' },
+{ label: 'Nuxt3', value: 'nuxt3' },
 { label: 'Angular', value: 'angular' },
 { label: `Next.js`, value: 'next' }
 ]
@@ -230,6 +231,40 @@ export default function Index() {
   <div>Hello World!</div>
   <div id="myNotifications"></div>
 </template>
+```
+
+</TabItem>
+<TabItem value="nuxt3">
+
+```html
+<template>
+  <div ref="containerRef" id="container"></div>
+</template>
+
+<script>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
+  export default {
+    name: 'NotificationAPIComponent',
+    mounted() {
+      this.notificationapi = new NotificationAPI({
+        clientId: 'CLIENT_ID',
+        userId: 'USER_ID'
+      });
+
+      this.notificationapi.showInApp({
+        root: 'container', // Use the ref as the root element
+        popupPosition: PopupPosition.BottomRight
+      });
+    }
+  };
+</script>
+<style scoped>
+  #container {
+    text-align: center;
+  }
+</style>
 ```
 
 </TabItem>
