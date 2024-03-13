@@ -1148,7 +1148,7 @@ notificationapi.deleteSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
 <TabItem value="python">
 
 ```python
-notificationapi.update_schedule({
+notificationapi.delete_schedule({
   "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
 })
 ```
