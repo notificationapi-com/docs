@@ -1066,7 +1066,7 @@ notificationapi.updateSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c', {
 ```python
 notificationapi.update_schedule({
   "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",
-  "sendRequest":{"schedule": "2024-02-20T14:38:03.509Z"}
+  "send_request":{"schedule": "2024-02-20T14:38:03.509Z"}
   })
 ```
 
