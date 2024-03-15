@@ -27,7 +27,7 @@ Google will use this link to display a unsubscribe link in the Gmail UI, as show
 
 1. Add `{{notificationapi:unsubscribe_url}}` anywhere in your templates, e.g. as the URL of an "unsubscribe" button
 2. Our system replaces this with a unique URL
-3. Clicking the URK will unsubscribe the user from that particular channel for that particular notification
+3. Clicking the URL will unsubscribe the user from that particular channel for that particular notification
 4. The user will see the Unsubscribe Page with the option to re-subscribe:
 
 import notificationapi_unsub2 from '@site/static/notificationapi_unsub2.png';
