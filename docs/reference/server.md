@@ -22,6 +22,7 @@ The server-side SDKs allow you to trigger sending notifications, setting user pr
 - Node.js <Highlight color="#25c2a0">official</Highlight>
 - Python <Highlight color="#25c2a0">official</Highlight>
 - PHP <Highlight color="#25c2a0">official</Highlight>
+- Laravel <Highlight color="#25c2a0">official</Highlight>
 - Go <Highlight color="#25c2a0">official</Highlight>
 - C# <Highlight color="#ff9966">documented</Highlight>
 - Ruby <Highlight color="#ff9966">documented</Highlight>
@@ -41,6 +42,7 @@ values={[
 { label: 'Node', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
+{ label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
 { label: 'Ruby', value: 'ruby' }
@@ -92,6 +94,59 @@ use NotificationAPI\NotificationAPI;
 
 ```php title="3. Initialize"
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
+```
+
+</TabItem>
+<TabItem value="laravel">
+
+```bash title="1. Install Package"
+composer require notificationapi/notificationapi-laravel-server-sdk:@dev
+```
+
+:::info
+If your `composer.json`'s `"minimum-stability"` field is `"stable"`, then you may need to run `composer require notificationapi/notificationapi-php-server-sdk:@dev` to ensure that the `notificationapi-laravel-server-sdk` package has its dependencies installed as well.
+:::
+
+```php title="2. Register the NotificationApiServiceProvider with config/app.php"
+'providers' => [
+	// ...
+	NotificationAPI\NotificationApiServiceProvider::class,
+]
+```
+
+```php title="3. Add NotificationAPI keys to .env"
+NOTIFICATION_API_KEY=clientID
+NOTIFICATION_API_SECRET=clientSecret
+```
+
+```php title="4. Generate Notification"
+php artisan make:notification MyNotification
+```
+
+```php title="5. Update the Notification class"
+class MyNotification extends Notification
+{
+    // ...
+
+    public function via($notifiable)
+    {
+        return ['notification-api'];
+    }
+
+    public function toNotificationApi($notifiable) 
+    {
+        return [
+            "notificationId" => "my_notification_id",
+            "user" => [
+                "id" => $notifiable->getAttribute('id'),
+                "email" => $notifiable->getAttribute('email'),
+            ],
+            "mergeTags" => [
+                "userName" => auth()->user()->name
+            ]
+        ];
+    }
+}
 ```
 
 </TabItem>
@@ -320,6 +375,7 @@ values={[
 { label: 'Node', value: 'js', },
 { label: 'Python', value: 'python', },
 { label: 'PHP', value: 'php' },
+{ label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
 { label: 'Ruby', value: 'ruby' }
@@ -381,6 +437,47 @@ $notificationapi->send([
     "orderId" => "1234567890"
   ]
 ]);
+```
+
+</TabItem>
+<TabItem value="laravel">
+
+The `notificationapi-laravel-server-sdk` package uses Laravel's [notifications](https://laravel.com/docs/master/notifications).
+
+```php
+<?php
+
+use App\Models\User;
+use App\Notifications\MyNotification;
+
+$user = new User();
+$user->name = 'John Doe';
+$user->id = 'john.doe@example.com';
+$user->email = 'john.doe@example.com';
+
+// Send the notification to the user
+$user->notify(new MyNotification($user));
+```
+
+:::info
+Alternatively you can send a notification without using Laravel's notifications:
+:::
+
+```php
+$data = [
+  "notificationId" => "my_notification_id",
+  "user" => [
+      "id" => "user_id",
+      "email" => "john.doe@example.com",
+  ],
+  "mergeTags" => [
+      "userName" => "user_name"
+  ]
+];
+
+$result = notification_api($data);
+#or
+$result = (new NotificationApiService)->send($data)
 ```
 
 </TabItem>
