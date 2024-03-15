@@ -190,7 +190,7 @@ We evaluate logical, such as [Deduplication](deduplication.md), and [throttling]
 
 ### How can I review scheduled notifications before they are sent?
 
-We are working on the [log dashboard](logs.md) to show scheduled notifications.
+Visit the [log dashboard](logs.md) to preview upcoming notifications and any recent updates.
 
 ### How far in advance can I schedule a notification?
 

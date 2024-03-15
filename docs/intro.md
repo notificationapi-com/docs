@@ -21,14 +21,8 @@ Let's skip the marketing fluff:
 
 ### Need Help?
 
-<a class="open-chat" href="#" onClick={() => {
-if (window.HubSpotConversations) {
-window.HubSpotConversations.widget.open();
-} else {
-alert(
-'We think an adblocker is preventing our chat widget from loading. Please disable adblocker and refresh.'
-);
-}
+<a className="open-chat" href="#" onClick={() => {
+Intercom('show');
 }}>💬 Live Chat</a><br/>
 
 [ 📧 Contact Form ](https://www.notificationapi.com/contact) <br/>
@@ -73,7 +67,7 @@ You can use our REST API (documentation available to paid customers).
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
     <SupportedEnvironment  logo="devicon-apple-plain" name="iOS" path="./reference/ios-sdk" />
-    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="./reference//android-sdk" />
+    <SupportedEnvironment logo="devicon-android-plain" name="Android" path="./reference/android-sdk" />
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
