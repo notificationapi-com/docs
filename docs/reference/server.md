@@ -105,6 +105,8 @@ composer require notificationapi/notificationapi-laravel-server-sdk:@dev
 
 :::info
 If your `composer.json`'s `"minimum-stability"` field is `"stable"`, then you may need to run `composer require notificationapi/notificationapi-php-server-sdk:@dev` to ensure that the `notificationapi-laravel-server-sdk` package has its dependencies installed as well.
+
+Alternatively you can update `"minimum-stability"` to `"dev"` instead of explicitely installing `notificationapi-php-server-sdk:@dev`.
 :::
 
 ```php title="2. Register the NotificationApiServiceProvider with config/app.php"
