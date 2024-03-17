@@ -78,6 +78,7 @@ const notificationapi = new NotificationAPI({
 | userId\*   | string | The unique ID of the user in your system.                                                                                                  |
 | userIdHash | string | Only used for [Secure Mode](#secure-mode).                                                                                                 |
 | websocket  | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
+| language   | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
 
 ## Framework Specific Gotcha's
 
