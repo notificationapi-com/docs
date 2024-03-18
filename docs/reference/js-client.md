@@ -78,6 +78,7 @@ const notificationapi = new NotificationAPI({
 | userId\*   | string | The unique ID of the user in your system.                                                                                                  |
 | userIdHash | string | Only used for [Secure Mode](#secure-mode).                                                                                                 |
 | websocket  | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
+| language   | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
 
 ## Framework Specific Gotcha's
 
@@ -86,10 +87,11 @@ groupId="frontend-language"
 defaultValue="react"
 values={[
 { label: 'React', value: 'react' },
-{ label: 'Next.js', value: 'next' },
 { label: 'Remix', value: 'remix' },
 { label: 'Vue', value: 'vue' },
-{ label: 'Angular', value: 'angular' }
+{ label: 'Nuxt3', value: 'nuxt3' },
+{ label: 'Angular', value: 'angular' },
+{ label: `Next.js`, value: 'next' }
 ]
 }>
 <TabItem value="react">
@@ -120,6 +122,7 @@ export default NotificationAPIContainer;
 ```
 
 </TabItem>
+
 <TabItem value="next">
 
 The `'user client'` is necessary to ensure that the code is executed on the client side. Also, to prevent unncessary rerenders and reinitialization of the SDK, use the `memo` function.
@@ -127,25 +130,29 @@ The `'user client'` is necessary to ensure that the code is executed on the clie
 ```jsx
 'use client';
 
-import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
-import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
-import React, { memo, useEffect } from 'react';
-
-const NotificationAPIComponent = memo((props: { userId: string }) => {
+import { memo, useEffect } from 'react';
+const NotificationAPIComponent = memo(() => {
   useEffect(() => {
-    const notificationapi = new NotificationAPI({
-      clientId: '24nojpnrsdc53fkslha0roov05',
-      userId: props.userId
-    });
-    notificationapi.showInApp({
-      root: 'container',
-      popupPosition: PopupPosition.BottomLeft
-    });
-  }, [props.userId]);
+    const loadNotificationAPI = async () => {
+      const NotificationAPI = (await import('notificationapi-js-client-sdk'))
+        .default;
+      const notificationapi = new NotificationAPI({
+        clientId: 'CLIENT_ID',
+        userId: 'USERS_ID'
+      });
+      notificationapi.showInApp({
+        root: 'CONTAINER_DIV_ID'
+      });
+    };
 
-  return <div id="container"></div>;
+    loadNotificationAPI();
+  }, []);
+
+  return <div id="CONTAINER_DIV_ID"></div>;
 });
+
+NotificationAPIComponent.displayName = 'NotificationAPIComponent';
 
 export default NotificationAPIComponent;
 ```
@@ -225,6 +232,40 @@ export default function Index() {
   <div>Hello World!</div>
   <div id="myNotifications"></div>
 </template>
+```
+
+</TabItem>
+<TabItem value="nuxt3">
+
+```html
+<template>
+  <div ref="containerRef" id="container"></div>
+</template>
+
+<script>
+  import NotificationAPI from 'notificationapi-js-client-sdk';
+  import { PopupPosition } from 'notificationapi-js-client-sdk/lib/interfaces';
+  import 'notificationapi-js-client-sdk/dist/styles.css';
+  export default {
+    name: 'NotificationAPIComponent',
+    mounted() {
+      this.notificationapi = new NotificationAPI({
+        clientId: 'CLIENT_ID',
+        userId: 'USER_ID'
+      });
+
+      this.notificationapi.showInApp({
+        root: 'container', // Use the ref as the root element
+        popupPosition: PopupPosition.BottomRight
+      });
+    }
+  };
+</script>
+<style scoped>
+  #container {
+    text-align: center;
+  }
+</style>
 ```
 
 </TabItem>

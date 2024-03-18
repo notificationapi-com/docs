@@ -25,7 +25,7 @@ module.exports = {
           label: "Home",
         },
         {
-          href: "http://status.notificationapi.com",
+          href: "https://status.notificationapi.com",
           label: "Status Page",
         },
         {
@@ -96,25 +96,5 @@ module.exports = {
     "/custom.js"
   ],
   headTags: [
-    // hubspot
-    {
-      tagName: 'script',
-      attributes: {
-        id: 'hs-script-loader',
-        type: 'text/javascript',
-        async: 'true',
-        defer: 'true',
-        src:"//js.hs-scripts.com/21854845.js"
-      }
-    },
-    // fullstory
-    {
-      tagName: 'script',
-      attributes: {
-        async: 'true',
-        defer: 'true',
-        src:"//js.hs-scripts.com/21854845.js"
-      }
-    },
-  ],
+  ]
 };

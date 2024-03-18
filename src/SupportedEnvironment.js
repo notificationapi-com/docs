@@ -20,7 +20,7 @@ const SupportedEnvironment = (props) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <i class={props.logo + ' colored'} style={{ fontSize: '3em' }}></i>
+      <i className={props.logo + ' colored'} style={{ fontSize: '3em' }}></i>
       <div style={{ textAlign: 'center' }}>{props.name}</div>
     </a>
   );

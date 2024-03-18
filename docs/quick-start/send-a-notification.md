@@ -127,6 +127,18 @@ class NotificationAPI {
       return await response.Content.ReadAsStringAsync();
   }
 
+    public async Task<string> UpdateSchedule(string trackingId, object scheduleRequest) {
+      string jsonString = JsonConvert.SerializeObject(scheduleRequest);
+      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+      var response = await httpClient.PatchAsync($"{baseURL}/{clientId}/schedule/{trackingId}", content);
+      return await response.Content.ReadAsStringAsync();
+  }
+
+  public async Task<string> DeleteSchedule(string trackingId) {
+      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/schedule/{trackingId}");
+      return await response.Content.ReadAsStringAsync();
+  }
+
   public async Task<string> SetUserPreferences(string userId, object userPreferences) {
       string jsonString = JsonConvert.SerializeObject(userPreferences);
       HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -199,6 +211,14 @@ class NotificationAPI
 
   def delete_sub_notification(notification_id, sub_notification_id)
     send_request('DELETE', "notifications/#{notification_id}/subNotifications/#{sub_notification_id}")
+  end
+
+  def update_schedule(tracking_id, scheduleUpdate)
+    send_request('PATCH', "notifications/#{tracking_id}", scheduleUpdate)
+  end
+
+  def delete_schedule(tracking_id)
+    send_request('DELETE', "notifications/#{tracking_id}")
   end
 
   def set_user_preferences(user_id, user_preferences)

@@ -34,7 +34,7 @@ notificationapi.send({
 
 In any of the template editors, use `{{` and `}}` to place the merge tag. For example, when editing an email, you can type:
 
-> Hello {{ firstName }}! You have a new alert: {{ alerts[0].title }}
+> Hello {'{{'} firstName {'}}'}! You have a new alert: {'{{'} alerts[0].title {'}}'}
 
 ## Filters
 
@@ -68,7 +68,7 @@ Hello there!
 
 ### Supported Operators
 
-- Comparison: ==, !=, , <, >=, <=
+- Comparison: `==`, `!=`, `<`, `>`, `>=`, `<=`
 - Logic: `and`, `or`
 
 A more complex example:
