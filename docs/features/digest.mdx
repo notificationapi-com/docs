@@ -1,12 +1,12 @@
-# 📦 Digest
+# 📦 Batch and Digest
 
 :::note
 
-Status: The Digest feature is currently in active development. Stay tuned for more updates and improvements.
+Status: The Batch and Digest feature is currently in active development. Stay tuned for more updates and improvements.
 
 :::
 
-The NotificationAPI's Digest feature allows for the creation of recurring user digests at configured intervals. By summarizing multiple notifications into one, it effectively reduces notification fatigue. This feature is particularly useful for weekly reports or user digests. The notification editor provides a versatile tool for customizing the appearance of combined notifications, and your users can set their preferred schedule if needed.
+The NotificationAPI's Batch and Digest feature allows for the creation of recurring user digests at configured intervals. By batching multiple notifications into one, it effectively reduces notification fatigue. This feature is particularly useful for weekly reports or user digests. The notification editor provides a versatile tool for customizing the appearance of combined notifications, and your users can set their preferred schedule if needed.
 
 ## Example Use Cases
 
@@ -44,13 +44,13 @@ import Digest from '../../assets/reactComponents/Digest';
 
 ## Frequently Asked Questions (FAQs)
 
-### How does digest work with throttling?
+### How does batch and digest work with throttling?
 
 [`Throttling`](./throttling.md) has a higher priority. If both settings are active for notification and the [`Throttling`](./throttling.md) criteria are met first, subsequent notifications will be discarded and not included in the digest.
 
 For example, with [`Throttling`](./throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, the 6th notification within the same hour will be ignored.
 
-### How does digest work with deduplication?
+### How does batch and digest work with deduplication?
 
 [`Deduplication`](./deduplication.md) has a higher priority. If both are active and a notification meets the [`Deduplication`](./deduplication.md) criteria, it will be discarded and excluded from the digest.
 For instance, with a 1-hour [`Deduplication`](./deduplication.md) window and a `Weekly` delivery method, any duplicated notification within that hour will be ignored.
