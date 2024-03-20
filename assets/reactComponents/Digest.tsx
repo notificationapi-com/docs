@@ -48,6 +48,7 @@ const Digest: React.FC = () => {
     userDefaultPreferenceOption,
     setUserDefaultPreferenceOption
   ] = useState('weekly');
+  
   useEffect(() => {
     if (userDefaultPreferenceOption === 'off') {
       setEmailSubscription(false);
