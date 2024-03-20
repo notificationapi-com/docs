@@ -1,0 +1,56 @@
+# 📦 Digest
+
+:::note
+
+Status: The Digest feature is currently in active development. Stay tuned for more updates and improvements.
+
+:::
+
+The NotificationAPI's Digest feature allows for the creation of recurring user digests at configured intervals. By summarizing multiple notifications into one, it effectively reduces notification fatigue. This feature is particularly useful for weekly reports or user digests. The notification editor provides a versatile tool for customizing the appearance of combined notifications, and your users can set their preferred schedule if needed.
+
+## Example Use Cases
+
+- Design Performance Summarization: In collaborative platforms, each view and like of a design generates an event. Instead of sending separate notifications for each event, the Digest feature consolidates these into a single notification. At the scheduled time, the digest compiles and sends a summarized report of all interactions, streamlining communication for the author.
+
+- Truck Driver Schedule: For administrators overseeing food supply chains, a daily overview of all pickups and deliveries is crucial. The Digest feature provides these summaries, promoting effective and timely operations management.
+
+## How does it work?
+
+1. For each notification, you can configure each channel at the `Configure` tab.
+
+   In this channel configuration, you can see following `Delivery Options`:
+
+   - `Instantly`: When we receive an `Email` request, we try to deliver it to your user instantly. This delivery option is the `default`.
+   - `Hourly`: We deliver all the `Email` requests that we receive in an hour.
+   - `Weekly`: This configuration delivers all the `Email` requests once a week. You can choose the day and time for it.
+   - `Monthly`: To deliver `Email` notifications once a month. It can happen at the beginning or end of a month. Also, you can choose the time too.
+   - `Allow unsubscribing`: This allows your users to unsubscribe from this `Email`.
+
+   `The Default Preference` indicates your users' default preference for delivery options.
+
+   The following shows a sample of an `Email` channel configuration.
+
+import Digest from '../../assets/reactComponents/Digest';
+
+<Digest />
+
+2. Design: Each channel can have one or more templates, and each template can be configured for one or multiple delivery options.
+
+3. System Behavior: Consider this scenario - At the `new_comment` configure notification tab, you enable the `Weekly` delivery option for the `Email` channel and configure it to `Monday 9:00 am`; therefore, you have three delivery options: `Instantly`, `Weekly` and `Allow Unsubscribing` and select the `Weekly` option as `The Default Preference`.
+
+   In the design tab, you create two `Email` templates, one for the `Instantly` deliver option and one for `Weekly.` We will record the request you send in a week, and on `Monday at 9:00 am` we will send the `Email` using the `Weekly` template. Suppose your user changes their preference to receive the `Email` notification `Instantly`. In that case, we will send the notification when we receive a request using the `Instantly` email template.
+
+- Note: If there are no notifications for a user in the specified period, the system will not send a digest.
+
+## Frequently Asked Questions (FAQs)
+
+### How does digest work with throttling?
+
+[`Throttling`](./throttling.md) has a higher priority. If both settings are active for notification and the [`Throttling`](./throttling.md) criteria are met first, subsequent notifications will be discarded and not included in the digest.
+
+For example, with [`Throttling`](./throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, the 6th notification within the same hour will be ignored.
+
+### How does digest work with deduplication?
+
+[`Deduplication`](./deduplication.md) has a higher priority. If both are active and a notification meets the [`Deduplication`](./deduplication.md) criteria, it will be discarded and excluded from the digest.
+For instance, with a 1-hour [`Deduplication`](./deduplication.md) window and a `Weekly` delivery method, any duplicated notification within that hour will be ignored.
