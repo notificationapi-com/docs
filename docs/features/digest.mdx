@@ -33,10 +33,15 @@ import Digest from '../../assets/reactComponents/Digest';
 <Digest />
 
 2. Design: Each channel can have one or more templates, and each template can be configured for one or multiple delivery options.
+   When you design a template and want to have access to [Parameters (Merge Tags)](./mergetags) in the requests that we have received, you can use the `{{_requests}}` parameter. `_request` is an array of all requests we have received over the period you have defined in the `Delivery Options`.
 
-3. System Behavior: Consider this scenario - At the `new_comment` configure notification tab, you enable the `Weekly` delivery option for the `Email` channel and configure it to `Monday 9:00 am`; therefore, you have three delivery options: `Instantly`, `Weekly` and `Allow Unsubscribing` and select the `Weekly` option as `The Default Preference`.
+   For example, you can have the number of comments in the `new_comment` notification by using a [`filter`](./mergetags#filters) like `{{_requests | size}}` in your template. In this way, we will find the number of `new_comment` notification requests we have received and replace them with the parameters (merge tags).
 
-   In the design tab, you create two `Email` templates, one for the `Instantly` deliver option and one for `Weekly.` We will record the request you send in a week, and on `Monday at 9:00 am` we will send the `Email` using the `Weekly` template. Suppose your user changes their preference to receive the `Email` notification `Instantly`. In that case, we will send the notification when we receive a request using the `Instantly` email template.
+   Generally, you can leverage all the functionality we have provided for the [Parameters (Merge Tags)](./mergetags.md) feature, such as [`Loops`](./mergetags#loops-for), [`Conditional Logic`](./mergetags#conditional-logic-if-else), and [`filter`](./mergetags#filters)
+
+Consider this scenario - At the `new_comment` configure notification tab, you enable the `Weekly` delivery option for the `Email` channel and configure it to `Monday 9:00 am`; therefore, you have three delivery options: `Instantly`, `Weekly` and `Allow Unsubscribing` and select the `Weekly` option as `The Default Preference`.
+
+In the design tab, you create two `Email` templates, one for the `Instantly` deliver option and one for `Weekly.` We will record the request you send in a week, and on `Monday at 9:00 am` we will send the `Email` using the `Weekly` template. Suppose your user changes their preference to receive the `Email` notification `Instantly`. In that case, we will send the notification when we receive a request using the `Instantly` email template.
 
 - Note: If there are no notifications for a user in the specified period, the system will not send a digest.
 
