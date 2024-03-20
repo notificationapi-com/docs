@@ -4,7 +4,7 @@ import Title from 'antd/es/typography/Title';
 import React, { useEffect, useState } from 'react';
 import { blue } from '@ant-design/colors';
 
-interface UserPreferenceProps = {
+interface UserPreferenceProps {
   allowUnsubscribe: boolean;
   emailSubscription: boolean;
   instantly: boolean;
@@ -14,7 +14,7 @@ interface UserPreferenceProps = {
   monthly: boolean;
   userDefaultPreferenceOption: string;
   setEmailSubscription: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 const UserPreference = (props: UserPreferenceProps) => {
   const [instantlyState, setInstantlyState] = useState<boolean>();
