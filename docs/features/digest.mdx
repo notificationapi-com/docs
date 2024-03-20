@@ -49,13 +49,22 @@ import Digest from '../../assets/reactComponents/Digest';
 
 If there are no notifications for a user in the specified period, the system will not send a notification. For example, assume you have selected the `Weekly` delivery option on `Monday at 9:00 am` for the `Email` channels. If there is no request recorded for the user by `Monday at 9:00 am`, we will not send an `Email`.
 
-### How does `Batch and Digest` work with throttling?
+### How does `Batch and Digest` work with `Throttling`?
 
-[`Throttling`](./throttling.md) has a higher priority. If both settings are active for notification and the [`Throttling`](./throttling.md) criteria are met first, subsequent notifications will be discarded and not included in the digest.
+The [`Throttling`](./throttling.md) criteria are checked at the configured time in the `Delivery Options`. For Example, if you have configured the `Throttling` for 2 notifications per user per 24 hours and configured the delivery option as `hourly`, multiple requests have been received for the user at each hour. In the first two hours, we will send the batched notification. Until the next 24 hours, any subsequent notifications after the second notification will be discarded.
 
 For example, with [`Throttling`](./throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, the 6th notification within the same hour will be ignored.
 
-### How does `Batch and Digest` work with deduplication?
+### How does `Batch and Digest` work with `Deduplication`?
 
-[`Deduplication`](./deduplication.md) has a higher priority. If both are active and a notification meets the [`Deduplication`](./deduplication.md) criteria, it will be discarded and excluded from the digest.
-For instance, with a 1-hour [`Deduplication`](./deduplication.md) window and a `Weekly` delivery method, any duplicated notification within that hour will be ignored.
+The [`Deduplication`](./deduplication.md) criteria are checked at the configured time in the `Delivery Options`.
+
+For instance, the [`Deduplication`](./deduplication.md) window is 24 hours and a `hourly` delivery option is selected. If requests are the same, batches after the first notification will be discarded.
+
+### How does `Batch and Digest` work with `Schedualing`?
+
+At the time the request is scheduled, we send the notification based on the selected `Delivery Options`. For example, The delivery option is `Weekly` on `Monday at 9:00 am` and a request is scheduled for `Wednesday at 9:00 am`. The notification will be recorded and will be batched with all other requests for that notification that we have received during the week for the user and it will be delivered on `Monday at 9:00 am`.
+
+### Do I get an additional change for `Batch and Digest`?
+
+No, we provide this feature at no additional charge.
