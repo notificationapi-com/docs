@@ -45,17 +45,19 @@ Consider this scenario - At the `new_comment` configure notification tab, you en
 
 In the design tab, you create two `Email` templates, one for the `Instantly` deliver option and one for `Weekly.` We will record the request you send in a week, and on `Monday at 9:00 am` we will send the `Email` using the `Weekly` template. Suppose your user changes their preference to receive the `Email` notification `Instantly`. In that case, we will send the notification when we receive a request using the `Instantly` email template.
 
-- Note: If there are no notifications for a user in the specified period, the system will not send a digest.
-
 ## Frequently Asked Questions (FAQs)
 
-### How does batch and digest work with throttling?
+### How does `Batch and Digest` work when there is no request at the time configured in the `Delivery Options`?
+
+If there are no notifications for a user in the specified period, the system will not send a notification. For example, assume you have selected the `Weekly` delivery option on `Monday at 9:00 am` for the `Email` channels. If there is no request recorded for the user by `Monday at 9:00 am`, we will not send an `Email`.
+
+### How does `Batch and Digest` work with throttling?
 
 [`Throttling`](./throttling.md) has a higher priority. If both settings are active for notification and the [`Throttling`](./throttling.md) criteria are met first, subsequent notifications will be discarded and not included in the digest.
 
 For example, with [`Throttling`](./throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, the 6th notification within the same hour will be ignored.
 
-### How does batch and digest work with deduplication?
+### How does `Batch and Digest` work with deduplication?
 
 [`Deduplication`](./deduplication.md) has a higher priority. If both are active and a notification meets the [`Deduplication`](./deduplication.md) criteria, it will be discarded and excluded from the digest.
 For instance, with a 1-hour [`Deduplication`](./deduplication.md) window and a `Weekly` delivery method, any duplicated notification within that hour will be ignored.
