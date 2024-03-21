@@ -416,7 +416,7 @@ notificationapi.showUserPreferences();
 | email     | string | The email of the user.                                       |
 | phone     | string | The phone number of the user. Expected format: +15554443333. |
 
-## Frequently Asked Questions (FAQ)
+## Frequently Asked Questions (FAQs)
 
 ### Why Can I Not Send Notifications from a Front-end SDK?
 
