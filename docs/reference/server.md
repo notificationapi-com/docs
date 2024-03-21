@@ -24,7 +24,7 @@ The server-side SDKs allow you to trigger sending notifications, setting user pr
 - PHP <Highlight color="#25c2a0">official</Highlight>
 - Laravel <Highlight color="#25c2a0">official</Highlight>
 - Go <Highlight color="#25c2a0">official</Highlight>
-- C# <Highlight color="#ff9966">documented</Highlight>
+- C# <Highlight color="#25c2a0">official</Highlight>
 - Ruby <Highlight color="#ff9966">documented</Highlight>
 - Any environment that supports HTTP calls
 
@@ -171,92 +171,18 @@ notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 </TabItem>
 <TabItem value="csharp">
 
-```csharp title="1. Copy the following class to your application"
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-class NotificationAPI {
-  private string baseURL = "https://api.notificationapi.com";
-  private string clientId;
-  private HttpClient httpClient;
-
-  public NotificationAPI(string clientId, string clientSecret) {
-    this.clientId = clientId;
-    string authToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
-    this.httpClient = new HttpClient();
-    this.httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {authToken}");
-  }
-
-  public async Task<string> send(string request) {
-    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
-    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender", payload);
-    var responseContent = await response.Content.ReadAsStringAsync();
-    return responseContent;
-  }
-
-  public async Task<string> retract(string request) {
-    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
-    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender/retract", payload);
-    var responseContent = await response.Content.ReadAsStringAsync();
-    return responseContent;
-  }
-
-  public async Task<string> IdentifyUser(string userId, object userData) {
-      using (var hmac = new HMACSHA256(Encoding.ASCII.GetBytes(clientSecret))) {
-          string hashedUserId = Convert.ToBase64String(hmac.ComputeHash(Encoding.ASCII.GetBytes(userId)));
-          string customAuth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{userId}:{hashedUserId}"));
-          httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", customAuth);
-
-          string jsonString = JsonConvert.SerializeObject(userData);
-          HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-          var response = await httpClient.PostAsync($"{baseURL}/{clientId}/users/{Uri.EscapeDataString(userId)}", content);
-          return await response.Content.ReadAsStringAsync();
-      }
-  }
-
-  public async Task<string> CreateSubNotification(string notificationId, string subNotificationId, string title) {
-      var payload = new { title = title };
-      string jsonString = JsonConvert.SerializeObject(payload);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PutAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> DeleteSubNotification(string notificationId, string subNotificationId) {
-      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}");
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> UpdateSchedule(string trackingId, object scheduleRequest) {
-      string jsonString = JsonConvert.SerializeObject(scheduleRequest);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PutAsync($"{baseURL}/{clientId}/schedule/{trackingId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> DeleteSchedule(string trackingId) {
-      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/schedule/{trackingId}");
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> SetUserPreferences(string userId, object userPreferences) {
-      string jsonString = JsonConvert.SerializeObject(userPreferences);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PostAsync($"{baseURL}/{clientId}/user_preferences/{userId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-}
+```bash title="1. Install Package"
+dotnet add package NotificationAPI --version 0.1.0
 ```
 
-```csharp title="2. Initialize"
-NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
+```csharp title="2. Import"
+using NotificationApi.Server;
+using NotificationApi.Server.Models;
 ```
 
+```csharp title="3. Initialize"
+var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
+```
 </TabItem>
 <TabItem value="ruby">
 
@@ -507,19 +433,23 @@ notificationapi.Send(
 <TabItem value="csharp">
 
 ```csharp
-string request = @"{
-    ""notificationId"": ""order_tracking"",
-    ""user"": {
-        ""id"": ""spongebob.squarepants"",
-        ""email"": ""spongebob@squarepants.com""
-    },
-    ""mergeTags"": {
-        ""item"": ""Krabby Patty Burger"",
-        ""address"": ""124 Conch Street"",
-        ""orderId"": ""1234567890""
-    }
-}";
-notificationapi.send(request);
+var user = new NotificationUser("spongebob.squarepants")
+{
+    Email = "spongebob@squarepants.com",
+    TelephoneNumber = "+15005550006"
+};
+
+var mergeTags = new Dictionary<string, object>
+{
+    { "item", "Krabby Patty Burger" },
+    { "address", "124 Conch Street" },
+    { "orderId", "1234567890" }
+};
+
+await notificationApi.Send(new SendNotificationData("curl_test", user)
+{
+    MergeTags = mergeTags
+});
 ```
 
 </TabItem>
@@ -768,51 +698,12 @@ NotificationAPI.IdentifyUser(user)
 
 ```csharp
 var userId = "spongebob.squarepants";
-var userData = new Dictionary<string, object>
-{
-    { "email", "spongebob@squarepants.com" },
-    { "number", "+15005550006" },
-    {
-        "pushTokens", new List<Dictionary<string, object>>
-        {
-            new Dictionary<string, object>
-            {
-                { "type", PushProviders.FCM },
-                { "token", "samplePushToken" },
-                {
-                    "device", new Dictionary<string, object>
-                    {
-                        { "app_id", "com.example.app" },
-                        { "ad_id", "1234567890" },
-                        { "device_id", "1234567890" },
-                        { "platform", "android" },
-                        { "manufacturer", "Samsung" },
-                        { "model", "SM-G930F" }
-                    }
-                }
-            }
-        }
-    },
-    {
-        "webPushTokens", new List<Dictionary<string, object>>
-        {
-            new Dictionary<string, object>
-            {
-                "sub", new Dictionary<string, object>
-                {
-                    { "endpoint", "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi" },
-                    "keys", new Dictionary<string, string>
-                    {
-                        { "p256dh", "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ" },
-                        { "auth", "CXEFun************tYe8g" }
-                    }
-                }
-            }
-        }
-    }
-};
 
-await notificationApi.IdentifyUser(userId, userData);
+await notificationApi.Identify(userId, new IdentifyUserData()
+{
+    Email = "spongebob.squarepants",
+    TelephoneNumber = "+15005550006"
+});
 ```
 
 </TabItem>
@@ -1000,24 +891,9 @@ notificationapi.SetUserPreferences("userId", params)
 <TabItem value="csharp">
 
 ```csharp
-string userPreferencesRequest = @"
-{
-    ""userId"": ""userId"",
-    ""preferences"": [
-        {
-            ""notificationId"": ""new_order"",
-            ""channel"": ""INAPP_WEB"",
-            ""state"": false
-        },
-        {
-            ""notificationId"": ""order_tracking"",
-            ""channel"": ""SMS"",
-            ""state"": true
-        }
-    ]
-}";
-
-await notificationApi.SetUserPreferences("userId",userPreferencesRequest);
+await notificationApi.SetUserPreferences(userId, new SetUserPreferencesData(){
+    Preferences = [new NotificationPreference("order_tracking", NotificationChannel.EMAIL, true)]
+});
 ```
 
 </TabItem>
@@ -1107,12 +983,10 @@ notificationapi.Retract(params);
 <TabItem value="csharp">
 
 ```csharp
-NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
-string request = @"{
-    ""notificationId"": ""order_tracking"",
-    ""userId"": ""spongebob.squarepants""
-}";
-notificationapi.retract(request);
+await notificationApi.Retract(new RetractNotificationData(){
+    NotificationId = "order_tracking",
+    UserId = "spongebob.squarepants"
+});
 ```
 
 </TabItem>
@@ -1196,8 +1070,8 @@ notificationapi.UpdateSchedule(trackingId, updateReq)
 <TabItem value="csharp">
 
 ```csharp
-notificationapi.UpdateSchedule("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",{
-schedule: "2024-02-20T14:38:03.509Z"
+await notificationApi.UpdateSchedule("TRACKING_ID", new UpdateScheduleData(){
+    Schedule = new DateTime()
 });
 ```
 
@@ -1273,7 +1147,7 @@ $notificationapi->deleteSchedule([
 <TabItem value="csharp">
 
 ```csharp
-notificationapi.DeleteSchedule("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c");
+await notificationApi.DeleteSchedule("TRACKING_ID");
 ```
 
 </TabItem>
