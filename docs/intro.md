@@ -74,4 +74,4 @@ Our REST API is being gradually documented [here](https://documenter.getpostman.
 
 ---
 
-Want to get involved? [Our docs are on GitHub.](https://github.com/notificationapi-com/docs)
+Want to get involved? We are always looking for contributors to our server-side SDKs and for porting our front-end SDK to different platforms.
