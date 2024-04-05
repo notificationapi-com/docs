@@ -31,12 +31,6 @@ Intercom('show');
 
 ### Supported Environments
 
-#### REST API
-
-You can use our REST API (documentation available to paid customers).
-
----
-
 #### Server-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
@@ -71,6 +65,12 @@ You can use our REST API (documentation available to paid customers).
 </div>
 
 import SupportedEnvironment from '../src/SupportedEnvironment'
+
+---
+
+#### REST API
+
+Our REST is being gradually documented [here](https://documenter.getpostman.com/view/33830909/2sA35LVKMS). If you don't see something you need, just ping us.
 
 ---
 
