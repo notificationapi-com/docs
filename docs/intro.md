@@ -70,7 +70,7 @@ import SupportedEnvironment from '../src/SupportedEnvironment'
 
 #### REST API
 
-Our REST is being gradually documented [here](https://documenter.getpostman.com/view/33830909/2sA35LVKMS). If you don't see something you need, just ping us.
+Our REST API is being gradually documented [here](https://documenter.getpostman.com/view/33830909/2sA35LVKMS). If you don't see something you need, just ping us.
 
 ---
 
