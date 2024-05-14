@@ -938,7 +938,12 @@ Used to delete any stored preferences for a user and notificationId or subNotifi
 groupId="back-end-language"
 defaultValue="js"
 values={[
-{ label: 'Node', value: 'js' }
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
 ]
 }>
 <TabItem value="js">
@@ -948,6 +953,53 @@ notificationapi.deleteUserPreferences(
   'spongebob.squarepants',
   'order_tracking'
 );
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.deleteUserPreferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->deleteUserPreferences(["notificationId" => "order_tracking", "userId" => "spongebob.squarepants"]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+jsonParams := `{
+  NotificationId: "order_tracking",
+  UserId: "spongebob.squarepants"
+}`
+var params notificationapi.DeleteUserPreferencesRequest
+json.Unmarshal([]byte(jsonParams), &params)
+notificationapi.DeleteUserPreferences(params);
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+await notificationApi.DeleteUserPreferences(new DeleteUserPreferencesData(){
+    NotificationId = "order_tracking",
+    UserId = "spongebob.squarepants"
+});
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.deleteUserPreferences({
+  notificationId: 'order_tracking',
+  userId: 'spongebob.squarepants'
+});
 ```
 
 </TabItem>
