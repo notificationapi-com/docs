@@ -927,8 +927,39 @@ notification_api.set_user_preferences('userId', user_preferences)
 | Name               | Type   | Description                                                                                                                   |
 | ------------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------- |
 | `notificationId`\* | string | The ID of the notification you wish to send. You can find this value from the dashboard.                                      |
-| `channel`\*        | string | The channel you wish to set the preference for. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH` |
-| `delivery`\*       | string | The method for delivering the notification. Accepted values: <br/>`off`, `instant`, `hourly`, `daily`, `weekly`, `monthly`    |
+| `channel`          | string | The channel you wish to set the preference for. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH` |
+| `delivery`         | string | The method for delivering the notification. Accepted values: <br/>`off`, `instant`, `hourly`, `daily`, `weekly`, `monthly`    |
+
+## deleteUserPreferences
+
+Used to delete any stored preferences for a user and notificationId or subNotificationId.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.deleteUserPreferences(
+  'spongebob.squarepants',
+  'order_tracking'
+);
+```
+
+</TabItem>
+</Tabs>
+
+#### Parameters
+
+| Name                | Type   | Description                                                                           |
+| ------------------- | ------ | ------------------------------------------------------------------------------------- |
+| `userId`\*          | string | The ID of the user in your system. Required.                                          |
+| `notificationId`\*  | string | The ID of the notification in NotificationAPI. Required.                              |
+| `subNotificationId` | string | The subNotificationId is used to specify further subcategories within a notification. |
 
 ## retract
 
