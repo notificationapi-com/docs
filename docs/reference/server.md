@@ -1013,6 +1013,143 @@ notificationapi.deleteUserPreferences({
 | `notificationId`\*  | string | The ID of the notification in NotificationAPI. Required.                              |
 | `subNotificationId` | string | The subNotificationId is used to specify further subcategories within a notification. |
 
+## updateInAppNotification
+
+Used to update the opened, archived, ... of an inapp notification.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
+]
+}>
+<TabItem value="js">
+
+```js
+node notificationapi.deleteUserPreferences('spongebob.squarepants', {
+  trackingIds: ['sampleTrackingId'],
+  opened: '1970-01-01T00:00:00.000Z',
+  clicked: '1970-01-01T00:00:00.000Z',
+  archived: '1970-01-01T00:00:00.000Z',
+  actioned1: '1970-01-01T00:00:00.000Z',
+  actioned2: '1970-01-01T00:00:00.000Z',
+  reply: { date: '1970-01-01T00:00:00.000Z', message: 'nice!' }
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+notificationapi.delete_user_preferences("spongebob.squarepants", {
+    "trackingIds": ["sampleTrackingId"],
+    "opened": "1970-01-01T00:00:00.000Z",
+    "clicked": "1970-01-01T00:00:00.000Z",
+    "archived": "1970-01-01T00:00:00.000Z",
+    "actioned1": "1970-01-01T00:00:00.000Z",
+    "actioned2": "1970-01-01T00:00:00.000Z",
+    "reply": {"date": "1970-01-01T00:00:00.000Z", "message": "nice!"}
+})
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->delete_user_preferences("spongebob.squarepants", [
+    "trackingIds" => ["sampleTrackingId"],
+    "opened" => "1970-01-01T00:00:00.000Z",
+    "clicked" => "1970-01-01T00:00:00.000Z",
+    "archived" => "1970-01-01T00:00:00.000Z",
+    "actioned1" => "1970-01-01T00:00:00.000Z",
+    "actioned2" => "1970-01-01T00:00:00.000Z",
+    "reply" => ["date" => "1970-01-01T00:00:00.000Z", "message" => "nice!"]
+]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+DeleteUserPreferences("spongebob.squarepants", map[string]interface{}{
+	"trackingIds": []string{"sampleTrackingId"},
+	"opened":      "1970-01-01T00:00:00.000Z",
+	"clicked":     "1970-01-01T00:00:00.000Z",
+	"archived":    "1970-01-01T00:00:00.000Z",
+	"actioned1":   "1970-01-01T00:00:00.000Z",
+	"actioned2":   "1970-01-01T00:00:00.000Z",
+	"reply": map[string]interface{}{
+		"date":    "1970-01-01T00:00:00.000Z",
+		"message": "nice!",
+	},
+})
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+await notificationApi.DeleteUserPreferences("spongebob.squarepants", new Dictionary<string, object>
+{
+    {"trackingIds", new string[] {"sampleTrackingId"}},
+    {"opened", "1970-01-01T00:00:00.000Z"},
+    {"clicked", "1970-01-01T00:00:00.000Z"},
+    {"archived", "1970-01-01T00:00:00.000Z"},
+    {"actioned1", "1970-01-01T00:00:00.000Z"},
+    {"actioned2", "1970-01-01T00:00:00.000Z"},
+    {"reply", new Dictionary<string, object>
+        {
+            {"date", "1970-01-01T00:00:00.000Z"},
+            {"message", "nice!"}
+        }
+    }
+});
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+notificationapi.delete_user_preferences('spongebob.squarepants', {
+  'trackingIds' => ['sampleTrackingId'],
+  'opened' => '1970-01-01T00:00:00.000Z',
+  'clicked' => '1970-01-01T00:00:00.000Z',
+  'archived' => '1970-01-01T00:00:00.000Z',
+  'actioned1' => '1970-01-01T00:00:00.000Z',
+  'actioned2' => '1970-01-01T00:00:00.000Z',
+  'reply' => { 'date' => '1970-01-01T00:00:00.000Z', 'message' => 'nice!' }
+})
+```
+
+</TabItem>
+</Tabs>
+
+#### Parameters
+
+| Name       | Type   | Description                                               |
+| ---------- | ------ | --------------------------------------------------------- |
+| `userId`\* | string | The ID of the user in your system. Required.              |
+| `params`\* | string | The inapp notification data you want to update. Required. |
+
+#### params
+
+| Name            | Type     | Description                                                                                                 |
+| --------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `trackingIds`\* | string[] | An array of strings representing tracking IDs associated with the in-app notification. Required.            |
+| `opened`        | string   | A string representing the time when the notification was opened. Optional.                                  |
+| `clicked`       | string   | A string representing the time when the notification was clicked. Optional.                                 |
+| `archived`      | string   | A string representing the time when the notification was archived. Optional.                                |
+| `actioned1`     | string   | A string representing the time when the first action associated with the notification was taken. Optional.  |
+| `actioned2`     | string   | A string representing the time when the second action associated with the notification was taken. Optional. |
+| `reply.date`    | string   | A string representing the time of the reply to the notification. Optional.                                  |
+| `reply.message` | string   | A string representing the content of the reply message. Optional.                                           |
+
 ## retract
 
 Only applicable to in-app notifications. This function helps you delete all notifications of a certain type for a user.
