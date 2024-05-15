@@ -1032,7 +1032,7 @@ values={[
 <TabItem value="js">
 
 ```js
-node notificationapi.deleteUserPreferences('spongebob.squarepants', {
+notificationapi.deleteUserPreferences('spongebob.squarepants', {
   trackingIds: ['sampleTrackingId'],
   opened: '1970-01-01T00:00:00.000Z',
   clicked: '1970-01-01T00:00:00.000Z',
@@ -1141,7 +1141,7 @@ notificationapi.delete_user_preferences('spongebob.squarepants', {
 
 | Name            | Type     | Description                                                                                                 |
 | --------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `trackingIds`\* | string[] | An array of strings representing tracking IDs associated with the in-app notification. Required.            |
+| `trackingIds`\* | string[] | The Tracking IDs of the notifications you want to update. Required.                                         |
 | `opened`        | string   | A string representing the time when the notification was opened. Optional.                                  |
 | `clicked`       | string   | A string representing the time when the notification was clicked. Optional.                                 |
 | `archived`      | string   | A string representing the time when the notification was archived. Optional.                                |
