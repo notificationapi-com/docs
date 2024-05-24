@@ -332,21 +332,28 @@ notificationapi.send({
 <TabItem value="python">
 
 ```python
-notificationapi.send(
-    {
-        "notificationId": "order_tracking",
-        "user": {
-            "id": "spongebob.squarepants",
-            "email": "spongebob@squarepants.com",
-            "number": "+15005550006",
-        },
-        "mergeTags": {
-            "item": "Krabby Patty Burger",
-            "address": "124 Conch Street",
-            "orderId": "1234567890"
+import asyncio
+
+async def send_notification():
+    await notificationapi.send(
+        {
+            "notificationId": "order_tracking",
+            "user": {
+                "id": "spongebob.squarepants",
+                "email": "spongebob@squarepants.com",
+                "number": "+15005550006",
+            },
+            "mergeTags": {
+                "item": "Krabby Patty Burger",
+                "address": "124 Conch Street",
+                "orderId": "1234567890"
+            }
         }
-    }
-)
+    )
+
+# Run the async function
+asyncio.run(send_notification())
+
 ```
 
 </TabItem>
@@ -578,36 +585,42 @@ notificationapi.identifyUser({
 <TabItem value="python">
 
 ```python
-notificationapi.identify_user({
-    "id": "spongebob.squarepants",
-    "email": "spongebob@squarepants.com",
-    "number": "+15005550006",
-    "pushTokens": [
-        {
-            "type": "FCM",
-            "token": "samplePushToken",
-            "device": {
-                "app_id": "com.example.app",
-                "ad_id": "1234567890",
-                "device_id": "1234567890",
-                "platform": "android",
-                "manufacturer": "Samsung",
-                "model": "SM-G930F"
-            }
-        }
-      ],
-    "webPushTokens": [
-        {
-            "sub": {
-                "endpoint": "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
-                "keys": {
-                    "p256dh": "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
-                    "auth": "CXEFun************tYe8g"
+import asyncio
+
+async def identify_user():
+    await notificationapi.identify_user({
+        "id": "spongebob.squarepants",
+        "email": "spongebob@squarepants.com",
+        "number": "+15005550006",
+        "pushTokens": [
+            {
+                "type": "FCM",
+                "token": "samplePushToken",
+                "device": {
+                    "app_id": "com.example.app",
+                    "ad_id": "1234567890",
+                    "device_id": "1234567890",
+                    "platform": "android",
+                    "manufacturer": "Samsung",
+                    "model": "SM-G930F"
                 }
             }
-        }
-    ]
-})
+        ],
+        "webPushTokens": [
+            {
+                "sub": {
+                    "endpoint": "https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi",
+                    "keys": {
+                        "p256dh": "zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ",
+                        "auth": "CXEFun************tYe8g"
+                    }
+                }
+            }
+        ]
+    })
+
+# Run the async function
+asyncio.run(identify_user())
 ```
 
 </TabItem>
@@ -837,18 +850,24 @@ notificationapi.setUserPreferences('userId', [
 <TabItem value="python">
 
 ```python
-notificationapi.setUserPreferences("userId", [
-    {
-        "notificationId": "new_order",
-        "channel": "INAPP_WEB",
-        "delivery": "weekly"
-    },
-    {
-        "notificationId": "order_tracking",
-        "channel": "SMS",
-        "delivery": "weekly"
-    }
-])
+import asyncio
+
+async def set_user_preferences():
+    await notificationapi.setUserPreferences("userId", [
+        {
+            "notificationId": "new_order",
+            "channel": "INAPP_WEB",
+            "delivery": "weekly"
+        },
+        {
+            "notificationId": "order_tracking",
+            "channel": "SMS",
+            "delivery": "weekly"
+        }
+    ])
+
+# Run the async function
+asyncio.run(set_user_preferences())
 ```
 
 </TabItem>
@@ -959,7 +978,13 @@ notificationapi.deleteUserPreferences(
 <TabItem value="python">
 
 ```python
-notificationapi.deleteUserPreferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+import asyncio
+
+async def delete_user_preferences():
+    await notificationapi.deleteUserPreferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+
+# Run the async function
+asyncio.run(delete_user_preferences())
 ```
 
 </TabItem>
@@ -1032,7 +1057,7 @@ values={[
 <TabItem value="js">
 
 ```js
-node notificationapi.deleteUserPreferences('spongebob.squarepants', {
+notificationapi.deleteUserPreferences('spongebob.squarepants', {
   trackingIds: ['sampleTrackingId'],
   opened: '1970-01-01T00:00:00.000Z',
   clicked: '1970-01-01T00:00:00.000Z',
@@ -1047,15 +1072,21 @@ node notificationapi.deleteUserPreferences('spongebob.squarepants', {
 <TabItem value="python">
 
 ```python
-notificationapi.delete_user_preferences("spongebob.squarepants", {
-    "trackingIds": ["sampleTrackingId"],
-    "opened": "1970-01-01T00:00:00.000Z",
-    "clicked": "1970-01-01T00:00:00.000Z",
-    "archived": "1970-01-01T00:00:00.000Z",
-    "actioned1": "1970-01-01T00:00:00.000Z",
-    "actioned2": "1970-01-01T00:00:00.000Z",
-    "reply": {"date": "1970-01-01T00:00:00.000Z", "message": "nice!"}
-})
+import asyncio
+
+async def delete_user_preferences():
+    await notificationapi.delete_user_preferences("spongebob.squarepants", {
+        "trackingIds": ["sampleTrackingId"],
+        "opened": "1970-01-01T00:00:00.000Z",
+        "clicked": "1970-01-01T00:00:00.000Z",
+        "archived": "1970-01-01T00:00:00.000Z",
+        "actioned1": "1970-01-01T00:00:00.000Z",
+        "actioned2": "1970-01-01T00:00:00.000Z",
+        "reply": {"date": "1970-01-01T00:00:00.000Z", "message": "nice!"}
+    })
+
+# Run the async function
+asyncio.run(delete_user_preferences())
 ```
 
 </TabItem>
@@ -1141,7 +1172,7 @@ notificationapi.delete_user_preferences('spongebob.squarepants', {
 
 | Name            | Type     | Description                                                                                                 |
 | --------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `trackingIds`\* | string[] | An array of strings representing tracking IDs associated with the in-app notification. Required.            |
+| `trackingIds`\* | string[] | The Tracking IDs of the notifications you want to update. Required.                                         |
 | `opened`        | string   | A string representing the time when the notification was opened. Optional.                                  |
 | `clicked`       | string   | A string representing the time when the notification was clicked. Optional.                                 |
 | `archived`      | string   | A string representing the time when the notification was archived. Optional.                                |
@@ -1179,7 +1210,13 @@ notificationapi.retract({
 <TabItem value="python">
 
 ```python
-notificationapi.retract({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+import asyncio
+
+async def retract_notification():
+    await notificationapi.retract({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+
+# Run the async function
+asyncio.run(retract_notification())
 ```
 
 </TabItem>
@@ -1260,10 +1297,16 @@ notificationapi.updateSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c', {
 <TabItem value="python">
 
 ```python
-notificationapi.update_schedule({
-  "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",
-  "send_request":{"schedule": "2024-02-20T14:38:03.509Z"}
-  })
+import asyncio
+
+async def update_schedule():
+    await notificationapi.update_schedule({
+        "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c",
+        "send_request": {"schedule": "2024-02-20T14:38:03.509Z"}
+    })
+
+# Run the async function
+asyncio.run(update_schedule())
 ```
 
 </TabItem>
@@ -1344,9 +1387,15 @@ notificationapi.deleteSchedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
 <TabItem value="python">
 
 ```python
-notificationapi.delete_schedule({
-  "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
-})
+import asyncio
+
+async def delete_schedule():
+    await notificationapi.delete_schedule({
+        "tracking_id": "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"
+    })
+
+# Run the async function
+asyncio.run(delete_schedule())
 ```
 
 </TabItem>

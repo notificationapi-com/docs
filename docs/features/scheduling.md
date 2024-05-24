@@ -58,22 +58,28 @@ notificationapi.send({
 <TabItem value="python">
 
 ```python
-notificationapi.send(
-    {
-        "notificationId": "order_tracking",
-        "user": {
-            "id": "spongebob.squarepants",
-            "email": "spongebob@squarepants.com",
-            "number": "+15005550006",
-        },
-        "mergeTags": {
-            "item": "Krabby Patty Burger",
-            "address": "124 Conch Street",
-            "orderId": "1234567890"
-        },
-          "schedule": "2024-02-20T14:38:03.509Z"
-    }
-)
+import asyncio
+
+async def send_notification():
+    await notificationapi.send(
+        {
+            "notificationId": "order_tracking",
+            "user": {
+                "id": "spongebob.squarepants",
+                "email": "spongebob@squarepants.com",
+                "number": "+15005550006",
+            },
+            "mergeTags": {
+                "item": "Krabby Patty Burger",
+                "address": "124 Conch Street",
+                "orderId": "1234567890"
+            },
+            "schedule": "2024-02-20T14:38:03.509Z"
+        }
+    )
+
+# Run the async function
+asyncio.run(send_notification())
 ```
 
 </TabItem>
