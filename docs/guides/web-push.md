@@ -4,13 +4,8 @@ NotificationAPI supports sending web push notifications. While most notification
 
 ## Configuring Web Push Notifications
 
-Sending and displaying web push notifications work out-of-the-box with our libraries:
+Web push notifications are integrated with the front-end JS SDK. Please follow the setup instructions [here](../reference/js-client#setup).
 
-1. Setup our [front-end library ](../reference/js-client#setup)
    :::warning
-   The [Service Worker](../reference/js-client.md#service-worker-setup) integration is required for web push to work.
-   :::
+   The [Service Worker](../reference/js-client.md#service-worker-setup) is required to receive web push notifications.
 
-2. Initialize our [front-end library](../reference/js-client#initialization)
-
-3. Send notifications from the backend [backend](../reference/server#send)
