@@ -2,8 +2,17 @@
 sidebar_position: 5
 ---
 
+import React from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { NotificationFeed,
+NotificationPopup,
+NotificationLauncher,
+NotificationCounter,
+NotificationAPIProvider,
+NotificationPreferencesPopup,
+NotificationPreferencesInline,
+} from '@notificationapi/react';
 
 import PopUpBell from '@site/static/reactsdk/popup.png';
 import PopUpInbox1 from '@site/static/reactsdk/popupinbox1.png';
@@ -17,9 +26,20 @@ import ElementCounter from '@site/static/reactsdk/elementcounter.png';
 
 The React SDK is mainly used for displaying **In-App** Notifications and allowing users to see and change their **Notification Preferences**.
 
+<div 
+  style={{
+    color: "black",
+    padding: 24,
+  }}
+>
+  <NotificationAPIProvider
+    userId="djkean7@gmail.com"
+    clientId="6ok6imq9ucn2budgiebjdaa6oi"
+  > 
+ 
 <Tabs
-groupId="package-manager"
-defaultValue="manager"
+groupId='package-manager'
+defaultValue='manager'
 values={[
 { label: 'Package Manager', value: 'manager' },
 { label: 'UMD', value: 'umd' }
@@ -58,22 +78,24 @@ filler
 
 ## Popup Mode
 
-Our popup component opens up to display your inbox for in-app notifications. This gives users a small interface for accessing their notifications without taking up screen space. Especially useful for mobile apps.
+<NotificationPopup />
+<b>Click me!</b>
 
-<img src={PopUpBell} style={{maxWidth: 400}} />
+Our popup component opens up to display your inbox for in-app notifications. This gives users a small interface for accessing their notifications without taking up screen space. Especially useful for mobile apps.
 
 All notifications are displayed here, and each notification comes with buttons to mark notifications as "seen" or "archived".
 Additionally, the top right of the inbox contains features for setting user preferences and marking all notifications as read directlyfrom the inbox. If a notification has redirect, interacting with it will send users to that link or page from within the component.
 
-<img src={PopUpInbox1} style={{maxWidth: 400}} />
-
 ## Popup Launcher
+
+ <NotificationLauncher />
+ <!-- Currently hidden beneath chat/support popup -->
 
 The popup launcher component adds a button that remains in place on your application. This gives users access to their inbox from anywhere on a page, so they don't need to scroll up to an inbox, or visit a dedicated inbox page to read and interact with notifications.
 
-<img src={PopUpLauncher} style={{maxWidth: 400}} />
+## Counter (Standalone)
 
-<!-- Crop black bar from top of image -->
+<NotificationCounter />
 
 ## Counter (on Element)
 
@@ -85,9 +107,7 @@ Apply a notification badge on elements to notify users of unread messages in the
 
 The feed component provides a larger feed for browsing notifications. Notifications within the feed can also be clicked on to direct to links or pages, if any were set within the Notification template.
 
-<img src={InAppFeed} style={{maxWidth: 400}} />
-
-<!-- This needs replacing or reformatting - too blurry -->
+<NotificationFeed infiniteScrollHeight={300} />
 
 ## Notification Preferences Popup
 
@@ -99,7 +119,7 @@ Our notification preferences popup allows users to set their preferences with yo
 
 Alternatively, we also offer an inline component for user preferences. Ideal for options & settings pages.
 
-<img src={InlinePreferences} style={{MaxWidth: 400}} />
+<NotificationPreferencesInline />
 
 ## Customizing the Button
 
@@ -182,3 +202,6 @@ You can filter notifications via existing states (All, unarchived). You can crea
 Just like Filters, you can count notifications via existing states (all, unarchived), or by your own custom functions.
 
 ## Customizing each Notification
+
+ </NotificationAPIProvider>
+</div>
