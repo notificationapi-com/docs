@@ -7,6 +7,14 @@
 - A user photo: `/imgs/{{user.imagePath}}.png`
 - Or even logic: `Hello{%if user.firstName %} {{user.firstName}}{%endif%}!`
 
+## Playground
+
+The tool below let's you test and learn how merge tags work!
+
+import Parameters from '../assets/reactComponents/Parameters';
+
+<Parameters />
+
 ## Support
 
 You can use merge tags almost everywhere:
