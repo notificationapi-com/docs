@@ -18,7 +18,7 @@ jobs:
           node-version: 18
 
       - name: NPM Install
-        run: npm install
+        run: npm install --force
 
       - name: Pretty
         run: npm run-script prettier-check
