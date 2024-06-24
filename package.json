@@ -25,6 +25,7 @@
     "@docusaurus/plugin-google-gtag": "^3.1.1",
     "@docusaurus/preset-classic": "3.1.1",
     "@mdx-js/react": "^3.0.0",
+    "@notificationapi/react": "^0.0.18",
     "@svgr/webpack": "^8.1.0",
     "antd": "^5.18.3",
     "clsx": "^2.0.0",
@@ -51,5 +52,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
