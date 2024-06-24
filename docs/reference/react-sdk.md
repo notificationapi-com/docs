@@ -26,6 +26,8 @@ import ElementCounter from '@site/static/reactsdk/elementcounter.png';
 
 The React SDK is mainly used for displaying **In-App** Notifications and allowing users to see and change their **Notification Preferences**.
 
+## Setup
+
 <div 
   style={{
     color: "black",
@@ -35,121 +37,154 @@ The React SDK is mainly used for displaying **In-App** Notifications and allowin
   <NotificationAPIProvider
     userId="djkean7@gmail.com"
     clientId="6ok6imq9ucn2budgiebjdaa6oi"
-  > 
- 
+  >
+
 <Tabs
 groupId='package-manager'
 defaultValue='manager'
 values={[
-{ label: 'Package Manager', value: 'manager' },
-{ label: 'UMD', value: 'umd' }
+{ label: 'Package Manager', value: 'manager' }
 ]
 }>
 <TabItem value='manager'>
 
-```shell title='1. Install'
+1. Install the react package:
+
+```shell
 npm install @notificationapi/react
 # yarn add @notificationapi/react
 # pnpm add @notificationapi/react
 ```
 
-```js title='2. Import'
-import { ComponentName } from '@notificationapi/react';
+2. Import and use our provider in your top-level components/routers:
+
+```jsx title="App.tsx"
+import { NotificationAPIProvider } from '@notificationapi/react';
+
+<App>
+  <NotificationAPIProvider
+    userId="abcd-1234" // logged in userId
+    clientId="abc123" // your clientId found on the dashboard
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
 ```
 
-```js title='3. Initialize'
-<NotificationAPIProvider
-  userId="user" //use your userId
-  clientId="abc123" //use your clientId
->
-  <YourComponentsHere />
-</NotificationAPIProvider>
-```
-
-</TabItem>
-<TabItem value="umd">
-```shell title='1. Placeholder'
-filler
-```
 </TabItem>
 </Tabs>
 
-# UI Customization
+## In-App Notification Components
 
-## Popup Mode
+### Popup
 
+<span>Click this 👉</span>
 <NotificationPopup />
-<b>Click me!</b>
+
+```jsx
+<NotificationPopup />
+```
 
 Our popup component opens up to display your inbox for in-app notifications. This gives users a small interface for accessing their notifications without taking up screen space. Especially useful for mobile apps.
 
 All notifications are displayed here, and each notification comes with buttons to mark notifications as "seen" or "archived".
 Additionally, the top right of the inbox contains features for setting user preferences and marking all notifications as read directlyfrom the inbox. If a notification has redirect, interacting with it will send users to that link or page from within the component.
 
-## Popup Launcher
+### Popup Launcher
 
- <NotificationLauncher />
- <!-- Currently hidden beneath chat/support popup -->
+```jsx
+<NotificationLauncher />
+```
 
-The popup launcher component adds a button that remains in place on your application. This gives users access to their inbox from anywhere on a page, so they don't need to scroll up to an inbox, or visit a dedicated inbox page to read and interact with notifications.
+The popup launcher adds a button to the corner of the page (similar to chat buttons), that remains in place on your application. This gives users access to their inbox from anywhere on a page, so they don't need to scroll up to an inbox, or visit a dedicated inbox page to read and interact with notifications.
 
-## Counter (Standalone)
+### Counter (Standalone)
 
+<span>This is the counter 👉 </span>
+<NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" />
+
+<br/>
+<br/>
+
+```jsx
 <NotificationCounter />
+```
 
-## Counter (on Element)
+The counter element displays the number of unread notifications. Features:
 
-Apply a notification badge on elements to notify users of unread messages in their inbox. The counter will list the amount of unread notification a user has received.
+- Can count "unopened/unseen" notifications or "unarchived" notifications
+- Can be a dot like: <NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" dot />
+- Many other formatting and positioning customizations available
 
-<img src={ElementCounter} style={{maxWidth: 400}} />
+### Counter (on existing elements)
 
-## Feed Mode
+Apply the same counter badge on an existing element to notify users of unread messages.
+
+```jsx
+<NotificationCounter>
+  <Button>Counter</Button>
+</NotificationCounter>
+```
+
+<img src={ElementCounter} style={{maxWidth: 300}} />
+
+### Feed
 
 The feed component provides a larger feed for browsing notifications. Notifications within the feed can also be clicked on to direct to links or pages, if any were set within the Notification template.
 
+```jsx
+<NotificationFeed infiniteScrollHeight={300} />
+```
+
+Example:
+
 <NotificationFeed infiniteScrollHeight={300} />
 
-## Notification Preferences Popup
+<br/><br/>
+
+## Notification Preferences Center
+
+### Preferences Popup
 
 Our notification preferences popup allows users to set their preferences with your app. The component contains all your templates, and sliders for users to opt-in and out of notifications, and per channel where applicable.
 
-<img src={InAppPreferences} style={{MaxWidth: 400}} />
+<img src={InAppPreferences} style={{maxWidth: 600}} />
 
-## Notification Preferences Inline
+<br/><br/>
+
+### Preferences Inline
 
 Alternatively, we also offer an inline component for user preferences. Ideal for options & settings pages.
 
 <NotificationPreferencesInline />
 
-## Customizing the Button
+<br/><br/>
+
+## UI Customizations
+
+### Customizing the Button
 
 Make our button fit in - or stand out. You can customize our button using the following parameters:
 
 - Size
-- Icon (coming soon!)
+- Icon
 - Location (for launcher)
 
-## Customizing the Header
+### Customizing the Header
 
 Coming soon!
 
-## Different UIs
-
-# Logic Customization
-
-## Custom UI
-
-You can build your own UI by reading the data inside our React Context object. It includes all our notification objects, users preferences, and functions for updating notification states. You can use these to render whatever you need.
-
-## Customizing the Popup
+### Customizing the Popup
 
 Customize out popup to be the right fit for your app. Our Popup can be customized using these parameters:
 
-- z-index (coming soon!)
+- z-index
 - Height
 - Width
 
-## Customizing the Unread Badge
+### Unread Badge
 
 You can customize the unread badge using these parameters and features:
 
@@ -168,7 +203,7 @@ You can customize the unread badge using these parameters and features:
 | **text**          | `ReactNode`                                            | Sets the badge text to `status` if `status` has been set.                    |
 | **title**         | `string`                                               | Set hover text for your badge.                                               |
 
-## Pagination
+### Pagination
 
 You can use this to set up pages for your feed. Design scrollable, interactive inbox for your users through our component. Your feed can be modified further using these arguments:
 
@@ -189,19 +224,129 @@ You can use this to set up pages for your feed. Design scrollable, interactive i
 | **size**       | `small`, `default`, `large`         | Adjust the size and spacing of your feed.                                                       |
 | **split**      | `boolean`                           | Toggle a visual separator for individual notifications in your feed. Set to `false` by default. |
 
-## Seen & Archived States
+## Logical Customizations
 
-You can set notifications to two different states upon reading them, Seen state removes the alert for that notification from badge counters and other UI. Archived state will save a notificatin, making it more accessible for finding later (?)...
+### Count
+
+This refers to what notifications are counted in the counters or unread badges. You can use an existing mode or count the notifications by your own custom function:
+
+- `COUNT_UNOPENED_NOTIFICATIONS` (default): only counts notifications that are never seen/opened. Once the user opens the notification popup, the count will be reset to zero.
+- `COUNT_UNARCHIVED_NOTIFICATIONS`: only counts the notifications that are not archived. The count will change when the user marks notifications as archived.
+- Custom: you can create your own function to count the notifications. The example code below counts notifications that belong to the `welcome_notification` category and are not archived.
+
+```jsx
+<NotificationPopup
+  count={(n) => {
+    return n.notificationId === 'welcome_notification' && !n.archived;
+  }}
+/>
+```
 
 ## Filters
 
-You can filter notifications via existing states (All, unarchived). You can create your own custom functions, and filter notifications through your own criteria.
+This refers to which notifications are rendered in the pre-existing popup, feed, ... components. You can filter notifications via existing modes or create your own custom function:
 
-## Count
+- `ALL` (default): renders all notifications
+- `UNARHIVED`: renders only notifications that are not archived
+- Custom: The example code below filters notifications that belong to the `welcome_notification` category and are not archived.
 
-Just like Filters, you can count notifications via existing states (all, unarchived), or by your own custom functions.
+```jsx
+<NotificationPopup
+  count={(n) => {
+    return n.notificationId === 'welcome_notification' && !n.archived;
+  }}
+/>
+```
 
 ## Customizing each Notification
 
+## Headless (build your own UI)
+
+You can build your own UI by reading the data inside our React Context object. It includes all our notification objects, users preferences, and functions for updating notification states. You can use these to build any notification UI you need.
+
+### Setup
+
+Inside the components wrapped in our `NotificationAPIProvider`, you can access the context object using the `useNotificationAPIContext` hook:
+
+```jsx
+export const MyComponent: React.FC = () => {
+  // highlight-next-line
+  const notificationapi = NotificationAPIProvider.useNotificationAPIContext();
+
+  return (
+    <Button
+      onClick={() => {
+        console.log(notificationapi.notifications);
+      }}
+    >
+      Click to log notifications
+    </Button>
+  );
+};
+```
+
+### Acessing notification data
+
+```jsx
+notificationapi.notifications;
+```
+
+### Accessing user preferences
+
+```jsx
+notificationapi.preferences;
+```
+
+### Updating user preferences
+
+```jsx
+notificationapi.updateDelivery(
+  notificationId,
+  channel,
+  delivery,
+  subNotificationId?
+)
+```
+
+### Marking loaded notifications as opened/seen
+
+```jsx
+notificationapi.markAsOpened();
+```
+
+### Marking notifications as archived
+
+```jsx
+// to mark all as archived:
+notificationapi.markAsArchived('ALL');
+
+// to mark invididual notifications as archived:
+notificationapi.markAsArchived(['trackingId1', 'trackingId2']);
+```
+
+### Marking a notification as clicked
+
+```jsx
+notificationapi.markAsClicked('trackingId');
+```
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
  </NotificationAPIProvider>
 </div>
