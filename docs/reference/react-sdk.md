@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { NotificationFeed,
@@ -51,10 +51,12 @@ values={[
 1. Install the react package:
 
 ```shell
-npm install @notificationapi/react
+npm install @notificationapi/react #--legacy-peer-deps
 # yarn add @notificationapi/react
 # pnpm add @notificationapi/react
 ```
+
+If you experience a React version conflict during package installation, try adding `--force` or `--legacy-peer-deps` to the end of your install command.
 
 2. Import and use our provider in your top-level components/routers:
 
@@ -150,6 +152,19 @@ Example:
 
 Our notification preferences popup allows users to set their preferences with your app. The component contains all your templates, and sliders for users to opt-in and out of notifications, and per channel where applicable.
 
+```jsx
+const [preferencesPopupVisibility, setPreferencesPopupVisiblity] = React.useState(false);
+<button onClick={() => setPreferencesPopupVisiblity(true)}>
+  Preferences Popup
+</button>
+<NotificationPreferencesPopup
+  open={preferencesPopupVisibility}
+  onClose={() => {
+    setPreferencesPopupVisiblity(false);
+  }}
+/>
+```
+
 <img src={InAppPreferences} style={{maxWidth: 600}} />
 
 <br/><br/>
@@ -157,6 +172,12 @@ Our notification preferences popup allows users to set their preferences with yo
 ### Preferences Inline
 
 Alternatively, we also offer an inline component for user preferences. Ideal for options & settings pages.
+
+```jsx
+<NotificationPreferencesInline />
+```
+
+Example:
 
 <NotificationPreferencesInline />
 
@@ -168,21 +189,57 @@ Alternatively, we also offer an inline component for user preferences. Ideal for
 
 Make our button fit in - or stand out. You can customize our button using the following parameters:
 
-- Size
-- Icon
-- Location (for launcher)
+| Parameter          | Type     | Description                                          |
+| ------------------ | -------- | ---------------------------------------------------- |
+| **buttonIconSize** | `number` | Determines the size of the icon used for the button. |
+| **buttonHeight**   | `number` | Determines the height of the button.                 |
+| **buttonWidth**    | `number` | Determines the width of the button.                  |
+
+```jsx
+<NotificationPopup buttonIconSize={30} buttonHeight={50} buttonWidth={50} />
+```
+
+### Customizing the Button (Launcher)
+
+The launcher component takes additional parameters, allowing you to better position the button on your app.
+
+| Parameter    | Type                                                             | Description                                                      |
+| ------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **offsetX**  | `number` or `string`                                             | Determine a horizontal offset for your popup launcher.           |
+| **offsetY**  | `number` or `string`                                             | Determine a vertical offset for your popup launcher.             |
+| **position** | `string`: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT` | Determine which corner you want the popup launcher to anchor on. |
+
+```jsx
+<NotificationLauncher buttonIconSize={30} offsetX={200} offsetY={100} />
+```
 
 ### Customizing the Header
 
-Coming soon!
+You can change the header of your notifications to take your own custom React Component. You can modify the "Notifications" header found in the popup, feed, and launcher.
+
+```jsx
+<NotificationPopup
+  header={{
+    title: <>"Notification"</>
+  }}
+/>
+```
 
 ### Customizing the Popup
 
 Customize out popup to be the right fit for your app. Our Popup can be customized using these parameters:
 
-- z-index
-- Height
-- Width
+| Parameter            | Type                                                                                         | Description                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **count**            | `ReactNode["count"]`                                                                         | Modify the appearance of the count on your popup. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone). |
+| **filter**           | `string`: `ALL`, `UNARCHIVED`                                                                | Filter which notifications appear. Set to `ALL` by default.                                                                    |
+| **imageShape**       | `string`: `circle`, `square`                                                                 | Determines the shape of images in the popup feed. Set to `circle` by default.                                                  |
+| **pagePosition**     | `string:` `top`, `bottom`                                                                    | Determines whether the popup will render the inbox at the top or bottom of the screen. Set to `top` by default.                |
+| **pageSize**         | `number`                                                                                     | Requires `pagination` set to `PAGINATED`. Determines the amount of notifications shown per page.                               |
+| **pagination**       | `string`: `INFINITE_SCROLL`,`PAGINATED`                                                      | Choose between a single page or multiple pages for your inbox. Set to `INFINITE_SCROLL` by default                             |
+| **renderers**        | `object`: `{notification: NotificationProps["renderer"], NotificationExtra["extraRenderer"]` | Allows you to render custom & additional content.                                                                              |
+| **style**            | `Record<SemanticDOM, CSSProperties>`                                                         | Pass in your styles to match our popup with your design                                                                        |
+| **unreadBadgeProps** | `ReactNode`                                                                                  | Modify the unread badge. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone).                          |
 
 ### Unread Badge
 
@@ -247,7 +304,7 @@ This refers to what notifications are counted in the counters or unread badges. 
 This refers to which notifications are rendered in the pre-existing popup, feed, ... components. You can filter notifications via existing modes or create your own custom function:
 
 - `ALL` (default): renders all notifications
-- `UNARHIVED`: renders only notifications that are not archived
+- `UNARCHIVED`: renders only notifications that are not archived
 - Custom: The example code below filters notifications that belong to the `welcome_notification` category and are not archived.
 
 ```jsx
@@ -329,6 +386,38 @@ notificationapi.markAsArchived(['trackingId1', 'trackingId2']);
 ```jsx
 notificationapi.markAsClicked('trackingId');
 ```
+
+## Concepts
+
+### How does it work?
+
+You trigger the API from the back-end and we store the notification. When users sign into the app, the sdk will pull their notification.
+
+### Websocket
+
+We have our own websocket for sending & receiving new notifications. With this websocket, users will automatically receive new notifications without needing to refresh their pages. Since the websocket is automatically in place, developers don't need to do anything to implement this.
+
+### In-App Notification Object
+
+The in-app notification object takes several arguments.
+
+| Parameter          | Type                                           | Description                                                                                                                                                 |
+| ------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **actioned1**      | `string`                                       | Coming soon! Assign a function for button 1 in your template, if a custom button has been assigned.                                                         |
+| **actioned2**      | `string`                                       | Coming soon! Assign a function for button 2 in your template, if a custom button has been assigned.                                                         |
+| **archived**       | `string`                                       | Determines if the notification is considered as archived. Also referred to as "resolved".                                                                   |
+| **body**           | `ReactNode`                                    | Used to add your [custom UI](react-sdk#ui-customizations) to your notification.                                                                             |
+| **clicked**        | `string`                                       | Determines if the notification has been clicked on by the recipient.                                                                                        |
+| **date**           | `string`                                       | Using ISO 8607 formatting (YYYY-MM-DD), give your notification a date.                                                                                      |
+| **expDate**        | `number`                                       | Give your notification a TTL by passing in a Unix timestamp (in sencods). The notification will expire once the timestamp has passed.                       |
+| **id**             | `string`                                       | Your notification's tracking ID. Not the same as notificationId.                                                                                            |
+| **imageURL**       | `string`                                       | Embed an image within your notification.                                                                                                                    |
+| **notificationId** | `string`                                       | The ID for your notification's template.                                                                                                                    |
+| **opened**         | `string`                                       | Determines if the notification has been opened by the recipient. Notifications are considered opened if rendered onscreen for the recipient.                |
+| **parameters**     | `Record<string, unknown>`                      | [Mergetags.](../features/mergetags) Give your notification mergetags/props that can pass values into matching mergetags within your notification templates. |
+| **redirectURL**    | `string`                                       | Give your notification a link to send users to upon clicking.                                                                                               |
+| **replies**        | `object: { date: string, message: string }[],` | Coming soon - Contains user comments/replies to the notification if enabled.                                                                                |
+| **title**          | `string`                                       | A title for your in-app notification.                                                                                                                       |
 
 <!--  -->
 <!--  -->

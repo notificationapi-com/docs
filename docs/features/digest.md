@@ -93,6 +93,10 @@ Batched notifications are sent based on their selected `Delivery Options`. Any r
 
 For example, assume a notification is configured to send batches `Weekly` on `Monday at 9:00 am`, and recieves a scheduled request for `Sunday at 1:00 pm`. The request is not sent on `Sunday at 1:00 pm`: instead it is batched and will be included in the notification sent on `Monday at 9:00 am`.
 
+### What happens to attachments?
+
+Batched notifications will retain all of their attachments. For example, if your batched notification contains 5 notifications with attachments, it will combine all attachments from those 5 notifications and send them in the batch.
+
 ### Do I have to pay extra for `Batch & Digest`?
 
 No, this feature is provided for no additional charge.

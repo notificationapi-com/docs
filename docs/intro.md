@@ -48,7 +48,7 @@ Intercom('show');
 #### Client-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="./reference/react-sdk" />
     <SupportedEnvironment  logo="devicon-nextjs-plain" name="Next.js" path="./reference/js-client" />
     <SupportedEnvironment  logo="devicon-javascript-plain" name="JavaScript" path="./reference/js-client" />
     <SupportedEnvironment  logo="devicon-angularjs-plain" name="Angular" path="./reference/js-client" />
