@@ -1436,3 +1436,180 @@ notificationapi.delete_schedule('172cf2f4-18cd-4f1f-b2ac-e50c7d71891c');
 | Name           | Type   | Description                                                                                                   |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
 | `trackingId`\* | string | The tracking ID of the scheduled notification you wish to delete. You can find this value from the dashboard. |  |
+
+## queryLogs
+
+This function allows you to run queries on the logs of your send requests.
+
+<Tabs
+groupId="back-end-language"
+defaultValue="js"
+values={[
+{ label: 'Node', value: 'js' },
+{ label: 'Python', value: 'python' },
+{ label: 'PHP', value: 'php' },
+{ label: 'Go', value: 'go' },
+{ label: 'C#', value: 'csharp' },
+{ label: 'Ruby', value: 'ruby' }
+]
+}>
+<TabItem value="js">
+
+```js
+notificationapi.queryLogs({
+  dateRangeFilter: {
+    startTime: 1719600830559;
+    endTime: 1719600840559;
+  },
+  notificationFilter: ['order_tracking'],
+  channelFilter: ['EMAIL'];
+  userFilter: ['abcd-1234'],
+  statusFilter: ['SUCCESS'],
+  trackingIds: ['172cf2f4-18cd-4f1f-b2ac-e50c7d71891c'],
+  requestFilter: ['request.mergeTags.item="Krabby Patty Burger"'],
+  envIdFilter: ["6ok6imq9unr2budgiebjdaa6oi"]
+});
+```
+
+</TabItem>
+<TabItem value="python">
+
+```python
+import asyncio
+
+async def query_logs():
+    await notificationapi.queryLogs({
+        "dateRangeFilter": {
+            "startTime": 1719600830559,
+            "endTime": 1719600840559
+        },
+        "notificationFilter": ["order_tracking"],
+        "channelFilter": ["EMAIL"],
+        "userFilter": ["abcd-1234"],
+        "statusFilter": ["SUCCESS"],
+        "trackingIds": ["172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"],
+        "requestFilter": ['request.mergeTags.item="Krabby Patty Burger"'],
+        "envIdFilter": ["6ok6imq9unr2budgiebjdaa6oi"]
+    })
+
+# To run the async function
+asyncio.run(query_logs())
+
+```
+
+</TabItem>
+<TabItem value="php">
+
+```php
+$notificationapi->queryLogs([
+    "dateRangeFilter" => [
+        "startTime" => 1719600830559,
+        "endTime" => 1719600840559,
+    ],
+    "notificationFilter" => ['order_tracking'],
+    "channelFilter" => ['EMAIL'],
+    "userFilter" => ['abcd-1234'],
+    "statusFilter" => ['SUCCESS'],
+    "trackingIds" => ['172cf2f4-18cd-4f1f-b2ac-e50c7d71891c'],
+    "requestFilter" => ['request.mergeTags.item="Krabby Patty Burger"'],
+    "envIdFilter" => ['6ok6imq9unr2budgiebjdaa6oi']
+]);
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+params := map[string]interface{}{
+  "dateRangeFilter": map[string]interface{}{
+    "startTime": 1719600830559,
+    "endTime":   1719600840559,
+  },
+  "notificationFilter": []string{"order_tracking"},
+  "channelFilter":      []string{"EMAIL"},
+  "userFilter":         []string{"abcd-1234"},
+  "statusFilter":       []string{"SUCCESS"},
+  "trackingIds":        []string{"172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"},
+  "requestFilter":      []string{`request.mergeTags.item="Krabby Patty Burger"`},
+  "envIdFilter":        []string{"6ok6imq9unr2budgiebjdaa6oi"},
+}
+
+notificationAPI.QueryLogs(params)
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+var parameters = new Dictionary<string, object>
+        {
+            { "dateRangeFilter", new Dictionary<string, long> { { "startTime", 1719600830559 }, { "endTime", 1719600840559 } } },
+            { "notificationFilter", new List<string> { "order_tracking" } },
+            { "channelFilter", new List<string> { "EMAIL" } },
+            { "userFilter", new List<string> { "abcd-1234" } },
+            { "statusFilter", new List<string> { "SUCCESS" } },
+            { "trackingIds", new List<string> { "172cf2f4-18cd-4f1f-b2ac-e50c7d71891c" } },
+            { "requestFilter", new List<string> { @"request.mergeTags.item=""Krabby Patty Burger""" } },
+            { "envIdFilter", new List<string> { "6ok6imq9unr2budgiebjdaa6oi" } }
+        };
+
+        await notificationApi.QueryLogs(parameters);
+```
+
+</TabItem>
+<TabItem value="ruby">
+
+```ruby
+params = {
+  dateRangeFilter: {
+    startTime: 1719600830559,
+    endTime: 1719600840559
+  },
+  notificationFilter: ['order_tracking'],
+  channelFilter: ['EMAIL'],
+  userFilter: ['abcd-1234'],
+  statusFilter: ['SUCCESS'],
+  trackingIds: ['172cf2f4-18cd-4f1f-b2ac-e50c7d71891c'],
+  requestFilter: ['request.mergeTags.item="Krabby Patty Burger"'],
+  envIdFilter: ['6ok6imq9unr2budgiebjdaa6oi']
+}
+
+notificationapi.query_logs(params)
+```
+
+</TabItem>
+
+</Tabs>
+
+| Name                        | Type       | Description                                                                                                                                               |
+| --------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dateRangeFilter`           | object     | Filters logs by a specific date range. Optional.                                                                                                          |
+| `dateRangeFilter.startTime` | number     | The start time of the date range filter as a Unix timestamp. Optional. Cannot be less than your log retention period.                                     |
+| `dateRangeFilter.endTime`   | number     | The end time of the date range filter as a Unix timestamp. Optional.                                                                                      |
+| `notificationFilter`        | string[]   | Filters logs by specific notification IDs. Optional. This allows you to retrieve logs for particular notifications.                                       |
+| `channelFilter`             | Channels[] | Filters logs by specific channels. Optional. This allows you to retrieve logs for certain channels like EMAIL, SMS, etc.                                  |
+| `userFilter`                | string[]   | Filters logs by specific user IDs. Optional. This allows you to retrieve logs for particular users.                                                       |
+| `statusFilter`              | string[]   | Filters logs by specific statuses. Optional. This allows you to retrieve logs with particular statuses like sent, failed, etc.                            |
+| `trackingIds`               | string[]   | Filters logs by specific tracking IDs. Optional. This allows you to retrieve logs for particular tracking events.                                         |
+| `requestFilter`             | string[]   | Filters logs by specific body request of your send request. Optional. This allows you to retrieve logs for particular requests.                           |
+| `envIdFilter`               | string[]   | Filters logs by specific environment IDs. Optional. This allows you to retrieve logs for particular environments.                                         |
+| `customFilter`              | string     | A custom filter for querying logs. Optional. This allows for more advanced and flexible querying of logs. Note: custom filter overwrites all the filters. |
+
+You can run more complex filters using customFilter. Note that customFilter overwrites all other filters in the request.
+
+<Tabs
+groupId="log-query-customFilter"
+defaultValue="js"
+values={[
+{ label: 'customFilter', value: 'js' }
+]
+}>
+<TabItem value="js">
+
+```js
+fields @message| filter request.user.email like /com/ and request.user.email not like /gmail.com/| sort @timestamp desc
+```
+
+</TabItem>
+
+</Tabs>
