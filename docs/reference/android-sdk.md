@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 ---
 
-# Android SDK (Front-End)
+# Android SDK
 
 The Android SDK is used to recieve **push notifications** and handle device token synchronization with NotificationAPI.
 
@@ -74,7 +74,7 @@ class MainActivity : NotificationApiActivity() {
     companion object {
         const val TAG = "Example App"
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -106,7 +106,7 @@ class MainActivity : NotificationApiActivity() {
 }
 ```
 
-You must configure the SDK with your `NotificationAPI` credentials. It is recommended to configure the SDK as early as possible. You must also request notification authorization from the user. 
+You must configure the SDK with your `NotificationAPI` credentials. It is recommended to configure the SDK as early as possible. You must also request notification authorization from the user.
 
 You are now ready to recieve push notifications from NotificationAPI! :tada:
 
@@ -114,7 +114,7 @@ You are now ready to recieve push notifications from NotificationAPI! :tada:
 
 The `NotificationApiService` class handles device token synchronization with NotificationAPI. It is required to extend from this class in order to recieve push notifications from NotificationAPI.
 
-### fun onPreDisplayNotification(message: RemoteMessage) 
+### fun onPreDisplayNotification(message: RemoteMessage)
 
 This function is called after `NotificationApiService` has recieved a notification but before displaying the notification. You can override `onPreDisplayNotification()` to customize how the notification will be displayed. To use the default notification display, you must call `displayNotification()` here.
 
@@ -131,18 +131,18 @@ NotificationAPI sends notification data through Firebase as data messages instea
 
 :::
 
-### fun displayNotification(intent: NotificationApiIntent, icon: Int, channelId: String, channelName: String): Int 
+### fun displayNotification(intent: NotificationApiIntent, icon: Int, channelId: String, channelName: String): Int
 
 This function displays a default notification to the given notification channel. This will create the notification channel if it does not exist. You should call this within `onPreDisplayNotification()` to actually display the notification to the user.
 
 #### Parameters
 
-`intent` (required)   
+`intent` (required)  
 Type: NotificationApiIntent
 
 An intent that contains the notification click handler as well as the remote message that will be displayed.
 
-`icon`  (required)  
+`icon` (required)  
 Type: Int
 
 The icon to display for the notification.
@@ -161,7 +161,7 @@ The user friendly name of the channel to display the notification in. Defaults t
 
 An UUID for the displayed notification.
 
-### fun onNewToken(token: String) 
+### fun onNewToken(token: String)
 
 This function is called when FCM generates a new device token.
 
@@ -188,7 +188,7 @@ This function is called when a notification has been clicked on by an user.
 
 #### Parameters
 
-`message`   
+`message`  
 Type: [RemoteMessage](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/messaging/RemoteMessage)
 
 The notification that was clicked on.
@@ -252,7 +252,7 @@ Type: String
 
 Your NotificationAPI client id.
 
-`userId`  (required)
+`userId` (required)
 Type: String
 
 The user id.
