@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# JS Client SDK (Front-End)
+# Vanilla JS (Front-End)
 
 The client-side SDK is mainly used for displaying **In-App Notifications** and allowing users to see and change their **Notification Preferences**.
 
