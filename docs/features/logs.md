@@ -6,6 +6,12 @@ This is specifically useful for ensuring new notifications are working correctly
 
 import logs from '@site/static/Logs.png';
 
+:::note
+
+To programmatically access the log of your requests, you can use the [queryLogs](../reference/server#querylogs) method.
+
+:::
+
 <img src={logs} style={{maxWidth: 800}} />
 
 ## Notification States
