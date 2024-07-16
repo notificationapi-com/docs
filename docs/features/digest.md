@@ -80,6 +80,28 @@ From our dashboard, you can select that the in-app notifications should be batch
 
 Notifications with similar `batchingKeys` are batched together. For example, when users make comments under a social media post, you can use that post's unique ID as the `batchingKey`. This way, the new comment notifications for the same post are batched together. For this purpose, you can set the batchingKey to `{{parameters.comment_id}}`.
 
+### 2. Design the Template
+
+In the in-app template editor, you now have the option to specify the title, image and URL of the batched in-app notifications. For example, instead of displaying "You have a new comment", you can display "You have \{\{\_items.size\}\} new comments".
+
+import InAppEditorBatched from '@site/static/InAppEditorBatched.png';
+
+<img
+src={InAppEditorBatched}
+style={{
+    maxWidth: 600,
+    borderRadius: 2
+  }}
+/>
+
+### 3. SDK
+
+The React SDK automatically handles the batching logic and UI on the client-side.
+
+:::tip[If you have built your own UI]
+We pass everything you need for the batching logic and UI inside the in-app notification objects. You can even create your own custom batching logic that batches notifications based on whatever criteria you need.
+:::
+
 ## Frequently Asked Questions (FAQs)
 
 ### How does `Email Batching` work when there are no requests at the set hour/day/week/month?
