@@ -1,35 +1,20 @@
-# 📦 Batch & Digest
+# 📦 Batching & Digest
 
-:::note
+The NotificationAPI's Batch & Digest allows for combining multiple notifications into one. The resulting batched notification can be designed with our editors, and can be configured to be sent at different intervals (hourly, daily, ...).
 
-Status: Batch & Digest is currently in active development. Stay tuned for more updates and improvements.
+## Common Use Cases
 
-:::
+**Preventing notification fatigue**: For example, instead of sending 10 "new comment" emails, you can batch them into one "new comments" email on an hourly basis.
 
-The NotificationAPI's Batch & Digest feature allows for the creation of recurring user digests at configured intervals. By batching multiple notifications into one, it effectively reduces notification fatigue. This feature is particularly useful for weekly reports or user digests. The notification editor provides a versatile tool for customizing the appearance of combined notifications, and your users can set their preferred schedule if needed.
+**Daily/Weekly/Monthly Reports**: You can combine the "events" from your software into a daily/weekly/monthly email. For example, every time there is a new user you can trigger a notification, but our system will send a "new users this week" email on a weekly basis.
 
-## Example Use Cases
+## Email Batching - How does it work?
 
-- Social media post likes and comments: In social media platforms, each like and comment on a post generates an event. Instead of sending separate notifications for each event, the Batch and Digest feature consolidates these into a single notification. At your chosen time, the requests will be compiled and sent a summarized report of all interactions on the post.
+### 1. Configure
 
-- Truck Driver Schedule: For administrators overseeing food supply chains, a daily overview of all pickups and deliveries is crucial. The Digest feature provides these summaries, promoting effective and timely operations management.
-
-## How does it work?
-
-For each notification, you can configure the channels' `Delivery Options` as following:
-
-- `Instantly`: When we receive an `Email` request, we try to deliver it to your user instantly. This delivery option is the `default`.
-- `Hourly`: We deliver all the `Email` requests that we receive in an hour.
-- `Weekly`: This configuration delivers all the `Email` requests once a week. You can choose the day and time for it.
-- `Monthly`: To deliver `Email` notifications once a month. It can happen at the beginning or end of a month. You can also select the time to deliver as well.
-- `Allow unsubscribing`: This allows your users to unsubscribe from this `Email`.
-
-`The Default Preference` indicates your users' default preference for delivery options.
-
-The following shows a sample of an `Email` channel's `Delivery Options`.
+From our dashboard, you can enable different `Delivery Options` for the email channel.
 
 import deliveryOptions from '@site/static/delivery_options.png';
-import userPreference from '@site/static/userPreference.png';
 
 <img
 src={deliveryOptions}
@@ -37,43 +22,73 @@ style={{
     maxWidth: 480,
     borderRadius: 20,
     border: '1px solid #d9d9d9',
-    marginLeft: 100
+    marginBottom: 20
   }}
 />
 
-If you adjust the settings in the above component, the default [user preference prebuilt component](../components/user-preferences.md) will be displayed as follows:`
+In the example above, we are allowing users to receive emails intantly (no batching) or to unsubscribe from this email. The default delivery method for new users is based on the small green tag, which you can change.
+
+The above options also allow users to see and pick the right preference for themselves using our [prebuilt user preference component](../components/user-preferences.md):
+
+import userPreference from '@site/static/UserPreferencesEmailBatching.png';
 
 <img
 src={userPreference}
 style={{
     maxWidth: 480,
-    borderRadius: 20,
-    border: '1px solid #d9d9d9',
-    marginLeft: 100
+    borderRadius: 2
   }}
 />
 
-Each channel can have one or more templates, and each template can be configured for one or multiple delivery options.
+### 2. Configure the Template
 
-Using the example `new_comment` notification above, you can configure the `Email` channel to deliver every Monday at 9:00 am via enabling the `Weekly` option and choosing `Monday 9:00 am` from the dropdown boxes. Doing so will give your notification three delivery options: `Instantly`, `Weekly` and `Allow Unsubscribing`. You can optionally choose to have the `Weekly` option as the default, via selecting it in `The Default Preference` options.
+Don't forget to create and assign an email template for the batched delivery options. For example, if you have enabled the `Weekly` delivery option, you must create a template and from its options, pick it as the template used for the `Weekly` emails.
 
-In the design tab, you can create two `Email` templates: one for the `Instantly` delivery option and one for `Weekly.` Requests sent for this notification will be batched and on `Monday at 9:00 am` the notification will send on its `Email` channel using the `Weekly` template. If your user changes their `Email` preference to `Instantly`, then the notification will be sent instantly with the corresponding `Instantly` template.
+:::tip
 
-When using [Parameters (Merge Tags)](./mergetags) while you are desiging a template, you can access the batched items via `{{_items}}`. This parameter is an array of all requests that were batched since the notification was last sent and delivered based on your `Delivery Options`.
+You can create unlimited templates for each notification type. For example, you can have a "default" template for the `new_comment` email notification, a "Spanish" template for Spanish speaking users, or a "Weekly Digest (English)" template for batching these notifications into a single email.
 
-For example, you can retrieve the number of comments in the `new_comment` notification by using a [`filter`](./mergetags#filters) like `{{_items | size}}` in your template. This parameter will be replaced with the number of requests in the current batch.
+:::
 
-With batching you can still use all the functionality that is provided by the [Parameters (Merge Tags)](./mergetags.md) feature, such as [`Loops`](./mergetags#loops-for), [`Conditional Logic`](./mergetags#conditional-logic-if-else), and [`filter`](./mergetags#filters).
+### 3. Designing the Template
+
+You can design the batch template using our no-code email editor, just like you would with a regular instant email.
+
+Tips:
+
+- When using [Parameters (Merge Tags)](./mergetags), you can access the batched items via `{{_items}}`.
+- To count the number of batched items, you can use `{{_items.size}}` in your template.
+- You can repeat a row based on the `_items` by selecting the row and clicking the "Select Condition" button on the right panel.
+
+import EmailEditorBatching from '@site/static/EmailEditorBatching.png';
+
+<img
+src={EmailEditorBatching}
+style={{
+    maxWidth: 800,
+    borderRadius: 2
+  }}
+/>
+
+## In-App Batching
+
+In-App batching works different than email in the sense that it happens live. When a new in-app notification is generated, it is instantly sent to the client-side SDK, and then client-side SDK handles the batching.
+
+### 1. Configure
+
+From our dashboard, you can select that the in-app notifications should be batched. When selecting this option, you are allowed to pick how notifications are batched together by picking a `batchingKey`.
+
+Notifications with similar `batchingKeys` are batched together. For example, when users make comments under a social media post, you can use that post's unique ID as the `batchingKey`. This way, the new comment notifications for the same post are batched together. For this purpose, you can set the batchingKey to `{{parameters.comment_id}}`.
 
 ## Frequently Asked Questions (FAQs)
 
-### How does `Batch & Digest` work when there are no requests at the delivery time configured in the `Delivery Options`?
+### How does `Email Batching` work when there are no requests at the set hour/day/week/month?
 
-If there are no notifications for a user in the specified period, the system will not send a notification. For example, assume you have selected the `Weekly` delivery option on `Monday at 9:00 am` for the `Email` channel. If there is no request recorded for the user by `Monday at 9:00 am` then no email will be sent.
+If there are no notifications for a user in the batch period, the system will not send an email.
 
 ### Will notifications with different sub notifications be batched together or separately?
 
-Requests with different [sub notifications](./scheduling.md) will be batched separately.
+Requests with different [subNotificationIds](./scheduling.md) will be batched separately.
 
 ### How does `Batch & Digest` work with `Throttling`?
 
@@ -93,9 +108,9 @@ Batched notifications are sent based on their selected `Delivery Options`. Any r
 
 For example, assume a notification is configured to send batches `Weekly` on `Monday at 9:00 am`, and recieves a scheduled request for `Sunday at 1:00 pm`. The request is not sent on `Sunday at 1:00 pm`: instead it is batched and will be included in the notification sent on `Monday at 9:00 am`.
 
-### What happens to attachments?
+### What happens to email attachments?
 
-Batched notifications will retain all of their attachments. For example, if your batched notification contains 5 notifications with attachments, it will combine all attachments from those 5 notifications and send them in the batch.
+Batched notifications will retain and combine all of their attachments into the same email. You should be careful with the size of the attachments.
 
 ### Do I have to pay extra for `Batch & Digest`?
 
