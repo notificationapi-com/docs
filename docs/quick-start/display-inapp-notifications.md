@@ -23,7 +23,7 @@ import InAppPNG from '@site/static/inapp.png';
 
 ## Playground
 
-[See a demo and modify the code here on CodeSandbox](https://codesandbox.io/s/notificationapi-in-app-notifications-demo-l91923?file=/index.js).
+[You can see and modify the code here on our in-app playground](../features/mergetags#playground).
 
 ## Step 1: Install the Front-End SDK
 

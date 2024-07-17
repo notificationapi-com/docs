@@ -9,6 +9,7 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "notificationapi-com",
   projectName: "docs",
+  themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
     navbar: {
       style: "dark",

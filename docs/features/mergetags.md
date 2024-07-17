@@ -21,6 +21,7 @@ You can use merge tags almost everywhere:
 
 - Email Subject Line
 - Email Content: Text, Button Link, Image Link, ...
+- `From Address` and `From Name` in Template Editor
 - All fields of In-App, SMS, Call, Mobile Push and Web Push
 
 ## Passing the values
