@@ -130,9 +130,9 @@ Batched notifications are sent based on their selected `Delivery Options`. Any r
 
 For example, assume a notification is configured to send batches `Weekly` on `Monday at 9:00 am`, and recieves a scheduled request for `Sunday at 1:00 pm`. The request is not sent on `Sunday at 1:00 pm`: instead it is batched and will be included in the notification sent on `Monday at 9:00 am`.
 
-### Does `Batch & Digest` user's time zone?
+### Does `Batch & Digest` user's timezone?
 
-Yes, if the user's timezone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's time zone. The default time zone is `EST`.
+Yes, if the user's timezone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's timezone. The default timezone is `EST`.
 
 ### What happens to email attachments?
 
