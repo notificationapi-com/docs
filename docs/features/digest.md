@@ -132,7 +132,7 @@ For example, assume a notification is configured to send batches `Weekly` on `Mo
 
 ### Does `Batch & Digest` user's time zone?
 
-Yes, if the users time zone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's time zone. The default time zone is `EST`.
+Yes, if the user's timezone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's time zone. The default time zone is `EST`.
 
 ### What happens to email attachments?
 
