@@ -11,7 +11,7 @@
 
 
 <script src="/custom.js"></script><link rel="stylesheet" href="/assets/css/styles.4644303b.css">
-<script src="/assets/js/runtime~main.552c4f09.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.9c50da2c.js" defer="defer"></script>
 <script src="/assets/js/main.a834f730.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -58,7 +58,7 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="how-does-email-batching-work-when-there-are-no-requests-at-the-set-hourdayweekmonth">How does <code>Email Batching</code> work when there are no requests at the set hour/day/week/month?<a class="hash-link" aria-label="Direct link to how-does-email-batching-work-when-there-are-no-requests-at-the-set-hourdayweekmonth" title="Direct link to how-does-email-batching-work-when-there-are-no-requests-at-the-set-hourdayweekmonth" href="/features/digest#how-does-email-batching-work-when-there-are-no-requests-at-the-set-hourdayweekmonth">​</a></h3>
 <p>If there are no notifications for a user in the batch period, the system will not send an email.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="will-notifications-with-different-sub-notifications-be-batched-together-or-separately">Will notifications with different sub notifications be batched together or separately?<a class="hash-link" aria-label="Direct link to Will notifications with different sub notifications be batched together or separately?" title="Direct link to Will notifications with different sub notifications be batched together or separately?" href="/features/digest#will-notifications-with-different-sub-notifications-be-batched-together-or-separately">​</a></h3>
-<p>Requests with different <a href="/features/scheduling">subNotificationIds</a> will be batched separately.</p>
+<p>Requests with different <a href="/features/scheduling">subNotificationIds</a> will be batched together.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="how-does-batch--digest-work-with-throttling">How does <code>Batch &amp; Digest</code> work with <code>Throttling</code>?<a class="hash-link" aria-label="Direct link to how-does-batch--digest-work-with-throttling" title="Direct link to how-does-batch--digest-work-with-throttling" href="/features/digest#how-does-batch--digest-work-with-throttling">​</a></h3>
 <p>The <a href="/features/throttling"><code>Throttling</code></a> criteria are checked at the configured time in the <code>Delivery Options</code>. For example, assume if you have configured <code>Throttling</code> for 2 notifications per user per 24 hours and configured the delivery option as <code>hourly</code>, and then sent a notification every hour. In the first two hours, a batched notification will be sent. Any notifications recieved afterwards will be discarded until 24 hours has passed.</p>
 <p>Likewise if you have a notification with <a href="/features/throttling"><code>Throttling</code></a> set to allow 5 <code>new_comment</code> notifications per hour and a <code>Weekly</code> delivery option selected, then the 6th notification within the same hour will be ignored.</p>
