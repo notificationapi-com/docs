@@ -110,7 +110,7 @@ If there are no notifications for a user in the batch period, the system will no
 
 ### Will notifications with different sub notifications be batched together or separately?
 
-Requests with different [subNotificationIds](./scheduling.md) will be batched separately.
+Requests with different [subNotificationIds](./scheduling.md) will be batched together.
 
 ### How does `Batch & Digest` work with `Throttling`?
 
