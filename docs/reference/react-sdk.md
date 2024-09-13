@@ -189,11 +189,12 @@ Example:
 
 Make our button fit in - or stand out. You can customize our button using the following parameters:
 
-| Parameter          | Type     | Description                                          |
-| ------------------ | -------- | ---------------------------------------------------- |
-| **buttonIconSize** | `number` | Determines the size of the icon used for the button. |
-| **buttonHeight**   | `number` | Determines the height of the button.                 |
-| **buttonWidth**    | `number` | Determines the width of the button.                  |
+| Parameter          | Type     | Description                                           |
+| ------------------ | -------- | ----------------------------------------------------- |
+| **buttonIconSize** | `number` | Determines the size of the icon used for the button.  |
+| **buttonHeight**   | `number` | Determines the height of the button.                  |
+| **buttonWidth**    | `number` | Determines the width of the button.                   |
+| **iconColor**      | `string` | Determines the color of the icon used for the button. |
 
 ```jsx
 <NotificationPopup buttonIconSize={30} buttonHeight={50} buttonWidth={50} />
