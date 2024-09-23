@@ -29,8 +29,7 @@ The React SDK is mainly used for displaying **In-App** Notifications and allowin
 ## Setup
 
 <div 
-  style={{
-    color: "black",
+  style={{    
     padding: 24,
   }}
 >
