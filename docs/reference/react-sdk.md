@@ -125,7 +125,7 @@ Apply the same counter badge on an existing element to notify users of unread me
 </NotificationCounter>
 ```
 
-<img src={ElementCounter} style={{maxWidth: 300, borderRadius: 8}} />
+<img src={ElementCounter} style={{maxWidth: 300, borderRadius: 8, marginBottom: 20}} />
 
 ### Feed
 
@@ -137,7 +137,7 @@ The feed component provides a larger feed for browsing notifications. Notificati
 
 Example:
 
-<NotificationFeed infiniteScrollHeight={300} />
+<NotificationFeed infiniteScrollHeight={300} style={{ borderRadius: 8}} />
 
 <br/><br/>
 

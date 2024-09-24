@@ -32,7 +32,7 @@ With `inline: true`, there is no bell button or popup. Instead, the notification
 
 import inline from '@site/static/inline.png';
 
-<img src={inline} width="400" style={{borderRadius: 8}} />
+<img src={inline} width="400" style={{borderRadius: 8, marginBottom: 20}} />
 
 The inline mode is useful for creating a stand-alone Notifications page in your app, in combination with the [paginated mode](#paginated-mode).
 
@@ -68,7 +68,7 @@ With `pagination: true` and `pageSize: 2`, only 2 notifications are rendered (an
 
 import paginated from '@site/static/paginated.gif';
 
-<img src={paginated} width="300" style={{borderRadius: 8}} />
+<img src={paginated} width="300" style={{borderRadius: 8, marginBottom: 20}} />
 
 This mode is useful in combination with the inline mode to create a stand-alone Notifications page in your app.
 

@@ -62,3 +62,7 @@ main .container {
 [data-theme='dark'] .ant-collapse {
   border: none;
 }
+
+[data-theme='dark'] .anticon-bell {
+  color: #ffffff !important;
+}

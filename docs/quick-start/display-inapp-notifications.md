@@ -17,7 +17,7 @@ We provide an <strong>in-app notification widget</strong> compatible with most f
 
 import InAppPNG from '@site/static/inapp.png';
 
-<div style={{display: "flex", justifyContent: "center"}}>
+<div style={{display: "flex", justifyContent: "start"}}>
   <img src={InAppPNG} style={{maxWidth: 400, borderRadius: 8}} />
 </div>
 

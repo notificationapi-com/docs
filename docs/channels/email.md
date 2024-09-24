@@ -34,7 +34,7 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 
 import BeePNG from '@site/static/bee.webp';
 
-<img src={BeePNG} style={{maxWidth: 500, borderRadius: 8}} />
+<img src={BeePNG} style={{maxWidth: 500, borderRadius: 8, marginBottom: 20}} />
 
 To remove the burden of manually building email templates, we have integrated a fully loaded email editor. Now everyone on your team can create and modify your email notfications without coding.
 

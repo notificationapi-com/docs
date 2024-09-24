@@ -2,12 +2,12 @@
 
 import webpush from '@site/static/webpush.png';
 
-<img src={webpush} style={{maxWidth: 400, borderRadius: 8, marginBottom: 16}} />
+<img src={webpush} style={{maxWidth: 400, borderRadius: 8, marginBottom: 20}} />
 <br/>
 
 import webpush2 from '@site/static/webpush2.png';
 
-<img src={webpush2} style={{maxWidth: 400, borderRadius: 8}} />
+<img src={webpush2} style={{maxWidth: 400, borderRadius: 8, marginBottom: 20}} />
 
 Web push notifications look almost identical to native notification on the device. However, they require the user to opt-in from their browser when they are on your website/front-end.
 
