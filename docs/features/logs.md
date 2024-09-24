@@ -12,7 +12,7 @@ To programmatically access the log of your requests, you can use the [queryLogs]
 
 :::
 
-<img src={logs} style={{maxWidth: 800}} />
+<img src={logs} style={{maxWidth: 800, borderRadius: 8, marginTop: 16, width: "100%"}} />
 
 ## Notification States
 

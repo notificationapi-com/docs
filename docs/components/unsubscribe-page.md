@@ -2,7 +2,7 @@
 
 import notificationapi_unsub from '@site/static/notificationapi_unsub.png';
 
-<img src={notificationapi_unsub} style={{maxWidth: 700}} />
+<img src={notificationapi_unsub} style={{maxWidth: 600, borderRadius: 8, width: "100%", marginBottom: 20}} />
 
 Email best-practice recommends including a "One-Click Unsubscribe Link" in your emails. This URL, upon being opened should automatically unsubscribes the user from that notification. It can also show some content with your branding and message.
 
@@ -19,7 +19,7 @@ Starting February 2024, Google is enforcing a new policy that requires all email
 
 Google will use this link to display a unsubscribe link in the Gmail UI, as shown below:
 
-<img src={unsubscribe} style={{maxWidth: 400}} />
+<img src={unsubscribe} style={{maxWidth: 400, borderRadius: 8, width: "100%"}} />
 
 :::
 
@@ -32,7 +32,7 @@ Google will use this link to display a unsubscribe link in the Gmail UI, as show
 
 import notificationapi_unsub2 from '@site/static/notificationapi_unsub2.png';
 
-<img src={notificationapi_unsub2} style={{maxWidth: 400}} />
+<img src={notificationapi_unsub2} style={{maxWidth: 400, borderRadius: 8, width: "100%"}} />
 
 ## Can I customize this page?
 

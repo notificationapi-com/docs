@@ -20,7 +20,7 @@ Our notification preferences widget works out-of-the-box with most front-end fra
 
 import UserPref from '@site/static/userpref.gif';
 
-<img src={UserPref} style={{maxWidth: 300, marginBottom: 30}} />
+<img src={UserPref} style={{maxWidth: 500, marginBottom: 24, borderRadius: 8, width: "100%"}} />
 
 There are 2 ways to access the widget:
 

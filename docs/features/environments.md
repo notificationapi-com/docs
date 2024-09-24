@@ -8,7 +8,7 @@ To create a testing environment, navigate to the "Environments" page. Then click
 
 import environments_add_testing from '@site/static/environments_add_testing.png';
 
-<img src={environments_add_testing} />
+<img src={environments_add_testing} style={{ borderRadius: 8 }} />
 
 ## Environment Channels
 
@@ -16,4 +16,4 @@ On the "Environments" page, you can enable or disable specific channels per envi
 
 import environments_enable_channels from '@site/static/environments_enable_channels.png';
 
-<img src={environments_enable_channels} />
+<img src={environments_enable_channels} style={{ borderRadius: 8 }} />
