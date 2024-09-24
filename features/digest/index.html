@@ -10,8 +10,8 @@
 
 
 
-<script src="/custom.js"></script><link rel="stylesheet" href="/assets/css/styles.4644303b.css">
-<script src="/assets/js/runtime~main.cd58612c.js" defer="defer"></script>
+<script src="/custom.js"></script><link rel="stylesheet" href="/assets/css/styles.c05c517c.css">
+<script src="/assets/js/runtime~main.998abfdf.js" defer="defer"></script>
 <script src="/assets/js/main.a834f730.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -24,11 +24,11 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-configure">1. Configure<a class="hash-link" aria-label="Direct link to 1. Configure" title="Direct link to 1. Configure" href="/features/digest#1-configure">​</a></h3>
 <p>From our dashboard, you can enable different <code>Delivery Options</code> for the email channel.</p>
 <!-- -->
-<img src="/assets/images/delivery_options-28906fc30a05e5ae857197e45c6cb36a.png" style="max-width:480px;border-radius:20px;border:1px solid #d9d9d9;margin-bottom:20px">
+<img src="/assets/images/delivery_options-28906fc30a05e5ae857197e45c6cb36a.png" style="max-width:480px;border-radius:8px;border:1px solid #d9d9d9;margin-bottom:20px;width:100%">
 <p>In the example above, we are allowing users to receive emails intantly (no batching) or to unsubscribe from this email. The default delivery method for new users is based on the small green tag, which you can change.</p>
 <p>The above options also allow users to see and pick the right preference for themselves using our <a href="/components/user-preferences">prebuilt user preference component</a>:</p>
 <!-- -->
-<img src="/assets/images/UserPreferencesEmailBatching-66a3acc931187232c439fd40a34ca674.png" style="max-width:480px;border-radius:2px">
+<img src="/assets/images/UserPreferencesEmailBatching-66a3acc931187232c439fd40a34ca674.png" style="max-width:480px;border-radius:8px;width:100%">
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-configure-the-template">2. Configure the Template<a class="hash-link" aria-label="Direct link to 2. Configure the Template" title="Direct link to 2. Configure the Template" href="/features/digest#2-configure-the-template">​</a></h3>
 <p>Don&#x27;t forget to create and assign an email template for the batched delivery options. For example, if you have enabled the <code>Weekly</code> delivery option, you must create a template and from its options, pick it as the template used for the <code>Weekly</code> emails.</p>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>You can create unlimited templates for each notification type. For example, you can have a &quot;default&quot; template for the <code>new_comment</code> email notification, a &quot;Spanish&quot; template for Spanish speaking users, or a &quot;Weekly Digest (English)&quot; template for batching these notifications into a single email.</p></div></div>
@@ -41,7 +41,7 @@
 <li>You can repeat a row based on the <code>_items</code> by selecting the row and clicking the &quot;Select Condition&quot; button on the right panel.</li>
 </ul>
 <!-- -->
-<img src="/assets/images/EmailEditorBatching-509e9aa8a8f6eced06ab8a413561e484.png" style="max-width:800px;border-radius:2px">
+<img src="/assets/images/EmailEditorBatching-509e9aa8a8f6eced06ab8a413561e484.png" style="max-width:800px;border-radius:8px;width:100%">
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="in-app-batching">In-App Batching<a class="hash-link" aria-label="Direct link to In-App Batching" title="Direct link to In-App Batching" href="/features/digest#in-app-batching">​</a></h2>
 <p>In-App batching works different than email in the sense that it happens live. When a new in-app notification is generated, it is instantly sent to the client-side SDK, and then client-side SDK handles the batching.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-configure-1">1. Configure<a class="hash-link" aria-label="Direct link to 1. Configure" title="Direct link to 1. Configure" href="/features/digest#1-configure-1">​</a></h3>
@@ -50,7 +50,7 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-design-the-template">2. Design the Template<a class="hash-link" aria-label="Direct link to 2. Design the Template" title="Direct link to 2. Design the Template" href="/features/digest#2-design-the-template">​</a></h3>
 <p>In the in-app template editor, you now have the option to specify the title, image and URL of the batched in-app notifications. For example, instead of displaying &quot;You have a new comment&quot;, you can display &quot;You have {{_items.size}} new comments&quot;.</p>
 <!-- -->
-<img src="/assets/images/InAppEditorBatched-ae6c9859015590736acbfa7633869166.png" style="max-width:600px;border-radius:2px">
+<img src="/assets/images/InAppEditorBatched-ae6c9859015590736acbfa7633869166.png" style="max-width:600px;border-radius:8px;width:100%">
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-sdk">3. SDK<a class="hash-link" aria-label="Direct link to 3. SDK" title="Direct link to 3. SDK" href="/features/digest#3-sdk">​</a></h3>
 <p>The React SDK automatically handles the batching logic and UI on the client-side.</p>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>If you have built your own UI</div><div class="admonitionContent_BuS1"><p>We pass everything you need for the batching logic and UI inside the in-app notification objects. You can even create your own custom batching logic that batches notifications based on whatever criteria you need.</p></div></div>
