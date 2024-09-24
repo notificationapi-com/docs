@@ -8,7 +8,7 @@ In-app notifications are messages that appear inside your web application, for e
 
 import InAppPNG from '@site/static/inapp.png';
 
-<img src={InAppPNG} style={{maxWidth: 400}} />
+<img src={InAppPNG} style={{maxWidth: 400, borderRadius: 8}} />
 
 ## Supported Environments
 

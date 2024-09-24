@@ -50,3 +50,15 @@ main .container {
 [data-theme='dark'] .SupportedEnvironment:hover {
   filter: grayscale(0%) brightness(100%) !important;
 }
+
+[data-theme='dark'] .ant-collapse-item {
+  background-color: #f5f5f5;
+}
+
+[data-theme='dark'] .ant-collapse-item:first-of-type {
+  border-radius: 8px 8px 0px 0px;
+}
+
+[data-theme='dark'] .ant-collapse {
+  border: none;
+}

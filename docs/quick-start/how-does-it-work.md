@@ -2,7 +2,7 @@
 
 import diagram from '@site/static/diagram.png';
 
-<img src={diagram} width="600" />
+<img src={diagram} width="600" style={{ borderRadius: 8 }} />
 
 <p></p>
 

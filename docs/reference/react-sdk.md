@@ -28,11 +28,7 @@ The React SDK is mainly used for displaying **In-App** Notifications and allowin
 
 ## Setup
 
-<div 
-  style={{    
-    padding: 24,
-  }}
->
+<div>
   <NotificationAPIProvider
     userId="djkean7@gmail.com"
     clientId="6ok6imq9ucn2budgiebjdaa6oi"
@@ -129,7 +125,7 @@ Apply the same counter badge on an existing element to notify users of unread me
 </NotificationCounter>
 ```
 
-<img src={ElementCounter} style={{maxWidth: 300}} />
+<img src={ElementCounter} style={{maxWidth: 300, borderRadius: 8}} />
 
 ### Feed
 
@@ -164,7 +160,7 @@ const [preferencesPopupVisibility, setPreferencesPopupVisiblity] = React.useStat
 />
 ```
 
-<img src={InAppPreferences} style={{maxWidth: 600}} />
+<img src={InAppPreferences} style={{maxWidth: 600, borderRadius: 8}} />
 
 <br/><br/>
 

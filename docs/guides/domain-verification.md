@@ -26,4 +26,4 @@ The MAIL-FROM field is different than the "From" address. This field indicates w
 
 The Domain Verification method sets this field to _notificationapi.yourdomain.com_, which is better for deliverability and branding.
 
-<img src={mailfrom} style={{maxWidth: "600px"}} />
+<img src={mailfrom} style={{maxWidth: 600, borderRadius: 8}} />

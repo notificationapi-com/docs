@@ -20,7 +20,7 @@ import deliveryOptions from '@site/static/delivery_options.png';
 src={deliveryOptions}
 style={{
     maxWidth: 480,
-    borderRadius: 20,
+    borderRadius: 8,
     border: '1px solid #d9d9d9',
     marginBottom: 20
   }}
@@ -36,7 +36,7 @@ import userPreference from '@site/static/UserPreferencesEmailBatching.png';
 src={userPreference}
 style={{
     maxWidth: 480,
-    borderRadius: 2
+    borderRadius: 8
   }}
 />
 
@@ -66,7 +66,7 @@ import EmailEditorBatching from '@site/static/EmailEditorBatching.png';
 src={EmailEditorBatching}
 style={{
     maxWidth: 800,
-    borderRadius: 2
+    borderRadius: 8
   }}
 />
 
@@ -90,7 +90,7 @@ import InAppEditorBatched from '@site/static/InAppEditorBatched.png';
 src={InAppEditorBatched}
 style={{
     maxWidth: 600,
-    borderRadius: 2
+    borderRadius: 8
   }}
 />
 
