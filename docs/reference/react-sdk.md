@@ -160,7 +160,7 @@ const [preferencesPopupVisibility, setPreferencesPopupVisiblity] = React.useStat
 />
 ```
 
-<img src={InAppPreferences} style={{maxWidth: 600, borderRadius: 8}} />
+<img src={InAppPreferences} style={{maxWidth: 600, borderRadius: 8, width: "100%"}} />
 
 <br/><br/>
 
