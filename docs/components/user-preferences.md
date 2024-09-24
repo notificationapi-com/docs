@@ -2,7 +2,7 @@
 
 import userpref2 from '@site/static/userpref2.png';
 
-<img src={userpref2} style={{maxWidth: 380}} /><br/><br/>
+<img src={userpref2} style={{maxWidth: 380, borderRadius: 8}} /><br/><br/>
 
 This document outlines all the features, common use-cases and best-practices for the user notification preferences widget.
 

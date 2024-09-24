@@ -78,7 +78,7 @@ const Parameters: React.FC = () => {
           <Text type="secondary">
             The parameters you pass through the API (json):
             <TextArea
-              rows={3}
+              rows={5}
               defaultValue={JSON.stringify(parameters, null, 2)}
               onChange={(e) => {
                 setPreParameters(e.target.value);
