@@ -70,4 +70,4 @@ The Service Worker hasn't been initialized properly.
 
 ![dev tools](image-2.png)
 
-3. If <u>notificationapi-service-worker.js</u> (Service Worker) doesn't show up, that means the service worker is not there inside the public folder. Please make sure that it is placed inside the public folder
+3. If <u>notificationapi-service-worker.js</u> (Service Worker) doesn't show up, that means the service worker is not there inside the public folder. Please make sure that it is placed inside the public folder.
