@@ -50,7 +50,7 @@ If the issue still persists,
 
 1. Reset the site's permissions to send notifications.
 
-2. Click on the settings icon
+2. Click on the the bell notification icon, and then click on the settings icon which is there on the top right corner.
 
 ![notification preferences](image-1.png)
 
