@@ -44,7 +44,7 @@ The browser's notification permissions have been previously denied or blocked.
 
 2. Click on <u>Yes</u>.
 
-This would prompt the browser to ask for permission to show notification.
+This would prompt the browser to ask for permission to show notifications.
 
 If the issue still persists,
 
