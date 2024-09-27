@@ -16,7 +16,7 @@ If you encounter any issues while trying to send web push notifications, here ar
 
 #### Problem
 
-Web push notifications do not show up and the following JSON body shows up in the backend.
+Web push notifications do not show up and the following JSON shows up in the backend.
 
 ```JavaScript
 
