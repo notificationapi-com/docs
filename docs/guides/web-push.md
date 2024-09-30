@@ -116,7 +116,7 @@ const notificationapi = new NotificationAPI({
 
 <sup>\*</sup> Required parameters
 
-For more information please checkout our [vanilla JS SDK](./reference/js-client#setup--initialization) guid.
+For more information please checkout our [vanilla JS SDK](../reference/js-client#setup--initialization) guid.
 
 **Step 3: Service Worker Setup**
 
@@ -161,7 +161,7 @@ notificationapi.askForWebPushPermission();
 With the frontend set up to receive notifications, you can now send them from your backend.
 
 - **Integrate the Backend SDK**: Use NotificationAPI's Backend SDKs to send notifications programmatically.
-- **[Send a Notification](./send-a-notification)**: Follow the guide to start sending notifications.
+- **[Send a Notification](../quick-start/send-a-notification)**: Follow the guide to start sending notifications.
 
 ---
 
