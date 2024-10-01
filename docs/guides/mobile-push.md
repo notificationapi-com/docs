@@ -58,4 +58,4 @@ NotificationAPI Mobile SDKs automatically manage and sync FCM tokens with Notifi
 
 ## Sending Customized Messages
 
-To further customize your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.
+To further customize your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#send) request.
