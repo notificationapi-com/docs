@@ -1,6 +1,11 @@
 # 🌐 Setup Web Push
 
 import webPushWorkflow from '@site/static/webPushWorkflow.png';
+import macosNotifications from '@site/static/macosNotifications.png';
+import windowsNotifications from '@site/static/windowsNotifications.png';
+import notificationPopup from '@site/static/notificationPopup.png';
+import notificationPreferences from '@site/static/notificationPreferences.png';
+import webConsoleServiceWorker from '@site/static/webConsoleServiceWorker.png';
 
 Web Push Notifications allow you to engage users directly through their web browsers, even when they're not on your website. This guide will walk you through setting up Web Push Notifications using NotificationAPI.
 
@@ -135,7 +140,7 @@ If you are using our front-end SDK to show in-app notifications. You can simply 
 
 1. Click on the bell notification icon, and it will ask the user whether they want to web push notifications.
 
-![notification icon](image.png)
+<img src={notificationPopup} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
 
 2. Click on <u>Yes</u>.
 
@@ -143,7 +148,7 @@ This would prompt the browser to ask for permission to show notifications.
 
 3. If you do not see the message in the NotificationAPI, click on the bell notification icon and then click on the settings icon, which is there in the top right corner.
 
-![notification preferences](image-1.png)
+<img src={notificationPreferences} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
 
 Click on <u>Click here</u>.
 
@@ -193,6 +198,24 @@ If you do not see the message in the NotificationAPI component, that browser has
 
 2. Open the built-in developer tools for the site (F12 on PC or fn + F12 on Mac), then go to Applications >> Service workers. If the service worker has been initialized, it would look something like this:
 
-![dev tools](image-2.png)
+<img src={webConsoleServiceWorker} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
 
 3. If <u>notificationapi-service-worker.js</u> (Service Worker) doesn't show up, that means the service worker is not there inside the public folder. Please make sure that it is placed inside the public folder. Or pass the address to the publicly available file using `customServiceWorkerPath`
+
+### How to check Notification Settings on macOS and Windows
+
+It's important to verify your notification settings at your operating system level as well to ensure proper functionality.
+
+#### macOS
+
+1. Go to System Preferences > Notifications.
+2. Find your app (chrome, firefox, safari, etc...) in the list and ensure notifications are enabled.
+
+<img src={macosNotifications} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
+
+#### Windows
+
+1. Open Settings > System > Notifications.
+2. Ensure to enable Notifications for proper functionality.
+
+<img src={windowsNotifications} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
