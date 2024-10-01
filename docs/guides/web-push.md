@@ -15,26 +15,9 @@ To set up Web Push Notifications with NotificationAPI, you'll need to:
 
 1. **Create a Notification Template** in the NotificationAPI Dashboard.
 2. **Implement the Frontend SDK** on your website.
-3. **Set Up the Service Worker**.
-4. **Send Notifications from the Backend** using NotificationAPI's Backend SDKs.
-
-## Schematic Diagram
-
-Below is a detailed schematic that breaks down each step:
-
-<img src={webPushWorkflow} style={{borderRadius: 8, width: "100%"}} />
-
-**Steps Explained**:
-
-1. **User Visits Website**: The user navigates to your website using their browser.
-2. **Frontend SDK Initialization**: The website loads the Frontend SDK, which initializes and registers the service worker.
-3. **Service Worker Registration**: The service worker is essential for handling background tasks and notifications.
-4. **User Permission Prompt**: The SDK prompts the user to grant permission for notifications.
-5. **User Subscribes**: Upon granting permission, the user is subscribed to receive notifications.
-6. **Backend Sends Notification**: An event in your system triggers the backend to send a notification via NotificationAPI.
-7. **Notification Dispatch**: NotificationAPI processes the request and dispatches the notification to the user's browser.
-8. **Browser Receives Notification**: The service worker receives the notification in the background.
-9. **Notification Displayed**: The browser displays the notification to the user, even if they're not on your website.
+3. **Set Up the Service Worker** on your website.
+4. **Give permission** on your browser.
+5. **Send Notifications from the Backend** using NotificationAPI's Backend SDKs.
 
 ---
 
@@ -46,8 +29,6 @@ Below is a detailed schematic that breaks down each step:
 2. Create a new notification template.
 3. Enable "Web Push" as a channel.
 4. Customize the template to suit your needs.
-
----
 
 **Step 2: Implement the Frontend SDK**
 
@@ -131,9 +112,7 @@ The service worker manages background tasks and is essential for receiving push 
 2. **Place the file** in the `public` folder of your web application. It should be accessible at `https://yourdomain.com/notificationapi-service-worker.js`.
 3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
 
----
-
-**Step 4: Give permission On your browser**
+**Step 4: Give permission on your browser**
 
 **Option 1: Rely on NotificationAPI Pre-Built component (Recommended)**
 If you are using our front-end SDK to show in-app notifications. You can simply rely on our SDK to ask your users to opt in for web push notification.
@@ -159,8 +138,6 @@ You can use the following method to ask your user to opt in for the web Push not
 notificationapi.askForWebPushPermission();
 ```
 
----
-
 **Step 5: Send Notifications from the Backend**
 
 With the frontend set up to receive notifications, you can now send them from your backend.
@@ -170,11 +147,31 @@ With the frontend set up to receive notifications, you can now send them from yo
 
 ---
 
+## Schematic Diagram
+
+Below is a detailed schematic that breaks down each step:
+
+<img src={webPushWorkflow} style={{borderRadius: 8, width: "100%"}} />
+
+**Steps Explained**:
+
+1. **User Visits Website**: The user navigates to your website using their browser.
+2. **Frontend SDK Initialization**: The website loads the Frontend SDK, which initializes and registers the service worker.
+3. **Service Worker Registration**: The service worker is essential for handling background tasks and notifications.
+4. **User Permission Prompt**: The SDK prompts the user to grant permission for notifications.
+5. **User Subscribes**: Upon granting permission, the user is subscribed to receive notifications.
+6. **Backend Sends Notification**: An event in your system triggers the backend to send a notification via NotificationAPI.
+7. **Notification Dispatch**: NotificationAPI processes the request and dispatches the notification to the user's browser.
+8. **Browser Receives Notification**: The service worker receives the notification in the background.
+9. **Notification Displayed**: The browser displays the notification to the user, even if they're not on your website.
+
+---
+
 ## Frequently Asked Questions (FAQs)
 
 ### Why I see this message: WEB_PUSH delivery is activated, but the user's webPushTokens is not provided. Discarding WEB_PUSH.?
 
-It means that you have done **Step 1** and **Step 5** correctly, but you probably have not implemented our frontend SDK correctly (**Step 2**), or you have not set up the service worker (**Step 3**), or your user is not opted in for receiving web push notification.
+It means that you have done **Step 1** and **Step 5** correctly, but you probably have not implemented our frontend SDK correctly (**Step 2**), or you have not set up the service worker (**Step 3**), or your user is not opted in for receiving web push notification (**Step 4**).
 
 ### Why can I not see the browser prompt in **Step 3**?
 
