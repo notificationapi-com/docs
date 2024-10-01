@@ -95,7 +95,7 @@ const notificationapi = new NotificationAPI({
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
 | userId\*                | string | The unique ID of the user in your system.                                                                                                  |
-| userIdHash              | string | Only used for [Secure Mode](#secure-mode).                                                                                                 |
+| userIdHash              | string | Only used for [Secure Mode](/guides/secure-mode).                                                                                          |
 | websocket               | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
 | language                | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
 | customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js').                         |

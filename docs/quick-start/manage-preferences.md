@@ -43,8 +43,8 @@ notificationapi.showUserPreferences();
 
 You can set the user preferences programmatically from both your back-end and front-end code:
 
-- [Front-end reference](../reference/js-client#set-user-preferences)
-- [Back-end reference](../reference/server#set-user-preferences)
+- [Front-end reference](../reference/js-client#patchuserpreference)
+- [Back-end reference](../reference/server#setuserpreferences)
 
 ## Next Steps
 
