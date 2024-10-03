@@ -11,7 +11,7 @@ import webpush2 from '@site/static/webpush2.png';
 
 Web push notifications look almost identical to native notification on the device. However, they require the user to opt-in from their browser when they are on your website/front-end.
 
-Not to be confused with [Mobile Push](./mobile-push) notifications that are truly native (delivered from installed apps), or [In-App Notifications](./inapp) that are displayed inside your UI, e.g. inside a bell icon or webpage.
+Not to be confused with [Mobile Push](/mobile-push) notifications that are truly native (delivered from installed apps), or [In-App Notifications](/inapp) that are displayed inside your UI, e.g. inside a bell icon or webpage.
 
 ## Supported Browsers
 
