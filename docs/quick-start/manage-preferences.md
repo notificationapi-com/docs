@@ -43,8 +43,8 @@ notificationapi.showUserPreferences();
 
 You can set the user preferences programmatically from both your back-end and front-end code:
 
-- [Front-end reference](../reference/js-client#patchuserpreference)
-- [Back-end reference](../reference/server#setuserpreferences)
+- [Front-end reference](/reference/js-client#patchuserpreference)
+- [Back-end reference](/reference/server#setuserpreferences)
 
 ## Next Steps
 
@@ -52,6 +52,6 @@ So now you have taken care of the user preferences. 🎉
 
 Here's what may interest you:
 
-- [🙉 No-Code Unsubscribe Page](../components/unsubscribe-page)
-- [🎨 Styling the In-App Widget](../components/inapp#styling-and-branding)
-- [🌈 Styling the Preferences Widget](../components/user-preferences#styling-and-branding)
+- [🙉 No-Code Unsubscribe Page](/components/unsubscribe-page)
+- [🎨 Styling the In-App Widget](/components/inapp#styling-and-branding)
+- [🌈 Styling the Preferences Widget](/components/user-preferences#styling-and-branding)

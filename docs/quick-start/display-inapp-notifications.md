@@ -23,7 +23,7 @@ import InAppPNG from '@site/static/inapp.png';
 
 ## Playground
 
-[You can see and modify the code here on our in-app playground](../features/mergetags#playground).
+[You can see and modify the code here on our in-app playground](/features/mergetags#playground).
 
 ## Step 1: Install the Front-End SDK
 
@@ -267,6 +267,6 @@ You are now receiving in-app notifications on your front-end! 🎉
 
 Let's do a few more things:
 
-- [⚙️ Manage User Notification Preferences](../quick-start/manage-preferences)
-- [📱 Setup Mobile Push](../guides/mobile-push)
-- [🌐 Setup Web Push](../guides/web-push)
+- [⚙️ Manage User Notification Preferences](/quick-start/manage-preferences)
+- [📱 Setup Mobile Push](/guides/mobile-push)
+- [🌐 Setup Web Push](/guides/web-push)

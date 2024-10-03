@@ -29,7 +29,7 @@ style={{
 
 In the example above, we are allowing users to receive emails intantly (no batching) or to unsubscribe from this email. The default delivery method for new users is based on the small green tag, which you can change.
 
-The above options also allow users to see and pick the right preference for themselves using our [prebuilt user preference component](../components/user-preferences.md):
+The above options also allow users to see and pick the right preference for themselves using our [prebuilt user preference component](/components/user-preferences.md):
 
 import userPreference from '@site/static/UserPreferencesEmailBatching.png';
 
@@ -136,7 +136,7 @@ For example, assume a notification is configured to send batches `Weekly` on `Mo
 
 ### Does `Batch & Digest` user's timezone?
 
-Yes, if the user's timezone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's timezone. The default timezone is `EST`.
+Yes, if the user's timezone is defined by [the front end SDKs](/reference/js-client#identify), and/or [backend SDKs](/reference/server#identifyuser) or simply added to the [send request](/reference/server#send) the request is scheduled for the user's timezone. The default timezone is `EST`.
 
 ### What happens to email attachments?
 

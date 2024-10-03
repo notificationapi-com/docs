@@ -23,7 +23,7 @@ Any JavaScript based front-end framework, including:
 
 ## Requirements
 
-- Implementing our in-app notifications widget in your front-end. [See step-by-step guide here.](../quick-start/display-inapp-notifications)
+- Implementing our in-app notifications widget in your front-end. [See step-by-step guide here.](/quick-start/display-inapp-notifications)
 
 :::tip
 You don't need any database or other APIs. We manage all the necessary storage and APIs under-the-hood. Our widget automatically connects to our servers and gets the job done.
@@ -35,9 +35,9 @@ The widget is open-source and fully customizable. You can modify the look and fe
 
 - Fully customizable look and feel through CSS
 - Live updates (new notifications appear without refreshing the page)
-- Popup vs. Page modes - [see docs](../reference/js-client#showinapp)
-- Multiple Mark as read modes - [see docs](../reference/js-client#showinapp)
-- Pagination or endless scrolling - [see docs](../reference/js-client#showinapp)
+- Popup vs. Page modes - [see docs](/reference/js-client#showinapp)
+- Multiple Mark as read modes - [see docs](/reference/js-client#showinapp)
+- Pagination or endless scrolling - [see docs](/reference/js-client#showinapp)
 
 ## Tracking Options
 
