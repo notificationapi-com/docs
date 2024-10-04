@@ -10,8 +10,8 @@ This widget is part of our Front-end SDK, compatible with any JavaScript-based f
 
 Relevant docs:
 
-- [Add the widget to your front-end](../quick-start/manage-preferences)
-- [Front-end SDK reference](../reference/js-client)
+- [Add the widget to your front-end](/quick-start/manage-preferences)
+- [Front-end SDK reference](/reference/js-client)
 
 ## How It Works
 

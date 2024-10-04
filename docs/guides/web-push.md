@@ -102,13 +102,13 @@ const notificationapi = new NotificationAPI({
 
 <sup>\*</sup> Required parameters
 
-For more information please checkout our [vanilla JS SDK](../reference/js-client#setup--initialization) guid.
+For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guid.
 
 **Step 3: Service Worker Setup**
 
 The service worker manages background tasks and is essential for receiving push notifications.
 
-1. **Download** the notificationapi-service-worker.js file.
+1. **Download**<a href="https://docs.notificationapi.com/assets/files/notificationapi-service-worker-0697cc83d566c337f10fdfafdd4c765b.js" download> notificationapi-service-worker.js</a>
 2. **Place the file** in the `public` folder of your web application. It should be accessible at `https://yourdomain.com/notificationapi-service-worker.js`.
 3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
 
@@ -143,7 +143,7 @@ notificationapi.askForWebPushPermission();
 With the frontend set up to receive notifications, you can now send them from your backend.
 
 - **Integrate the Backend SDK**: Use NotificationAPI's Backend SDKs to send notifications programmatically.
-- **[Send a Notification](../quick-start/send-a-notification)**: Follow the guide to start sending notifications.
+- **[Send a Notification](/quick-start/send-a-notification)**: Follow the guide to start sending notifications.
 
 ---
 

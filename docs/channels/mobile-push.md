@@ -6,8 +6,8 @@ Mobile Push is a channel that allows you to send push notifications to your user
 
 ## Requirements
 
-- Setting up [Apple Push Notification Service] or Firebase Cloud Messaging (FCM) 👉 [step-by-step guide](../guides/mobile-push)
-- Integrating our easy-to-use [iOS SDK](../reference/ios-sdk) or [Android SDK](../reference/android-sdk) into your apps
+- Setting up [Apple Push Notification Service] or Firebase Cloud Messaging (FCM) 👉 [step-by-step guide](/guides/mobile-push)
+- Integrating our easy-to-use [iOS SDK](/reference/ios-sdk) or [Android SDK](/reference/android-sdk) into your apps
 
 :::note
 Mobile push notification is the only channel in NotificationAPI that relies on external 3rd-parties (Apple and FCM). This is due to a limitation of the mobile operating systems.

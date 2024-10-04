@@ -305,7 +305,7 @@ ngOnInit() {
 
 _Only required for Web Push notifications:_
 
-Download [notificationapi-service-worker.js](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application.
+Download<a href="https://docs.notificationapi.com/assets/files/notificationapi-service-worker-0697cc83d566c337f10fdfafdd4c765b.js" download> notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
 
 ## getUserPreferences
 
@@ -368,13 +368,13 @@ notificationapi.patchUserPreference('order_tracking', 'EMAIL', false);
 | notificationId\*  | string  | The ID of the notification in NotificationAPI.                                                                                                                                                                   |
 | channel\*         | string  | The channel for which you wish to change the setting. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH`                                                                              |
 | state\*           | boolean | The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup. |
-| subNotificationId | string  | Only when using [subNotificationIds](../features/subnotifications)                                                                                                                                               |
+| subNotificationId | string  | Only when using [subNotificationIds](/features/subnotifications)                                                                                                                                                 |
 
 ## showInApp
 
 This function renders the in-app notifications widget on your front-end.
 
-Complete guide: [In-App Notifications Widget](../components/inapp)
+Complete guide: [In-App Notifications Widget](/components/inapp)
 
 ```js
 notificationapi.showInApp({
@@ -397,7 +397,7 @@ notificationapi.showInApp({
 
 This function renders the user preferences widget on your front-end.
 
-Complete guide: [User Preferences Widget](../components/user-preferences)
+Complete guide: [User Preferences Widget](/components/user-preferences)
 
 ```js
 notificationapi.showUserPreferences();
