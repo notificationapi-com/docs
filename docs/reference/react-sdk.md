@@ -444,23 +444,23 @@ We have our own websocket for sending & receiving new notifications. With this w
 
 The in-app notification object takes several arguments.
 
-| Parameter          | Type                                           | Description                                                                                                                                                 |
-| ------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **actioned1**      | `string`                                       | Coming soon! Assign a function for button 1 in your template, if a custom button has been assigned.                                                         |
-| **actioned2**      | `string`                                       | Coming soon! Assign a function for button 2 in your template, if a custom button has been assigned.                                                         |
-| **archived**       | `string`                                       | Determines if the notification is considered as archived. Also referred to as "resolved".                                                                   |
-| **body**           | `ReactNode`                                    | Used to add your [custom UI](react-sdk#ui-customizations) to your notification.                                                                             |
-| **clicked**        | `string`                                       | Determines if the notification has been clicked on by the recipient.                                                                                        |
-| **date**           | `string`                                       | Using ISO 8607 formatting (YYYY-MM-DD), give your notification a date.                                                                                      |
-| **expDate**        | `number`                                       | Give your notification a TTL by passing in a Unix timestamp (in sencods). The notification will expire once the timestamp has passed.                       |
-| **id**             | `string`                                       | Your notification's tracking ID. Not the same as notificationId.                                                                                            |
-| **imageURL**       | `string`                                       | Embed an image within your notification.                                                                                                                    |
-| **notificationId** | `string`                                       | The ID for your notification's template.                                                                                                                    |
-| **opened**         | `string`                                       | Determines if the notification has been opened by the recipient. Notifications are considered opened if rendered onscreen for the recipient.                |
-| **parameters**     | `Record<string, unknown>`                      | [Mergetags.](../features/mergetags) Give your notification mergetags/props that can pass values into matching mergetags within your notification templates. |
-| **redirectURL**    | `string`                                       | Give your notification a link to send users to upon clicking.                                                                                               |
-| **replies**        | `object: { date: string, message: string }[],` | Coming soon - Contains user comments/replies to the notification if enabled.                                                                                |
-| **title**          | `string`                                       | A title for your in-app notification.                                                                                                                       |
+| Parameter          | Type                                           | Description                                                                                                                                               |
+| ------------------ | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **actioned1**      | `string`                                       | Coming soon! Assign a function for button 1 in your template, if a custom button has been assigned.                                                       |
+| **actioned2**      | `string`                                       | Coming soon! Assign a function for button 2 in your template, if a custom button has been assigned.                                                       |
+| **archived**       | `string`                                       | Determines if the notification is considered as archived. Also referred to as "resolved".                                                                 |
+| **body**           | `ReactNode`                                    | Used to add your [custom UI](react-sdk#ui-customizations) to your notification.                                                                           |
+| **clicked**        | `string`                                       | Determines if the notification has been clicked on by the recipient.                                                                                      |
+| **date**           | `string`                                       | Using ISO 8607 formatting (YYYY-MM-DD), give your notification a date.                                                                                    |
+| **expDate**        | `number`                                       | Give your notification a TTL by passing in a Unix timestamp (in sencods). The notification will expire once the timestamp has passed.                     |
+| **id**             | `string`                                       | Your notification's tracking ID. Not the same as notificationId.                                                                                          |
+| **imageURL**       | `string`                                       | Embed an image within your notification.                                                                                                                  |
+| **notificationId** | `string`                                       | The ID for your notification's template.                                                                                                                  |
+| **opened**         | `string`                                       | Determines if the notification has been opened by the recipient. Notifications are considered opened if rendered onscreen for the recipient.              |
+| **parameters**     | `Record<string, unknown>`                      | [Mergetags.](/features/mergetags) Give your notification mergetags/props that can pass values into matching mergetags within your notification templates. |
+| **redirectURL**    | `string`                                       | Give your notification a link to send users to upon clicking.                                                                                             |
+| **replies**        | `object: { date: string, message: string }[],` | Coming soon - Contains user comments/replies to the notification if enabled.                                                                              |
+| **title**          | `string`                                       | A title for your in-app notification.                                                                                                                     |
 
 <!--  -->
 <!--  -->

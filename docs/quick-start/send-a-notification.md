@@ -452,7 +452,7 @@ You are now successfully sending notifications to any channel you wish. 🎉
 
 Let's do a few more things:
 
-- [🔔 Display In-App Notifications](../quick-start/display-inapp-notifications)
-- [⚙️ Manage User Notification Preferences](../quick-start/manage-preferences)
-- [📱 Setup Mobile Push](../guides/mobile-push)
-- [🌐 Setup Web Push](../guides/web-push)
+- [🔔 Display In-App Notifications](/quick-start/display-inapp-notifications)
+- [⚙️ Manage User Notification Preferences](/quick-start/manage-preferences)
+- [📱 Setup Mobile Push](/guides/mobile-push)
+- [🌐 Setup Web Push](/guides/web-push)

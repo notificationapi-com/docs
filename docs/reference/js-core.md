@@ -47,7 +47,7 @@ const client = NotificationAPIClientSDK.init({
 
 #### Secure Mode
 
-If you are using the [secure mode](../guides/secure-mode), you must provide the `hashedUserId` to the init function.
+If you are using the [secure mode](/guides/secure-mode), you must provide the `hashedUserId` to the init function.
 
 ## API Wrapper
 

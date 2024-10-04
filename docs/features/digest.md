@@ -29,7 +29,7 @@ style={{
 
 In the example above, we are allowing users to receive emails intantly (no batching) or to unsubscribe from this email. The default delivery method for new users is based on the small green tag, which you can change.
 
-The above options also allow users to see and pick the right preference for themselves using our [prebuilt user preference component](../components/user-preferences.md):
+The above options also allow users to see and pick the right preference for themselves using our [prebuilt user preference component](/components/user-preferences.md):
 
 import userPreference from '@site/static/UserPreferencesEmailBatching.png';
 
@@ -58,7 +58,7 @@ You can design the batch template using our no-code email editor, just like you 
 
 Tips:
 
-- When using [Parameters (Merge Tags)](./mergetags), you can access the batched items via `{{_items}}`.
+- When using [Parameters (Merge Tags)](mergetags), you can access the batched items via `{{_items}}`.
 - To count the number of batched items, you can use `{{_items.size}}` in your template.
 - You can repeat a row based on the `_items` by selecting the row and clicking the "Select Condition" button on the right panel.
 
@@ -114,19 +114,19 @@ If there are no notifications for a user in the batch period, the system will no
 
 ### Will notifications with different sub notifications be batched together or separately?
 
-Requests with different [subNotificationIds](./scheduling.md) will be batched together.
+Requests with different [subNotificationIds](subnotifications.md) will be batched together.
 
 ### How does `Batch & Digest` work with `Throttling`?
 
-The [`Throttling`](./throttling.md) criteria are checked at the configured time in the `Delivery Options`. For example, assume if you have configured `Throttling` for 2 notifications per user per 24 hours and configured the delivery option as `hourly`, and then sent a notification every hour. In the first two hours, a batched notification will be sent. Any notifications recieved afterwards will be discarded until 24 hours has passed.
+The [`Throttling`](throttling.md) criteria are checked at the configured time in the `Delivery Options`. For example, assume if you have configured `Throttling` for 2 notifications per user per 24 hours and configured the delivery option as `hourly`, and then sent a notification every hour. In the first two hours, a batched notification will be sent. Any notifications recieved afterwards will be discarded until 24 hours has passed.
 
-Likewise if you have a notification with [`Throttling`](./throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, then the 6th notification within the same hour will be ignored.
+Likewise if you have a notification with [`Throttling`](throttling.md) set to allow 5 `new_comment` notifications per hour and a `Weekly` delivery option selected, then the 6th notification within the same hour will be ignored.
 
 ### How does `Batch & Digest` work with `Deduplication`?
 
-The [`Deduplication`](./deduplication.md) criteria are checked at the configured time in the `Delivery Options`.
+The [`Deduplication`](deduplication.md) criteria are checked at the configured time in the `Delivery Options`.
 
-For example, assume the [`Deduplication`](./deduplication.md) window is 24 hours and a `hourly` delivery option is selected. If any batches are detected as a duplicate, then they are discarded.
+For example, assume the [`Deduplication`](deduplication.md) window is 24 hours and a `hourly` delivery option is selected. If any batches are detected as a duplicate, then they are discarded.
 
 ### How does `Batch & Digest` work with `Scheduling`?
 
@@ -136,7 +136,7 @@ For example, assume a notification is configured to send batches `Weekly` on `Mo
 
 ### Does `Batch & Digest` user's timezone?
 
-Yes, if the user's timezone is defined by [the front end SDKs](../reference/js-client#identify), and/or [backend SDKs](../reference/server#identifyuser) or simply added to the [send request](../reference/server#send) the request is scheduled for the user's timezone. The default timezone is `EST`.
+Yes, if the user's timezone is defined by [the front end SDKs](/reference/js-client#identify), and/or [backend SDKs](/reference/server#identifyuser) or simply added to the [send request](/reference/server#send) the request is scheduled for the user's timezone. The default timezone is `EST`.
 
 ### What happens to email attachments?
 
