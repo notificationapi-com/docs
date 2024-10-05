@@ -104,9 +104,7 @@ module.exports = {
       },
     ],
   ],
-  customFields: {
-    trailingSlash: false,
-  },
+  trailingSlash: false,
   scripts: [
     "/custom.js"
   ],
