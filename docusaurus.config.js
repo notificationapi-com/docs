@@ -44,6 +44,10 @@ module.exports = {
           label: "Status Page",
         },
         {
+          type: 'search',
+          position: 'left',
+        },
+        {
           href: "https://www.notificationapi.com",
           label: "Back to the website",
           position: 'right'
