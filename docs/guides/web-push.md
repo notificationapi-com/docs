@@ -108,7 +108,7 @@ For more information please checkout our [vanilla JS SDK](/reference/js-client#s
 
 The service worker manages background tasks and is essential for receiving push notifications.
 
-1. Download [notificationapi-service-worker.js](../../assets/files/notificationapi-service-worker.js)
+1. **Download** [notificationapi-service-worker.js](../../assets/files/notificationapi-service-worker.js)
 2. **Place the file** in the `public` folder of your web application. It should be accessible at `https://yourdomain.com/notificationapi-service-worker.js`.
 3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
 
