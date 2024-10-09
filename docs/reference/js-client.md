@@ -305,7 +305,7 @@ ngOnInit() {
 
 _Only required for Web Push notifications:_
 
-Download [notificationapi-service-worker.js](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application.
+Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
 
 ## getUserPreferences
 
