@@ -172,7 +172,7 @@ console.log(res);
 | `token`\*  | string | The full token string. Required.                                     |
 | `device`\* | object | Information about the device the token is associated with. Required. |
 
-##### device object
+#### device object
 
 | Name           | Type   | Description                                              |
 | -------------- | ------ | -------------------------------------------------------- |
@@ -189,14 +189,14 @@ console.log(res);
 | ------- | ------ | -------------------------------- |
 | `sub`\* | object | Web push subscription. Required. |
 
-##### Web push subscription (sub) object
+#### Web push subscription (sub) object
 
 | Name         | Type   | Description                                                                               |
 | ------------ | ------ | ----------------------------------------------------------------------------------------- |
 | `endpoint`\* | string | The string value containing the endpoint associated with the push subscription. Required. |
 | `keys`\*     | object | The keys associated with the push subscription. Required.                                 |
 
-##### Web push subscription keys object
+#### Web push subscription keys object
 
 | Name       | Type   | Description                                                                                                                                                                             |
 | ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
