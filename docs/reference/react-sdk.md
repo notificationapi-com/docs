@@ -43,12 +43,18 @@ values={[
 }>
 <TabItem value='manager'>
 
-1. Install the react package:
+1. Install the react package using one of the following package managers:
 
 ```shell
-npm install @notificationapi/react #--legacy-peer-deps
-# yarn add @notificationapi/react
-# pnpm add @notificationapi/react
+npm install @notificationapi/react --legacy-peer-deps
+```
+
+```shell
+yarn add @notificationapi/react
+```
+
+```shell
+pnpm add @notificationapi/react
 ```
 
 If you experience a React version conflict during package installation, try adding `--force` or `--legacy-peer-deps` to the end of your install command.
@@ -62,6 +68,7 @@ import { NotificationAPIProvider } from '@notificationapi/react';
   <NotificationAPIProvider
     userId="abcd-1234" // logged in userId
     clientId="abc123" // your clientId found on the dashboard
+    playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
   >
 
     <!-- your protected routes -->
