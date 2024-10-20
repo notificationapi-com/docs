@@ -31,18 +31,30 @@ values={[
 }>
 <TabItem value="manager">
 
-```shell title="1. Install"
+1. Install using on of the following package managers:
+
+```shell
 npm install notificationapi-js-client-sdk
-# yarn add notificationapi-js-client-sdk
-# pnpm add notificationapi-js-client-sdk
 ```
 
-```js title="2. Import"
+```shell
+yarn add notificationapi-js-client-sdk
+```
+
+```shell
+pnpm add notificationapi-js-client-sdk
+```
+
+2. Import
+
+```js
 import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
 ```
 
-```js title="3. Initialize"
+3. Initialize
+
+```js
 const notificationapi = new NotificationAPI({
   clientId: 'YOUR_CLIENT_ID',
   userId: 'UNIQUE_USER_ID'
@@ -52,7 +64,9 @@ const notificationapi = new NotificationAPI({
 </TabItem>
 <TabItem value="umd">
 
-```html title="1. Add to HTML, before </head>"
+1. Add to HTML, before `</head>`
+
+```shell
 <script src="https://unpkg.com/notificationapi-js-client-sdk@4.4.0/dist/notificationapi-js-client-sdk.js"></script>
 <link
   href="https://unpkg.com/notificationapi-js-client-sdk/dist/styles.css"
@@ -60,7 +74,9 @@ const notificationapi = new NotificationAPI({
 />
 ```
 
-```js title="2. Initialize"
+2. Initialize
+
+```js
 const notificationapi = new NotificationAPI({
   clientId: YOUR_CLIENT_ID,
   userId: UNIQUE_USER_ID
@@ -119,6 +135,7 @@ const NotificationAPIContainer = memo((props) => {
 
   return <div id="CONTAINER_DIV_ID"></div>;
 });
+
 export default NotificationAPIContainer;
 ```
 

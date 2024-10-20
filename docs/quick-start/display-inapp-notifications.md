@@ -42,10 +42,18 @@ values={[
 }>
 <TabItem value="NPM">
 
+Install the package using one of the following package managers:
+
 ```bash
 npm install notificationapi-js-client-sdk
-# yarn add notificationapi-js-client-sdk
-# pnpm add notificationapi-js-client-sdk
+```
+
+```bash
+yarn add notificationapi-js-client-sdk
+```
+
+```bash
+pnpm add notificationapi-js-client-sdk
 ```
 
 </TabItem>

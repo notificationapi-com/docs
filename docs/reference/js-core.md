@@ -18,18 +18,26 @@ It provides:
 
 ## Setup
 
-<Tabs>
-  <TabItem value="npm" label="npm">
-      ```bash
-      npm install @notificationapi/core
-      ```
-    </TabItem>
-    <TabItem value="yarn" label="yarn">
-      ```bash
-      yarn add @notificationapi/core
-      ```
-    </TabItem>
-</Tabs>
+<Tabs
+groupId='package-manager'
+defaultValue='manager'
+values={[
+{ label: 'Package Manager', value: 'manager' }
+]
+}>
+<TabItem value='manager'>
+
+1. Install the package using one of the following package managers:
+
+```shell
+npm install @notificationapi/core
+```
+
+```shell
+yarn add @notificationapi/core
+```
+
+2. Import:
 
 ```javascript
 import { NotificationAPIClientSDK } from '@notificationapi/core';
@@ -44,6 +52,9 @@ const client = NotificationAPIClientSDK.init({
   }
 });
 ```
+
+</TabItem>
+</Tabs>
 
 #### Secure Mode
 

@@ -50,56 +50,82 @@ values={[
 }>
 <TabItem value="js">
 
-```bash title="1. Install Package"
+1. Install using one of the following package managers:
+
+```bash
 npm install notificationapi-node-server-sdk
-# yarn add notificationapi-node-server-sdk
-# pnpm add notificationapi-node-server-sdk
 ```
 
-```js title="2. Import"
+```shell
+yarn add notificationapi-node-server-sdk
+```
+
+```shell
+pnpm add notificationapi-node-server-sdk
+```
+
+2. Import:
+
+```js
 import notificationapi from 'notificationapi-node-server-sdk';
 // or using require:
 // const notificationapi = require('notificationapi-node-server-sdk').default;
 ```
 
-```js title="3. Initialize"
+3. Initialize:
+
+```js
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
 </TabItem>
 <TabItem value="python">
 
-```bash title="1. Install Package"
+1. Install Package:
+
+```bash
 pip install notificationapi_python_server_sdk
 ```
 
-```python title="2. Import"
+2. Import:
+
+```python
 from notificationapi_python_server_sdk import (notificationapi)
 ```
 
-```python title="3. Initialize"
+3. Initialize:
+
+```python
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
 </TabItem>
 <TabItem value="php">
 
-```bash title="1. Install Package"
+1. Install Package:
+
+```bash
 composer require notificationapi/notificationapi-php-server-sdk
 ```
 
-```php title="2. Import"
+2. Import:
+
+```php
 use NotificationAPI\NotificationAPI;
 ```
 
-```php title="3. Initialize"
+3. Initialize:
+
+```php
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
 </TabItem>
 <TabItem value="laravel">
 
-```bash title="1. Install Package"
+1. Install Package:
+
+```bash
 composer require notificationapi/notificationapi-laravel-server-sdk:@dev
 ```
 
@@ -109,23 +135,31 @@ If your `composer.json`'s `"minimum-stability"` field is `"stable"`, then you ma
 Alternatively you can update `"minimum-stability"` to `"dev"` instead of explicitely installing `notificationapi-php-server-sdk:@dev`.
 :::
 
-```php title="2. Register the NotificationApiServiceProvider with config/app.php"
+2. Register the NotificationApiServiceProvider with config/app.php:
+
+```php
 'providers' => [
 	// ...
 	NotificationAPI\NotificationApiServiceProvider::class,
 ]
 ```
 
-```php title="3. Add NotificationAPI keys to .env"
+3. Add NotificationAPI keys to .env:
+
+```php
 NOTIFICATION_API_KEY=clientID
 NOTIFICATION_API_SECRET=clientSecret
 ```
 
-```php title="4. Generate Notification"
+4. Generate Notification:
+
+```php
 php artisan make:notification MyNotification
 ```
 
-```php title="5. Update the Notification class"
+5. Update the Notification class:
+
+```php
 class MyNotification extends Notification
 {
     // ...
@@ -154,40 +188,54 @@ class MyNotification extends Notification
 </TabItem>
 <TabItem value="go">
 
-```bash title="1. Install Package"
+1. Install Package:
+
+```bash
 go get github.com/notificationapi-com/notificationapi-go-server-sdk
 ```
 
-```go title="2. Import"
+2. Import:
+
+```go
 import (
   notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
 )
 ```
 
-```go title="3. Initialize"
+3. Initialize:
+
+```go
 notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
 </TabItem>
 <TabItem value="csharp">
 
-```bash title="1. Install Package"
+1. Install Package:
+
+```bash
 dotnet add package NotificationAPI --version 0.1.0
 ```
 
-```csharp title="2. Import"
+2. Import:
+
+```csharp
 using NotificationApi.Server;
 using NotificationApi.Server.Models;
 ```
 
-```csharp title="3. Initialize"
+3. Initialize:
+
+```csharp
 var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
 ```
 
 </TabItem>
 <TabItem value="ruby">
 
-```ruby title="1. Copy the following class to your application"
+1. Copy the following class to your application:
+
+```ruby
 require 'net/http'
 require 'json'
 require 'base64'
@@ -277,7 +325,9 @@ class NotificationAPI
 end
 ```
 
-```ruby title="2. Initialize"
+2. Initialize:
+
+```ruby
 notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
 ```
 
