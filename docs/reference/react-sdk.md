@@ -66,8 +66,12 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 
 <App>
   <NotificationAPIProvider
-    userId="abcd-1234" // logged in userId
     clientId="abc123" // your clientId found on the dashboard
+    userId="abcd-1234" // logged in userId
+    // or use this instead
+    // user={{
+    //   id:  "abcd-1234", // logged in userId
+    // }}
     playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
   >
 
@@ -468,6 +472,17 @@ The in-app notification object takes several arguments.
 | **redirectURL**    | `string`                                       | Give your notification a link to send users to upon clicking.                                                                                             |
 | **replies**        | `object: { date: string, message: string }[],` | Coming soon - Contains user comments/replies to the notification if enabled.                                                                              |
 | **title**          | `string`                                       | A title for your in-app notification.                                                                                                                     |
+
+## identify
+
+Stores the end-user information for a given user.
+
+```javascript
+notificationapi
+  .getClient()
+  .identify({ id: '' }) // or mention the userId passed in the provider
+  .then((result) => console.log(result));
+```
 
 <!--  -->
 <!--  -->
