@@ -81,6 +81,30 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 </App>;
 ```
 
+### Customizing the default sound
+
+Change the deafult notification sound to include your own:
+
+| Parameter                      | Type      | Description                                          |
+| ------------------------------ | --------- | ---------------------------------------------------- |
+| **playSoundOnNewNotification** | `boolean` | Determines to enable / disable sound. Default is off |
+| **newNotificationSoundPath**   | `string`  | Determines the path for the new notification sound.  |
+
+```jsx
+<App>
+  <NotificationAPIProvider
+    userId="abcd-1234" // logged in userId
+    clientId="abc123" // your clientId found on the dashboard
+    playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
+    newNotificationSoundPath="https://path-to-your-sound.mp3"
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
 </TabItem>
 </Tabs>
 
