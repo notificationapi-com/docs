@@ -322,7 +322,53 @@ ngOnInit() {
 
 _Only required for Web Push notifications:_
 
-Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+<Tabs
+groupId="frontend-language"
+defaultValue="react"
+values={[
+{ label: 'React', value: 'react' },
+{ label: 'Remix', value: 'remix' },
+{ label: 'Vue', value: 'vue' },
+{ label: 'Angular', value: 'angular' },
+{ label: `Next.js`, value: 'next' }
+]}
+
+>
+
+<TabItem value="react">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="remix">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+
+Place this in `entry.client.tsx` after `startTransition` function
+
+```JavaScript
+// if the browser supports SW (all modern browsers do it)
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    // we will register it after the page complete the load
+    navigator.serviceWorker.register("/notificationapi-service-worker.js");
+  });
+}
+
+```
+
+</TabItem>
+
+<TabItem value="vue">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="angular">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="next">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+</Tabs>
 
 ## getUserPreferences
 
