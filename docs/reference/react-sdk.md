@@ -508,6 +508,16 @@ notificationapi
   .then((result) => console.log(result));
 ```
 
+## Web push
+
+Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+
+To request permission for notifications, place the following code inside an async function, and call that function when the user interacts with your application.
+
+```javascript
+notificiationapi.setWebPushOptIn(true);
+```
+
 <!--  -->
 <!--  -->
 <!--  -->
