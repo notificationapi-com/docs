@@ -110,7 +110,44 @@ The service worker manages background tasks and is essential for receiving push 
 
 1. **Download** <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a>
 2. **Place the file** in the `public` folder of your web application. It should be accessible at `https://yourdomain.com/notificationapi-service-worker.js`.
-3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
+3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization. For example, it is accessible at `https://yourdomain.com/service/notificationapi-service-worker.js`, please specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
+
+Code examples for **step 3**:
+<Tabs
+defaultValue="vanilla"
+values={[
+{ label: 'Vanilla JS', value: 'vanilla' },
+{ label: 'React', value: 'react'}
+]}
+
+>
+
+<TabItem value="vanilla">
+```JavaScript
+const notificationapi = new NotificationAPI({
+  clientId: 'YOUR_CLIENT_ID',
+  userId: 'UNIQUE_USER_ID',
+  customServiceWorkerPath: 'service/notificationapi-service-worker.js'
+});
+
+````
+
+</TabItem>
+
+<TabItem value="react">
+```jsx
+<NotificationAPIProvider
+  userId='YOUR_CLIENT_ID'
+  clientId='UNIQUE_USER_ID'
+  customServiceWorkerPath="service/notificationapi-service-worker.js"
+>
+  {/* Your components */}
+</NotificationAPIProvider>
+
+````
+
+</TabItem>
+</Tabs>
 
 **Step 4: Give permission on your browser**
 
@@ -136,6 +173,16 @@ You can use the following method to ask your user to opt in for the web Push not
 
 ```js
 notificationapi.askForWebPushPermission();
+```
+
+**Option 3: Using the react sdk**
+If you are using our react SDK, you can use the following method to ask your user to opt. Place the code inside a component which is inside the `NotificationAPIProvider` provided by the React SDK.
+
+```jsx
+const notificiationapi = NotificationAPIProvider.useNotificationAPIContext();
+const askForWebPushPermission = async () => {
+  notificiationapi.setWebPushOptIn(true);
+};
 ```
 
 **Step 5: Send Notifications from the Backend**
