@@ -187,7 +187,7 @@ const askForWebPushPermission = async () => {
 };
 ```
 
-In the screenshot below, the user has placed the above code inside a react component and called the askForWebPushPermission when the user has pressed the button. This would prompt the browser to request permission to show notifications. The component has been placed inside the `NotificationAPIProvider` provided by the React SDK.
+In the screenshot below, the user has placed the above code inside a react component and called the `askForWebPushPermission` function when the user has pressed the button. This would prompt the browser to request permission to show notifications. The component has been placed inside the `NotificationAPIProvider` provided by the React SDK.
 
 <img src={optInWebPush} tyle={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
 
