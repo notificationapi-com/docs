@@ -6,6 +6,8 @@ import windowsNotifications from '@site/static/windowsNotifications.png';
 import notificationPopup from '@site/static/notificationPopup.png';
 import notificationPreferences from '@site/static/notificationPreferences.png';
 import webConsoleServiceWorker from '@site/static/webConsoleServiceWorker.png';
+import optInWebPush from '@site/static/optInWebPush.png'
+import showPermissions from '@site/static/showPermissions.png'
 
 Web Push Notifications allow you to engage users directly through their web browsers, even when they're not on your website. This guide will walk you through setting up Web Push Notifications using NotificationAPI.
 
@@ -184,6 +186,14 @@ const askForWebPushPermission = async () => {
   notificiationapi.setWebPushOptIn(true);
 };
 ```
+
+In the screenshot below, the user has placed the above code inside a react component and called the askForWebPushPermission when the user has pressed the button. This would prompt the browser to request permission to show notifications. The component has been placed inside the `NotificationAPIProvider` provided by the React SDK.
+
+<img src={optInWebPush} tyle={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
+
+<br />
+
+<img src={showPermissions} tyle={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
 
 **Step 5: Send Notifications from the Backend**
 
