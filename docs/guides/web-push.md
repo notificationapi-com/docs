@@ -257,7 +257,7 @@ notificationapi.askForWebPushPermission();
 
 <img src={notificationPreferencesReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
 
-2. Click on Notification Preferences. This would open up a popup.
+2. Click on Notification Preferences. This would open a popup.
 
 <img src={notificationPreferencesPopupReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
 
