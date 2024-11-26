@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 groupId="package-manager"
 defaultValue="manager"
 values={[
-{ label: 'Package Manager', value: 'manager' },
+{ label: 'Vanilla JS', value: 'manager' },
 { label: 'UMD', value: 'umd' }
 ]
 }>
@@ -116,6 +116,7 @@ The service worker manages background tasks and is essential for receiving push 
 
 Code examples for **step 3**:
 <Tabs
+groupId="frameworks"
 defaultValue="vanilla"
 values={[
 { label: 'Vanilla JS', value: 'vanilla' },
@@ -125,7 +126,7 @@ values={[
 >
 
 <TabItem value="vanilla">
-```JavaScript
+```js
 const notificationapi = new NotificationAPI({
   clientId: 'YOUR_CLIENT_ID',
   userId: 'UNIQUE_USER_ID',
@@ -153,6 +154,18 @@ const notificationapi = new NotificationAPI({
 
 **Step 4: Give permission on your browser**
 
+<Tabs
+groupId="frameworks"
+defaultValue="vanilla"
+values={[
+{ label: 'Vanilla JS', value: 'vanilla' },
+{ label: 'React', value: 'react'}
+]}
+
+>
+
+<TabItem value="vanilla">
+
 **Option 1: Rely on NotificationAPI Pre-Built component (Recommended)**
 If you are using our front-end SDK to show in-app notifications. You can simply rely on our SDK to ask your users to opt in for web push notification.
 
@@ -177,7 +190,10 @@ You can use the following method to ask your user to opt in for the web Push not
 notificationapi.askForWebPushPermission();
 ```
 
-**Option 3: Using the react sdk**
+</TabItem>
+
+<TabItem value="react">
+
 If you are using our react SDK, you can use the following method to ask your user to opt. Place the code inside a component which is inside the `NotificationAPIProvider` provided by the React SDK.
 
 ```jsx
@@ -194,6 +210,9 @@ In the screenshot below, the user has placed the above code inside a react compo
 <br />
 
 <img src={showPermissions} tyle={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
+
+</TabItem>
+</ Tabs>
 
 **Step 5: Send Notifications from the Backend**
 
