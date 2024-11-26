@@ -6,8 +6,9 @@ import windowsNotifications from '@site/static/windowsNotifications.png';
 import notificationPopup from '@site/static/notificationPopup.png';
 import notificationPreferences from '@site/static/notificationPreferences.png';
 import webConsoleServiceWorker from '@site/static/webConsoleServiceWorker.png';
-import optInWebPush from '@site/static/optInWebPush.png'
-import showPermissions from '@site/static/showPermissions.png'
+import notificationPreferencesReact from '@site/static/notificationPreferencesReact.png'
+
+import notificationPreferencesPopupReact from '@site/static/notificationPreferencesPopupReact.png'
 
 Web Push Notifications allow you to engage users directly through their web browsers, even when they're not on your website. This guide will walk you through setting up Web Push Notifications using NotificationAPI.
 
@@ -84,7 +85,7 @@ const notificationapi = new NotificationAPI({
 
 <sup>\*</sup> Required parameters
 
-For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guid.
+For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guide.
 
 </TabItem>
 
@@ -110,9 +111,7 @@ import { NotificationAPIProvider } from '@notificationapi/react';
     // }}
     playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
   >
-
-    <!-- your protected routes -->
-
+    {/* your protected routes */}
   </NotificationAPIProvider>
 </App>;
 ```
@@ -128,7 +127,7 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 
 <sup>\*</sup> Required parameters
 
-For more information please checkout our [React SDK](/reference/react-sdk#setup) guid.
+For more information please checkout our [React SDK](/reference/react-sdk#setup) guide.
 
 </TabItem>
 
@@ -162,7 +161,7 @@ const notificationapi = new NotificationAPI({
 
 <sup>\*</sup> Required parameters
 
-For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guid.
+For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guide.
 
 </TabItem>
 </Tabs>
@@ -252,7 +251,21 @@ notificationapi.askForWebPushPermission();
 
 <TabItem value="react">
 
-If you are using our react SDK, you can use the following method to ask your user to opt. Place the code inside a component which is inside the `NotificationAPIProvider` provided by the React SDK.
+**Option 1: Rely on NotificationAPI Pre-Built component (Recommended)** If you are using our react SDK to show in-app notifications. You can simply rely on our SDK to ask your users to opt in for web push notification.
+
+1. Place the `<NotificationPopup />` component inside the `NotificationAPIProvider` component. For more information on the component please checkout our [React SDK](/reference/react-sdk#popup) guide.
+
+<img src={notificationPreferencesReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
+
+2. Click on Notification Preferences. This would open up a popup.
+
+<img src={notificationPreferencesPopupReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
+
+3. Click on Yes.
+
+This would prompt the browser to ask for permission to show notifications. Alternatively, you can place the `<NotificationPreferencesPopup />` component inside the `NotificationAPIProvider` component. For more information on the component please checkout our [React SDK](/reference/react-sdk#preferences-popup) guide.
+
+**Option 2: Using built-in method** You can place the code inside a component which is inside the `NotificationAPIProvider` provided by the React SDK and call the `askForWebPushPermission` function when the user interacts with your application.
 
 ```jsx
 const notificiationapi = NotificationAPIProvider.useNotificationAPIContext();
@@ -260,14 +273,6 @@ const askForWebPushPermission = async () => {
   notificiationapi.setWebPushOptIn(true);
 };
 ```
-
-In the screenshot below, the user has placed the above code inside a react component and called the `askForWebPushPermission` function when the user has pressed the button. This would prompt the browser to request permission to show notifications. The component has been placed inside the `NotificationAPIProvider` provided by the React SDK.
-
-<img src={optInWebPush} />
-
-<br />
-
-<img src={showPermissions} />
 
 </TabItem>
 </ Tabs>
