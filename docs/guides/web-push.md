@@ -43,14 +43,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-groupId="package-manager"
-defaultValue="manager"
+groupId="frameworks"
+defaultValue="vanilla"
 values={[
-{ label: 'Vanilla JS', value: 'manager' },
+{ label: 'Vanilla JS', value: 'vanilla' },
+{ label: 'React', value: 'react'},
 { label: 'UMD', value: 'umd' }
 ]
 }>
-<TabItem value="manager">
+<TabItem value="vanilla">
 
 ```shell title="1. Install"
 npm install notificationapi-js-client-sdk
@@ -70,7 +71,67 @@ const notificationapi = new NotificationAPI({
 });
 ```
 
+#### Parameters
+
+| Parameter               | Type   | Description                                                                                                                                |
+| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
+| userId\*                | string | The unique ID of the user in your system.                                                                                                  |
+| userIdHash              | string | Only used for [Secure Mode](/guides/secure-mode).                                                                                          |
+| websocket               | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
+| language                | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
+| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js').                         |
+
+<sup>\*</sup> Required parameters
+
+For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guid.
+
 </TabItem>
+
+<TabItem value="react">
+```shell title="1. Install"
+npm install @notificationapi/react --legacy-peer-deps
+# or
+# yarn add @notificationapi/react
+# or
+# pnpm add @notificationapi/react
+````
+
+```jsx title="2. Import and use our provider in your top-level components/routers."
+import { NotificationAPIProvider } from '@notificationapi/react';
+
+<App>
+  <NotificationAPIProvider
+    clientId="abc123" // your clientId found on the dashboard
+    userId="abcd-1234" // logged in userId
+    // or use this instead
+    // user={{
+    //   id:  "abcd-1234", // logged in userId
+    // }}
+    playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
+#### Parameters
+
+| Parameter               | Type   | Description                                                                                                        |
+| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
+| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).   |
+| userId\*                | string | The unique ID of the user in your system.                                                                          |
+| hashedUserId            | string | Only used for [Secure Mode](/guides/secure-mode).                                                                  |
+| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js'). |
+
+<sup>\*</sup> Required parameters
+
+For more information please checkout our [React SDK](/reference/react-sdk#setup) guid.
+
+</TabItem>
+
 <TabItem value="umd">
 
 ```html title="1. Add to HTML, before </head>"
@@ -88,9 +149,6 @@ const notificationapi = new NotificationAPI({
 });
 ```
 
-</TabItem>
-</Tabs>
-
 #### Parameters
 
 | Parameter               | Type   | Description                                                                                                                                |
@@ -105,6 +163,9 @@ const notificationapi = new NotificationAPI({
 <sup>\*</sup> Required parameters
 
 For more information please checkout our [vanilla JS SDK](/reference/js-client#setup--initialization) guid.
+
+</TabItem>
+</Tabs>
 
 **Step 3: Service Worker Setup**
 
@@ -132,9 +193,7 @@ const notificationapi = new NotificationAPI({
   userId: 'UNIQUE_USER_ID',
   customServiceWorkerPath: 'service/notificationapi-service-worker.js'
 });
-
-````
-
+```
 </TabItem>
 
 <TabItem value="react">
@@ -146,8 +205,7 @@ const notificationapi = new NotificationAPI({
 >
   {/* Your components */}
 </NotificationAPIProvider>
-
-````
+```
 
 </TabItem>
 </Tabs>
