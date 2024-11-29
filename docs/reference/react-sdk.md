@@ -135,7 +135,7 @@ For example, the web push service worker is placed at `public/service` folder an
 
 ### webPushOptInMessage
 
-The `webPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (true or 'AUTOMATIC') or suppresses the prompt (false). It is set to `"AUTOMATIC"` by default.
+The `webPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (`true` or `'AUTOMATIC'`) or suppresses the prompt (`false`). It is set to `"AUTOMATIC"` by default.
 
 ```jsx
 <App>
@@ -561,7 +561,7 @@ notificiationapi.setWebPushOptIn(true);
 
 ## setWebPushOptInMessage
 
-The `setWebPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (true or 'AUTOMATIC') or suppresses the prompt (false). It can be set to either 'AUTOMATIC' or a boolean value. It is set to `"AUTOMATIC"` by default. It is an alternative to `webPushOptInMessage` inside the `<NotificationAPIProvider />` component.
+The `setWebPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (`true` or `'AUTOMATIC'`) or suppresses the prompt (`false`). It is set to `"AUTOMATIC"` by default. It is an alternative to `webPushOptInMessage` inside the `<NotificationAPIProvider />` component.
 
 ```javascript
 notificationapi.setWebPushOptInMessage('AUTOMATIC');
