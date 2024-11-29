@@ -133,6 +133,24 @@ For example, the web push service worker is placed at `public/service` folder an
 </App>;
 ```
 
+### webPushOptInMessage
+
+The `webPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (true or 'AUTOMATIC') or suppresses the prompt (false).
+
+```jsx
+<App>
+  <NotificationAPIProvider
+    userId="abcd-1234" // logged in userId
+    clientId="abc123" // your clientId found on the dashboard
+    webPushOptInMessage={true}
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
 ## In-App Notification Components
 
 ### Popup
@@ -541,12 +559,12 @@ To request permission for notifications, place the following code inside an asyn
 notificiationapi.setWebPushOptIn(true);
 ```
 
-## webPushOptInMessage
+## setWebPushOptInMessage
 
-This can be used to control the opt-in message for web push notifications. It can be set to either 'AUTOMATIC' or a boolean value.
+The `setWebPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (true or 'AUTOMATIC') or suppresses the prompt (false). It can be set to either 'AUTOMATIC' or a boolean value. It is an alternative to `webPushOptInMessage` inside the `<NotificationAPIProvider />` component.
 
 ```javascript
-notificationapi.webPushOptInMessage = 'AUTOMATIC';
+notificationapi.setWebPushOptInMessage('AUTOMATIC');
 ```
 
 <!--  -->
