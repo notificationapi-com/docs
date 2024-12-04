@@ -63,6 +63,10 @@ Some of the most valuable filters are:
 
 [List of all filters and their references](https://liquidjs.com/filters/overview.html)
 
+## Size Limit
+
+When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 80 KB. Exceeding this limit may result in delivery failure, or an API error.
+
 ## Conditional Logic (if, else)
 
 You can use conditional logic to show or hide content based on the data passed in.
