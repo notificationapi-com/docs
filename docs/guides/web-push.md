@@ -67,10 +67,10 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 <App>
   <NotificationAPIProvider
     clientId="abc123" // your clientId found on the dashboard
-    user={{ // logged in user
-      id: 'abcd-1234',
+    user={{
+      // logged in user
+      id: 'abcd-1234'
     }}
-    = //optional
     customServiceWorkerPath="custom path to your service worker file" //optional
   >
     {/* your protected routes */}
