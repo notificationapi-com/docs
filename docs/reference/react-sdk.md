@@ -110,7 +110,7 @@ Change the deafult notification sound to include your own:
 
 ### Customizing the path to web push service worker
 
-The <a href="/notificationapi-service-worker.js" download>service worker</a>must be placed in the public folder.
+The <a href="/notificationapi-service-worker.js" download>service worker</a> must be placed in the public folder.
 
 By default we assume the service worker file is publicly associable at `https://yourdomain.com/notificationapi-service-worker.js`
 
@@ -134,7 +134,7 @@ For example, the web push service worker is placed at `public/service` folder an
 
 ### Customizing the web push opt in message
 
-By default we automatically figure out if your user should see the web push opt in message or not. You can Customizing it like the following:
+By default we automatically figure out if your user should see the web push opt in message or not. You can customizing it like the following:
 
 ```jsx
 <App>
