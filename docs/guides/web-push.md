@@ -25,14 +25,14 @@ To set up Web Push Notifications with NotificationAPI, you'll need to:
 
 ## Step-by-Step Implementation
 
-**Step 1: Create a Notification Template**
+### **Step 1: Create a Notification Template**
 
 1. Log in to the NotificationAPI Dashboard.
 2. Create a new notification template.
 3. Enable "Web Push" as a channel.
 4. Customize the template to suit your needs.
 
-**Step 2: Implement the Frontend SDK**
+### **Step 2: Implement the Frontend SDK**
 
 Integrate the NotificationAPI Frontend SDK into your web page to handle user subscriptions and display notifications.
 
@@ -67,11 +67,11 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 <App>
   <NotificationAPIProvider
     clientId="abc123" // your clientId found on the dashboard
-    userId="abcd-1234" // logged in userId
-    // or use this instead
-    // user={{
-    //   id:  "abcd-1234", // logged in userId
-    // }}
+    user={{ // logged in user
+      id: 'abcd-1234',
+    }}
+    = //optional
+    customServiceWorkerPath="custom path to your service worker file" //optional
   >
     {/* your protected routes */}
   </NotificationAPIProvider>
@@ -80,12 +80,12 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 
 #### Parameters
 
-| Parameter               | Type   | Description                                                                                                        |
-| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
-| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).   |
-| userId\*                | string | The unique ID of the user in your system.                                                                          |
-| hashedUserId            | string | Only used for [Secure Mode](/guides/secure-mode).                                                                  |
-| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js'). |
+| Parameter               | Type                   | Description                                                                                                        |
+| ----------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| clientId\*              | string                 | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).   |
+| userId\*                | string                 | The unique ID of the user in your system.                                                                          |
+| webPushOptInMessage     | "AUTOMATIC" or Boolean | Control to show the web push opt in message. Default is "AUTOMATIC"                                                |
+| customServiceWorkerPath | string                 | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js'). |
 
 <sup>\*</sup> Required parameters
 
@@ -115,14 +115,11 @@ const notificationapi = new NotificationAPI({
 
 #### Parameters
 
-| Parameter               | Type   | Description                                                                                                                                |
-| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
-| userId\*                | string | The unique ID of the user in your system.                                                                                                  |
-| userIdHash              | string | Only used for [Secure Mode](/guides/secure-mode).                                                                                          |
-| websocket               | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
-| language                | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
-| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js').                         |
+| Parameter               | Type   | Description                                                                                                        |
+| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
+| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).   |
+| userId\*                | string | The unique ID of the user in your system.                                                                          |
+| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js'). |
 
 <sup>\*</sup> Required parameters
 
@@ -165,50 +162,15 @@ For more information please checkout our [vanilla JS SDK](/reference/js-client#s
 </TabItem>
 </Tabs>
 
-**Step 3: Service Worker Setup**
+### **Step 3: Service Worker Setup**
 
 The service worker manages background tasks and is essential for receiving push notifications.
 
 1. **Download** <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a>
 2. **Place the file** in the `public` folder of your web application. It should be accessible at `https://yourdomain.com/notificationapi-service-worker.js`.
-3. **Update the SDK Initialization**: If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization. For example, it is accessible at `https://yourdomain.com/service/notificationapi-service-worker.js`, please specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
 
-Code examples for **step 3**:
-<Tabs
-groupId="frameworks"
-defaultValue="react"
-values={[
-{ label: 'React', value: 'react'},
-{ label: 'Vanilla JS', value: 'vanilla' }
-]}
-
-> <TabItem value="react">
-
-```jsx
-<NotificationAPIProvider
-  userId="YOUR_CLIENT_ID"
-  clientId="UNIQUE_USER_ID"
-  customServiceWorkerPath="service/notificationapi-service-worker.js"
->
-  {/* Your components */}
-</NotificationAPIProvider>
-```
-
-</TabItem>
-
-<TabItem value="vanilla">
-```js
-const notificationapi = new NotificationAPI({
-  clientId: 'YOUR_CLIENT_ID',
-  userId: 'UNIQUE_USER_ID',
-  customServiceWorkerPath: 'service/notificationapi-service-worker.js'
-});
-```
-</TabItem>
-
-</Tabs>
-
-**Step 4: Give permission on your browser**
+:::note
+If the service worker is not at the root, specify its path using the `customServiceWorkerPath` parameter during SDK initialization. For example, it is accessible at `https://yourdomain.com/service/notificationapi-service-worker.js`, please specify its path using the `customServiceWorkerPath` parameter during SDK initialization.
 
 <Tabs
 groupId="frameworks"
@@ -222,49 +184,88 @@ values={[
 
 <TabItem value="react">
 
-**Option 1: Rely on NotificationAPI Pre-Built component (Recommended)** If you are using our react SDK to show in-app notifications. You can simply rely on our SDK to ask your users to opt in for web push notification.
+```jsx
+<NotificationAPIProvider
+  userId="YOUR_CLIENT_ID"
+  clientId="UNIQUE_USER_ID"
+  customServiceWorkerPath="/service/notificationapi-service-worker.js"
+>
+  {/* Your components */}
+</NotificationAPIProvider>
+```
 
-1. Place the `<NotificationPopup />` component inside the `NotificationAPIProvider` component. For more information on the component please checkout our [React SDK](/reference/react-sdk#popup) guide.
+</TabItem>
+
+<TabItem value="vanilla">
+```js
+const notificationapi = new NotificationAPI({
+  clientId: 'YOUR_CLIENT_ID',
+  userId: 'UNIQUE_USER_ID',
+  customServiceWorkerPath: '/service/notificationapi-service-worker.js'
+});
+```
+</TabItem>
+
+</Tabs>
+
+:::
+
+### **Step 4: Give permission on your browser**
+
+#### **Option 1: Use NotificationAPI Pre-Built Component (Recommended)**
+
+Our SDKs provide an easy way to prompt users for permission to receive web push notifications.
+<Tabs
+groupId="frameworks"
+defaultValue="react"
+values={[
+{ label: 'React', value: 'react'},
+{ label: 'Vanilla JS', value: 'vanilla' }
+]}
+
+>
+
+<TabItem value="react">
+
+If you are using the popup component, click on the ⚙️ icon, which is there in the top right corner.
 
 <img src={notificationPreferencesReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}}/>
 
-2. Click on Notification Preferences. This would open a popup.
-
 <img src={notificationPreferencesPopupReact} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
 
-3. Click on Yes.
+This would prompt the browser to ask for permission to show notifications.
 
-This would prompt the browser to ask for permission to show notifications. Alternatively, you can place the `<NotificationPreferencesPopup />` component inside the `NotificationAPIProvider` component. For more information on the component please checkout our [React SDK](/reference/react-sdk#preferences-popup) guide.
-
-**Option 2: Using built-in method** You can place the code inside a component which is inside the `NotificationAPIProvider` provided by the React SDK and call the `askForWebPushPermission` function when the user interacts with your application.
+**Option 2: Using built-in method** You can use `useNotificationAPIContext`.
 
 ```jsx
-const notificiationapi = NotificationAPIProvider.useNotificationAPIContext();
-const askForWebPushPermission = async () => {
-  notificiationapi.setWebPushOptIn(true);
+const AskforPerm: React.FC = () => {
+  const notificationapi = NotificationAPIProvider.useNotificationAPIContext();
+
+  return (
+    <Button
+      onClick={() => {
+        notificationapi.setWebPushOptIn(true);
+      }}
+    >
+      Click to ask for permission
+    </Button>
+  );
 };
+
+export default AskforPerm;
 ```
 
 </TabItem>
 
 <TabItem value="vanilla">
 
-**Option 1: Rely on NotificationAPI Pre-Built component (Recommended)**
-If you are using our front-end SDK to show in-app notifications. You can simply rely on our SDK to ask your users to opt in for web push notification.
-
-1. Click on the bell notification icon, and it will ask the user whether they want to web push notifications.
+You can see the opt in message in both the notification components and user preference components.
 
 <img src={notificationPopup} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
-
-2. Click on <u>Yes</u>.
-
-This would prompt the browser to ask for permission to show notifications.
-
-3. If you do not see the message in the NotificationAPI, click on the bell notification icon and then click on the settings icon, which is there in the top right corner.
+If you are using the popup component, you can click on the ⚙️ icon and then click on the settings icon, which is there in the top right corner.
 
 <img src={notificationPreferences} style={{borderRadius: 8, width: "100%", maxWidth: 600}} />
-
-Click on <u>Click here</u>.
+This would prompt the browser to ask for permission to show notifications.
 
 **Option 2: Using built-in method**
 You can use the following method to ask your user to opt in for the web Push notifications:
@@ -277,7 +278,7 @@ notificationapi.askForWebPushPermission();
 
 </ Tabs>
 
-**Step 5: Send Notifications from the Backend**
+### **Step 5: Send Notifications from the Backend**
 
 With the frontend set up to receive notifications, you can now send them from your backend.
 

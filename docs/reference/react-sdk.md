@@ -108,14 +108,13 @@ Change the deafult notification sound to include your own:
 </TabItem>
 </Tabs>
 
-### Custom path to web push service worker
+### Customizing the path to web push service worker
 
 The service worker must be placed in the public folder.
 
-The default path to the web push service worker is `/notificationapi-service-worker.js`, and is accessible at `https://yourdomain.com/notificationapi-service-worker.js`
+By default we assume the service worker file is publicly associable at `https://yourdomain.com/notificationapi-service-worker.js`
 
-If the default path is not suitable for your application, you can change the path to the web push service worker.
-The service worker should be accessible at the path you specify.
+If the default path is not suitable for your application, you can customize the path to the web push service worker.
 
 For example, the web push service worker is placed at `public/service` folder and is accessible at `https://yourdomain.com/service/notificationapi-service-worker.js`
 
@@ -124,7 +123,7 @@ For example, the web push service worker is placed at `public/service` folder an
   <NotificationAPIProvider
     userId="abcd-1234" // logged in userId
     clientId="abc123" // your clientId found on the dashboard
-    customServiceWorkerPath="service/notificationapi-service-worker.js"
+    customServiceWorkerPath="/service/notificationapi-service-worker.js"
   >
 
     <!-- your protected routes -->
@@ -133,16 +132,16 @@ For example, the web push service worker is placed at `public/service` folder an
 </App>;
 ```
 
-### webPushOptInMessage
+### Customizing the web push opt in message
 
-The `webPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (`true` or `'AUTOMATIC'`) or suppresses the prompt (`false`). It is set to `"AUTOMATIC"` by default.
+By default we automatically figure out if your user should see the web push opt in message or not. You can Customizing it like the following:
 
 ```jsx
 <App>
   <NotificationAPIProvider
     userId="abcd-1234" // logged in userId
     clientId="abc123" // your clientId found on the dashboard
-    webPushOptInMessage={true}
+    webPushOptInMessage={false}
   >
 
     <!-- your protected routes -->
@@ -508,6 +507,12 @@ notificationapi.markAsArchived(['trackingId1', 'trackingId2']);
 notificationapi.markAsClicked('trackingId');
 ```
 
+## asking for web push opt in
+
+```javascript
+notificationapi.setWebPushOptIn(true);
+```
+
 ## Concepts
 
 ### How does it work?
@@ -549,22 +554,6 @@ notificationapi
   .getClient()
   .identify({ id: '' }) // or mention the userId passed in the provider
   .then((result) => console.log(result));
-```
-
-## setWebPushOptIn
-
-To request permission for notifications, place the following code inside an async function, and call that function when the user interacts with your application.
-
-```javascript
-notificiationapi.setWebPushOptIn(true);
-```
-
-## setWebPushOptInMessage
-
-The `setWebPushOptInMessage` controls whether the browser automatically prompts users for notification permissions (`true` or `'AUTOMATIC'`) or suppresses the prompt (`false`). It is set to `"AUTOMATIC"` by default. It is an alternative to `webPushOptInMessage` inside the `<NotificationAPIProvider />` component.
-
-```javascript
-notificationapi.setWebPushOptInMessage('AUTOMATIC');
 ```
 
 <!--  -->
