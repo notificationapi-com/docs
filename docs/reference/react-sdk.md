@@ -108,6 +108,48 @@ Change the deafult notification sound to include your own:
 </TabItem>
 </Tabs>
 
+### Customizing the path to web push service worker
+
+The <a href="/notificationapi-service-worker.js" download>service worker</a> must be placed in the public folder.
+
+By default we assume the service worker file is publicly associable at `https://yourdomain.com/notificationapi-service-worker.js`
+
+If the default path is not suitable for your application, you can customize the path to the web push service worker.
+
+For example, the web push service worker is placed at `public/service` folder and is accessible at `https://yourdomain.com/service/notificationapi-service-worker.js`
+
+```jsx
+<App>
+  <NotificationAPIProvider
+    userId="abcd-1234" // logged in userId
+    clientId="abc123" // your clientId found on the dashboard
+    customServiceWorkerPath="/service/notificationapi-service-worker.js"
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
+### Customizing the web push opt in message
+
+By default we automatically figure out if your user should see the web push opt in message or not. You can customizing it like the following:
+
+```jsx
+<App>
+  <NotificationAPIProvider
+    userId="abcd-1234" // logged in userId
+    clientId="abc123" // your clientId found on the dashboard
+    webPushOptInMessage={false}
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
 ## In-App Notification Components
 
 ### Popup
@@ -463,6 +505,12 @@ notificationapi.markAsArchived(['trackingId1', 'trackingId2']);
 
 ```jsx
 notificationapi.markAsClicked('trackingId');
+```
+
+## asking for web push opt in
+
+```javascript
+notificationapi.setWebPushOptIn(true);
 ```
 
 ## Concepts
