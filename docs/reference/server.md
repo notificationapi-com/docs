@@ -214,7 +214,7 @@ notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 1. Install Package:
 
 ```bash
-dotnet add package NotificationAPI --version 0.1.0
+dotnet add package NotificationAPI --version 0.4.0
 ```
 
 2. Import:
@@ -576,6 +576,9 @@ The send() method accepts an object with the following fields:
 | `fcm.android.collapseKey` | string                                      | This parameter identifies a group of messages (e.g., with collapse_key: "Updates Available") that can be collapsed, so that only the last message gets sent when delivery can be resumed. This is intended to avoid sending too many of the same messages when the device comes back online or becomes active. Note that there is no guarantee of the order in which messages get sent. Note: A maximum of 4 different collapse keys is allowed at any given time. This means a FCM connection server can simultaneously store 4 different send-to-sync messages per client app. If you exceed this number, there is no guarantee which 4 collapse keys the FCM connection server will keep. |
 | `fcm.android.priority`    | string                                      | Sets the priority of the message. Valid values are "normal" and "high." On iOS, these correspond to APNs priorities 5 and 10. By default, notification messages are sent with high priority, and data messages are sent with normal priority. Normal priority optimizes the client app's battery consumption and should be used unless immediate delivery is required. For messages with normal priority, the app may receive the message with unspecified delay. When a message is sent with high priority, it is sent immediately, and the app can wake a sleeping device and open a network connection to your server.                                                                    |
 | `fcm.android.ttl`         | string                                      | This parameter specifies how long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks. For more information, see [Setting the lifespan of a message](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl)                                                                                                                                                                                                                                                                                                                                                      |
+#### Size Limitation 
+
+When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 80 KB. Exceeding this limit may result in delivery failure, or an API error.
 
 ## identifyUser
 
