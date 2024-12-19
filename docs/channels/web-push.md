@@ -2,16 +2,16 @@
 
 import webpush from '@site/static/webpush.png';
 
-<img src={webpush} style={{maxWidth: 300}} />
+<img src={webpush} style={{maxWidth: 400, borderRadius: 8, marginBottom: 20, width: "100%"}} />
 <br/>
 
 import webpush2 from '@site/static/webpush2.png';
 
-<img src={webpush2} style={{maxWidth: 400}} />
+<img src={webpush2} style={{maxWidth: 400, borderRadius: 8, marginBottom: 20, width: "100%"}} />
 
 Web push notifications look almost identical to native notification on the device. However, they require the user to opt-in from their browser when they are on your website/front-end.
 
-Not to be confused with [Mobile Push](./mobile-push) notifications that are truly native (delivered from installed apps), or [In-App Notifications](./inapp) that are displayed inside your UI, e.g. inside a bell icon or webpage.
+Not to be confused with [Mobile Push](mobile-push) notifications that are truly native (delivered from installed apps), or [In-App Notifications](inapp) that are displayed inside your UI, e.g. inside a bell icon or webpage.
 
 ## Supported Browsers
 

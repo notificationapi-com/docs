@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# JS Client SDK (Front-End)
+# Vanilla JS (Front-End)
 
 The client-side SDK is mainly used for displaying **In-App Notifications** and allowing users to see and change their **Notification Preferences**.
 
@@ -31,18 +31,30 @@ values={[
 }>
 <TabItem value="manager">
 
-```shell title="1. Install"
+1. Install using on of the following package managers:
+
+```shell
 npm install notificationapi-js-client-sdk
-# yarn add notificationapi-js-client-sdk
-# pnpm add notificationapi-js-client-sdk
 ```
 
-```js title="2. Import"
+```shell
+yarn add notificationapi-js-client-sdk
+```
+
+```shell
+pnpm add notificationapi-js-client-sdk
+```
+
+2. Import
+
+```js
 import NotificationAPI from 'notificationapi-js-client-sdk';
 import 'notificationapi-js-client-sdk/dist/styles.css';
 ```
 
-```js title="3. Initialize"
+3. Initialize
+
+```js
 const notificationapi = new NotificationAPI({
   clientId: 'YOUR_CLIENT_ID',
   userId: 'UNIQUE_USER_ID'
@@ -52,7 +64,9 @@ const notificationapi = new NotificationAPI({
 </TabItem>
 <TabItem value="umd">
 
-```html title="1. Add to HTML, before </head>"
+1. Add to HTML, before `</head>`
+
+```shell
 <script src="https://unpkg.com/notificationapi-js-client-sdk@4.4.0/dist/notificationapi-js-client-sdk.js"></script>
 <link
   href="https://unpkg.com/notificationapi-js-client-sdk/dist/styles.css"
@@ -60,7 +74,9 @@ const notificationapi = new NotificationAPI({
 />
 ```
 
-```js title="2. Initialize"
+2. Initialize
+
+```js
 const notificationapi = new NotificationAPI({
   clientId: YOUR_CLIENT_ID,
   userId: UNIQUE_USER_ID
@@ -72,13 +88,14 @@ const notificationapi = new NotificationAPI({
 
 #### Parameters
 
-| Parameter  | Type   | Description                                                                                                                                |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| clientId\* | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
-| userId\*   | string | The unique ID of the user in your system.                                                                                                  |
-| userIdHash | string | Only used for [Secure Mode](#secure-mode).                                                                                                 |
-| websocket  | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
-| language   | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
+| Parameter               | Type   | Description                                                                                                                                |
+| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| clientId\*              | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                           |
+| userId\*                | string | The unique ID of the user in your system.                                                                                                  |
+| userIdHash              | string | Only used for [Secure Mode](/guides/secure-mode).                                                                                          |
+| websocket               | string | Only if you want to specify your region, for example, if your account is in Canada region you must pass 'wss://ws.ca.notificationapi.com'. |
+| language                | string | The language used for the pre-built UI widgets. Supported: `en-US`, `es-ES`, `fr-FR`, `it-IT`, `pt-BR`                                     |
+| customServiceWorkerPath | string | Path to your service worker file if it's not at the root (e.g., '/custom/path/notificationapi-service-worker.js').                         |
 
 ## Framework Specific Gotcha's
 
@@ -118,6 +135,7 @@ const NotificationAPIContainer = memo((props) => {
 
   return <div id="CONTAINER_DIV_ID"></div>;
 });
+
 export default NotificationAPIContainer;
 ```
 
@@ -304,7 +322,53 @@ ngOnInit() {
 
 _Only required for Web Push notifications:_
 
-Download [this file](../../assets/files/notificationapi-service-worker.js) and place it in the "public" folder of your web application. For example, if you are using react, the file should go in the `public` folder.
+<Tabs
+groupId="frontend-language"
+defaultValue="react"
+values={[
+{ label: 'React', value: 'react' },
+{ label: 'Remix', value: 'remix' },
+{ label: 'Vue', value: 'vue' },
+{ label: 'Angular', value: 'angular' },
+{ label: `Next.js`, value: 'next' }
+]}
+
+>
+
+<TabItem value="react">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="remix">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+
+Place this in `entry.client.tsx` after `startTransition` function
+
+```JavaScript
+// if the browser supports SW (all modern browsers do it)
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    // we will register it after the page complete the load
+    navigator.serviceWorker.register("/notificationapi-service-worker.js");
+  });
+}
+
+```
+
+</TabItem>
+
+<TabItem value="vue">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="angular">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+
+<TabItem value="next">
+  Download <a href="/notificationapi-service-worker.js" download>notificationapi-service-worker.js</a> and place it in the "public" folder of your web application.
+</TabItem>
+</Tabs>
 
 ## getUserPreferences
 
@@ -367,13 +431,13 @@ notificationapi.patchUserPreference('order_tracking', 'EMAIL', false);
 | notificationId\*  | string  | The ID of the notification in NotificationAPI.                                                                                                                                                                   |
 | channel\*         | string  | The channel for which you wish to change the setting. Accepted values: <br/>`EMAIL`, `INAPP_WEB`, `SMS`, `CALL`, `PUSH`, `WEB_PUSH`                                                                              |
 | state\*           | boolean | The preference of the user. If set to false, the user will no longer receive the specified notification on the specified channel, until the state is set to true again through the API or the preferences popup. |
-| subNotificationId | string  | Only when using [subNotificationIds](../features/subnotifications)                                                                                                                                               |
+| subNotificationId | string  | Only when using [subNotificationIds](/features/subnotifications)                                                                                                                                                 |
 
 ## showInApp
 
 This function renders the in-app notifications widget on your front-end.
 
-Complete guide: [In-App Notifications Widget](../components/inapp)
+Complete guide: [In-App Notifications Widget](/components/inapp)
 
 ```js
 notificationapi.showInApp({
@@ -396,7 +460,7 @@ notificationapi.showInApp({
 
 This function renders the user preferences widget on your front-end.
 
-Complete guide: [User Preferences Widget](../components/user-preferences)
+Complete guide: [User Preferences Widget](/components/user-preferences)
 
 ```js
 notificationapi.showUserPreferences();

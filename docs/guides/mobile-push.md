@@ -28,9 +28,9 @@ To send a push notification to your mobile app on an Apple device, we need some 
 
 NotificationAPI Mobile SDKs automatically manage and sync APNs tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a user from your back-end, rather than worrying about generating, storing and retrieving the APNs token.
 
-| Mobile SDK                  | APNs Token Management |
-| :-------------------------- | :-------------------: |
-| [iOS](../reference/ios-sdk) |       Automatic       |
+| Mobile SDK                | APNs Token Management |
+| :------------------------ | :-------------------: |
+| [iOS](/reference/ios-sdk) |       Automatic       |
 
 ## Firebase Cloud Messaging (FCM)
 
@@ -52,10 +52,10 @@ To send a push notification to your mobile app on an Android device, we need som
 
 NotificationAPI Mobile SDKs automatically manage and sync FCM tokens with NotificationAPI servers, so you don't have to. This allows you to send push notifications directly to a userId from your back-end, rather than worrying about generating, storing and retrieving the FCM token.
 
-| Mobile SDK                          | APNs Token Management |
-| :---------------------------------- | :-------------------: |
-| [Android](../reference/android-sdk) |       Automatic       |
+| Mobile SDK                        | APNs Token Management |
+| :-------------------------------- | :-------------------: |
+| [Android](/reference/android-sdk) |       Automatic       |
 
 ## Sending Customized Messages
 
-To further customize your push notification please check out the `options.apn` attribute in the [`send`](../reference/server.md#options-additional-customization) request.
+To further customize your push notification please check out the `options.apn` attribute in the [`send`](/reference/server.md#send) request.

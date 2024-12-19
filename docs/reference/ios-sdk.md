@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
-# iOS SDK (Front-End)
+# iOS SDK
 
 The iOS SDK is used to recieve **push notifications** and handle device token synchronization with NotificationAPI.
 
@@ -12,7 +12,7 @@ Supported environments:
 
 ## Setup
 
-You can follow Apple's instructions for installing a package dependency [here](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app). 
+You can follow Apple's instructions for installing a package dependency [here](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app).
 
 The URL is `https://github.com/notificationapi-com/notificationapi-ios-sdk.git`
 
@@ -24,17 +24,17 @@ We highly recommend to extend from `NotificationApiAppDelegate.swift` and use th
 class AppDelegate: NotificationApiAppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         NotificationApi.shared.configure(withCredentials: NotificationApiCredentials(clientId: "YOUR_CLIENT_ID", userId: "YOUR_USER_ID"))
-        
+
         NotificationApi.shared.requestAuthorization { granted, _ in
             print("Is authorized?: \(granted)")
-        }        
+        }
 
         return true
     }
 }
 ```
 
-You must configure the SDK with your `NotificationAPI` credentials. It is recommended to configure the SDK as early as possible. You must also request notification authorization from the user. 
+You must configure the SDK with your `NotificationAPI` credentials. It is recommended to configure the SDK as early as possible. You must also request notification authorization from the user.
 
 You are now ready to recieve push notifications from NotificationAPI! :tada:
 
@@ -86,7 +86,7 @@ Your NotificationAPI credentials. You can retrieve them from [here](https://app.
 `config`  
 Type: NotificationApiConfig
 
-Config object for the NotificationApi SDK. 
+Config object for the NotificationApi SDK.
 
 ### func requestAuthorization(completionHandler handler: @escaping (Bool, Error?) -> Void)
 
@@ -94,8 +94,7 @@ Requests the user's permission to recieve push notifications.
 
 import IosRequestAuth from '@site/static/ios_request_auth.png';
 
-<img src={IosRequestAuth
-} />
+<img src={IosRequestAuth} style={{ borderRadius: 8}} />
 
 #### Parameters
 
@@ -118,6 +117,7 @@ There is also an async version that can be used like the following:
 ```swift
 func NotificationApi.shared.requestAuthorization() async throws -> Bool
 ```
+
 :::
 
 ### func syncApn(token: String, completionHandler handler: @escaping (Error?) -> Void)
@@ -145,6 +145,7 @@ There is also an async version that can be used like the following:
 ```swift
 func syncApn(token: String) async throws
 ```
+
 :::
 
 ## NotificationApiCredentials

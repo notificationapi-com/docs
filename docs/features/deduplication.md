@@ -17,7 +17,7 @@ A notification is duplicate if it is:
 
 import img from '@site/static/NotificationAPI notification as a service deduplication feature.png';
 
-<img src={img} style={{maxWidth: 480, borderRadius: 20, border: '1px solid #d9d9d9' }} />
+<img src={img} style={{maxWidth: 480, borderRadius: 8, border: '1px solid #d9d9d9', marginBottom: 20, width: "100%" }} />
 
 When setting up deduplication, you are asked to select a deduplication duration. This is the window of time during which we will consider a notification a duplicate of another.
 

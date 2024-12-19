@@ -23,18 +23,18 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 
 ## Important Features
 
-- High delivery through SPF, DKIM and DMARC - [see docs](../guides/domain-verification.md)
-- Compliant with Google's and Yahoo's email sender policies and best practices for high deliverability - [see docs](email.md#Google and Yahoo Bulk Sender Requirements)
-- Merge tags (injecting dynamic values into the email content) - [see docs](../features/mergetags)
-- Pre-built Unsubscribe Link and Web Page - [see docs](../components/unsubscribe-page)
-- Attachments - [see docs](../reference/server#send)
-- CC, BCC fields - [see docs](../reference/server#send)
+- High delivery through SPF, DKIM and DMARC - [see docs](/guides/domain-verification.md)
+- Compliant with Google's and Yahoo's email sender policies and best practices for high deliverability - [see docs](email/#google-and-yahoo-bulk-sender-requirements)
+- Merge tags (injecting dynamic values into the email content) - [see docs](/features/mergetags)
+- Pre-built Unsubscribe Link and Web Page - [see docs](/components/unsubscribe-page)
+- Attachments - [see docs](/reference/server#send)
+- CC, BCC fields - [see docs](/reference/server#send)
 
 ## Email Editor
 
 import BeePNG from '@site/static/bee.webp';
 
-<img src={BeePNG} style={{maxWidth: 500}} />
+<img src={BeePNG} style={{maxWidth: 500, borderRadius: 8, marginBottom: 20, width: "100%"}} />
 
 To remove the burden of manually building email templates, we have integrated a fully loaded email editor. Now everyone on your team can create and modify your email notfications without coding.
 

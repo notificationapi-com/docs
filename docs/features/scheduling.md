@@ -18,7 +18,7 @@ Scheduling a notification works just like sending a regular notification through
 
 ## How does it work?
 
-Simply specify the `schedule` parameter when using the [`send` function](../reference/server#send):
+Simply specify the `schedule` parameter when using the [`send` function](/reference/server#send):
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -58,22 +58,28 @@ notificationapi.send({
 <TabItem value="python">
 
 ```python
-notificationapi.send(
-    {
-        "notificationId": "order_tracking",
-        "user": {
-            "id": "spongebob.squarepants",
-            "email": "spongebob@squarepants.com",
-            "number": "+15005550006",
-        },
-        "mergeTags": {
-            "item": "Krabby Patty Burger",
-            "address": "124 Conch Street",
-            "orderId": "1234567890"
-        },
-          "schedule": "2024-02-20T14:38:03.509Z"
-    }
-)
+import asyncio
+
+async def send_notification():
+    await notificationapi.send(
+        {
+            "notificationId": "order_tracking",
+            "user": {
+                "id": "spongebob.squarepants",
+                "email": "spongebob@squarepants.com",
+                "number": "+15005550006",
+            },
+            "mergeTags": {
+                "item": "Krabby Patty Burger",
+                "address": "124 Conch Street",
+                "orderId": "1234567890"
+            },
+            "schedule": "2024-02-20T14:38:03.509Z"
+        }
+    )
+
+# Run the async function
+asyncio.run(send_notification())
 ```
 
 </TabItem>
@@ -161,7 +167,7 @@ notificationapi.send({
 </TabItem>
 </Tabs>
 
-You have the option to [update](../reference/server.md#updateschedule) or [delete](../reference/server.md#deleteschedule) the schedule before it is sent.
+You have the option to [update](/reference/server.md#updateschedule) or [delete](/reference/server.md#deleteschedule) the schedule before it is sent.
 
 ## Frequently Asked Questions (FAQ)
 
@@ -171,7 +177,7 @@ Yes, you can update the request after sending it by using the `trackingId` befor
 
 ### Can I cancel a scheduled notification?
 
-Yes, with the `trackingId`, you can cancel a scheduled notification before it is sent. If the notification has already been sent, you can retract in-app notifications using the [retract function](../reference/server.md#retract).
+Yes, with the `trackingId`, you can cancel a scheduled notification before it is sent. If the notification has already been sent, you can retract in-app notifications using the [retract function](/reference/server.md#retract).
 
 ### How is error checking and logical operations handled with scheduled notifications?
 

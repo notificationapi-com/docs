@@ -17,13 +17,13 @@ We provide an <strong>in-app notification widget</strong> compatible with most f
 
 import InAppPNG from '@site/static/inapp.png';
 
-<div style={{display: "flex", justifyContent: "center"}}>
-  <img src={InAppPNG} style={{maxWidth: 400}} />
+<div style={{display: "flex", justifyContent: "start"}}>
+  <img src={InAppPNG} style={{maxWidth: 500, borderRadius: 8, width: "100%"}} />
 </div>
 
 ## Playground
 
-[See a demo and modify the code here on CodeSandbox](https://codesandbox.io/s/notificationapi-in-app-notifications-demo-l91923?file=/index.js).
+[You can see and modify the code here on our in-app playground](/features/mergetags#playground).
 
 ## Step 1: Install the Front-End SDK
 
@@ -42,10 +42,18 @@ values={[
 }>
 <TabItem value="NPM">
 
+Install the package using one of the following package managers:
+
 ```bash
 npm install notificationapi-js-client-sdk
-# yarn add notificationapi-js-client-sdk
-# pnpm add notificationapi-js-client-sdk
+```
+
+```bash
+yarn add notificationapi-js-client-sdk
+```
+
+```bash
+pnpm add notificationapi-js-client-sdk
 ```
 
 </TabItem>
@@ -267,6 +275,6 @@ You are now receiving in-app notifications on your front-end! 🎉
 
 Let's do a few more things:
 
-- [⚙️ Manage User Notification Preferences](../quick-start/manage-preferences)
-- [📱 Setup Mobile Push](../guides/mobile-push)
-- [🌐 Setup Web Push](../guides/web-push)
+- [⚙️ Manage User Notification Preferences](/quick-start/manage-preferences)
+- [📱 Setup Mobile Push](/guides/mobile-push)
+- [🌐 Setup Web Push](/guides/web-push)

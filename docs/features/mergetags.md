@@ -7,12 +7,21 @@
 - A user photo: `/imgs/{{user.imagePath}}.png`
 - Or even logic: `Hello{%if user.firstName %} {{user.firstName}}{%endif%}!`
 
+## Playground
+
+The tool below let's you test and learn how merge tags work!
+
+import Parameters from '../assets/reactComponents/Parameters';
+
+<Parameters />
+
 ## Support
 
 You can use merge tags almost everywhere:
 
 - Email Subject Line
 - Email Content: Text, Button Link, Image Link, ...
+- `From Address` and `From Name` in Template Editor
 - All fields of In-App, SMS, Call, Mobile Push and Web Push
 
 ## Passing the values
@@ -53,6 +62,10 @@ Some of the most valuable filters are:
 - `size`: Returns the number of items in an array or characters in a string. [reference](https://liquidjs.com/filters/size.html)
 
 [List of all filters and their references](https://liquidjs.com/filters/overview.html)
+
+## Size Limit
+
+When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 80 KB. Exceeding this limit may result in delivery failure, or an API error.
 
 ## Conditional Logic (if, else)
 

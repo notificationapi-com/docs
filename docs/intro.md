@@ -31,12 +31,6 @@ Intercom('show');
 
 ### Supported Environments
 
-#### REST API
-
-You can use our REST API (documentation available to paid customers).
-
----
-
 #### Server-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
@@ -54,7 +48,7 @@ You can use our REST API (documentation available to paid customers).
 #### Client-Side
 
 <div style={{display: 'flex', flexWrap: 'wrap', columnGap: 64, rowGap: 32, marginBottom: 32}}>
-    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="./reference/js-client" />
+    <SupportedEnvironment  logo="devicon-react-plain" name="React" path="./reference/react-sdk" />
     <SupportedEnvironment  logo="devicon-nextjs-plain" name="Next.js" path="./reference/js-client" />
     <SupportedEnvironment  logo="devicon-javascript-plain" name="JavaScript" path="./reference/js-client" />
     <SupportedEnvironment  logo="devicon-angularjs-plain" name="Angular" path="./reference/js-client" />
@@ -74,4 +68,10 @@ import SupportedEnvironment from '../src/SupportedEnvironment'
 
 ---
 
-Want to get involved? [Our docs are on GitHub.](https://github.com/notificationapi-com/docs)
+#### REST API
+
+Our REST API is being gradually documented [Postman API Collection](https://documenter.getpostman.com/view/33830909/2sA35LVKMS). If you don't see something you need, just ping us.
+
+---
+
+Want to get involved? We are always looking for contributors to our server-side SDKs and for porting our front-end SDK to different platforms.

@@ -27,6 +27,6 @@ notificationapi.send({
 
 ### 2. User Preferences
 
-If you are using our API/SDK to explicitly set user preferences, you can specify the `subNotificationId` parameter in the `setUserPreferences` function. See [reference](../reference/js-client#patchuserpreference).
+If you are using our API/SDK to explicitly set user preferences, you can specify the `subNotificationId` parameter in the `setUserPreferences` function. See [reference](/reference/js-client#patchuserpreference).
 
 If you are using our user preferences widget, sub-toggles will automatically appear for the subNotifications so users can opt in or out of them.

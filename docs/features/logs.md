@@ -6,7 +6,13 @@ This is specifically useful for ensuring new notifications are working correctly
 
 import logs from '@site/static/Logs.png';
 
-<img src={logs} style={{maxWidth: 800}} />
+:::note
+
+To programmatically access the log of your requests, you can use the [queryLogs](/reference/server#querylogs) method.
+
+:::
+
+<img src={logs} style={{maxWidth: 800, borderRadius: 8, marginTop: 16, width: "100%"}} />
 
 ## Notification States
 
@@ -52,7 +58,7 @@ Call Specific Sub-Events:
 
 Besides the predefined filters on the logs table, you can use any custom queries to dig deep. For example: `$.request.mergeTags.firstName="Jane"`
 
-You can search for anything in the `$.request`, which contains the [original parameters you passed to send()](../reference/server.md#send). Here's an example of a `$.request` object:
+You can search for anything in the `$.request`, which contains the [original parameters you passed to send()](/reference/server.md#send). Here's an example of a `$.request` object:
 
 ```js title="$.request"
 {

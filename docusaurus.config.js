@@ -9,7 +9,22 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "notificationapi-com",
   projectName: "docs",
+  themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    algolia: {
+      appId: 'SFF2EBXJLC',
+      apiKey: '1896e7c9608635e41d32cacac1b43898',
+      indexName: 'notificationapi',
+      contextualSearch: true,
+      externalUrlRegex: 'external\\.com|domain\\.com',
+      replaceSearchResultPathname: {
+        from: '/docs/', // or as RegExp: /\/docs\//
+        to: '/',
+      },
+      searchParameters: {},
+      searchPagePath: 'search',
+      insights: false,
+    },
     navbar: {
       style: "dark",
       logo: {
@@ -27,6 +42,10 @@ module.exports = {
         {
           href: "https://status.notificationapi.com",
           label: "Status Page",
+        },
+        {
+          type: 'search',
+          position: 'left',
         },
         {
           href: "https://www.notificationapi.com",
@@ -89,9 +108,7 @@ module.exports = {
       },
     ],
   ],
-  customFields: {
-    trailingSlash: false,
-  },
+  trailingSlash: false,
   scripts: [
     "/custom.js"
   ],

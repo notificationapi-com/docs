@@ -1,33 +1,43 @@
-# Website
+[![NotificationAPI](./static/ReadmeLogo.svg)]('https://notificationsapi.com')
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+## Documentation
 
-## Installation
+We are currently using **Docusaurus v3.5.2**, a modern static website generator for building our documentation website. For more information on Docusaurus, visit their [official website](https://docusaurus.io/).
 
-```console
-yarn install
-```
+## Contributing
 
-## Local Development
-
-```console
-yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```console
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+1. **Clone the repository**
+   Clone the repo to your local machine:
+   ```bash
+   git clone https://github.com/notificationapi-com/docs.git
+   ```
+   </br>
+2. **Navigate into the project directory and install the necessary dependencies:**
+   ```bash
+   cd docs
+   npm install --force
+   ```
+   </br>
+3. **Create a new branch before starting your changes:**
+   ```bach
+   git checkout -b feature/my-feature
+   ```
+   </br>
+4. **Start the local development server to preview your changes:**
+   ```bash
+   npm run start
+   ```
+   This will launch the website locally and allow you to see your changes in real-time.
+   </br>
+5. **Commit Your changes once you’ve completed your work:**
+   ```bash
+   git add .
+   git commit -m "Title" -m "Description of the changes"
+   ```
+   </br>
+6. **Push your branch:**
+   ```bash
+   git push origin feature/my-feature
+   ```
+   </br>
+7. **Submit a pull request. Provide a clear description of your changes and link any related issues.**

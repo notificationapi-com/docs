@@ -8,7 +8,7 @@ You can pick how many of the same notification you want to allow to be sent to a
 
 import img from '@site/static/NotificationAPI - Notifications as a service - throttling detection 6.png';
 
-<img src={img} style={{maxWidth: 480, borderRadius: 20, border: '1px solid #d9d9d9' }} />
+<img src={img} style={{maxWidth: 480, borderRadius: 8, border: '1px solid #d9d9d9', marginBottom: 20, width: "100%"}} />
 
 For example, if you configure throttling to allow 5 `delivery_tracking` notifications within one hour, it means that:
 

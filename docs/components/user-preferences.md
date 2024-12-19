@@ -2,7 +2,7 @@
 
 import userpref2 from '@site/static/userpref2.png';
 
-<img src={userpref2} style={{maxWidth: 380}} /><br/><br/>
+<img src={userpref2} style={{maxWidth: 380, borderRadius: 8}} /><br/><br/>
 
 This document outlines all the features, common use-cases and best-practices for the user notification preferences widget.
 
@@ -10,8 +10,8 @@ This widget is part of our Front-end SDK, compatible with any JavaScript-based f
 
 Relevant docs:
 
-- [Add the widget to your front-end](../quick-start/manage-preferences)
-- [Front-end SDK reference](../reference/js-client)
+- [Add the widget to your front-end](/quick-start/manage-preferences)
+- [Front-end SDK reference](/reference/js-client)
 
 ## How It Works
 
