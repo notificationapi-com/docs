@@ -40,16 +40,6 @@ jobs:
           fi
           npm run deploy
 
-      - name: Send Slack notification
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,workflow,took
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
-
       - name: Send Slack notification on success
         if: success()
         uses: 8398a7/action-slack@v3
