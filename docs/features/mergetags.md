@@ -65,7 +65,7 @@ Some of the most valuable filters are:
 
 ## Size Limit
 
-When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 80 KB. Exceeding this limit may result in delivery failure, or an API error.
+When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 150 KB. Exceeding this limit may result in delivery failure, or an API error.
 
 ## Conditional Logic (if, else)
 

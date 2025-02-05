@@ -578,7 +578,7 @@ The send() method accepts an object with the following fields:
 | `fcm.android.ttl`         | string                                      | This parameter specifies how long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks. For more information, see [Setting the lifespan of a message](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl)                                                                                                                                                                                                                                                                                                                                                      |
 #### Size Limitation 
 
-When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 80 KB. Exceeding this limit may result in delivery failure, or an API error.
+When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 150 KB. Exceeding this limit may result in delivery failure, or an API error.
 
 ## identifyUser
 
