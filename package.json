@@ -38,7 +38,8 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "husky": "^4.3.0",
@@ -55,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "overrides": {
+    "ws": "^8.18.0"
   }
 }
