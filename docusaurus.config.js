@@ -30,13 +30,15 @@ module.exports = {
       logo: {
         alt: "NotificationAPI",
         src: "img/logo.png",
+        href: "https://www.notificationapi.com",
+        target: "_blank",
         style: {
           marginRight: '130px'
         }
       },
       items: [
         {
-          href: "/",
+          href: "https://www.notificationapi.com",
           label: "Home",
         },
         {
@@ -47,11 +49,6 @@ module.exports = {
           type: 'search',
           position: 'left',
         },
-        {
-          href: "https://www.notificationapi.com",
-          label: "Back to the website",
-          position: 'right'
-        }
       ],
     },
     footer: {
