@@ -312,7 +312,7 @@ Customize out popup to be the right fit for your app. Our Popup can be customize
 | **pagination**       | `string`: `INFINITE_SCROLL`,`PAGINATED`                                                      | Choose between a single page or multiple pages for your inbox. Set to `INFINITE_SCROLL` by default                             |
 | **renderers**        | `object`: `{notification: NotificationProps["renderer"], NotificationExtra["extraRenderer"]` | Allows you to render custom & additional content.                                                                              |
 | **style**            | `Record<SemanticDOM, CSSProperties>`                                                         | Pass in your styles to match our popup with your design                                                                        |
-| **unreadBadgeProps** | `ReactNode`                                                                                  | Modify the unread badge. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone).                          |
+| **unreadBadgeProps** |  `UnreadBadgeProps`                                                                          | Modify the unread badge. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone).                          |
 
 ```jsx
 <NotificationPopup
@@ -350,34 +350,31 @@ Customize the feed using these parameters:
 
 ### Unread Badge
 
-You can customize the unread badge using these parameters and features:
+You can customize the unread badge through the `unreadBadgeProps` object. This object must adhere to the custom type `UnreadBadgeProps`, which is defined as follows:
 
 | Parameter         | Type                                                                                                                             | Description                                                                  |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **color**         | `string`: `blue`, `cyan`, `gold`, `green`, `lime`, `magenta`, `orange`, `pink`, `purple`, `red`, `yellow`, `volcano`, `geekblue` | Customize the color for your badge icon.                                     |
-| **count**         | `ReactNode`                                                                                                                      | Set a value to display in the badge.                                         |
-| **classNames**    | `Record<SemanticDOM, string/>`                                                                                                   | Set class names for your badge component.                                    |
-| **dot**           | `boolean`                                                                                                                        | Display a plain dot instead of your counter.                                 |
-| **offset**        | `[number, number]`                                                                                                               | Set an alternative location for the badge.                                   |
-| **overflowCount** | `number`                                                                                                                         | Badge displays a + beside your number when notifications exceed that amount. |
+| **bubbleColor**   | `string                                              ` | Customize the color for your badge                                      |
+| **fontColor**     | `string                                              ` | Customize the text color of your badge                                  |
+| **count**         | `string`: `"COUNT_UNOPENED_NOTIFICATIONS"`, `"COUNT_UNARCHIVED_NOTIFICATIONS"`, OR `function`: `((notification: InAppNotification) => boolean)`        | Customize what notifications are counted and the value displayed in the badge. |         
+| **dot**           | `boolean`                                                                                                                        | If true, the badge will display as a dot instead of a badge with a number.   |
+| **offset**        | `object`: `{` `top: number`, `bottom: number`, `left: number`, `right: number` `}`                                               | Set an alternative location for the badge.                                   |
+| **max**           | `number`                                                                                                                         | Badge displays a + beside your number when notifications exceed that amount. |
 | **showZero**      | `boolean`                                                                                                                        | Show a 0 on the badge when there are no new notifications.                   |
-| **size**          | `default`, `small`                                                                                                               | Modify the size of the unread badge.                                         |
-| **status**        | `success`, `processing`, `default`, `error`, `warning`                                                                           | Give notifications a colored badge noting message status.                    |
-| **styles**        | `Record<SemanticDOM, CSSProperties/>`                                                                                            | Use Semantic DOM style to modify your badge.                                 |
-| **text**          | `ReactNode`                                                                                                                      | Sets the badge text to `status` if `status` has been set.                    |
-| **title**         | `string`                                                                                                                         | Set hover text for your badge.                                               |
 
 ```jsx
-<NotificationCounter
-  color="lime"
-  count={(n) => {
-    return n.notificationId === 'inapp_notifications' && !n.archived;
+<NotificationPopup
+  unreadBadgeProps={{
+    bubbleColor="#000"
+    fontColor="red"
+    count= (n) => {
+      return n.opened === 'true';
+    }
+    offSet={ top: 10, right: 10 }
+    max=99
+    showZero=true
   }}
-  dot={false}
-  size="small"
->
-  <button>Counter</button>
-</NotificationCounter>
+/>
 ```
 
 ### Pagination
