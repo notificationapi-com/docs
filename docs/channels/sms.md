@@ -40,3 +40,9 @@ Imagine having your own "Telecom" team:
 ## Maximum Length
 
 800 ASCII characters.
+
+## SMS Responses
+
+You can receive and process responses to your SMS notifications through a webhook. When recipients reply to your SMS notifications, we can forward these responses to your specified endpoint.
+
+To set up a webhook for SMS responses, please reach out to our support team through the chat icon in the lower right corner of the webpage. Our team will help you configure the webhook endpoint and ensure you've got everything you need to receive responses.
