@@ -27,6 +27,7 @@ You DON'T need another 3rd-party email service like SendGrid or SES. Through our
 - Compliant with Google's and Yahoo's email sender policies and best practices for high deliverability - [see docs](email/#google-and-yahoo-bulk-sender-requirements)
 - Merge tags (injecting dynamic values into the email content) - [see docs](/features/mergetags)
 - Pre-built Unsubscribe Link and Web Page - [see docs](/components/unsubscribe-page)
+- Reply To addresses for two-way email communication - [see docs](/reference/server#send)
 - Attachments - [see docs](/reference/server#send)
 - CC, BCC fields - [see docs](/reference/server#send)
 
