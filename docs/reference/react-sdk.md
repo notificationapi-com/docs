@@ -21,6 +21,7 @@ import InAppFeed from '@site/static/reactsdk/inappfeed.png';
 import InAppPreferences from '@site/static/reactsdk/notipreferences.png';
 import InlinePreferences from '@site/static/reactsdk/inlinepref.png';
 import ElementCounter from '@site/static/reactsdk/elementcounter.png';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 # React SDK (Front-End)
 
@@ -155,10 +156,12 @@ By default we automatically figure out if your user should see the web push opt 
 ### Popup
 
 <span>Click this 👉</span>
-<NotificationPopup />
+<BrowserOnly>
+  {() => ( <NotificationPopup /> )}
+</BrowserOnly>
 
 ```jsx
-<NotificationPopup />
+  <NotificationPopup />
 ```
 
 Our popup component opens up to display your inbox for in-app notifications. This gives users a small interface for accessing their notifications without taking up screen space. Especially useful for mobile apps.
@@ -177,7 +180,9 @@ The popup launcher adds a button to the corner of the page (similar to chat butt
 ### Counter (Standalone)
 
 <span>This is the counter 👉 </span>
-<NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" />
+<BrowserOnly>
+{() => <NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" /> }
+</BrowserOnly>
 
 <br/>
 <br/>
@@ -201,7 +206,6 @@ Apply the same counter badge on an existing element to notify users of unread me
   <Button>Counter</Button>
 </NotificationCounter>
 ```
-
 <img src={ElementCounter} style={{maxWidth: 300, borderRadius: 8, marginBottom: 20}} />
 
 ### Feed
@@ -213,8 +217,9 @@ The feed component provides a larger feed for browsing notifications. Notificati
 ```
 
 Example:
-
-<NotificationFeed infiniteScrollHeight={300} style={{ borderRadius: 8}} />
+<BrowserOnly>
+{() => <NotificationFeed infiniteScrollHeight={300} style={{ borderRadius: 8}} /> }
+</BrowserOnly>
 
 <br/><br/>
 
