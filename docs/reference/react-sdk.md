@@ -13,7 +13,7 @@ NotificationAPIProvider,
 NotificationPreferencesPopup,
 NotificationPreferencesInline,
 } from '@notificationapi/react';
-
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import PopUpBell from '@site/static/reactsdk/popup.png';
 import PopUpInbox1 from '@site/static/reactsdk/popupinbox1.png';
 import PopUpLauncher from '@site/static/reactsdk/popuplauncher.png';
@@ -29,11 +29,6 @@ The React SDK is mainly used for displaying **In-App** Notifications and allowin
 ## Setup
 
 <div>
-  <NotificationAPIProvider
-    userId="djkean7@gmail.com"
-    clientId="6ok6imq9ucn2budgiebjdaa6oi"
-  >
-
 <Tabs
 groupId='package-manager'
 defaultValue='manager'
@@ -155,7 +150,19 @@ By default we automatically figure out if your user should see the web push opt 
 ### Popup
 
 <span>Click this 👉</span>
-<NotificationPopup />
+
+<BrowserOnly>
+{() => { 
+  return (
+    <NotificationAPIProvider
+      userId="djkean7@gmail.com"
+      clientId="6ok6imq9ucn2budgiebjdaa6oi"
+    >
+      <NotificationPopup /> 
+    </NotificationAPIProvider>
+  )
+}}
+</BrowserOnly>
 
 ```jsx
 <NotificationPopup />
@@ -177,7 +184,18 @@ The popup launcher adds a button to the corner of the page (similar to chat butt
 ### Counter (Standalone)
 
 <span>This is the counter 👉 </span>
+<BrowserOnly>
+{() => {
+return (
+<NotificationAPIProvider
+      userId="djkean7@gmail.com"
+      clientId="6ok6imq9ucn2budgiebjdaa6oi"
+    >
 <NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" />
+</NotificationAPIProvider>
+)
+}}
+</BrowserOnly>
 
 <br/>
 <br/>
@@ -189,7 +207,21 @@ The popup launcher adds a button to the corner of the page (similar to chat butt
 The counter element displays the number of unread notifications. Features:
 
 - Can count "unopened/unseen" notifications or "unarchived" notifications
-- Can be a dot like: <NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" dot />
+- Can be a dot like:
+
+<BrowserOnly>
+{() => {
+return (
+<NotificationAPIProvider
+  userId="djkean7@gmail.com"
+  clientId="6ok6imq9ucn2budgiebjdaa6oi"
+>
+<NotificationCounter count="COUNT_UNARCHIVED_NOTIFICATIONS" dot />
+</NotificationAPIProvider>
+)
+}}
+</BrowserOnly>
+
 - Many other formatting and positioning customizations available
 
 ### Counter (on existing elements)
@@ -214,7 +246,18 @@ The feed component provides a larger feed for browsing notifications. Notificati
 
 Example:
 
+<BrowserOnly>
+{() => {
+return (
+<NotificationAPIProvider
+      userId="djkean7@gmail.com"
+      clientId="6ok6imq9ucn2budgiebjdaa6oi"
+    >
 <NotificationFeed infiniteScrollHeight={300} style={{ borderRadius: 8}} />
+</NotificationAPIProvider>
+)
+}}
+</BrowserOnly>
 
 <br/><br/>
 
@@ -251,7 +294,18 @@ Alternatively, we also offer an inline component for user preferences. Ideal for
 
 Example:
 
+<BrowserOnly>
+{() => {
+return (
+<NotificationAPIProvider
+      userId="djkean7@gmail.com"
+      clientId="6ok6imq9ucn2budgiebjdaa6oi"
+    >
 <NotificationPreferencesInline />
+</NotificationAPIProvider>
+)
+}}
+</BrowserOnly>
 
 <br/><br/>
 
@@ -302,17 +356,20 @@ You can change the header of your notifications to take your own custom React Co
 
 Customize out popup to be the right fit for your app. Our Popup can be customized using these parameters:
 
-| Parameter            | Type                                                                                         | Description                                                                                                                    |
-| -------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **count**            | `ReactNode["count"]`                                                                         | Modify the appearance of the count on your popup. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone). |
-| **filter**           | `string`: `ALL`, `UNARCHIVED`                                                                | Filter which notifications appear. Set to `ALL` by default.                                                                    |
-| **imageShape**       | `string`: `circle`, `square`                                                                 | Determines the shape of images in the popup feed. Set to `circle` by default.                                                  |
-| **pagePosition**     | `string`: `top`, `bottom`                                                                    | Determines whether the popup will render page buttons at the top or bottom of the component. Set to `top` by default.          |
-| **pageSize**         | `number`                                                                                     | Requires `pagination` set to `PAGINATED`. Determines the amount of notifications shown per page.                               |
-| **pagination**       | `string`: `INFINITE_SCROLL`,`PAGINATED`                                                      | Choose between a single page or multiple pages for your inbox. Set to `INFINITE_SCROLL` by default                             |
-| **renderers**        | `object`: `{notification: NotificationProps["renderer"], NotificationExtra["extraRenderer"]` | Allows you to render custom & additional content.                                                                              |
-| **style**            | `Record<SemanticDOM, CSSProperties>`                                                         | Pass in your styles to match our popup with your design                                                                        |
-| **unreadBadgeProps** |  `UnreadBadgeProps`                                                                          | Modify the unread badge. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone).                          |
+| Parameter            | Type                                                                                                           | Description                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **count**            | `ReactNode["count"]`                                                                                           | Modify the appearance of the count on your popup. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone). |
+| **filter**           | `string`: `ALL`, `UNARCHIVED`                                                                                  | Filter which notifications appear. Set to `ALL` by default.                                                                    |
+| **imageShape**       | `string`: `circle`, `square`                                                                                   | Determines the shape of images in the popup feed. Set to `circle` by default.                                                  |
+| **pagePosition**     | `string`: `top`, `bottom`                                                                                      | Determines whether the popup will render page buttons at the top or bottom of the component. Set to `top` by default.          |
+| **pageSize**         | `number`                                                                                                       | Requires `pagination` set to `PAGINATED`. Determines the amount of notifications shown per page.                               |
+| **pagination**       | `string`: `INFINITE_SCROLL`,`PAGINATED`                                                                        | Choose between a single page or multiple pages for your inbox. Set to `INFINITE_SCROLL` by default                             |
+| **renderers**        | `object`: `{notification: NotificationProps["renderer"], NotificationExtra["extraRenderer"]`                   | Allows you to render custom & additional content.                                                                              |
+| **unreadBadgeProps** | `UnreadBadgeProps `                                                                                            | Modify the unread badge. Behaves similarly to the [Counter](/reference/react-sdk#counter-standalone).                          |
+| **popupWidth**       | `number`, `string`                                                                                             | Customize the width of the notifications popup.                                                                                |
+| **popupHeight**      | `number`, `string`                                                                                             | Customize the height of the notifications popup.                                                                               |
+| **popupZIndex**      | `number`                                                                                                       | Set the Z Index value for the notification popup. Default value is 1030.                                                       |
+| **popoverPosition**  | `anchorOrigin`: `{` `vertical`: `"center"`, `"bottom"`, `"top"`, `horizontal`: `"center"`, `"left"`, `"right"` | Set the position of the Notifications Popover relative to the Notification Popup Icon.                                         |
 
 ```jsx
 <NotificationPopup
@@ -352,15 +409,15 @@ Customize the feed using these parameters:
 
 You can customize the unread badge through the `unreadBadgeProps` object. This object must adhere to the custom type `UnreadBadgeProps`, which is defined as follows:
 
-| Parameter         | Type                                                                                                                             | Description                                                                  |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **bubbleColor**   | `string                                              ` | Customize the color for your badge                                      |
-| **fontColor**     | `string                                              ` | Customize the text color of your badge                                  |
-| **count**         | `string`: `"COUNT_UNOPENED_NOTIFICATIONS"`, `"COUNT_UNARCHIVED_NOTIFICATIONS"`, OR `function`: `((notification: InAppNotification) => boolean)`        | Customize what notifications are counted and the value displayed in the badge. |         
-| **dot**           | `boolean`                                                                                                                        | If true, the badge will display as a dot instead of a badge with a number.   |
-| **offset**        | `object`: `{` `top: number`, `bottom: number`, `left: number`, `right: number` `}`                                               | Set an alternative location for the badge.                                   |
-| **max**           | `number`                                                                                                                         | Badge displays a + beside your number when notifications exceed that amount. |
-| **showZero**      | `boolean`                                                                                                                        | Show a 0 on the badge when there are no new notifications.                   |
+| Parameter       | Type                                                                                        | Description                                                                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **bubbleColor** | `string `                                                                                   | Customize the color for your badge                                                                                                               |
+| **fontColor**   | `string `                                                                                   | Customize the text color of your badge                                                                                                           |
+| **count**       | `string`: `"COUNT_UNOPENED_NOTIFICATIONS"`, `"COUNT_UNARCHIVED_NOTIFICATIONS"`, OR `Custom` | Customize what notifications are counted and the value displayed in the badge. See [Logical Customizations](#logical-customizations) for details |
+| **dot**         | `boolean`                                                                                   | If true, the badge will display as a dot instead of a badge with a number.                                                                       |
+| **offset**      | `object`: `{` `top: number`, `bottom: number`, `left: number`, `right: number` `}`          | Set an alternative location for the badge.                                                                                                       |
+| **max**         | `number`                                                                                    | Badge displays a + beside your number when notifications exceed that amount.                                                                     |
+| **showZero**    | `boolean`                                                                                   | Show a 0 on the badge when there are no new notifications.                                                                                       |
 
 ```jsx
 <NotificationPopup
@@ -571,5 +628,5 @@ notificationapi
 <!--  -->
 <!--  -->
 <!--  -->
- </NotificationAPIProvider>
+<!--   -->
 </div>
