@@ -909,7 +909,7 @@ notificationapi.setUserPreferences('userId', [
 import asyncio
 
 async def set_user_preferences():
-    await notificationapi.setUserPreferences("userId", [
+    await notificationapi.set_user_preferences("userId", [
         {
             "notificationId": "new_order",
             "channel": "INAPP_WEB",
@@ -1037,7 +1037,7 @@ notificationapi.deleteUserPreferences(
 import asyncio
 
 async def delete_user_preferences():
-    await notificationapi.deleteUserPreferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+    await notificationapi.delete_user_preferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
 
 # Run the async function
 asyncio.run(delete_user_preferences())
@@ -1130,8 +1130,8 @@ notificationapi.deleteUserPreferences('spongebob.squarepants', {
 ```python
 import asyncio
 
-async def delete_user_preferences():
-    await notificationapi.delete_user_preferences("spongebob.squarepants", {
+async def update_in_app_notification():
+    await notificationapi.update_in_app_notification("spongebob.squarepants", {
         "trackingIds": ["sampleTrackingId"],
         "opened": "1970-01-01T00:00:00.000Z",
         "clicked": "1970-01-01T00:00:00.000Z",
@@ -1142,7 +1142,7 @@ async def delete_user_preferences():
     })
 
 # Run the async function
-asyncio.run(delete_user_preferences())
+asyncio.run(update_in_app_notification())
 ```
 
 </TabItem>
