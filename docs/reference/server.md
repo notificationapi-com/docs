@@ -1512,7 +1512,7 @@ values={[
 <TabItem value="js">
 
 ```js
-notificationapi.query_logs({
+notificationapi.queryLogs({
   dateRangeFilter: {
     startTime: 1719600830559;
     endTime: 1719600840559;
