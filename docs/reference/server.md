@@ -557,7 +557,7 @@ The send() method accepts an object with the following fields:
 | Name                      | Type                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `email`                   | object                                      | Email options features.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `email.replyToAddresses`  | string[]                                    | An array of email addresses that will receive responses when recipients reply to the notification email. This enables two-way email communication, allowing recipients to respond directly to notifications.`                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `email.replyToAddresses`  | string[]                                    | An array of email addresses that will receive responses when recipients reply to the notification email. This enables two-way email communication, allowing recipients to respond directly to notifications.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `email.ccAddresses`       | string[]                                    | An array of emails to be CC'ed on the email notifications.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `email.bccAddresses`      | string[]                                    | An array of emails to be BCC'ed on the email notifications.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `email.fromName`          | string                                      | A string to display as the "From" field in an email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -576,7 +576,8 @@ The send() method accepts an object with the following fields:
 | `fcm.android.collapseKey` | string                                      | This parameter identifies a group of messages (e.g., with collapse_key: "Updates Available") that can be collapsed, so that only the last message gets sent when delivery can be resumed. This is intended to avoid sending too many of the same messages when the device comes back online or becomes active. Note that there is no guarantee of the order in which messages get sent. Note: A maximum of 4 different collapse keys is allowed at any given time. This means a FCM connection server can simultaneously store 4 different send-to-sync messages per client app. If you exceed this number, there is no guarantee which 4 collapse keys the FCM connection server will keep. |
 | `fcm.android.priority`    | string                                      | Sets the priority of the message. Valid values are "normal" and "high." On iOS, these correspond to APNs priorities 5 and 10. By default, notification messages are sent with high priority, and data messages are sent with normal priority. Normal priority optimizes the client app's battery consumption and should be used unless immediate delivery is required. For messages with normal priority, the app may receive the message with unspecified delay. When a message is sent with high priority, it is sent immediately, and the app can wake a sleeping device and open a network connection to your server.                                                                    |
 | `fcm.android.ttl`         | string                                      | This parameter specifies how long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks. For more information, see [Setting the lifespan of a message](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl)                                                                                                                                                                                                                                                                                                                                                      |
-#### Size Limitation 
+
+#### Size Limitation
 
 When using parameters (merge tags) in the body of your notifications, it is recommended that the size of the combined parameters not exceed 150 KB. Exceeding this limit may result in delivery failure, or an API error.
 
@@ -908,7 +909,7 @@ notificationapi.setUserPreferences('userId', [
 import asyncio
 
 async def set_user_preferences():
-    await notificationapi.setUserPreferences("userId", [
+    await notificationapi.set_user_preferences("userId", [
         {
             "notificationId": "new_order",
             "channel": "INAPP_WEB",
@@ -1036,7 +1037,7 @@ notificationapi.deleteUserPreferences(
 import asyncio
 
 async def delete_user_preferences():
-    await notificationapi.deleteUserPreferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
+    await notificationapi.delete_user_preferences({"notificationId": "order_tracking", "userId": "spongebob.squarepants"})
 
 # Run the async function
 asyncio.run(delete_user_preferences())
@@ -1129,8 +1130,8 @@ notificationapi.deleteUserPreferences('spongebob.squarepants', {
 ```python
 import asyncio
 
-async def delete_user_preferences():
-    await notificationapi.delete_user_preferences("spongebob.squarepants", {
+async def update_in_app_notification():
+    await notificationapi.update_in_app_notification("spongebob.squarepants", {
         "trackingIds": ["sampleTrackingId"],
         "opened": "1970-01-01T00:00:00.000Z",
         "clicked": "1970-01-01T00:00:00.000Z",
@@ -1141,7 +1142,7 @@ async def delete_user_preferences():
     })
 
 # Run the async function
-asyncio.run(delete_user_preferences())
+asyncio.run(update_in_app_notification())
 ```
 
 </TabItem>
@@ -1533,7 +1534,7 @@ notificationapi.queryLogs({
 import asyncio
 
 async def query_logs():
-    await notificationapi.queryLogs({
+    await notificationapi.query_logs({
         "dateRangeFilter": {
             "startTime": 1719600830559,
             "endTime": 1719600840559
