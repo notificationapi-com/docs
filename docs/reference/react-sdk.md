@@ -76,6 +76,39 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 </App>;
 ```
 
+### Customizing the region
+
+Change the default region to be used for your notifications from the default US:
+
+1. Import and use both API_REGION and WS_REGION from '@notificationapi/react'
+
+```jsx title="App.tsx"
+import { NotificationAPIProvider, API_REGION, WS_REGION } from '@notificationapi/react';
+
+<App>
+  <NotificationAPIProvider
+    clientId="abc123" // your clientId found on the dashboard
+    userId="abcd-1234" // logged in userId
+    // or use this instead
+    // user={{
+    //   id:  "abcd-1234", // logged in userId
+    // }}
+    playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
+    apiURL={API_REGION.EU}
+    wsURL={WS_REGION.EU}
+  >
+
+    <!-- your protected routes -->
+
+  </NotificationAPIProvider>
+</App>;
+```
+
+| Parameter      | Type   | Description                                         |
+| -------------- | ------ | --------------------------------------------------- |
+| **API_REGION** | `enum` | Values: API_REGION.US, API_REGION.CA, API_REGION.EU |
+| **WS_REGION**  | `enum` | Values: WS_REGION.US, WS_REGION.CA, WS_REGION.EU    |
+
 ### Customizing the default sound
 
 Change the deafult notification sound to include your own:
