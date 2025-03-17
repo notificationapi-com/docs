@@ -80,26 +80,7 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 
 Change the default region to be used for your notifications from the default US:
 
-1. You can use our predefined enums:
-
-```jsx
-import {
-  NotificationAPIProvider,
-  API_REGION,
-  WS_REGION
-} from '@notificationapi/react';
-
-<NotificationAPIProvider
-  clientId="abc123"
-  userId="abcd-1234"
-  apiURL={API_REGION.EU}
-  wsURL={WS_REGION.EU}
->
-  {/* your protected routes */}
-</NotificationAPIProvider>;
-```
-
-2. Or use the direct URL strings:
+1. Or use the direct URL strings:
 
 ```jsx
 import { NotificationAPIProvider } from '@notificationapi/react';
@@ -114,10 +95,10 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 </NotificationAPIProvider>;
 ```
 
-| Parameter  | Type               | Description                                                                                                                                                   |
-| ---------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **apiURL** | `enum` or `string` | Use `API_REGION` enum (`US`, `CA`, `EU`) or URL string:<br/>• `api.notificationapi.com`<br/>• `api.ca.notificationapi.com`<br/>• `api.eu.notificationapi.com` |
-| **wsURL**  | `enum` or `string` | Use `WS_REGION` enum (`US`, `CA`, `EU`) or URL string:<br/>• `ws.notificationapi.com`<br/>• `ws.ca.notificationapi.com`<br/>• `ws.eu.notificationapi.com`     |
+| Parameter  | Type     | Description                                                                                                           |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| **apiURL** | `string` | Use URL string:<br/>• `api.notificationapi.com`<br/>• `api.ca.notificationapi.com`<br/>• `api.eu.notificationapi.com` |
+| **wsURL**  | `string` | Use URL string:<br/>• `ws.notificationapi.com`<br/>• `ws.ca.notificationapi.com`<br/>• `ws.eu.notificationapi.com`    |
 
 ### Customizing the default sound
 
