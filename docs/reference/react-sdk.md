@@ -80,34 +80,44 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 
 Change the default region to be used for your notifications from the default US:
 
-1. Import and use both API_REGION and WS_REGION from '@notificationapi/react'
+1. You can use our predefined enums:
 
-```jsx title="App.tsx"
-import { NotificationAPIProvider, API_REGION, WS_REGION } from '@notificationapi/react';
+```jsx
+import {
+  NotificationAPIProvider,
+  API_REGION,
+  WS_REGION
+} from '@notificationapi/react';
 
-<App>
-  <NotificationAPIProvider
-    clientId="abc123" // your clientId found on the dashboard
-    userId="abcd-1234" // logged in userId
-    // or use this instead
-    // user={{
-    //   id:  "abcd-1234", // logged in userId
-    // }}
-    playSoundOnNewNotification={true} // Allow the user to hear default sound on new notification
-    apiURL={API_REGION.EU}
-    wsURL={WS_REGION.EU}
-  >
-
-    <!-- your protected routes -->
-
-  </NotificationAPIProvider>
-</App>;
+<NotificationAPIProvider
+  clientId="abc123"
+  userId="abcd-1234"
+  apiURL={API_REGION.EU}
+  wsURL={WS_REGION.EU}
+>
+  {/* your protected routes */}
+</NotificationAPIProvider>;
 ```
 
-| Parameter      | Type   | Description                                         |
-| -------------- | ------ | --------------------------------------------------- |
-| **API_REGION** | `enum` | Values: API_REGION.US, API_REGION.CA, API_REGION.EU |
-| **WS_REGION**  | `enum` | Values: WS_REGION.US, WS_REGION.CA, WS_REGION.EU    |
+2. Or use the direct URL strings:
+
+```jsx
+import { NotificationAPIProvider } from '@notificationapi/react';
+
+<NotificationAPIProvider
+  clientId="abc123"
+  userId="abcd-1234"
+  apiURL="api.eu.notificationapi.com"
+  wsURL="ws.eu.notificationapi.com"
+>
+  {/* your protected routes */}
+</NotificationAPIProvider>;
+```
+
+| Parameter  | Type               | Description                                                                                                                                                   |
+| ---------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apiURL** | `enum` or `string` | Use `API_REGION` enum (`US`, `CA`, `EU`) or URL string:<br/>• `api.notificationapi.com`<br/>• `api.ca.notificationapi.com`<br/>• `api.eu.notificationapi.com` |
+| **wsURL**  | `enum` or `string` | Use `WS_REGION` enum (`US`, `CA`, `EU`) or URL string:<br/>• `ws.notificationapi.com`<br/>• `ws.ca.notificationapi.com`<br/>• `ws.eu.notificationapi.com`     |
 
 ### Customizing the default sound
 
