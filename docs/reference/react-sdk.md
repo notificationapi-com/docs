@@ -76,6 +76,30 @@ import { NotificationAPIProvider } from '@notificationapi/react';
 </App>;
 ```
 
+### Customizing the region
+
+Change the default region to be used for your notifications from the default US:
+
+1. Or use the direct URL strings:
+
+```jsx
+import { NotificationAPIProvider } from '@notificationapi/react';
+
+<NotificationAPIProvider
+  clientId="abc123"
+  userId="abcd-1234"
+  apiURL="api.eu.notificationapi.com"
+  wsURL="ws.eu.notificationapi.com"
+>
+  {/* your protected routes */}
+</NotificationAPIProvider>;
+```
+
+| Parameter  | Type     | Description                                                                                                           |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| **apiURL** | `string` | Use URL string:<br/>• `api.notificationapi.com`<br/>• `api.ca.notificationapi.com`<br/>• `api.eu.notificationapi.com` |
+| **wsURL**  | `string` | Use URL string:<br/>• `ws.notificationapi.com`<br/>• `ws.ca.notificationapi.com`<br/>• `ws.eu.notificationapi.com`    |
+
 ### Customizing the default sound
 
 Change the deafult notification sound to include your own:
