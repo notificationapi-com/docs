@@ -214,7 +214,7 @@ notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 1. Install Package:
 
 ```bash
-dotnet add package NotificationAPI --version 0.4.0
+dotnet add package NotificationAPI --version 0.5.0
 ```
 
 2. Import:
