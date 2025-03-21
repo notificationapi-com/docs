@@ -327,21 +327,42 @@ end
 
 2. Initialize:
 
-```ruby
-notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
+```js
+notificationapi = NotificationAPI.new('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
 </TabItem>
 </Tabs>
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization                                                                                             |
-| `options.baseUrl` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type              | Description                                                                                                                                                                                                                               |
+| ----------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string            | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                          |
+| `CLIENT_SECRET`\* | string            | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                     |
+| `config`          | InitConfiguration | Optional configuration object for additional initialization options                                                                                                                                                                       |
+| `config.baseURL`  | string \| Region  | To choose a different region than default (US).<br/> Can be a region constant (e.g. Region.EU_REGION or Region.CA_REGION)<br/> or a custom URL string (e.g. 'https://api.eu.notificationapi.com' or 'https://api.ca.notificationapi.com') |
 
 \* required
+
+Region specific example using imported Region:
+
+```js
+import notificationapi from 'notificationapi-node-server-sdk';
+import { Region } from 'notificationapi-node-server-sdk';
+
+notificationapi = NotificationAPI.new('CLIENT_ID', 'CLIENT_SECRET', {
+  baseURL: Region.EU_REGION
+});
+```
+
+Region specific example using string:
+
+```js
+import notificationapi from 'notificationapi-node-server-sdk';
+
+notificationapi = NotificationAPI.new('CLIENT_ID', 'CLIENT_SECRET', {
+  baseURL: 'https://api.eu.notificationapi.com'
+});
+```
 
 ## send
 
