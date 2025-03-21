@@ -78,12 +78,12 @@ import notificationapi from 'notificationapi-node-server-sdk';
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
-| Name              | Type              | Description                                                                                                                                                                                                                               |
-| ----------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string            | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                          |
-| `CLIENT_SECRET`\* | string            | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                     |
-| `config`          | InitConfiguration | Optional configuration object for additional initialization options                                                                                                                                                                       |
-| `config.baseURL`  | string \| Region  | To choose a different region than default (US).<br/> Can be a region constant (e.g. Region.EU_REGION or Region.CA_REGION)<br/> or a custom URL string (e.g. 'https://api.eu.notificationapi.com' or 'https://api.ca.notificationapi.com') |
+| Name              | Type              | Description                                                                                                                                                                                                                                                                  |
+| ----------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string            | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                             |
+| `CLIENT_SECRET`\* | string            | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                        |
+| `config`          | InitConfiguration | Optional configuration object for additional initialization options                                                                                                                                                                                                          |
+| `config.baseURL`  | string \| Region  | To choose a different region other than default (https://api.notificationapi.com).<br/> Can be a region constant (e.g. Region.EU_REGION or Region.CA_REGION)<br/> or a custom URL string (e.g. 'https://api.eu.notificationapi.com' or 'https://api.ca.notificationapi.com') |
 
 \* required
 
