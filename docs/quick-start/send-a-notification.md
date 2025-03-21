@@ -73,88 +73,10 @@ go get github.com/notificationapi-com/notificationapi-go-server-sdk
 </TabItem>
 <TabItem value="csharp">
 
+Install the package:
+
 ```csharp
-// Create the followinng class in your application:
-
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-class NotificationAPI {
-  private string baseURL = "https://api.notificationapi.com";
-  private string clientId;
-  private HttpClient httpClient;
-
-  public NotificationAPI(string clientId, string clientSecret) {
-    this.clientId = clientId;
-    string authToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
-    this.httpClient = new HttpClient();
-    this.httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {authToken}");
-  }
-
-  public async Task<string> send(string request) {
-    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
-    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender", payload);
-    var responseContent = await response.Content.ReadAsStringAsync();
-    return responseContent;
-  }
-
-  public async Task<string> retract(string request) {
-    HttpContent payload = new StringContent(request, Encoding.UTF8, "application/json");
-    var response = await this.httpClient.PostAsync($"{this.baseURL}/{this.clientId}/sender/retract", payload);
-    var responseContent = await response.Content.ReadAsStringAsync();
-    return responseContent;
-  }
-
-  public async Task<string> IdentifyUser(string userId, object userData) {
-      using (var hmac = new HMACSHA256(Encoding.ASCII.GetBytes(clientSecret))) {
-          string hashedUserId = Convert.ToBase64String(hmac.ComputeHash(Encoding.ASCII.GetBytes(userId)));
-          string customAuth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{userId}:{hashedUserId}"));
-          httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", customAuth);
-
-          string jsonString = JsonConvert.SerializeObject(userData);
-          HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-          var response = await httpClient.PostAsync($"{baseURL}/{clientId}/users/{Uri.EscapeDataString(userId)}", content);
-          return await response.Content.ReadAsStringAsync();
-      }
-  }
-
-  public async Task<string> CreateSubNotification(string notificationId, string subNotificationId, string title) {
-      var payload = new { title = title };
-      string jsonString = JsonConvert.SerializeObject(payload);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PutAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> DeleteSubNotification(string notificationId, string subNotificationId) {
-      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/notifications/{notificationId}/subNotifications/{subNotificationId}");
-      return await response.Content.ReadAsStringAsync();
-  }
-
-    public async Task<string> UpdateSchedule(string trackingId, object scheduleRequest) {
-      string jsonString = JsonConvert.SerializeObject(scheduleRequest);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PatchAsync($"{baseURL}/{clientId}/schedule/{trackingId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> DeleteSchedule(string trackingId) {
-      var response = await httpClient.DeleteAsync($"{baseURL}/{clientId}/schedule/{trackingId}");
-      return await response.Content.ReadAsStringAsync();
-  }
-
-  public async Task<string> SetUserPreferences(string userId, object userPreferences) {
-      string jsonString = JsonConvert.SerializeObject(userPreferences);
-      HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-      var response = await httpClient.PostAsync($"{baseURL}/{clientId}/user_preferences/{userId}", content);
-      return await response.Content.ReadAsStringAsync();
-  }
-
-}
+dotnet add package NotificationAPI --version 0.5.0
 ```
 
 </TabItem>
@@ -367,13 +289,13 @@ package main
 
 // import
 import (
-	notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
+  notificationapi "github.com/notificationapi-com/notificationapi-go-server-sdk"
   "encoding/json"
 )
 
 func main() {
-	// init
-	notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+  // init
+  notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
 
   //mergeTags is to pass dynamic values into the notification design.
   mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
@@ -402,20 +324,31 @@ func main() {
 <TabItem value="csharp">
 
 ```csharp
-NotificationAPI notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET");
-string request = @"{
-    ""notificationId"": ""order_tracking"",
-    ""user"": {
-        ""id"": ""spongebob.squarepants"",
-        ""email"": ""spongebob@squarepants.com""
-    },
-    ""mergeTags"": {
-        ""item"": ""Krabby Patty Burger"",
-        ""address"": ""124 Conch Street"",
-        ""orderId"": ""1234567890""
-    }
-}";
-notificationapi.send(request);
+//import
+using NotificationApi.Server;
+using NotificationApi.Server.Models;
+
+//initialize
+var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
+
+//send
+var user = new NotificationUser("spongebob.squarepants")
+{
+    Email = "spongebob@squarepants.com",
+    TelephoneNumber = "+15005550006"
+};
+
+var mergeTags = new Dictionary<string, object>
+{
+    { "item", "Krabby Patty Burger" },
+    { "address", "124 Conch Street" },
+    { "orderId", "1234567890" }
+};
+
+await notificationApi.Send(new SendNotificationData("order_tracking", user)
+{
+    MergeTags = mergeTags
+});
 ```
 
 </TabItem>
