@@ -227,29 +227,31 @@ notificationapi.send({
 
 ```py
 # import
+import asyncio
 from notificationapi_python_server_sdk import (notificationapi)
 
 # init
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
-notificationapi.send({
-        #The ID of the notification you wish to send. You can find this
-        #value from the dashboard.
-        "notificationId": "order_tracking",
+async def send_notification():
+  await notificationapi.send(
+    {
+      "notificationId": "order_tracking",
+      "user": {
+          "id": "spongebob.squarepants",
+          "email": "spongebob@squarepants.com"
+      },
+      "mergeTags": {
+          "item": "Krabby Patty Burger",
+          "address": "124 Conch Street",
+          "orderId": "1234567890"
+      }
+    }
+  )
 
-        # The user to send the notification to.
-        "user": {
-            "id": "spongebob.squarepants",
-            "email": "spongebob@squarepants.com", # required for email notifications
-        },
-        # mergeTags is to pass dynamic values into the notification design.
-        "mergeTags": {
-            "item": "Krabby Patty Burger",
-            "address": "124 Conch Street",
-            "orderId": "1234567890"
-        }
-    })
+# Run the async function
+asyncio.run(send_notification())
 ```
 
 </TabItem>
