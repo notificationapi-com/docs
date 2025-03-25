@@ -120,7 +120,7 @@ pip install notificationapi_python_server_sdk
 2. Import:
 
 ```python
-from notificationapi_python_server_sdk import (notificationapi)
+from notificationapi_python_server_sdk import notificationapi
 ```
 
 3. Initialize:
@@ -129,14 +129,27 @@ from notificationapi_python_server_sdk import (notificationapi)
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type   | Description                                                                                                                                                                                             |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                        |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                   |
+| `base_url`        | string | To choose a different region than default (https://api.notificationapi.com). Can be a region constant (e.g. EU_REGION or CA_REGION) or a custom URL string (e.g. 'https://api.eu.notificationapi.com'). |
 
 \* required
+
+Region specific example using imported Region constant:
+
+```python
+from notificationapi_python_server_sdk import notificationapi, EU_REGION
+
+notificationapi.init("CLIENT_ID", "CLIENT_SECRET", EU_REGION)
+```
+
+Region specific example using string:
+
+```python
+notificationapi.init("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com")
+```
 
 </TabItem>
 <TabItem value="php">
@@ -460,25 +473,24 @@ notificationapi.send({
 import asyncio
 
 async def send_notification():
-    await notificationapi.send(
-        {
-            "notificationId": "order_tracking",
-            "user": {
-                "id": "spongebob.squarepants",
-                "email": "spongebob@squarepants.com",
-                "number": "+15005550006",
-            },
-            "mergeTags": {
-                "item": "Krabby Patty Burger",
-                "address": "124 Conch Street",
-                "orderId": "1234567890"
-            }
-        }
-    )
+  await notificationapi.send(
+    {
+      "notificationId": "order_tracking",
+      "user": {
+        "id": "spongebob.squarepants",
+        "email": "spongebob@squarepants.com",
+        "number": "+15005550006",
+      },
+      "mergeTags": {
+        "item": "Krabby Patty Burger",
+        "address": "124 Conch Street",
+        "orderId": "1234567890"
+      }
+    }
+  )
 
 # Run the async function
 asyncio.run(send_notification())
-
 ```
 
 </TabItem>
