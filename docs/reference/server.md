@@ -172,12 +172,11 @@ use NotificationAPI\NotificationAPI;
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type   | Description                                                                                                                                                                         |
+| ----------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                    |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                               |
+| `baseURL`         | string | To configure a different region other than default (US). Use 'https://api.ca.notificationapi.com' for the Canada region, or 'https://api.eu.notificationapi.com' for the EU region. |
 
 \* required
 
