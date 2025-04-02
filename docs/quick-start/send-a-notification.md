@@ -262,6 +262,8 @@ asyncio.run(send_notification())
 use NotificationAPI\NotificationAPI;
 
 # init
+# if in the CA Region, add 'https://api.ca.notificationapi.com' after Client Secret
+# if in the EU Region, add 'https://api.eu.notificationapi.com' after Client Secret
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 
 # send
@@ -273,6 +275,7 @@ $notificationapi->send([
     "user" => [
         "id" => "spongebob.squarepants",
         "email" => "spongebob@squarepants.com",   # required for email notifications
+        "number" => "+15005550006" # optional phone number required to send SMS notifications
     ],
     # mergeTags is to pass dynamic values into the notification design.
     "mergeTags" => [
