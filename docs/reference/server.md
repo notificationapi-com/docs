@@ -182,7 +182,7 @@ $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 
 Region specific example using public region constant:
 
-```python
+```php
 use NotificationAPI\NotificationAPI;
 
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET", NotificationAPI::EU_REGION)
@@ -190,7 +190,7 @@ notificationapi.init("CLIENT_ID", "CLIENT_SECRET", NotificationAPI::EU_REGION)
 
 Region specific example using string:
 
-```js
+```php
 use NotificationAPI\NotificationAPI;
 
 notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
@@ -290,17 +290,32 @@ import (
 3. Initialize:
 
 ```go
-notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+notificationapi.Init("CLIENT_ID", "CLIENT_SECRET", "base_url")
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type   | Description                                                                                                                                                                                                                                                                        |
+| ----------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                                   |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                              |
+| `base_url`\*      | string | To set the region. Use https://api.notificationapi.com for US region, https://api.ca.notificationapi.com for Canada region, and https://api.eu.notificationapi.com for EU region. Can also use region constants US_REGION, CA_REGION or EU_REGION (e.g. notificationapi.US_REGION) |
 
 \* required
+
+Region specific example using public region constant:
+
+```Go
+use NotificationAPI\NotificationAPI;
+
+notificationapi.init("CLIENT_ID", "CLIENT_SECRET", notificationapi.EU_REGION)
+```
+
+Region specific example using string:
+
+```Go
+use NotificationAPI\NotificationAPI;
+
+notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
+```
 
 </TabItem>
 <TabItem value="csharp">
