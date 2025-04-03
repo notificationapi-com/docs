@@ -299,24 +299,27 @@ import (
 )
 
 func main() {
-  // init
-  notificationapi.Init("CLIENT_ID", "CLIENT_SECRET")
+  // init (US region)
+  // if in CA Region, replace API URL with 'https://api.ca.notificationapi.com'
+  // if in EU Region, replace API URL with 'https://api.eu.notificationapi.com'
+  notificationapi.Init("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com")
 
-  //mergeTags is to pass dynamic values into the notification design.
-  mergeTags := make(map[string]interface{}) // Change to map[string]interface{}
+  // mergeTags is to pass dynamic values into the notification design.
+  mergeTags := make(map[string]interface{})
   mergeTags["item"] = "Krabby Patty Burger"
   mergeTags["address"] = "124 Conch Street"
   mergeTags["orderId"] = "1234567890"
 
   notificationapi.Send(
     notificationapi.SendRequest{
-      //The ID of the notification you wish to send. You can find this
-      //value from the dashboard.
+      // The ID of the notification you wish to send. You can find this
+      // value from the dashboard.
       NotificationId: "order_tracking",
-      //The user to send the notification to.
+      // The user to send the notification to.
       User: notificationapi.User{
         Id:     "spongebob.squarepants",
         Email:  "spongebob@squarepants.com",
+        Number: "+15005550006" // Optional phone number required to send SMS notifications
       },
       MergeTags: mergeTags,
     },
