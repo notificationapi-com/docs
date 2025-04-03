@@ -652,7 +652,7 @@ Add this code to your project to send a notification:
 use App\Models\NotificationUser;
 use App\Notifications\MyNotification;
 
-$user = new User();
+$user = new NotificationUser();
 $user->id = "test_user_id";
 $user->email = "spongebob@squarepants.com";
 $user->number = "+15005550006";
