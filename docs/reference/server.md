@@ -199,19 +199,31 @@ notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api
 </TabItem>
 <TabItem value="laravel">
 
+:::info
+Our Laravel Server SDK is compatible with Laravel 9, 10 or 11. If you're using a different version please use our PHP Server SDK.
+:::
+
 1. Install Package:
+
+To install the Laravel Server SDK you may need to set your `composer.json`'s `"minimum-stability"` field to `"dev"`, then:
 
 ```bash
 composer require notificationapi/notificationapi-laravel-server-sdk:@dev
 ```
 
-:::info
-If your `composer.json`'s `"minimum-stability"` field is `"stable"`, then you may need to run `composer require notificationapi/notificationapi-php-server-sdk:@dev` to ensure that the `notificationapi-laravel-server-sdk` package has its dependencies installed as well.
+Or, if you prefer to keep your `composer.json`'s `"minimum-stability"` field set to `"stable"`, then:
 
-Alternatively you can update `"minimum-stability"` to `"dev"` instead of explicitely installing `notificationapi-php-server-sdk:@dev`.
-:::
+```bash
+composer require notificationapi/notificationapi-php-server-sdk:@dev
+```
 
-2. Register the NotificationApiServiceProvider with config/app.php:
+```bash
+composer require notificationapi/notificationapi-laravel-server-sdk:@dev -W
+```
+
+2. Register the NotificationApiServiceProvider:
+
+For Laravel 9 or 10 add the service provider to `config/app.php`.
 
 ```php
 'providers' => [
@@ -220,14 +232,35 @@ Alternatively you can update `"minimum-stability"` to `"dev"` instead of explici
 ]
 ```
 
-3. Add NotificationAPI keys to .env:
+For Laravel 11 add the service provider to `bootstrap/providers.php`.
+
+```php
+return [
+	// ...
+	NotificationAPI\NotificationApiServiceProvider::class,
+]
+```
+
+3. Add NotificationAPI keys to `.env`:
 
 ```php
 NOTIFICATION_API_KEY=clientID
 NOTIFICATION_API_SECRET=clientSecret
 ```
 
-4. Generate Notification:
+No region variable is required for US region, but if using the CA (Canada) region add:
+
+```php
+NOTIFICATION_API_REGION=CA
+```
+
+Or, if using the EU (Europe) region add:
+
+```php
+NOTIFICATION_API_REGION=EU
+```
+
+4. Generate Notification class:
 
 ```php
 php artisan make:notification MyNotification
@@ -240,8 +273,20 @@ class MyNotification extends Notification
 {
     // ...
 
+    protected $mergeTags;
+
+     /**
+     * Create a new notification instance.
+     */
+    public function __construct($mergeTags = null)
+    {
+        $this->mergeTags = $mergeTags;
+    }
+
+    // Update existing via function
     public function via($notifiable)
     {
+        // Add to or replace existing values (e.g. 'mail')
         return ['notification-api'];
     }
 
@@ -253,20 +298,17 @@ class MyNotification extends Notification
                 "id" => $notifiable->getAttribute('id'),
                 "email" => $notifiable->getAttribute('email'),
             ],
-            "mergeTags" => [
-                "userName" => auth()->user()->name
-            ]
+            "mergeTags" => $this->mergeTags
         ];
     }
 }
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name             | Type   | Description                                                                                                           |
+| ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| `clientId`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
+| `clientSecret`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
+| `region`         | string | To choose a different region than default (US). Use CA to access the Canada region, and EU for the Europe region.     |
 
 \* required
 
@@ -545,21 +587,88 @@ $notificationapi->send([
 </TabItem>
 <TabItem value="laravel">
 
-The `notificationapi-laravel-server-sdk` package uses Laravel's [notifications](https://laravel.com/docs/master/notifications).
+The `notificationapi-laravel-server-sdk` package uses Laravel's [notifications](https://laravel.com/docs/master/notifications). First, add the below class to `Models/NotificationUser.php` for creating a user.
 
 ```php
 <?php
 
-use App\Models\User;
+namespace App\Models;
+
+use Illuminate\Notifications\Notifiable;
+
+class NotificationUser
+{
+    use Notifiable;
+
+    /**
+     * The user's ID.
+     *
+     * @var string
+     */
+    public $id;
+
+    /**
+     * The user's email address.
+     *
+     * @var string
+     */
+    public $email;
+
+    /**
+     * The user's phone number.
+     *
+     * @var string
+     */
+    public $number;
+
+    /**
+     * Create a new notification user instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Empty constructor to allow property assignment
+    }
+
+    /**
+     * Route notifications for the notification-api channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForNotificationApi()
+    {
+        return $this->id;
+    }
+}
+```
+
+Now, add this code to your project to send a notification:
+
+```php
+<?php
+
+use App\Models\NotificationUser;
 use App\Notifications\MyNotification;
 
 $user = new User();
-$user->name = 'John Doe';
-$user->id = 'john.doe@example.com';
-$user->email = 'john.doe@example.com';
+$user->id = "test_user_id";
+$user->email = "spongebob@squarepants.com";
+$user->number = "+15005550006";
+
+
+// Optional mergeTags to customize the notification
+$mergeTags = [
+  "item" => "Krabby Patty Burger",
+  "address" => "124 Conch Street"
+  "commentId" => "1234567890"
+];
 
 // Send the notification to the user
-$user->notify(new MyNotification($user));
+$user->notify(new MyNotification($mergeTags));
+
+// If you don't have merge tags, you can simply call:
+// $user->notify(new MyNotification());
 ```
 
 :::info
@@ -570,11 +679,14 @@ Alternatively you can send a notification without using Laravel's notifications:
 $data = [
   "notificationId" => "my_notification_id",
   "user" => [
-      "id" => "user_id",
-      "email" => "john.doe@example.com",
+      "id" => "test_user_id",
+      "email" => "spongebob@squarepants.com",
+      "number" => "+15005550006"
   ],
   "mergeTags" => [
-      "userName" => "user_name"
+    "item" => "Krabby Patty Burger",
+    "address" => "124 Conch Street",
+    "commentId" => "1234567890"
   ]
 ];
 
