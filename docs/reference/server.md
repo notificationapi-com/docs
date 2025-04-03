@@ -260,13 +260,69 @@ Or, if using the EU (Europe) region add:
 NOTIFICATION_API_REGION=EU
 ```
 
-4. Generate Notification class:
+4. Add this class to `Models/NotificationUser.php` for creating a user:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Notifications\Notifiable;
+
+class NotificationUser
+{
+    use Notifiable;
+
+    /**
+     * The user's ID.
+     *
+     * @var string
+     */
+    public $id;
+
+    /**
+     * The user's email address.
+     *
+     * @var string
+     */
+    public $email;
+
+    /**
+     * The user's phone number.
+     *
+     * @var string
+     */
+    public $number;
+
+    /**
+     * Create a new notification user instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Empty constructor to allow property assignment
+    }
+
+    /**
+     * Route notifications for the notification-api channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForNotificationApi()
+    {
+        return $this->id;
+    }
+}
+```
+
+5. Generate Notification class:
 
 ```php
 php artisan make:notification MyNotification
 ```
 
-5. Update the Notification class:
+6. Update the Notification class:
 
 ```php
 class MyNotification extends Notification
@@ -587,63 +643,8 @@ $notificationapi->send([
 </TabItem>
 <TabItem value="laravel">
 
-The `notificationapi-laravel-server-sdk` package uses Laravel's [notifications](https://laravel.com/docs/master/notifications). First, add the below class to `Models/NotificationUser.php` for creating a user.
-
-```php
-<?php
-
-namespace App\Models;
-
-use Illuminate\Notifications\Notifiable;
-
-class NotificationUser
-{
-    use Notifiable;
-
-    /**
-     * The user's ID.
-     *
-     * @var string
-     */
-    public $id;
-
-    /**
-     * The user's email address.
-     *
-     * @var string
-     */
-    public $email;
-
-    /**
-     * The user's phone number.
-     *
-     * @var string
-     */
-    public $number;
-
-    /**
-     * Create a new notification user instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // Empty constructor to allow property assignment
-    }
-
-    /**
-     * Route notifications for the notification-api channel.
-     *
-     * @return string
-     */
-    public function routeNotificationForNotificationApi()
-    {
-        return $this->id;
-    }
-}
-```
-
-Now, add this code to your project to send a notification:
+The `notificationapi-laravel-server-sdk` package uses Laravel's [notifications](https://laravel.com/docs/master/notifications).
+Add this code to your project to send a notification:
 
 ```php
 <?php
