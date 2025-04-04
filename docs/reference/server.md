@@ -437,14 +437,30 @@ using NotificationApi.Server.Models;
 var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type    | Description                                                                                                                                                                                                                                                          |
+| ----------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string  | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                     |
+| `CLIENT_SECRET`\* | string  | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                |
+| `secureMode` \*   | boolean | Controlls sending notifications in secure mode. Set to `true` or `false`.                                                                                                                                                                                            |
+| `baseURL`         | string  | To choose a different region than default (US). Use https://api.ca.notificationapi.com for Canada region, or https://api.eu.notificationapi.com for Europe region. Can also use region constants CA_BASE_URL or EU_BASE_URL (e.g. NotificationApiServer.CA_BASE_URL) |
 
 \* required
+
+Region specific example using region constant:
+
+```csharp
+using NotificationApi.Server;
+
+var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false, NotificationApiServer.EU_BASE_URL);
+```
+
+Region specific example using string:
+
+```csharp
+using NotificationApi.Server;
+
+var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false, "https://api.eu.notificationapi.com");
+```
 
 </TabItem>
 <TabItem value="ruby">
@@ -721,12 +737,14 @@ notificationapi.Send(
 <TabItem value="csharp">
 
 ```csharp
-var user = new NotificationUser("spongebob.squarepants")
+// Replace user_id with your user's ID
+var user = new NotificationUser("user_id")
 {
     Email = "spongebob@squarepants.com",
     TelephoneNumber = "+15005550006"
 };
 
+// Optional mergeTags to customize the notification
 var mergeTags = new Dictionary<string, object>
 {
     { "item", "Krabby Patty Burger" },
@@ -734,7 +752,8 @@ var mergeTags = new Dictionary<string, object>
     { "orderId", "1234567890" }
 };
 
-await notificationApi.Send(new SendNotificationData("curl_test", user)
+// Replace my_notification_id with your notification's ID
+await notificationApi.Send(new SendNotificationData("my_notification_id", user)
 {
     MergeTags = mergeTags
 });
