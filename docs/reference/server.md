@@ -465,7 +465,10 @@ var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", fa
 </TabItem>
 <TabItem value="ruby">
 
-1. Copy the following class to your application:
+1. If not using the default US region, update the HTTP client instance hostname, <code>Net::HTTP:new()</code>.
+   Use <code>'api.ca.notificationapi.com'</code> for the CA region, and <code>'api.eu.notificationapi.com'</code> for the
+   EU region. Then copy the following class to your application. You can place this in a new file, such as
+   <code>lib/notification_api.rb</code>:
 
 ```ruby
 require 'net/http'
@@ -474,10 +477,11 @@ require 'base64'
 require 'openssl'
 
 class NotificationAPI
-  def initialize(client_id, client_secret)
-    @base_url = 'https://api.notificationapi.com'
+  def initialize(client_id, client_secret, base_url: nil)
+    @base_url = base_url
     @client_id = client_id
     @auth_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
+    # Change if not in default US region: CA = 'api.ca.notificationapi.com', EU = 'api.eu.notificationapi.com'
     @http_client = Net::HTTP.new('api.notificationapi.com', 443)
     @http_client.use_ssl = true
   end
@@ -557,20 +561,31 @@ class NotificationAPI
 end
 ```
 
-2. Initialize:
+2. Import the NotificationAPI class:
+
+```Ruby
+  require_relative 'notification_api'
+```
+
+3. Initialize:
 
 ```js
 notificationapi = NotificationAPI.new('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
-| `options`         | object | Additional initialization options                                                                                     |
-| `options.baseURL` | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region.   |
+| Name              | Type   | Description                                                                                                                                                                   |
+| ----------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                              |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                         |
+| `base_url `       | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com to access the Canada region, and https://api.eu.notificationapi.com for the EU region. |
 
 \* required
+
+Region specific example:
+
+```ruby
+notificationApi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
+```
 
 </TabItem>
 </Tabs>
