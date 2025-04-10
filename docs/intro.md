@@ -27,7 +27,7 @@ Intercom('show');
 
 [ 📧 Contact Form ](https://www.notificationapi.com/contact) <br/>
 [ ❤️ Slack Community](https://join.slack.com/t/notificationapi-comm/shared_invite/zt-ygbwiyip-6eA~A8pxmhGZpk~B14BL7w)<br/>
-[ 📞 Schedule a Video Call](https://calendly.com/notificationapi)
+[ 📞 Schedule a Video Call](https://cal.com/notificationapi/demo)
 
 ### Supported Environments
 
