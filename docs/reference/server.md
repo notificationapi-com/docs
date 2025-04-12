@@ -693,11 +693,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-| Name              | Type   | Description                                                                                                                                                                                             |
-| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                        |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                   |
-| `base_url`        | string | To choose a different region than default (https://api.notificationapi.com). Can be a region constant (e.g. EU_REGION or CA_REGION) or a custom URL string (e.g. 'https://api.eu.notificationapi.com'). |
+| Name              | Type   | Description                                                                                                                                                                                         |
+| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                    |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                               |
+| `base_url`\*      | string | To choose a different region than default (https://api.notificationapi.com). Use https://api.ca.notificationapi.com for the Canada region and https://api.eu.notificationapi.com for the EU region. |
 
 \* required
 
