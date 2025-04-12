@@ -26,6 +26,7 @@ The server-side SDKs allow you to trigger sending notifications, setting user pr
 - Go <Highlight color="#25c2a0">official</Highlight>
 - C# <Highlight color="#25c2a0">official</Highlight>
 - Ruby <Highlight color="#ff9966">documented</Highlight>
+- Rust <Highlight color="#ff9966">documented</Highlight>
 - Any environment that supports HTTP calls
 
 If you don't see your language/framework documented here, just ping us on support and we will provide samples and docs.
@@ -45,7 +46,8 @@ values={[
 { label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
-{ label: 'Ruby', value: 'ruby' }
+{ label: 'Ruby', value: 'ruby' },
+{ label: 'Rust', value: 'rust' }
 ]
 }>
 <TabItem value="js">
@@ -588,6 +590,129 @@ notificationApi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api
 ```
 
 </TabItem>
+<TabItem value="rust">
+
+1. Add Dependencies:
+
+```bash
+cargo add dotenv   # Manage environment variables
+cargo add reqwest   # HTTP client for making requests
+cargo add tokio --features full  # Required for Async runtime
+cargo add serde --features derive # JSON conversion
+```
+
+2. Configure Cargo.toml:
+
+   Enable the JSON feature for reqwest in your Cargo.toml file:
+
+```toml
+reqwest = { version = "0.12.15", features = ["json"] }
+```
+
+3. Set Up Environment Variables:
+
+Add your credentials to your `.env` file in your project root:
+
+```env
+CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+```
+
+4. Initialize and Send Notification:
+
+```rust
+use reqwest::Client;
+use serde::Serialize;
+use std::env;
+use dotenv::dotenv;
+
+#[derive(Serialize)]
+struct NotificationPayload<'a> {
+    #[serde(rename = "notificationId")]
+    notification_id: &'a str,
+    user: User,
+    #[serde(rename = "mergeTags")]
+    merge_tags: MergeTags<'a>,
+}
+
+#[derive(Serialize)]
+struct User {
+    id: String,
+    email: String,
+    number: String,
+}
+
+#[derive(Serialize)]
+struct MergeTags<'a> {
+    item: &'a str,
+    address: &'a str,
+    orderId: &'a str,
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize environment variables
+    dotenv().ok();
+    let client_id = env::var("CLIENT_ID").expect("CLIENT_ID not set in .env file");
+    let client_secret = env::var("CLIENT_SECRET").expect("CLIENT_SECRET not set in .env file");
+
+    // Create HTTP client
+    let client = Client::new();
+
+    // Prepare notification payload
+    let payload = NotificationPayload {
+        notification_id: "order_tracking",
+        user: User {
+            id: "spongebob.squarepants".to_string(),
+            email: "spongebob@squarepants.com".to_string(),
+            number: "+15005550006".to_string()
+        },
+        merge_tags: MergeTags {
+            item: "Krabby Patty Burger",
+            address: "124 Conch Street",
+            orderId: "1234567890",
+        },
+    };
+
+    // Send notification
+    let response = client
+        .post("https://api.notificationapi.com/{client_id}/sender")
+        .basic_auth(client_id, Some(client_secret))
+        .json(&payload)
+        .send()
+        .await?;
+
+    // Check the response status
+    if response.status().is_success() {
+        println!("Notification sent successfully!");
+    } else {
+        println!("Failed to send notification: {:?}", response.text().await?);
+    }
+
+    Ok(())
+}
+```
+
+| Name              | Type   | Description                                                                                                                                                                                             |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                        |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                   |
+| `base_url`        | string | To choose a different region than default (https://api.notificationapi.com). Can be a region constant (e.g. EU_REGION or CA_REGION) or a custom URL string (e.g. 'https://api.eu.notificationapi.com'). |
+
+\* required
+
+Region specific example:
+
+```rust
+let response = client
+    .post("https://api.eu.notificationapi.com/{client_id}/sender")
+    .basic_auth(client_id, Some(client_secret))
+    .json(&payload)
+    .send()
+    .await?;
+```
+
+</TabItem>
 </Tabs>
 
 ## send
@@ -604,7 +729,8 @@ values={[
 { label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
-{ label: 'Ruby', value: 'ruby' }
+{ label: 'Ruby', value: 'ruby' },
+{ label: 'Rust', value: 'rust' }
 ]
 }>
 <TabItem value="js">
@@ -794,6 +920,82 @@ notificationapi.send({
 ```
 
 </TabItem>
+<TabItem value="rust">
+
+```rust
+use reqwest::Client;
+use serde::Serialize;
+use std::env;
+use dotenv::dotenv;
+
+#[derive(Serialize)]
+struct NotificationPayload<'a> {
+    #[serde(rename = "notificationId")]
+    notification_id: &'a str,
+    user: User,
+    #[serde(rename = "mergeTags")]
+    merge_tags: MergeTags<'a>,
+}
+
+#[derive(Serialize)]
+struct User {
+    id: String,
+    email: String,
+    number: String,
+}
+
+#[derive(Serialize)]
+struct MergeTags<'a> {
+    item: &'a str,
+    address: &'a str,
+    orderId: &'a str,
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize environment variables
+    dotenv().ok();
+    let client_id = env::var("CLIENT_ID").expect("CLIENT_ID not set in .env file");
+    let client_secret = env::var("CLIENT_SECRET").expect("CLIENT_SECRET not set in .env file");
+
+    // Create HTTP client
+    let client = Client::new();
+
+    // Prepare notification payload
+    let payload = NotificationPayload {
+        notification_id: "order_tracking",
+        user: User {
+            id: "spongebob.squarepants".to_string(),
+            email: "spongebob@squarepants.com".to_string(),
+            number: "+15005550006".to_string()
+        },
+        merge_tags: MergeTags {
+            item: "Krabby Patty Burger",
+            address: "124 Conch Street",
+            orderId: "1234567890",
+        },
+    };
+
+    // Send notification
+    let response = client
+        .post("https://api.notificationapi.com/{client_id}/sender")
+        .basic_auth(client_id, Some(client_secret))
+        .json(&payload)
+        .send()
+        .await?;
+
+    // Check the response status
+    if response.status().is_success() {
+        println!("Notification sent successfully!");
+    } else {
+        println!("Failed to send notification: {:?}", response.text().await?);
+    }
+
+    Ok(())
+}
+```
+
+</TabItem>
 </Tabs>
 
 **Parameters**
@@ -829,11 +1031,11 @@ The send() method accepts an object with the following fields:
 | `email.attachments`       | {'{'} filename: string; url: string {'}'}[] | An array of publicly accessible URLs and filenames pointing to files that you wish to include as attachments. The URLs only need to be valid for a few minutes after calling the SDK method. After that, the public URLs can be disabled for privacy. The maximum email size (including the content and all attachments) is 25MB. File extensions in the filename property are necessary for the file to show up nicely in the recipient's device.                                                                                                                                                                                                                                           |
 | `apn`                     | object                                      | Additional Apple push notification                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `apn.expiry`              | number                                      | The UNIX timestamp representing when the notification should expire. This does not contribute to the 2048 byte payload size limit. An expiry of 0 indicates that the notification expires immediately.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `apn.priority`            | number                                      | The priority of the notification. If you omit this header, APNs sets the notification priority to 10. Specify 10 to send the notification immediately. Specify 5 to send the notification based on power considerations on the user’s device. Specify 1 to prioritize the device’s power considerations over all other factors for delivery, and prevent awakening the device.                                                                                                                                                                                                                                                                                                               |
-| `apn.collapseId`          | string                                      | An identifier you use to merge multiple notifications into a single notification for the user. Typically, each notification request displays a new notification on the user’s device. When sending the same notification more than once, use the same value in this header to merge the requests. The value of this key must not exceed 64 bytes.                                                                                                                                                                                                                                                                                                                                            |
+| `apn.priority`            | number                                      | The priority of the notification. If you omit this header, APNs sets the notification priority to 10. Specify 10 to send the notification immediately. Specify 5 to send the notification based on power considerations on the user's device. Specify 1 to prioritize the device's power considerations over all other factors for delivery, and prevent awakening the device.                                                                                                                                                                                                                                                                                                               |
+| `apn.collapseId`          | string                                      | An identifier you use to merge multiple notifications into a single notification for the user. Typically, each notification request displays a new notification on the user's device. When sending the same notification more than once, use the same value in this header to merge the requests. The value of this key must not exceed 64 bytes.                                                                                                                                                                                                                                                                                                                                            |
 | `apn.threadId`            | string                                      | Provide this key with a string value that represents the app-specific identifier for grouping notifications. If you provide a Notification Content app extension, you can use this value to group your notifications together. For local notifications, this key corresponds to the threadIdentifier property of the UNNotificationContent object.                                                                                                                                                                                                                                                                                                                                           |
 | `apn.badge`               | number                                      | Include this key when you want the system to modify the badge of your app icon. If this key is not included in the dictionary, the badge is not changed. To remove the badge, set the value of this key to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `apn.sound`               | string                                      | Include this key when you want the system to play a sound. The value of this key is the name of a sound file in your app’s main bundle or in the Library/Sounds folder of your app’s data container. If the sound file cannot be found, or if you specify default for the value, the system plays the default alert sound. For details about providing sound files for notifications; see [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW10)                                                                                                |
+| `apn.sound`               | string                                      | Include this key when you want the system to play a sound. The value of this key is the name of a sound file in your app's main bundle or in the Library/Sounds folder of your app's data container. If the sound file cannot be found, or if you specify default for the value, the system plays the default alert sound. For details about providing sound files for notifications; see [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW10)                                                                                                |
 | `apn.contentAvailable`    | boolean                                     | Include this key with a value of 1 to configure a background update notification. When this key is present, the system wakes up your app in the background and delivers the notification to its app delegate. For information about configuring and handling background update notifications, see [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html#//apple_ref/doc/uid/TP40008194-CH10-SW8)                                                                                                                                                                                          |
 | `fcm`                     | object                                      | Additional Firebase Cloud Messaging push notification options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `fcm.android`             | object                                      | Additional Android push notification options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
