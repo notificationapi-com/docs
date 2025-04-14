@@ -34,7 +34,7 @@ When specific events occur in the notification lifecycle (such as email opens or
 
 You can easily configure your webhook endpoints and select which events to track through the NotificationAPI dashboard:
 
-1. Navigate to the Webhook Configuration section in your dashboard
+1. Navigate to the "Events Webhook" tab in the "Settings" section of the your dashboard
 2. Enter your webhook URL (e.g., `https://your-webhook-url.com`)
 3. Select the events you want to receive notifications for
 4. Click "Save Configuration"
