@@ -61,17 +61,6 @@ To receive notification events:
 4. Implement proper validation of incoming webhook requests
 5. Process and store the event data as needed for your use case
 
-<!--
-## Security Considerations
-
-To ensure that webhook requests are legitimate:
-
-- Verify webhook signatures (documentation coming soon)
-- Use HTTPS for your endpoint
-- Implement appropriate authentication and authorization
-- Consider rate limiting and request validation
--->
-
 ## FAQ
 
 **Q: What is the format of the webhook requests?**  
