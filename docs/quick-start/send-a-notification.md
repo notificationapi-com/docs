@@ -200,7 +200,9 @@ values={[
 import notificationapi from 'notificationapi-node-server-sdk';
 // const notificationapi = require('notificationapi-node-server-sdk').default
 
-// init
+// initialize notificationapi (default US region)
+// if in the CA region, add 'https://api.ca.notificationapi.com' after CLIENT_SECRET
+// if in the EU region, add 'https://api.eu.notificationapi.com' after CLIENT_SECRET
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
