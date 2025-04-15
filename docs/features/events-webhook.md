@@ -1,6 +1,6 @@
-# 🪝 Webhook API
+# 🪝 Events Webhook
 
-The Notification Events Webhook API allows you to receive real-time updates about notification events such as delivery, opens, and clicks. By setting up a publicly accessible API endpoint, you can track and react to these events programmatically.
+The Notification Events Webhook allows you to receive real-time updates about notification events such as delivery, opens, and clicks. By setting up a publicly accessible API endpoint, you can track and react to these events programmatically.
 
 :::note
 This feature is currently in beta.
@@ -39,9 +39,11 @@ You can easily configure your webhook endpoints and select which events to track
 3. Select the events you want to receive notifications for
 4. Click "Save Configuration"
 
+<!-- Image will be added later -->
+
 ## Supported Events
 
-The webhook API currently supports the following notification events:
+The webhook currently supports the following notification events:
 
 | Event         | Description                                                       | Payload                                                                                                |
 | ------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -57,6 +59,17 @@ To receive notification events:
 3. Select which events you want to receive (EMAIL_OPEN, EMAIL_CLICK)
 4. Implement proper validation of incoming webhook requests
 5. Process and store the event data as needed for your use case
+
+<!--
+## Security Considerations
+
+To ensure that webhook requests are legitimate:
+
+- Verify webhook signatures (documentation coming soon)
+- Use HTTPS for your endpoint
+- Implement appropriate authentication and authorization
+- Consider rate limiting and request validation
+-->
 
 ## FAQ
 
