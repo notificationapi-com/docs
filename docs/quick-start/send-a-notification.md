@@ -230,7 +230,9 @@ notificationapi.send({
 import asyncio
 from notificationapi_python_server_sdk import (notificationapi)
 
-# init
+# initialize notificationapi (default US region)
+# if in the CA region, add 'https://api.ca.notificationapi.com' after CLIENT_SECRET
+# if in the EU region, add 'https://api.eu.notificationapi.com' after CLIENT_SECRET
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
