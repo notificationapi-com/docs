@@ -340,7 +340,9 @@ func main() {
 using NotificationApi.Server;
 using NotificationApi.Server.Models;
 
-//initialize
+// initialize notificationapi (default US region)
+// if in the CA region, add 'https://api.ca.notificationapi.com' after boolean argument
+// if in the EU region, add 'https://api.eu.notificationapi.com' after boolean argument
 var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
 
 //send
