@@ -92,9 +92,13 @@ require 'openssl'
 
 class NotificationAPI
   def initialize(client_id, client_secret)
+    # if in the CA region, use 'https://api.ca.notificationapi.com'
+    # if in the EU region, use 'https://api.eu.notificationapi.com'
     @base_url = 'https://api.notificationapi.com'
     @client_id = client_id
     @auth_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
+    # if in the CA region, use 'api.ca.notificationapi.com'
+    # if in the EU region, use 'api.eu.notificationapi.com'
     @http_client = Net::HTTP.new('api.notificationapi.com', 443)
     @http_client.use_ssl = true
   end
@@ -200,7 +204,9 @@ values={[
 import notificationapi from 'notificationapi-node-server-sdk';
 // const notificationapi = require('notificationapi-node-server-sdk').default
 
-// init
+// initialize notificationapi (default US region)
+// if in the CA region, add 'https://api.ca.notificationapi.com' after CLIENT_SECRET
+// if in the EU region, add 'https://api.eu.notificationapi.com' after CLIENT_SECRET
 notificationapi.init('CLIENT_ID', 'CLIENT_SECRET');
 
 // send
@@ -230,7 +236,9 @@ notificationapi.send({
 import asyncio
 from notificationapi_python_server_sdk import (notificationapi)
 
-# init
+# initialize notificationapi (default US region)
+# if in the CA region, add 'https://api.ca.notificationapi.com' after CLIENT_SECRET
+# if in the EU region, add 'https://api.eu.notificationapi.com' after CLIENT_SECRET
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 
 # send
@@ -336,7 +344,9 @@ func main() {
 using NotificationApi.Server;
 using NotificationApi.Server.Models;
 
-//initialize
+// initialize notificationapi (default US region)
+// if in the CA region, add 'https://api.ca.notificationapi.com' after boolean argument
+// if in the EU region, add 'https://api.eu.notificationapi.com' after boolean argument
 var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
 
 //send
@@ -366,7 +376,9 @@ await notificationApi.Send(new SendNotificationData("order_tracking", user)
 # require:
 require './NotificationAPI'
 
-# init
+# initialize notificationapi (default US region)
+# if in the CA region, add 'https://api.ca.notificationapi.com' after CLIENT_SECRET
+# if in the EU region, add 'https://api.eu.notificationapi.com' after CLIENT_SECRET
 notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET")
 
 # send
