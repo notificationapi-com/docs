@@ -31,6 +31,7 @@ values={[
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
+{ label: 'Java', value: 'java' },
 { label: 'Ruby', value: 'ruby' }
 ]}>
 <TabItem value="js">
@@ -77,6 +78,34 @@ Install the package:
 
 ```csharp
 dotnet add package NotificationAPI --version 0.5.0
+```
+
+</TabItem>
+<TabItem value="java">
+
+Add the following dependency to your Maven project:
+
+```xml
+<dependency>
+    <groupId>com.notificationapi</groupId>
+    <artifactId>notificationapi-java-server-sdk</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+For optimal functionality, you'll also need the following dependencies:
+
+```xml
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.14</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
 ```
 
 </TabItem>
@@ -194,6 +223,7 @@ values={[
 { label: 'PHP', value: 'php' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
+{ label: 'Java', value: 'java' },
 { label: 'Ruby', value: 'ruby' }
 ]
 }>
@@ -367,6 +397,40 @@ await notificationApi.Send(new SendNotificationData("order_tracking", user)
 {
     MergeTags = mergeTags
 });
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// import
+import com.notificationapi.NotificationApi;
+import com.notificationapi.model.NotificationRequest;
+import com.notificationapi.model.User;
+import java.util.HashMap;
+import java.util.Map;
+
+// Initialize NotificationAPI (default US region)
+// If in the CA region, use the third parameter: "https://api.ca.notificationapi.com"
+// If in the EU region, use the third parameter: "https://api.eu.notificationapi.com"
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+
+// Create user
+User user = new User("spongebob.squarepants")
+    .setEmail("spongebob@squarepants.com") // required for email notifications
+    .setNumber("+15005550006"); // optional phone number required to send SMS notifications
+
+// Create merge tags
+Map<String, Object> mergeTags = new HashMap<>();
+mergeTags.put("item", "Krabby Patty Burger");
+mergeTags.put("address", "124 Conch Street");
+mergeTags.put("orderId", "1234567890");
+
+// Create and send notification request
+NotificationRequest request = new NotificationRequest("order_tracking", user)
+    .setMergeTags(mergeTags);
+
+String response = api.send(request);
 ```
 
 </TabItem>

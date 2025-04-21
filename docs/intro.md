@@ -40,6 +40,7 @@ Intercom('show');
     <SupportedEnvironment logo="devicon-php-plain" name="PHP" path="./reference/server" />
     <SupportedEnvironment logo="devicon-go-original-wordmark" name="Go" path="./reference/server" />
     <SupportedEnvironment logo="devicon-csharp-plain" name="C#" path="./reference/server" />
+    <SupportedEnvironment logo="devicon-java-plain" name="Java" path="./reference/server" />
     <SupportedEnvironment logo="devicon-ruby-plain" name="Ruby" path="./reference/server" />
 </div>
 
