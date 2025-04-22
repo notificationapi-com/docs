@@ -25,6 +25,7 @@ The server-side SDKs allow you to trigger sending notifications, setting user pr
 - Laravel <Highlight color="#25c2a0">official</Highlight>
 - Go <Highlight color="#25c2a0">official</Highlight>
 - C# <Highlight color="#25c2a0">official</Highlight>
+- Java <Highlight color="#25c2a0">official</Highlight>
 - Ruby <Highlight color="#ff9966">documented</Highlight>
 - Rust <Highlight color="#ff9966">documented</Highlight>
 - Any environment that supports HTTP calls
@@ -46,6 +47,7 @@ values={[
 { label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
+{ label: 'Java', value: 'java' },
 { label: 'Ruby', value: 'ruby' },
 { label: 'Rust', value: 'rust' }
 ]
@@ -465,6 +467,49 @@ var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", fa
 ```
 
 </TabItem>
+<TabItem value="java">
+
+1. Add the following dependency to your Maven project:
+
+```xml
+<dependency>
+    <groupId>com.notificationapi</groupId>
+    <artifactId>notificationapi-java-server-sdk</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
+
+2. Import:
+
+```java
+import com.notificationapi.NotificationApi;
+```
+
+3. Initialize:
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+```
+
+| Name              | Type   | Description                                                                                                                                                     |
+| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                           |
+| `baseURL`         | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com for Canada region, and https://api.eu.notificationapi.com for EU region. |
+
+\* required
+
+Region specific example:
+
+```java
+// For EU region
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
+
+// For CA region
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.ca.notificationapi.com");
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 1. If not using the default US region, update the HTTP client instance hostname, <code>Net::HTTP:new()</code>.
@@ -729,6 +774,7 @@ values={[
 { label: 'Laravel', value: 'laravel' },
 { label: 'Go', value: 'go' },
 { label: 'C#', value: 'csharp' },
+{ label: 'Java', value: 'java' },
 { label: 'Ruby', value: 'ruby' },
 { label: 'Rust', value: 'rust' }
 ]
@@ -898,6 +944,37 @@ await notificationApi.Send(new SendNotificationData("my_notification_id", user)
 {
     MergeTags = mergeTags
 });
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import com.notificationapi.NotificationApi;
+import com.notificationapi.model.NotificationRequest;
+import com.notificationapi.model.User;
+import java.util.HashMap;
+import java.util.Map;
+
+// Initialize NotificationAPI
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+// Create user
+User user = new User("spongebob.squarepants")
+    .setEmail("spongebob@squarepants.com")
+    .setNumber("+15005550006");
+
+// Create merge tags
+Map<String, Object> mergeTags = new HashMap<>();
+mergeTags.put("item", "Krabby Patty Burger");
+mergeTags.put("address", "124 Conch Street");
+mergeTags.put("orderId", "1234567890");
+
+// Create and send notification request
+NotificationRequest request = new NotificationRequest("order_tracking", user)
+    .setMergeTags(mergeTags);
+
+String response = api.send(request);
 ```
 
 </TabItem>
@@ -1244,6 +1321,25 @@ await notificationApi.Identify(userId, new IdentifyUserData()
 ```
 
 </TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+User user = new User("spongebob.squarepants")
+    .setEmail("spongebob@squarepants.com")
+    .setNumber("+15005550006");
+
+List<PushToken> pushTokens = new ArrayList<>();
+pushTokens.add(new PushToken("FCM", "samplePushToken", new Device("com.example.app", "1234567890", "1234567890", "android", "Samsung", "SM-G930F")));
+
+List<WebPushToken> webPushTokens = new ArrayList<>();
+webPushTokens.add(new WebPushToken("https://fcm.googleapis.com/fcm/send/fCs_4iba0Ao:APA91bGFdaU7I3****JMH_KeZwk1Xi", new Keys("zP2xFu3hMc2vNH5E2nuKkyjpZydvCk9llRUY2kP4****9aSlKcoadSV2UbvMRQ", "CXEFun************tYe8g")));
+
+api.identifyUser(user, pushTokens, webPushTokens);
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 ```ruby
@@ -1441,6 +1537,19 @@ await notificationApi.SetUserPreferences(userId, new SetUserPreferencesData(){
 ```
 
 </TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+UserPreferences preferences = new UserPreferences();
+preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
+preferences.addPreference(new NotificationPreference("order_tracking", NotificationChannel.SMS, true));
+
+api.setUserPreferences("userId", preferences);
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 ```ruby
@@ -1540,6 +1649,19 @@ await notificationApi.DeleteUserPreferences(new DeleteUserPreferencesData(){
 ```
 
 </TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+UserPreferences preferences = new UserPreferences();
+preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
+preferences.addPreference(new NotificationPreference("order_tracking", NotificationChannel.SMS, true));
+
+api.deleteUserPreferences("userId", preferences);
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 ```ruby
@@ -1550,6 +1672,7 @@ notificationapi.deleteUserPreferences({
 ```
 
 </TabItem>
+
 </Tabs>
 
 #### Parameters
@@ -1666,6 +1789,19 @@ await notificationApi.DeleteUserPreferences("spongebob.squarepants", new Diction
 ```
 
 </TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+UserPreferences preferences = new UserPreferences();
+preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
+preferences.addPreference(new NotificationPreference("order_tracking", NotificationChannel.SMS, true));
+
+api.updateInAppNotification("userId", "my_notification_id", preferences);
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 ```ruby
@@ -1681,6 +1817,7 @@ notificationapi.delete_user_preferences('spongebob.squarepants', {
 ```
 
 </TabItem>
+
 </Tabs>
 
 #### Parameters
@@ -1769,6 +1906,19 @@ await notificationApi.Retract(new RetractNotificationData(){
     NotificationId = "order_tracking",
     UserId = "spongebob.squarepants"
 });
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+RetractRequest request = new RetractRequest();
+request.setNotificationId("order_tracking");
+request.setUserId("spongebob.squarepants");
+
+api.retract(request);
 ```
 
 </TabItem>
@@ -1864,13 +2014,25 @@ await notificationApi.UpdateSchedule("TRACKING_ID", new UpdateScheduleData(){
 ```
 
 </TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+UpdateScheduleRequest request = new UpdateScheduleRequest();
+request.setSchedule("2024-02-20T14:38:03.509Z");
+
+api.updateSchedule("TRACKING_ID", request);
+```
+
+</TabItem>
 <TabItem value="ruby">
 
 ```ruby
 notificationapi.update_schedule(
   tracking_id: '172cf2f4-18cd-4f1f-b2ac-e50c7d71891c',
   {
-		schedule: "2024-02-20T14:38:03.509Z",
+			schedule: "2024-02-20T14:38:03.509Z",
 	}
 );
 ```
@@ -1942,6 +2104,18 @@ $notificationapi->deleteSchedule([
 
 ```csharp
 await notificationApi.DeleteSchedule("TRACKING_ID");
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+DeleteScheduleRequest request = new DeleteScheduleRequest();
+request.setTrackingId("TRACKING_ID");
+
+api.deleteSchedule(request);
 ```
 
 </TabItem>
@@ -2076,6 +2250,25 @@ var parameters = new Dictionary<string, object>
         };
 
         await notificationApi.QueryLogs(parameters);
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
+
+QueryLogsRequest request = new QueryLogsRequest();
+request.setDateRangeFilter(new DateRangeFilter(1719600830559, 1719600840559));
+request.setNotificationFilter(Arrays.asList("order_tracking"));
+request.setChannelFilter(Arrays.asList("EMAIL"));
+request.setUserFilter(Arrays.asList("abcd-1234"));
+request.setStatusFilter(Arrays.asList("SUCCESS"));
+request.setTrackingIds(Arrays.asList("172cf2f4-18cd-4f1f-b2ac-e50c7d71891c"));
+request.setRequestFilter("request.mergeTags.item=\"Krabby Patty Burger\"");
+request.setEnvIdFilter("6ok6imq9unr2budgiebjdaa6oi");
+
+api.queryLogs(request);
 ```
 
 </TabItem>
