@@ -89,7 +89,7 @@ Add the following dependency to your Maven project:
 <dependency>
     <groupId>com.notificationapi</groupId>
     <artifactId>notificationapi-java-server-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -413,7 +413,7 @@ import java.util.Map;
 // Initialize NotificationAPI (default US region)
 // If in the CA region, use the third parameter: "https://api.ca.notificationapi.com"
 // If in the EU region, use the third parameter: "https://api.eu.notificationapi.com"
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 // Create user
 User user = new User("spongebob.squarepants")

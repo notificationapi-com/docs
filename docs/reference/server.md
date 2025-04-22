@@ -475,7 +475,7 @@ var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", fa
 <dependency>
     <groupId>com.notificationapi</groupId>
     <artifactId>notificationapi-java-server-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -488,15 +488,26 @@ import com.notificationapi.NotificationApi;
 3. Initialize:
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 ```
 
-| Name              | Type   | Description                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).      |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments). |
+| Name              | Type   | Description                                                                                                                                                     |
+| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                           |
+| `baseURL`         | string | To choose a different region than default (US). Use https://api.ca.notificationapi.com for Canada region, and https://api.eu.notificationapi.com for EU region. |
 
 \* required
+
+Region specific example:
+
+```java
+// For EU region
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
+
+// For CA region
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.ca.notificationapi.com");
+```
 
 </TabItem>
 <TabItem value="ruby">
@@ -946,7 +957,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Initialize NotificationAPI
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 // Create user
 User user = new User("spongebob.squarepants")
@@ -1313,12 +1324,11 @@ await notificationApi.Identify(userId, new IdentifyUserData()
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
-User user = new User();
-user.setId("spongebob.squarepants");
-user.setEmail("spongebob@squarepants.com");
-user.setNumber("+15005550006");
+User user = new User("spongebob.squarepants")
+    .setEmail("spongebob@squarepants.com")
+    .setNumber("+15005550006");
 
 List<PushToken> pushTokens = new ArrayList<>();
 pushTokens.add(new PushToken("FCM", "samplePushToken", new Device("com.example.app", "1234567890", "1234567890", "android", "Samsung", "SM-G930F")));
@@ -1530,7 +1540,7 @@ await notificationApi.SetUserPreferences(userId, new SetUserPreferencesData(){
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 UserPreferences preferences = new UserPreferences();
 preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
@@ -1642,7 +1652,7 @@ await notificationApi.DeleteUserPreferences(new DeleteUserPreferencesData(){
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 UserPreferences preferences = new UserPreferences();
 preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
@@ -1782,7 +1792,7 @@ await notificationApi.DeleteUserPreferences("spongebob.squarepants", new Diction
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 UserPreferences preferences = new UserPreferences();
 preferences.addPreference(new NotificationPreference("new_order", NotificationChannel.INAPP_WEB, true));
@@ -1902,7 +1912,7 @@ await notificationApi.Retract(new RetractNotificationData(){
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 RetractRequest request = new RetractRequest();
 request.setNotificationId("order_tracking");
@@ -2007,7 +2017,7 @@ await notificationApi.UpdateSchedule("TRACKING_ID", new UpdateScheduleData(){
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 UpdateScheduleRequest request = new UpdateScheduleRequest();
 request.setSchedule("2024-02-20T14:38:03.509Z");
@@ -2100,7 +2110,7 @@ await notificationApi.DeleteSchedule("TRACKING_ID");
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 DeleteScheduleRequest request = new DeleteScheduleRequest();
 request.setTrackingId("TRACKING_ID");
@@ -2246,7 +2256,7 @@ var parameters = new Dictionary<string, object>
 <TabItem value="java">
 
 ```java
-NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET");
+NotificationApi api = new NotificationApi("CLIENT_ID", "CLIENT_SECRET", "https://api.notificationapi.com");
 
 QueryLogsRequest request = new QueryLogsRequest();
 request.setDateRangeFilter(new DateRangeFilter(1719600830559, 1719600840559));
