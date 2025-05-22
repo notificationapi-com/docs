@@ -3,203 +3,239 @@ sidebar_position: 7
 sidebar_label: 🗨️ Slack
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import { FaSlack } from 'react-icons/fa';
 
 # <div><FaSlack /> Slack</div>
 
+## Overview
+
+Integrate Slack with NotificationAPI to send notifications directly to your users' Slack channels. This guide will help you connect your Slack workspace and provide a ready-to-use frontend integration example for various frameworks.
+
 ## Requirements
 
-- A Slack workspace where you have permissions to install apps
-- Create a Slack app in your workspace
-- Install the app to your workspace
-
-Please refer to `Dashboard -> Settings -> Slack Integration` for the step-by-step instructions.
-
-:::tip
-You can use different Slack apps for different environments (development, staging, production) to keep your notifications organized.
-:::
-
-## Important Features
-
-- Direct messages to users
-- Channel messages
-- Rich message formatting with blocks and attachments
-- Interactive components (buttons, dropdowns)
-- Thread replies
-- Message updates and deletions
-- User mention support
-- Custom message formatting using Slack's Block Kit
+- A Slack workspace
+- Access to NotificationAPI
 
 ## Slack App Setup
 
-To send notifications through Slack, you'll need to:
+To enable Slack notifications, simply install the NotificationAPI Slack app in your workspace. You can also allow your users to connect their Slack accounts using the integration component below.
 
-1. Create a Slack app in your workspace
-2. Add the following OAuth scopes to your app:
-   - `chat:write`
-   - `im:write`
-   - `users:read`
-   - `users:read.email`
-3. Install the app to your workspace
-4. Copy the Bot User OAuth Token from your Slack app settings
-5. Configure the token in NotificationAPI dashboard
+## Frontend Integration Example
 
-## Detailed Setup Instructions
+Use the following component to let your users connect their Slack accounts. The example supports React, Next.js, Remix, Nuxt3, Angular, Vue, and Vanilla JS. Make sure to set the `environment` prop to your NotificationAPI environment (e.g., `production`, `staging`).
+<Tabs
+groupId="frontend-language"
+defaultValue="react"
+values={[
+{ label: 'React', value: 'react' },
+{ label: 'Remix', value: 'remix' },
+{ label: 'Vue', value: 'vue' },
+{ label: 'Angular', value: 'angular' },
+{ label: `Next.js`, value: 'next' }
+]
+}>
+<TabItem value="react">
 
-### 1. Create a Slack App
+```jsx
+import React, { useState } from 'react';
 
-1. Go to [Slack API](https://api.slack.com/apps) and sign in with your Slack account
-2. Click "Create New App"
-3. You'll be prompted to select a workspace.
-4. After selecting a workspace, you'll see the app manifest editor. Use this basic manifest:
-   ```json
-   {
-     "display_information": {
-       "name": "NotificationAPI"
-     },
-     "settings": {
-       "org_deploy_enabled": false,
-       "socket_mode_enabled": false,
-       "is_hosted": false,
-       "token_rotation_enabled": false
-     }
-   }
-   ```
-5. Review the app summary and click "Create" to finalize your app creation
-
-### 2. Configure OAuth Scopes
-
-1. In your app settings, navigate to "OAuth & Permissions" in the sidebar
-2. Scroll to "Scopes" section
-3. Under "Bot Token Scopes", add the following scopes:
-   - `chat:write` - Send messages as your app
-   - `im:write` - Send direct messages to users
-   - `users:read` - View basic user information
-   - `users:read.email` - Look up users by email
-
-### 3. Install the App
-
-1. After adding scopes, scroll to the top of "OAuth & Permissions" page
-2. Click "Install to Workspace"
-3. Review the permissions and click "Allow"
-4. After installation, you'll see a "Bot User OAuth Token" - save this token securely
-
-### 4. Configure in NotificationAPI Dashboard
-
-1. Log in to your NotificationAPI dashboard
-2. Go to "Settings" → "Slack Integration"
-3. Enter the Bot User OAuth Token you saved earlier
-4. Click "Save"
-
-### 5. Testing the Integration
-
-1. Create a test notification template in NotificationAPI dashboard
-2. Configure it to use the Slack channel
-3. Send a test notification to verify the setup
-
-### Common Issues and Solutions
-
-- **App Not in Channel**: If sending to channels, use `/invite @YourAppName` in the channel
-- **Invalid Token**: Double-check the Bot User OAuth Token in dashboard settings
-- **Missing Permissions**: Verify all required scopes are added in Slack app settings
-- **User Not Found**: Ensure user email in NotificationAPI matches their Slack email
-
-### Security Best Practices
-
-1. **Token Security**:
-
-   - Never share your Bot User OAuth Token
-   - Rotate tokens if compromised
-   - Use different apps/tokens for different environments
-
-2. **Access Control**:
-   - Regularly audit app installations
-   - Remove unused installations
-   - Review channel memberships periodically
-
-## Message Formatting
-
-NotificationAPI supports Slack's Block Kit for rich message formatting. You can use:
-
-- Text blocks with markdown
-- Sections with fields
-- Buttons and interactive elements
-- Images and other media
-- Dividers and context blocks
-
-Example template:
-
-```json
-{
-  "blocks": [
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": "Hello {{userName}}! You have a new notification"
-      }
-    },
-    {
-      "type": "divider"
-    },
-    {
-      "type": "section",
-      "fields": [
-        {
-          "type": "mrkdwn",
-          "text": "*Type:*\n{{notificationType}}"
-        },
-        {
-          "type": "mrkdwn",
-          "text": "*When:*\n{{timestamp}}"
-        }
-      ]
+const SlackIntegration = ({ userId }) => {
+  const [channel, setChannel] = useState('');
+  const handleSlackAuth = () => {
+    if (!channel) {
+      alert('Enter a channel name');
+      return;
     }
-  ]
-}
+    const url =
+      'https://slack.com/oauth/v2/authorize?' +
+      'client_id=1146598856352.8825220259395' +
+      '&scope=chat:write,channels:read' +
+      `&redirect_uri=https://app.notificationapi.com/slack/oauth/callback/${CLIENT_ID}/userId/${userId}`;
+    window.open(url, 'slack_auth', 'width=500,height=600');
+  };
+  return (
+    <div>
+      <input
+        value={channel}
+        onChange={(e) => setChannel(e.target.value)}
+        placeholder="Channel (e.g. #general)"
+      />
+      <button onClick={handleSlackAuth}>Add to Slack</button>
+    </div>
+  );
+};
 ```
 
-## User Identification
+</TabItem>
 
-To send direct messages to users, you need to identify them using one of these methods:
+<TabItem value="next">
 
-1. Slack User ID
-2. Email address (must match the user's Slack email)
+```jsx
+'use client';
 
-When using email addresses, NotificationAPI automatically resolves them to Slack User IDs.
+import React, { useState } from 'react';
 
-## Channel Messages
+const SlackIntegration = ({ userId }) => {
+  const [channel, setChannel] = useState('');
+  const handleSlackAuth = () => {
+    if (!channel) {
+      alert('Enter a channel name');
+      return;
+    }
+    const url =
+      'https://slack.com/oauth/v2/authorize?' +
+      'client_id=1146598856352.8825220259395' +
+      '&scope=chat:write,channels:read' +
+      `&redirect_uri=https://app.notificationapi.com/slack/oauth/callback/${CLIENT_ID}/userId/${userId}`;
+    window.open(url, 'slack_auth', 'width=500,height=600');
+  };
+  return (
+    <div>
+      <input
+        value={channel}
+        onChange={(e) => setChannel(e.target.value)}
+        placeholder="Channel (e.g. #general)"
+      />
+      <button onClick={handleSlackAuth}>Add to Slack</button>
+    </div>
+  );
+};
 
-To send messages to channels:
+export default SlackIntegration;
+```
 
-1. Invite your Slack app to the target channel using `/invite @YourAppName`
-2. Use the channel ID or channel name in your notification settings
+</TabItem>
 
-:::caution
-Make sure your Slack app is invited to channels before attempting to send messages.
-:::
+<TabItem value="remix">
 
-## Tracking Options
+```jsx
+import { useState } from 'react';
 
-The following events are tracked and reported in our logs and insights features:
+const SlackIntegration = ({ userId }) => {
+  const [channel, setChannel] = useState('');
 
-- Message delivery
-- Message failures
-- User resolution status
-- Channel availability
+  const handleSlackAuth = () => {
+    if (!channel) {
+      alert('Enter a channel name');
+      return;
+    }
+    const url =
+      'https://slack.com/oauth/v2/authorize?' +
+      'client_id=1146598856352.8825220259395' +
+      '&scope=chat:write,channels:read' +
+      `&redirect_uri=https://app.notificationapi.com/slack/oauth/callback/${CLIENT_ID}/userId/${userId}`;
+    window.open(url, 'slack_auth', 'width=500,height=600');
+  };
 
-## Best Practices
+  return (
+    <div>
+      <input
+        value={channel}
+        onChange={(e) => setChannel(e.target.value)}
+        placeholder="Channel (e.g. #general)"
+      />
+      <button onClick={handleSlackAuth}>Add to Slack</button>
+    </div>
+  );
+};
 
-1. **Rate Limiting**: Slack has rate limits for sending messages. NotificationAPI handles these automatically with smart retries.
+export default SlackIntegration;
+```
 
-2. **User Experience**:
+</TabItem>
+<TabItem value="vue">
 
-   - Use clear and concise messages
-   - Leverage formatting for better readability
-   - Include relevant links and context
-   - Use interactive elements when appropriate
+```jsx
+<template>
+  <div>
+    <input
+      v-model="channel"
+      placeholder="Channel (e.g. #general)"
+    />
+    <button @click="handleSlackAuth">Add to Slack</button>
+  </div>
+</template>
 
-3. **Error Handling**:
-   - NotificationAPI automatically handles common errors
-   - Failed deliveries are retried with exponential backoff
-   - Invalid user/channel errors are reported in logs
+<script>
+export default {
+  name: 'SlackIntegration',
+  props: {
+    userId: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      channel: ''
+    }
+  },
+  methods: {
+    handleSlackAuth() {
+      if (!this.channel) {
+        alert('Enter a channel name');
+        return;
+      }
+      const url =
+        "https://slack.com/oauth/v2/authorize?"
+        + "client_id=1146598856352.8825220259395"
+        + "&scope=chat:write,channels:read"
+        + `&redirect_uri=https://app.notificationapi.com/slack/oauth/callback/${CLIENT_ID}/userId/${this.userId}`;
+      window.open(url, "slack_auth", "width=500,height=600");
+    }
+  }
+}
+</script>
+
+```
+
+</TabItem>
+<TabItem value="angular">
+
+```jsx
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-slack-integration',
+  template: `
+    <div>
+      <input
+        [(ngModel)]="channel"
+        placeholder="Channel (e.g. #general)"
+      />
+      <button (click)="handleSlackAuth()">Add to Slack</button>
+    </div>
+  `
+})
+export class SlackIntegrationComponent {
+  channel: string = '';
+
+  @Input() userId!: string;
+
+  handleSlackAuth() {
+    if (!this.channel) {
+      alert('Enter a channel name');
+      return;
+    }
+    const url =
+      "https://slack.com/oauth/v2/authorize?"
+      + "client_id=1146598856352.8825220259395"
+      + "&scope=chat:write,channels:read"
+      + `&redirect_uri=https://app.notificationapi.com/slack/oauth/callback/${CLIENT_ID}/userId/${this.userId}`;
+    window.open(url, "slack_auth", "width=500,height=600");
+  }
+}
+
+```
+
+</TabItem>
+</Tabs>
+
+> **Note:**
+>
+> - Replace `userId` with your application's user identifier.
+> - `CLIENT_ID`is your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).
+> - The `redirect_uri` should match your NotificationAPI environment and user ID.
+> - For more details, see the [NotificationAPI documentation](https://docs.notificationapi.com/).
