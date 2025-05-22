@@ -24,7 +24,7 @@ To enable Slack notifications, simply install the NotificationAPI Slack app in y
 
 ## Frontend Integration Example
 
-Use the following component to let your users connect their Slack accounts. The example supports React, Next.js, Remix, Nuxt3, Angular, Vue, and Vanilla JS. Make sure to set the `environment` prop to your NotificationAPI environment (e.g., `production`, `testing`).
+Use the following component to let your users connect their Slack accounts. The example supports React, Next.js, Remix, Nuxt3, Angular, Vue, and Vanilla JS. Make sure to set the `CLIENT_ID` prop to your NotificationAPI environment (e.g., `production`, `testing`).
 <Tabs
 groupId="frontend-language"
 defaultValue="react"
