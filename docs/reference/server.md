@@ -406,24 +406,16 @@ using NotificationApi.Server.Models;
 var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false);
 ```
 
-| Name              | Type    | Description                                                                                                                                                                                                                                                          |
-| ----------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string  | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                     |
-| `CLIENT_SECRET`\* | string  | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                                |
-| `secureMode` \*   | boolean | Controlls sending notifications in secure mode. Set to `true` or `false`.                                                                                                                                                                                            |
-| `baseURL`         | string  | To choose a different region than default (US). Use https://api.ca.notificationapi.com for Canada region, or https://api.eu.notificationapi.com for Europe region. Can also use region constants CA_BASE_URL or EU_BASE_URL (e.g. NotificationApiServer.CA_BASE_URL) |
+| Name              | Type    | Description                                                                                                                                                        |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CLIENT_ID`\*     | string  | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                   |
+| `CLIENT_SECRET`\* | string  | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                              |
+| `secureMode` \*   | boolean | Controlls sending notifications in secure mode. Set to `true` or `false`.                                                                                          |
+| `baseURL`         | string  | To choose a different region than default (US). Use https://api.ca.notificationapi.com for Canada region, or https://api.eu.notificationapi.com for Europe region. |
 
 \* required
 
-Region specific example using region constant:
-
-```csharp
-using NotificationApi.Server;
-
-var notificationApi = new NotificationApiServer("CLIENT_ID", "CLIENT_SECRET", false, NotificationApiServer.EU_BASE_URL);
-```
-
-Region specific example using string:
+Region specific example:
 
 ```csharp
 using NotificationApi.Server;
