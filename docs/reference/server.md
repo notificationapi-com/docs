@@ -122,23 +122,15 @@ from notificationapi_python_server_sdk import notificationapi
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET")
 ```
 
-| Name              | Type   | Description                                                                                                                                                                                             |
-| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                        |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                   |
-| `base_url`        | string | To choose a different region than default (https://api.notificationapi.com). Can be a region constant (e.g. EU_REGION or CA_REGION) or a custom URL string (e.g. 'https://api.eu.notificationapi.com'). |
+| Name              | Type   | Description                                                                                                                                                                                |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                           |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                      |
+| `base_url`        | string | To choose a different region than default (https://api.notificationapi.com), use 'https://api.eu.notificationapi.com' for EU region and 'https://api.ca.notificationapi.com for CA region. |
 
 \* required
 
-Region specific example using imported Region constant:
-
-```python
-from notificationapi_python_server_sdk import notificationapi, EU_REGION
-
-notificationapi.init("CLIENT_ID", "CLIENT_SECRET", EU_REGION)
-```
-
-Region specific example using string:
+Region specific example:
 
 ```python
 notificationapi.init("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com")
