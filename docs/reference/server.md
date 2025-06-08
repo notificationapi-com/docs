@@ -157,28 +157,20 @@ use NotificationAPI\NotificationAPI;
 $notificationapi = new NotificationAPI('CLIENT_ID', 'CLIENT_SECRET');
 ```
 
-| Name              | Type   | Description                                                                                                                                                                                                                                                |
-| ----------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                           |
-| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                                                                                      |
-| `baseURL`         | string | To choose a different region than default US region (https://api.notificationapi.com). Can be a public region constant (e.g. NotificationAPI::EU_REGION or NotificationAPI::CA_REGION) or a custom URL string (e.g. 'https://api.eu.notificationapi.com'). |
+| Name              | Type   | Description                                                                                                                                                                                |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CLIENT_ID`\*     | string | Your NotificationAPI account clientId. You can get it from [here](https://app.notificationapi.com/environments).                                                                           |
+| `CLIENT_SECRET`\* | string | Your NotificationAPI account client secret. You can get it from [here](https://app.notificationapi.com/environments).                                                                      |
+| `baseURL`         | string | To choose a different region than default (https://api.notificationapi.com), use 'https://api.eu.notificationapi.com' for EU region and 'https://api.ca.notificationapi.com for CA region. |
 
 \* required
 
-Region specific example using public region constant:
+Region specific example:
 
 ```php
 use NotificationAPI\NotificationAPI;
 
-notificationapi.init("CLIENT_ID", "CLIENT_SECRET", NotificationAPI::EU_REGION)
-```
-
-Region specific example using string:
-
-```php
-use NotificationAPI\NotificationAPI;
-
-notificationapi = NotificationAPI.new("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
+$notificationapi = new NotificationAPI("CLIENT_ID", "CLIENT_SECRET", "https://api.eu.notificationapi.com");
 ```
 
 </TabItem>
